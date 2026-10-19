@@ -1,5 +1,5 @@
 === CoreA11y ===
-Contributors: strugbits
+Contributors: furqansadain
 Tags: accessibility, wcag, a11y, ada, audit
 Requires at least: 6.5
 Tested up to: 7.1

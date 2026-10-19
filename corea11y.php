@@ -1,7 +1,6 @@
 <?php
 /**
  * Plugin Name:       CoreA11y
- * Plugin URI:        https://github.com/furqansadain93/corea11y
  * Description:       Audit your site against WCAG 2.2 AA with axe-core, see exactly what needs fixing, and track progress with before/after reports.
  * Version:           0.5.1
  * Requires at least: 6.5
