@@ -140,6 +140,8 @@ class CoreA11y_Audit {
 
 			foreach ( array_slice( $nodes, 0, self::MAX_NODES_PER_RULE ) as $node ) {
 				$node_impact = isset( $node['impact'] ) ? CoreA11y_Rules::sanitize_impact( $node['impact'] ) : $impact;
+				$selector    = self::selector( isset( $node['target'] ) ? $node['target'] : array() );
+				$fp          = self::fingerprint( $rule, $url, $selector );
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Custom table.
 				$wpdb->insert(
 					$table,
@@ -153,12 +155,14 @@ class CoreA11y_Audit {
 						'impact'     => $node_impact,
 						'tier'       => CoreA11y_Rules::tier( $rule ),
 						'source'     => 'axe',
-						'selector'   => self::selector( isset( $node['target'] ) ? $node['target'] : array() ),
-						'snippet'    => self::clip( isset( $node['html'] ) ? $node['html'] : '', 1000 ),
-						'help'       => $help,
-						'detail'     => isset( $node['failureSummary'] ) ? self::plain_text( $node['failureSummary'], 2000 ) : '',
+						'selector'    => $selector,
+						'snippet'     => self::clip( isset( $node['html'] ) ? $node['html'] : '', 1000 ),
+						'help'        => $help,
+						'detail'      => isset( $node['failureSummary'] ) ? self::plain_text( $node['failureSummary'], 2000 ) : '',
+						'fingerprint' => $fp,
+						'status'      => CoreA11y_Dismiss::is_dismissed( $fp ) ? 'dismissed' : 'open',
 					),
-					array( '%d', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s' )
+					array( '%d', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s' )
 				);
 				++$stored;
 			}
@@ -213,7 +217,23 @@ class CoreA11y_Audit {
 			}
 		}
 		CoreA11y_Server_Checks::run( $id, $scanned_ids );
+		self::recalculate( $id, true );
 
+		return self::get( $id );
+	}
+
+	/**
+	 * Recompute totals and score (after finishing, or after issues are dismissed or restored).
+	 *
+	 * @param int  $id     Audit id.
+	 * @param bool $finish Also mark the audit complete.
+	 */
+	public static function recalculate( $id, $finish = false ) {
+		global $wpdb;
+		$audit = self::get( $id );
+		if ( ! $audit ) {
+			return;
+		}
 		$counts = self::counts( $id );
 		$points = 0;
 		foreach ( $counts['impact'] as $impact => $n ) {
@@ -225,22 +245,29 @@ class CoreA11y_Audit {
 		$summary           = $audit->summary;
 		$summary['counts'] = $counts;
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Custom table.
-		$wpdb->update(
-			CoreA11y_Install::tables()['audits'],
-			array(
-				'status'       => 'complete',
-				'issues_total' => $counts['total'],
-				'score'        => $score,
-				'finished_at'  => current_time( 'mysql', true ),
-				'summary'      => wp_json_encode( $summary ),
-			),
-			array( 'id' => $id ),
-			array( '%s', '%d', '%d', '%s', '%s' ),
-			array( '%d' )
+		$data = array(
+			'issues_total' => $counts['total'],
+			'score'        => $score,
+			'summary'      => wp_json_encode( $summary ),
 		);
+		if ( $finish ) {
+			$data['status']      = 'complete';
+			$data['finished_at'] = current_time( 'mysql', true );
+		}
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Custom table.
+		$wpdb->update( CoreA11y_Install::tables()['audits'], $data, array( 'id' => $id ) );
+	}
 
-		return self::get( $id );
+	/**
+	 * Stable identity of an issue across audits: same problem, same page, same element.
+	 *
+	 * @param string $rule  Rule id.
+	 * @param string $url   Page URL.
+	 * @param string $where Selector (axe) or "object_id|snippet" (server checks).
+	 * @return string 32-char hash.
+	 */
+	public static function fingerprint( $rule, $url, $where ) {
+		return md5( $rule . '|' . CoreA11y_Compare::normalize( $url ) . '|' . $where );
 	}
 
 	/**
@@ -260,7 +287,7 @@ class CoreA11y_Audit {
 		);
 		foreach ( array( 'impact', 'tier' ) as $col ) {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table.
-			$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT %i AS k, COUNT(*) AS n FROM %i WHERE audit_id = %d GROUP BY %i', $col, $table, $id, $col ) );
+			$rows = $wpdb->get_results( $wpdb->prepare( "SELECT %i AS k, COUNT(*) AS n FROM %i WHERE audit_id = %d AND status <> 'dismissed' GROUP BY %i", $col, $table, $id, $col ) );
 			foreach ( $rows as $r ) {
 				if ( isset( $out[ $col ][ $r->k ] ) ) {
 					$out[ $col ][ $r->k ] = (int) $r->n;
@@ -269,8 +296,41 @@ class CoreA11y_Audit {
 		}
 		$out['total'] = array_sum( $out['impact'] );
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table.
-		$out['rules'] = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(DISTINCT rule_id) FROM %i WHERE audit_id = %d', $table, $id ) );
+		$out['rules'] = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(DISTINCT rule_id) FROM %i WHERE audit_id = %d AND status <> 'dismissed'", $table, $id ) );
 		return $out;
+	}
+
+	/**
+	 * Issue counts per WCAG principle (1-4).
+	 *
+	 * @param int $id Audit id.
+	 * @return array<int,int>
+	 */
+	public static function principle_counts( $id ) {
+		global $wpdb;
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table.
+		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT wcag, COUNT(*) AS n FROM %i WHERE audit_id = %d AND status <> 'dismissed' GROUP BY wcag", CoreA11y_Install::tables()['issues'], $id ) );
+		$out  = array_fill_keys( array_keys( CoreA11y_Rules::principles() ), 0 );
+		foreach ( $rows as $r ) {
+			$p = CoreA11y_Rules::principle_of( $r->wcag );
+			if ( $p ) {
+				$out[ $p ] += (int) $r->n;
+			}
+		}
+		return $out;
+	}
+
+	/**
+	 * Pages with the most issues.
+	 *
+	 * @param int $id    Audit id.
+	 * @param int $limit Max rows.
+	 * @return array
+	 */
+	public static function page_counts( $id, $limit = 10 ) {
+		global $wpdb;
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table.
+		return $wpdb->get_results( $wpdb->prepare( "SELECT page_url, MAX(page_label) AS page_label, COUNT(*) AS n FROM %i WHERE audit_id = %d AND source = 'axe' AND status <> 'dismissed' GROUP BY page_url ORDER BY n DESC LIMIT %d", CoreA11y_Install::tables()['issues'], $id, $limit ) );
 	}
 
 	/**
@@ -282,7 +342,7 @@ class CoreA11y_Audit {
 	public static function grouped_issues( $id ) {
 		global $wpdb;
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table.
-		$rows   = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %i WHERE audit_id = %d ORDER BY id ASC', CoreA11y_Install::tables()['issues'], $id ) );
+		$rows   = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM %i WHERE audit_id = %d AND status <> 'dismissed' ORDER BY id ASC", CoreA11y_Install::tables()['issues'], $id ) );
 		$groups = array();
 		$rank   = array_flip( array_keys( CoreA11y_Rules::impacts() ) );
 		foreach ( $rows as $r ) {

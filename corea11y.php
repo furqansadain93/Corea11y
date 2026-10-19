@@ -3,7 +3,7 @@
  * Plugin Name:       CoreA11y
  * Plugin URI:        https://github.com/furqansadain93/corea11y
  * Description:       Audit your site against WCAG 2.2 AA with axe-core, see exactly what needs fixing, and track progress with before/after reports.
- * Version:           0.2.0
+ * Version:           0.5.0
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            Strugbits
@@ -17,8 +17,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'COREA11Y_VERSION', '0.2.0' );
-define( 'COREA11Y_DB_VERSION', '2' );
+define( 'COREA11Y_VERSION', '0.5.0' );
+define( 'COREA11Y_DB_VERSION', '3' );
 define( 'COREA11Y_FILE', __FILE__ );
 define( 'COREA11Y_DIR', plugin_dir_path( __FILE__ ) );
 define( 'COREA11Y_URL', plugin_dir_url( __FILE__ ) );
@@ -31,6 +31,14 @@ require_once COREA11Y_DIR . 'includes/class-corea11y-pages.php';
 require_once COREA11Y_DIR . 'includes/class-corea11y-audit.php';
 require_once COREA11Y_DIR . 'includes/class-corea11y-server-checks.php';
 require_once COREA11Y_DIR . 'includes/class-corea11y-scanner.php';
+require_once COREA11Y_DIR . 'includes/class-corea11y-explain.php';
+require_once COREA11Y_DIR . 'includes/class-corea11y-ui.php';
+require_once COREA11Y_DIR . 'includes/class-corea11y-compare.php';
+require_once COREA11Y_DIR . 'includes/class-corea11y-fixes.php';
+require_once COREA11Y_DIR . 'includes/class-corea11y-dismiss.php';
+require_once COREA11Y_DIR . 'includes/class-corea11y-statement.php';
+require_once COREA11Y_DIR . 'includes/class-corea11y-editor.php';
+require_once COREA11Y_DIR . 'includes/class-corea11y-highlighter.php';
 require_once COREA11Y_DIR . 'includes/class-corea11y-admin.php';
 require_once COREA11Y_DIR . 'includes/class-corea11y-rest.php';
 require_once COREA11Y_DIR . 'includes/class-corea11y.php';

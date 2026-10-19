@@ -56,6 +56,42 @@ class CoreA11y_Rules {
 	}
 
 	/**
+	 * The four WCAG principles.
+	 *
+	 * @return array<int,array{label:string,desc:string}>
+	 */
+	public static function principles() {
+		return array(
+			1 => array(
+				'label' => __( 'Perceivable', 'corea11y' ),
+				'desc'  => __( 'Can everyone see or hear the content? Covers text alternatives, captions, color contrast and structure.', 'corea11y' ),
+			),
+			2 => array(
+				'label' => __( 'Operable', 'corea11y' ),
+				'desc'  => __( 'Can everyone use it? Covers keyboard access, enough time, navigation, link text and tap target size.', 'corea11y' ),
+			),
+			3 => array(
+				'label' => __( 'Understandable', 'corea11y' ),
+				'desc'  => __( 'Is it clear and predictable? Covers page language, consistent behavior, labels and form errors.', 'corea11y' ),
+			),
+			4 => array(
+				'label' => __( 'Robust', 'corea11y' ),
+				'desc'  => __( 'Does it work with assistive technology? Covers names, roles and states of buttons, links and controls.', 'corea11y' ),
+			),
+		);
+	}
+
+	/**
+	 * Principle number (1-4) from a WCAG criteria string like "2.4.4, 4.1.2". 0 if unknown.
+	 *
+	 * @param string $wcag Criteria.
+	 * @return int
+	 */
+	public static function principle_of( $wcag ) {
+		return preg_match( '/^([1-4])\./', trim( (string) $wcag ), $m ) ? (int) $m[1] : 0;
+	}
+
+	/**
 	 * Which tier a rule falls into. Unknown rules default to "owner".
 	 *
 	 * @param string $rule_id Rule id.

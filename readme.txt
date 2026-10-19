@@ -4,7 +4,7 @@ Tags: accessibility, wcag, a11y, ada, audit
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.2.0
+Stable tag: 0.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,9 +15,16 @@ Audit your site against WCAG 2.2 AA, see exactly what needs fixing, and track pr
 CoreA11y scans your pages with axe-core, the open-source accessibility testing engine, and shows every issue it finds grouped by WCAG criterion, page and severity, with a plain-language explanation of how to fix it.
 
 * Full audit of your pages, run from your WordPress admin
-* Clear report: what is wrong, where, and how to fix it
-* Re-audit at any time and compare results before and after your fixes
+* Quick fixes with one-click undo: reversible fixes for a skip link, keyboard focus outline, page language, mobile zoom, search and comment field labels, and missing page titles
+* Visual report with a score gauge and charts by severity, WCAG principle and type of fix
+* A "?" next to every problem explains in plain language why it matters, who it affects and how to fix it
+* Before & after: compare any two audits to see what you fixed, what remains and what is new
+* Download any report or comparison as a polished PDF to share with your team or clients
 * Manual checklist for the WCAG criteria that software can't judge, with step-by-step instructions
+* Checks inside the block editor: every time you save, CoreA11y checks the post's content and explains any problems in the sidebar and before publishing
+* "Show on page": see each problem outlined on your live page, with an explanation and next/previous navigation
+* Dismiss issues that aren't real problems or that you accept for now, with a reason and note. Dismissals carry over to future audits and can be restored at any time.
+* Accessibility statement generator: a live statement page that updates itself with your latest audit, following W3C guidance
 
 CoreA11y does not inject an "overlay" script into your site, and it never sends your content to an outside service.
 
@@ -35,13 +42,21 @@ CoreA11y does not inject an "overlay" script into your site, and it never sends 
 
 No tool can do that automatically. CoreA11y shows you the issues automated testing can find and guides you through the manual checks that need a person.
 
+= Do quick fixes change my theme or content? =
+
+No. Fixes are applied as your pages are displayed, using WordPress hooks and a small script for parts that themes hard-code. Turn a fix off and your site is exactly as before.
+
 = Does CoreA11y send my data anywhere? =
 
 No. Scans run in your own browser and results are stored in your WordPress database.
 
+= Does the accessibility statement claim my site is compliant? =
+
+Only if you say so. You choose the conformance status yourself, and CoreA11y recommends "Partially conformant" until a full manual review has been done. It warns you if you choose "Fully conformant" while your latest audit still finds issues.
+
 = What happens to my data if I delete the plugin? =
 
-By default, all CoreA11y audits and settings are removed. You can change this under CoreA11y > Settings.
+By default, all CoreA11y audits and settings are removed. Your accessibility statement page is your content and is kept. You can change this under CoreA11y > Settings.
 
 == Third-party libraries ==
 
@@ -50,6 +65,25 @@ CoreA11y bundles axe-core 4.14.0 by Deque Systems (https://github.com/dequelabs/
 The audit report links to Deque University rule pages (https://dequeuniversity.com/rules/axe/) for detailed fixing guidance. These links are only opened if you click them; no data is sent.
 
 == Changelog ==
+
+= 0.5.0 =
+* Dismiss issues with a reason and optional note; restore them at any time. Dismissed issues no longer count toward totals or the score, and stay dismissed in future audits.
+* Accessibility statement generator with a live [corea11y_statement] shortcode, draft page creation and an optional footer link.
+* Block editor panel: checks a post's content after every save and in the pre-publish panel, with plain-language explanations. Works with the cross-origin isolated editor in WordPress 7.1.
+* Front-end highlighter: "Show on page" from any issue, plus an admin bar shortcut showing the number of issues on the current page.
+
+= 0.4.0 =
+* Quick fixes: six safe, one-click fixes with a full change history.
+* Undo for every fix: undo a single fix, undo everything you just saved, undo any entry in the history, or redo an undo.
+* Reports now point to the quick fix for each problem it can solve.
+* "Verify with a new audit" re-scans right after you turn fixes on, so you can see what they resolved.
+
+= 0.3.0 =
+* New visual report: score gauge, charts by severity, WCAG principle and fix type, pages with the most issues.
+* Plain-language "?" explanations for every problem and report term.
+* Before & after comparison of any two audits, with resolved, remaining and new issues.
+* PDF export for reports and comparisons.
+* Friendlier dashboard with a getting-started guide and progress messages.
 
 = 0.2.0 =
 * Audit engine: scans pages in the admin with axe-core (WCAG 2.0/2.1/2.2 A and AA rules).

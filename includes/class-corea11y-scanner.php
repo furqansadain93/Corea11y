@@ -22,6 +22,19 @@ class CoreA11y_Scanner {
 	 */
 	public static function register() {
 		add_filter( 'show_admin_bar', array( __CLASS__, 'hide_admin_bar' ) );
+		add_action( 'send_headers', array( __CLASS__, 'isolation_header' ) );
+	}
+
+	/**
+	 * When the block editor checks a page, it is cross-origin isolated (WordPress 7.1+
+	 * sends Document-Isolation-Policy for client-side media processing). The page being
+	 * checked must use the same policy, or the editor can't read it.
+	 */
+	public static function isolation_header() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Header only; no data is changed.
+		if ( isset( $_GET[ self::QUERY_ARG ] ) && 'isolated' === $_GET[ self::QUERY_ARG ] && is_user_logged_in() && current_user_can( 'edit_posts' ) && ! headers_sent() ) {
+			header( 'Document-Isolation-Policy: isolate-and-credentialless' );
+		}
 	}
 
 	/**

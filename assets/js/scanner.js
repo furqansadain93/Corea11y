@@ -228,6 +228,11 @@
 		announce( __( 'Stopping after the current page. Results so far will be saved.', 'corea11y' ) );
 	} );
 
+	// "Verify with a new audit" links start the audit automatically.
+	if ( new URLSearchParams( window.location.search ).get( 'corea11y_autorun' ) === '1' ) {
+		run();
+	}
+
 	window.addEventListener( 'beforeunload', ( event ) => {
 		if ( running ) {
 			event.preventDefault();

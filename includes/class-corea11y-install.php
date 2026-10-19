@@ -45,8 +45,9 @@ class CoreA11y_Install {
 	public static function tables() {
 		global $wpdb;
 		return array(
-			'audits' => $wpdb->prefix . 'corea11y_audits',
-			'issues' => $wpdb->prefix . 'corea11y_issues',
+			'audits'     => $wpdb->prefix . 'corea11y_audits',
+			'issues'     => $wpdb->prefix . 'corea11y_issues',
+			'dismissals' => $wpdb->prefix . 'corea11y_dismissals',
 		);
 	}
 
@@ -92,13 +93,45 @@ class CoreA11y_Install {
 			snippet text,
 			help text,
 			detail text,
+			fingerprint char(32) NOT NULL DEFAULT '',
 			status varchar(20) NOT NULL DEFAULT 'open',
 			PRIMARY KEY  (id),
 			KEY audit_id (audit_id),
-			KEY rule_id (rule_id)
+			KEY rule_id (rule_id),
+			KEY fingerprint (fingerprint)
+		) $charset;";
+
+		$dismissals = "CREATE TABLE {$t['dismissals']} (
+			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+			fingerprint char(32) NOT NULL,
+			rule_id varchar(100) NOT NULL DEFAULT '',
+			page_url varchar(2048) NOT NULL DEFAULT '',
+			reason varchar(30) NOT NULL DEFAULT '',
+			note text,
+			user_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			created_at datetime DEFAULT NULL,
+			PRIMARY KEY  (id),
+			UNIQUE KEY fingerprint (fingerprint)
 		) $charset;";
 
 		dbDelta( $audits );
 		dbDelta( $issues );
+		dbDelta( $dismissals );
+		self::backfill_fingerprints();
+	}
+
+	/**
+	 * Give issues stored before fingerprints existed one (schema version 3).
+	 */
+	private static function backfill_fingerprints() {
+		global $wpdb;
+		$table = self::tables()['issues'];
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-time migration of the plugin's own table.
+		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT id, rule_id, page_url, selector, snippet, object_id, source FROM %i WHERE fingerprint = '' LIMIT 5000", $table ) );
+		foreach ( (array) $rows as $r ) {
+			$where = 'axe' === $r->source ? $r->selector : (int) $r->object_id . '|' . $r->snippet;
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-time migration.
+			$wpdb->update( $table, array( 'fingerprint' => CoreA11y_Audit::fingerprint( $r->rule_id, $r->page_url, $where ) ), array( 'id' => $r->id ) );
+		}
 	}
 }

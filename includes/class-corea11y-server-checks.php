@@ -141,6 +141,7 @@ class CoreA11y_Server_Checks {
 	 */
 	private static function insert( $audit_id, array $data ) {
 		global $wpdb;
+		$fp = CoreA11y_Audit::fingerprint( $data['rule_id'], $data['page_url'], (int) $data['object_id'] . '|' . $data['snippet'] );
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Custom table.
 		$wpdb->insert(
 			CoreA11y_Install::tables()['issues'],
@@ -157,9 +158,11 @@ class CoreA11y_Server_Checks {
 				'selector'   => '',
 				'snippet'    => $data['snippet'],
 				'help'       => $data['help'],
-				'detail'     => $data['detail'],
+				'detail'      => $data['detail'],
+				'fingerprint' => $fp,
+				'status'      => CoreA11y_Dismiss::is_dismissed( $fp ) ? 'dismissed' : 'open',
 			),
-			array( '%d', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s' )
+			array( '%d', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s' )
 		);
 	}
 }

@@ -27,7 +27,9 @@ languages/              Translations
 
 - [x] Milestone 1: plugin skeleton, tables, admin screens, settings, manual checklist
 - [x] Milestone 2: audit engine (axe-core scanning, server-side checks, report)
-- [ ] Milestone 3: re-audit and before/after comparison
+- [x] Milestone 3: visual reports, "?" explanations, before/after comparison, PDF export
+- [x] v0.4.0: six quick fixes (skip link, focus outline, page language, zoom, form labels, page title)
+- [x] v0.5.0: dismiss issues, accessibility statement, block editor checks, front-end highlighter
 - [ ] Milestone 4: hardening, Plugin Check, submission
 
 ## License

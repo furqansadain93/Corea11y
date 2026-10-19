@@ -3,38 +3,59 @@
  * Dashboard view.
  *
  * @package CoreA11y
- * @var object|null $latest   Latest audit row.
- * @var object|null $previous Previous audit row.
+ * @var object|null $latest   Latest completed audit row.
+ * @var object|null $previous Previous completed audit row.
  */
 
 defined( 'ABSPATH' ) || exit;
 
 $corea11y_checks = CoreA11y_Checklist::summary();
 $corea11y_total  = array_sum( $corea11y_checks );
+$corea11y_done   = $corea11y_total - (int) $corea11y_checks[''];
 $corea11y_scopes = CoreA11y_Settings::scopes();
 $corea11y_scope  = CoreA11y_Settings::get( 'scan_scope' );
+$corea11y_user   = wp_get_current_user();
 ?>
 <div class="wrap corea11y">
-	<h1><?php esc_html_e( 'CoreA11y Dashboard', 'corea11y' ); ?></h1>
+	<div class="corea11y-page-head">
+		<div>
+			<h1>
+				<?php
+				/* translators: %s: user's display name. */
+				echo esc_html( sprintf( __( 'Hi %s, let\'s make your site welcoming for everyone', 'corea11y' ), $corea11y_user->display_name ) );
+				?>
+			</h1>
+			<p class="corea11y-meta"><?php esc_html_e( 'CoreA11y finds accessibility problems, explains them in plain language and tracks your progress.', 'corea11y' ); ?></p>
+		</div>
+	</div>
+
+	<?php if ( ! $latest ) : ?>
+		<ol class="corea11y-steps">
+			<li class="corea11y-step"><h2><?php esc_html_e( 'Run an audit', 'corea11y' ); ?></h2><p><?php esc_html_e( 'We check your pages against WCAG 2.2. It takes about a minute.', 'corea11y' ); ?></p></li>
+			<li class="corea11y-step"><h2><?php esc_html_e( 'Read the report', 'corea11y' ); ?></h2><p><?php esc_html_e( 'Every problem comes with a "?" that explains why it matters and how to fix it.', 'corea11y' ); ?></p></li>
+			<li class="corea11y-step"><h2><?php esc_html_e( 'Fix, starting with critical', 'corea11y' ); ?></h2><p><?php esc_html_e( 'Critical problems block some visitors completely, so they make the biggest difference.', 'corea11y' ); ?></p></li>
+			<li class="corea11y-step"><h2><?php esc_html_e( 'Re-audit and celebrate', 'corea11y' ); ?></h2><p><?php esc_html_e( 'Compare before and after, and download a PDF to share your progress.', 'corea11y' ); ?></p></li>
+		</ol>
+	<?php endif; ?>
 
 	<div class="corea11y-card">
-		<h2><?php echo $latest ? esc_html__( 'Run a new audit', 'corea11y' ) : esc_html__( 'Run your first audit', 'corea11y' ); ?></h2>
+		<h2><?php echo $latest ? esc_html__( 'Run a new audit', 'corea11y' ) : esc_html__( 'Ready when you are', 'corea11y' ); ?></h2>
 		<p>
 			<?php
 			printf(
 				/* translators: %s: the selected set of pages, e.g. "One page per template". */
 				esc_html__( 'Pages to scan: %s.', 'corea11y' ),
-				esc_html( isset( $corea11y_scopes[ $corea11y_scope ] ) ? $corea11y_scopes[ $corea11y_scope ] : $corea11y_scope )
+				'<strong>' . esc_html( isset( $corea11y_scopes[ $corea11y_scope ] ) ? $corea11y_scopes[ $corea11y_scope ] : $corea11y_scope ) . '</strong>'
 			);
 			?>
 			<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . CoreA11y_Settings::PAGE ) ); ?>"><?php esc_html_e( 'Change', 'corea11y' ); ?></a>
 		</p>
-		<p><?php esc_html_e( 'Keep this tab open while the audit runs. Each page is loaded in the background and checked with axe-core.', 'corea11y' ); ?></p>
+		<p class="corea11y-meta"><?php esc_html_e( 'Keep this tab open while the audit runs. Your pages are opened quietly in the background, so visitors notice nothing.', 'corea11y' ); ?></p>
 		<p>
-			<button type="button" class="button button-primary" id="corea11y-run-audit"><?php esc_html_e( 'Run audit', 'corea11y' ); ?></button>
+			<button type="button" class="button button-primary button-hero" id="corea11y-run-audit"><?php echo $latest ? esc_html__( 'Run audit', 'corea11y' ) : esc_html__( 'Run my first audit', 'corea11y' ); ?></button>
 			<button type="button" class="button" id="corea11y-stop-audit" hidden><?php esc_html_e( 'Stop and save results so far', 'corea11y' ); ?></button>
 		</p>
-		<div id="corea11y-progress" hidden>
+		<div id="corea11y-progress" class="corea11y-progress-wrap" hidden>
 			<p id="corea11y-progress-text" role="status" aria-live="polite"></p>
 			<progress id="corea11y-progress-bar" value="0" max="1" aria-labelledby="corea11y-progress-text"></progress>
 			<ul id="corea11y-progress-log" class="corea11y-log"></ul>
@@ -43,66 +64,86 @@ $corea11y_scope  = CoreA11y_Settings::get( 'scan_scope' );
 
 	<?php if ( $latest ) : ?>
 		<?php
-		$corea11y_summary = json_decode( (string) $latest->summary, true );
-		$corea11y_counts  = isset( $corea11y_summary['counts'] ) ? $corea11y_summary['counts'] : null;
+		$corea11y_band = CoreA11y_UI::band( null === $latest->score ? null : (int) $latest->score );
+		$corea11y_diff = $previous ? (int) $latest->issues_total - (int) $previous->issues_total : null;
 		?>
-		<h2><?php esc_html_e( 'Latest audit', 'corea11y' ); ?></h2>
-		<div class="corea11y-grid">
-			<div class="corea11y-card">
-				<p class="corea11y-stat"><?php echo esc_html( number_format_i18n( (int) $latest->issues_total ) ); ?></p>
-				<p><?php esc_html_e( 'issues found', 'corea11y' ); ?></p>
-				<?php if ( $previous && 'complete' === $previous->status ) : ?>
-					<p>
-						<?php
-						$corea11y_diff = (int) $latest->issues_total - (int) $previous->issues_total;
-						printf(
-							/* translators: %s: change in issue count since the previous audit, e.g. "-12". */
-							esc_html__( 'Change since previous audit: %s', 'corea11y' ),
-							esc_html( ( $corea11y_diff > 0 ? '+' : '' ) . number_format_i18n( $corea11y_diff ) )
-						);
-						?>
-					</p>
-				<?php endif; ?>
+		<section class="corea11y-hero" aria-labelledby="corea11y-latest-title">
+			<?php echo CoreA11y_UI::score_ring( null === $latest->score ? null : (int) $latest->score ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in CoreA11y_UI. ?>
+			<div class="corea11y-hero-text">
+				<h2 id="corea11y-latest-title">
+					<?php
+					if ( null !== $corea11y_diff && $corea11y_diff < 0 ) {
+						/* translators: %s: number of issues. */
+						echo esc_html( sprintf( _n( 'Great progress: %s fewer issue than last time!', 'Great progress: %s fewer issues than last time!', -$corea11y_diff, 'corea11y' ), number_format_i18n( -$corea11y_diff ) ) );
+					} elseif ( 0 === (int) $latest->issues_total ) {
+						esc_html_e( 'No issues in your latest audit. Brilliant!', 'corea11y' );
+					} else {
+						/* translators: %s: number of issues. */
+						echo esc_html( sprintf( _n( 'Your latest audit found %s issue', 'Your latest audit found %s issues', (int) $latest->issues_total, 'corea11y' ), number_format_i18n( (int) $latest->issues_total ) ) );
+					}
+					?>
+				</h2>
+				<p>
+					<?php
+					/* translators: 1: date, 2: number of pages. */
+					echo esc_html( sprintf( __( 'Audited %1$s across %2$s pages.', 'corea11y' ), get_date_from_gmt( $latest->started_at, get_option( 'date_format' ) ), number_format_i18n( (int) $latest->pages_scanned ) ) );
+					echo ' ';
+					echo CoreA11y_UI::concept_tip( 'score', __( 'Scan score', 'corea11y' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in CoreA11y_UI.
+					?>
+				</p>
+				<p class="corea11y-actions">
+					<a class="button button-primary" href="<?php echo esc_url( CoreA11y_Admin::report_url( $latest->id ) ); ?>"><?php esc_html_e( 'View report', 'corea11y' ); ?></a>
+					<a class="button" href="<?php echo esc_url( CoreA11y_Admin::export_url( 'report', array( 'audit' => $latest->id ) ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Download PDF', 'corea11y' ); ?><span class="screen-reader-text"> <?php esc_html_e( '(opens in a new tab)', 'corea11y' ); ?></span></a>
+					<?php if ( $previous ) : ?>
+						<a class="button" href="<?php echo esc_url( CoreA11y_Admin::compare_url( $previous->id, $latest->id ) ); ?>"><?php esc_html_e( 'See before & after', 'corea11y' ); ?></a>
+					<?php endif; ?>
+				</p>
 			</div>
-			<div class="corea11y-card">
-				<p class="corea11y-stat"><?php echo null === $latest->score ? '—' : esc_html( (int) $latest->score ); ?></p>
-				<p><?php esc_html_e( 'scan score out of 100', 'corea11y' ); ?></p>
-			</div>
-			<div class="corea11y-card">
-				<p class="corea11y-stat"><?php echo esc_html( number_format_i18n( (int) $latest->pages_scanned ) ); ?></p>
-				<p><?php esc_html_e( 'pages scanned', 'corea11y' ); ?></p>
-			</div>
-		</div>
-		<?php if ( $corea11y_counts ) : ?>
-			<p>
-				<?php
-				$corea11y_parts = array();
-				foreach ( CoreA11y_Rules::impacts() as $corea11y_key => $corea11y_label ) {
-					$corea11y_parts[] = sprintf( '%s: %s', $corea11y_label, number_format_i18n( (int) $corea11y_counts['impact'][ $corea11y_key ] ) );
-				}
-				echo esc_html( implode( ' · ', $corea11y_parts ) );
-				?>
-			</p>
-		<?php endif; ?>
-		<p><a class="button" href="<?php echo esc_url( CoreA11y_Admin::report_url( $latest->id ) ); ?>"><?php esc_html_e( 'View full report', 'corea11y' ); ?></a></p>
+		</section>
 	<?php endif; ?>
 
 	<div class="corea11y-card">
-		<h2><?php esc_html_e( 'Manual checklist', 'corea11y' ); ?></h2>
+		<h2>
+			<?php esc_html_e( 'Manual checklist', 'corea11y' ); ?>
+			<?php echo CoreA11y_UI::tip( __( 'Manual checklist', 'corea11y' ), __( 'Some WCAG requirements need human judgment, like whether alt text is meaningful or a video\'s captions are accurate. The checklist walks you through them one by one.', 'corea11y' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in CoreA11y_UI. ?>
+		</h2>
 		<p>
 			<?php
 			printf(
-				/* translators: 1: number of checks marked pass, 2: total number of checks. */
-				esc_html__( '%1$d of %2$d manual checks passed.', 'corea11y' ),
-				(int) $corea11y_checks['pass'],
-				(int) $corea11y_total
+				/* translators: 1: number of checks reviewed, 2: total number of checks, 3: number passed. */
+				esc_html__( '%1$d of %2$d checks reviewed, %3$d passed.', 'corea11y' ),
+				(int) $corea11y_done,
+				(int) $corea11y_total,
+				(int) $corea11y_checks['pass']
 			);
 			?>
 		</p>
-		<p><a href="<?php echo esc_url( admin_url( 'admin.php?page=corea11y-checklist' ) ); ?>"><?php esc_html_e( 'Open the checklist', 'corea11y' ); ?></a></p>
+		<?php
+		echo CoreA11y_UI::bars( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in CoreA11y_UI.
+			array(
+				array(
+					'label' => __( 'Passed', 'corea11y' ),
+					'value' => (int) $corea11y_checks['pass'],
+					'class' => 'corea11y-fill-brand',
+				),
+				array(
+					'label' => __( 'Failed', 'corea11y' ),
+					'value' => (int) $corea11y_checks['fail'],
+					'class' => 'corea11y-fill-critical',
+				),
+				array(
+					'label' => __( 'Not checked yet', 'corea11y' ),
+					'value' => (int) $corea11y_checks[''],
+					'class' => 'corea11y-fill-minor',
+				),
+			),
+			__( 'Checklist progress', 'corea11y' )
+		);
+		?>
+		<p><a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=corea11y-checklist' ) ); ?>"><?php esc_html_e( 'Open the checklist', 'corea11y' ); ?></a></p>
 	</div>
 
 	<p class="corea11y-note">
-		<?php esc_html_e( 'CoreA11y reports automated scan results and your own manual checks. Automated tools cannot confirm full WCAG conformance on their own.', 'corea11y' ); ?>
+		<?php esc_html_e( 'CoreA11y reports automated scan results and your own manual checks. Automated tools can\'t confirm full WCAG conformance on their own.', 'corea11y' ); ?>
 	</p>
 </div>
