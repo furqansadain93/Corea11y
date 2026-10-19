@@ -1,0 +1,174 @@
+/* CoreA11y admin styles. Colors meet WCAG AA contrast on the default admin scheme. */
+
+.corea11y .corea11y-card {
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	padding: 16px 20px;
+	margin: 16px 0;
+	max-width: 960px;
+}
+
+.corea11y .corea11y-card h2 {
+	margin-top: 0;
+}
+
+.corea11y .corea11y-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 16px;
+	max-width: 960px;
+}
+
+.corea11y .corea11y-stat {
+	font-size: 2.5em;
+	font-weight: 600;
+	line-height: 1.1;
+	margin: 0;
+}
+
+.corea11y .corea11y-lead,
+.corea11y .corea11y-note {
+	max-width: 960px;
+	font-size: 14px;
+}
+
+.corea11y .corea11y-note {
+	color: #50575e;
+}
+
+.corea11y .corea11y-checklist {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.corea11y .corea11y-check-title {
+	font-size: 1.15em;
+}
+
+.corea11y .corea11y-sc {
+	display: inline-block;
+	margin-left: 8px;
+	padding: 2px 8px;
+	border-radius: 10px;
+	background: #f0f0f1;
+	color: #3c434a;
+	font-size: 12px;
+	font-weight: 400;
+	vertical-align: middle;
+}
+
+.corea11y .corea11y-checklist label {
+	font-weight: 600;
+	margin-right: 8px;
+}
+
+.corea11y :focus-visible {
+	outline: 2px solid #2271b1;
+	outline-offset: 2px;
+}
+
+/* Scanner */
+.corea11y-scan-frame {
+	position: absolute;
+	left: -10000px;
+	top: 0;
+	width: 1280px;
+	height: 900px;
+	border: 0;
+}
+
+.corea11y #corea11y-progress progress {
+	width: 100%;
+	max-width: 480px;
+	height: 16px;
+}
+
+.corea11y .corea11y-log {
+	max-height: 240px;
+	overflow: auto;
+	margin: 12px 0 0;
+}
+
+.corea11y .corea11y-log-error {
+	color: #b32d2e;
+}
+
+/* Report */
+.corea11y .corea11y-counts {
+	max-width: 960px;
+	margin: 16px 0;
+}
+
+.corea11y .corea11y-counts caption {
+	text-align: left;
+	font-weight: 600;
+	padding: 8px 0;
+}
+
+.corea11y .corea11y-rule {
+	border-left-width: 4px;
+}
+
+.corea11y .corea11y-impact-critical { border-left-color: #b32d2e; }
+.corea11y .corea11y-impact-serious { border-left-color: #bd5b00; }
+.corea11y .corea11y-impact-moderate { border-left-color: #8a6d00; }
+.corea11y .corea11y-impact-minor { border-left-color: #50575e; }
+
+.corea11y .corea11y-rule h3 {
+	margin: 0 0 8px;
+	font-size: 1.15em;
+}
+
+.corea11y .corea11y-badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin: 0 0 8px;
+}
+
+.corea11y .corea11y-badge {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 10px;
+	background: #f0f0f1;
+	color: #3c434a;
+	font-size: 12px;
+}
+
+.corea11y .corea11y-badge-critical { background: #fcf0f1; color: #8a2424; }
+.corea11y .corea11y-badge-serious { background: #fcf2e8; color: #8a4200; }
+.corea11y .corea11y-badge-moderate { background: #fcf9e8; color: #614d00; }
+
+.corea11y details summary {
+	cursor: pointer;
+	font-weight: 600;
+	color: #2271b1;
+}
+
+.corea11y .corea11y-instances {
+	margin: 12px 0 0;
+}
+
+.corea11y .corea11y-instances li {
+	border-top: 1px solid #dcdcde;
+	padding-top: 8px;
+}
+
+.corea11y .corea11y-instances p {
+	margin: 4px 0;
+}
+
+.corea11y .corea11y-snippet {
+	background: #f6f7f7;
+	padding: 8px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-break: break-all;
+	max-width: 100%;
+}
+
+.corea11y .corea11y-detail {
+	color: #3c434a;
+}

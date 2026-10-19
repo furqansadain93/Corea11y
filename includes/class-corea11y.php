@@ -1,0 +1,65 @@
+<?php
+/**
+ * Main plugin bootstrap.
+ *
+ * @package CoreA11y
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+/**
+ * Wires up the plugin's components. Pro extends Lite through the
+ * `corea11y_loaded` action rather than by replacing classes.
+ */
+final class CoreA11y {
+
+	/**
+	 * Single instance.
+	 *
+	 * @var CoreA11y|null
+	 */
+	private static $instance = null;
+
+	/**
+	 * Get (and boot on first call) the plugin instance.
+	 *
+	 * @return CoreA11y
+	 */
+	public static function instance() {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+			self::$instance->boot();
+		}
+		return self::$instance;
+	}
+
+	/**
+	 * Hook components.
+	 */
+	private function boot() {
+		add_action( 'init', array( $this, 'load_textdomain' ) );
+
+		CoreA11y_Install::maybe_upgrade();
+
+		( new CoreA11y_Rest() )->register();
+		CoreA11y_Scanner::register();
+
+		if ( is_admin() ) {
+			( new CoreA11y_Admin() )->register();
+		}
+
+		/**
+		 * Fires after CoreA11y Lite has loaded. CoreA11y Pro hooks in here.
+		 *
+		 * @param CoreA11y $plugin The plugin instance.
+		 */
+		do_action( 'corea11y_loaded', $this );
+	}
+
+	/**
+	 * Load translations.
+	 */
+	public function load_textdomain() {
+		load_plugin_textdomain( 'corea11y', false, dirname( plugin_basename( COREA11Y_FILE ) ) . '/languages' );
+	}
+}
