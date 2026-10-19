@@ -5,7 +5,9 @@
  * Version:           0.5.1
  * Requires at least: 6.5
  * Requires PHP:      7.4
- * Author:            Strugbits
+ * Plugin URI:        https://corea11y.com
+ * Author:            MSACAlab
+ * Author URI:        https://corea11y.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       corea11y
