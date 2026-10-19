@@ -4,7 +4,7 @@ Tags: accessibility, wcag, a11y, ada, audit
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.5.0
+Stable tag: 0.5.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,18 @@ Only if you say so. You choose the conformance status yourself, and CoreA11y rec
 
 By default, all CoreA11y audits and settings are removed. Your accessibility statement page is your content and is kept. You can change this under CoreA11y > Settings.
 
+== Screenshots ==
+
+1. Dashboard: your latest score, progress and next steps at a glance.
+2. Audit report with a score gauge and charts by severity, WCAG principle and type of fix.
+3. Every problem has a "?" that explains why it matters, who it affects and how to fix it.
+4. Before & after: compare any two audits to see what you fixed, what remains and what is new.
+5. Quick fixes: safe, one-click fixes, each with undo.
+6. Show on page: each problem outlined on your live site, with an explanation.
+7. Checks inside the block editor every time you save a post.
+8. Accessibility statement generator that stays up to date with your audits.
+9. Download any report or comparison as a polished PDF.
+
 == Third-party libraries ==
 
 CoreA11y bundles axe-core 4.14.0 by Deque Systems (https://github.com/dequelabs/axe-core), licensed under the Mozilla Public License 2.0, which is GPL-compatible. The license is included in assets/vendor/axe-core/LICENSE.
@@ -65,6 +77,11 @@ CoreA11y bundles axe-core 4.14.0 by Deque Systems (https://github.com/dequelabs/
 The audit report links to Deque University rule pages (https://dequeuniversity.com/rules/axe/) for detailed fixing guidance. These links are only opened if you click them; no data is sent.
 
 == Changelog ==
+
+= 0.5.1 =
+* Passes the WordPress.org Plugin Check with no errors or warnings.
+* Added a translation template (languages/corea11y.pot).
+* Tested on WordPress 6.5 through 7.1.
 
 = 0.5.0 =
 * Dismiss issues with a reason and optional note; restore them at any time. Dismissed issues no longer count toward totals or the score, and stay dismissed in future audits.

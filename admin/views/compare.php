@@ -11,8 +11,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$is_print     = false;
-$corea11y_fmt = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
+$corea11y_is_print = false;
+$corea11y_fmt      = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
 ?>
 <div class="wrap corea11y">
 	<div class="corea11y-page-head">

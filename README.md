@@ -20,7 +20,8 @@ admin/views/            Admin screen templates
 assets/css/             Admin styles
 assets/js/scanner.js    Browser-side scanner (runs axe-core in a hidden frame)
 assets/vendor/axe-core/ Bundled axe-core (MPL-2.0)
-languages/              Translations
+languages/              Translation template (corea11y.pot)
+.wordpress-org/         Screenshots for the WordPress.org listing (not shipped in the plugin)
 ```
 
 ## Development status
@@ -30,7 +31,8 @@ languages/              Translations
 - [x] Milestone 3: visual reports, "?" explanations, before/after comparison, PDF export
 - [x] v0.4.0: six quick fixes (skip link, focus outline, page language, zoom, form labels, page title)
 - [x] v0.5.0: dismiss issues, accessibility statement, block editor checks, front-end highlighter
-- [ ] Milestone 4: hardening, Plugin Check, submission
+- [x] v0.5.1: passes Plugin Check (0 errors, 0 warnings), translation template, tested on WordPress 6.5 to 7.1, listing screenshots
+- [ ] Submit to WordPress.org
 
 ## License
 

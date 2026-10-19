@@ -1,14 +1,16 @@
+.distignore
+.gitignore
 /.git
 /.github
+/Claude outputs
 /node_modules
-/vendor
-/tests
 /src
-.gitignore
-.distignore
+/tests
+/vendor
 README.md
 composer.json
 composer.lock
-package.json
 package-lock.json
+package.json
 phpcs.xml.dist
+/.wordpress-org

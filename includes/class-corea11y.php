@@ -37,8 +37,6 @@ final class CoreA11y {
 	 * Hook components.
 	 */
 	private function boot() {
-		add_action( 'init', array( $this, 'load_textdomain' ) );
-
 		CoreA11y_Install::maybe_upgrade();
 
 		( new CoreA11y_Rest() )->register();
@@ -58,12 +56,5 @@ final class CoreA11y {
 		 * @param CoreA11y $plugin The plugin instance.
 		 */
 		do_action( 'corea11y_loaded', $this );
-	}
-
-	/**
-	 * Load translations.
-	 */
-	public function load_textdomain() {
-		load_plugin_textdomain( 'corea11y', false, dirname( plugin_basename( COREA11Y_FILE ) ) . '/languages' );
 	}
 }

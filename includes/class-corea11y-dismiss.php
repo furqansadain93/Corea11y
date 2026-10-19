@@ -70,7 +70,7 @@ class CoreA11y_Dismiss {
 			$reason = 'accepted';
 		}
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Custom table.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table; written once per request.
 		$wpdb->replace(
 			$t['dismissals'],
 			array(

@@ -100,7 +100,7 @@ class CoreA11y_Server_Checks {
 				'post_mime_type' => 'image',
 				'posts_per_page' => self::LIMIT,
 				'fields'         => 'ids',
-				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_query_meta_query -- Runs once per audit, capped by LIMIT.
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Runs once per audit, capped by LIMIT.
 				'meta_query'     => array(
 					'relation' => 'OR',
 					array(
@@ -142,7 +142,7 @@ class CoreA11y_Server_Checks {
 	private static function insert( $audit_id, array $data ) {
 		global $wpdb;
 		$fp = CoreA11y_Audit::fingerprint( $data['rule_id'], $data['page_url'], (int) $data['object_id'] . '|' . $data['snippet'] );
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Custom table.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table; written once per request.
 		$wpdb->insert(
 			CoreA11y_Install::tables()['issues'],
 			array(

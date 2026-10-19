@@ -10,9 +10,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$is_print      = true;
-$corea11y_site = get_bloginfo( 'name' );
-$corea11y_host = wp_parse_url( home_url(), PHP_URL_HOST );
+$corea11y_is_print = true;
+$corea11y_site     = get_bloginfo( 'name' );
+$corea11y_host     = wp_parse_url( home_url(), PHP_URL_HOST );
 // phpcs:ignore WordPress.PHP.DontExtract.extract_extract -- Controlled, internal variables only.
 extract( $data, EXTR_SKIP );
 ?>

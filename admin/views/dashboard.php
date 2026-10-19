@@ -119,26 +119,24 @@ $corea11y_user   = wp_get_current_user();
 			?>
 		</p>
 		<?php
-		echo CoreA11y_UI::bars( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in CoreA11y_UI.
+		$corea11y_rows = array(
 			array(
-				array(
-					'label' => __( 'Passed', 'corea11y' ),
-					'value' => (int) $corea11y_checks['pass'],
-					'class' => 'corea11y-fill-brand',
-				),
-				array(
-					'label' => __( 'Failed', 'corea11y' ),
-					'value' => (int) $corea11y_checks['fail'],
-					'class' => 'corea11y-fill-critical',
-				),
-				array(
-					'label' => __( 'Not checked yet', 'corea11y' ),
-					'value' => (int) $corea11y_checks[''],
-					'class' => 'corea11y-fill-minor',
-				),
+				'label' => __( 'Passed', 'corea11y' ),
+				'value' => (int) $corea11y_checks['pass'],
+				'class' => 'corea11y-fill-brand',
 			),
-			__( 'Checklist progress', 'corea11y' )
+			array(
+				'label' => __( 'Failed', 'corea11y' ),
+				'value' => (int) $corea11y_checks['fail'],
+				'class' => 'corea11y-fill-critical',
+			),
+			array(
+				'label' => __( 'Not checked yet', 'corea11y' ),
+				'value' => (int) $corea11y_checks[''],
+				'class' => 'corea11y-fill-minor',
+			),
 		);
+		echo CoreA11y_UI::bars( $corea11y_rows, __( 'Checklist progress', 'corea11y' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in CoreA11y_UI.
 		?>
 		<p><a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=corea11y-checklist' ) ); ?>"><?php esc_html_e( 'Open the checklist', 'corea11y' ); ?></a></p>
 	</div>

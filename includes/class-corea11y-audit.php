@@ -48,7 +48,7 @@ class CoreA11y_Audit {
 			'engine'    => 'axe-core ' . self::axe_version(),
 		);
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Custom table.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table; written once per request.
 		$ok = $wpdb->insert(
 			CoreA11y_Install::tables()['audits'],
 			array(
@@ -142,7 +142,7 @@ class CoreA11y_Audit {
 				$node_impact = isset( $node['impact'] ) ? CoreA11y_Rules::sanitize_impact( $node['impact'] ) : $impact;
 				$selector    = self::selector( isset( $node['target'] ) ? $node['target'] : array() );
 				$fp          = self::fingerprint( $rule, $url, $selector );
-				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Custom table.
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table; written once per request.
 				$wpdb->insert(
 					$table,
 					array(
@@ -176,7 +176,7 @@ class CoreA11y_Audit {
 			$summary['pages'][ $index ]['error'] = sanitize_text_field( $error );
 		}
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Custom table.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table; written once per request.
 		$wpdb->update(
 			CoreA11y_Install::tables()['audits'],
 			array(
@@ -254,7 +254,7 @@ class CoreA11y_Audit {
 			$data['status']      = 'complete';
 			$data['finished_at'] = current_time( 'mysql', true );
 		}
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Custom table.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table; written once per request.
 		$wpdb->update( CoreA11y_Install::tables()['audits'], $data, array( 'id' => $id ) );
 	}
 

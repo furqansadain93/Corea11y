@@ -4,7 +4,7 @@
  *
  * @package CoreA11y
  * @var array $cmp      Comparison from CoreA11y_Compare::build().
- * @var bool  $is_print True when rendering for PDF.
+ * @var bool  $corea11y_is_print True when rendering for PDF.
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -110,7 +110,7 @@ if ( $corea11y_tb > 0 && 0 === $corea11y_ta ) {
 						<th scope="row">
 							<?php echo esc_html( $corea11y_ex['title'] ); ?>
 							<?php
-							if ( ! $is_print ) {
+							if ( ! $corea11y_is_print ) {
 								echo CoreA11y_UI::rule_tip( $corea11y_ex ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in CoreA11y_UI.
 							}
 							?>

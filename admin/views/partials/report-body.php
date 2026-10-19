@@ -8,7 +8,7 @@
  * @var array  $groups     Issues grouped by rule.
  * @var array  $principles Counts per WCAG principle.
  * @var array  $top_pages  Pages with most issues.
- * @var bool   $is_print   True when rendering for PDF.
+ * @var bool   $corea11y_is_print   True when rendering for PDF.
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -24,7 +24,7 @@ $corea11y_failed  = array_filter(
 	}
 );
 $corea11y_axe_ver = implode( '.', array_slice( explode( '.', CoreA11y_Audit::axe_version() ), 0, 2 ) );
-$corea11y_max_el  = $is_print ? 5 : PHP_INT_MAX;
+$corea11y_max_el  = $corea11y_is_print ? 5 : PHP_INT_MAX;
 
 if ( 0 === (int) $counts['total'] ) {
 	$corea11y_headline = __( 'No problems found by the automated checks. Wonderful work!', 'corea11y' );
@@ -78,7 +78,7 @@ if ( 0 === (int) $counts['total'] ) {
 				<tbody>
 					<?php foreach ( $top_pages as $corea11y_tp ) : ?>
 						<tr>
-							<td><a href="<?php echo esc_url( $corea11y_tp->page_url ); ?>"><?php echo esc_html( $corea11y_tp->page_label ? $corea11y_tp->page_label : $corea11y_tp->page_url ); ?></a><?php if ( $is_print ) : ?><br><span class="corea11y-url"><?php echo esc_html( $corea11y_tp->page_url ); ?></span><?php endif; ?></td>
+							<td><a href="<?php echo esc_url( $corea11y_tp->page_url ); ?>"><?php echo esc_html( $corea11y_tp->page_label ? $corea11y_tp->page_label : $corea11y_tp->page_url ); ?></a><?php if ( $corea11y_is_print ) : ?><br><span class="corea11y-url"><?php echo esc_html( $corea11y_tp->page_url ); ?></span><?php endif; ?></td>
 							<td class="num"><?php echo esc_html( number_format_i18n( (int) $corea11y_tp->n ) ); ?></td>
 						</tr>
 					<?php endforeach; ?>
@@ -106,7 +106,7 @@ if ( 0 === (int) $counts['total'] ) {
 			<h3>
 				<?php echo esc_html( $corea11y_ex['title'] ); ?>
 				<?php
-				if ( ! $is_print ) {
+				if ( ! $corea11y_is_print ) {
 					echo CoreA11y_UI::rule_tip( $corea11y_ex ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in CoreA11y_UI.
 				}
 				?>
@@ -132,7 +132,7 @@ if ( 0 === (int) $counts['total'] ) {
 
 			<?php
 			$corea11y_fix_id = CoreA11y_Fixes::for_rule( $corea11y_group['rule'] );
-			if ( $corea11y_fix_id && ! $is_print ) :
+			if ( $corea11y_fix_id && ! $corea11y_is_print ) :
 				$corea11y_fix = CoreA11y_Fixes::all()[ $corea11y_fix_id ];
 				?>
 				<p class="corea11y-quickfix">
@@ -146,7 +146,7 @@ if ( 0 === (int) $counts['total'] ) {
 				</p>
 			<?php endif; ?>
 
-			<?php if ( $is_print ) : ?>
+			<?php if ( $corea11y_is_print ) : ?>
 				<dl class="corea11y-explain">
 					<dt><?php esc_html_e( 'Why it matters', 'corea11y' ); ?></dt><dd><?php echo esc_html( $corea11y_ex['why'] ); ?></dd>
 					<dt><?php esc_html_e( 'Who it affects', 'corea11y' ); ?></dt><dd><?php echo esc_html( $corea11y_ex['who'] ); ?></dd>
@@ -162,13 +162,13 @@ if ( 0 === (int) $counts['total'] ) {
 					/* translators: %s: the technical rule description from the testing engine. */
 					echo esc_html( sprintf( __( 'Technical check: %s', 'corea11y' ), $corea11y_group['help'] ) );
 					?>
-					<?php if ( 'axe' === $corea11y_group['source'] && ! $is_print ) : ?>
+					<?php if ( 'axe' === $corea11y_group['source'] && ! $corea11y_is_print ) : ?>
 						· <a href="<?php echo esc_url( 'https://dequeuniversity.com/rules/axe/' . $corea11y_axe_ver . '/' . $corea11y_group['rule'] ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Detailed guide', 'corea11y' ); ?><span class="screen-reader-text"> <?php esc_html_e( '(opens in a new tab)', 'corea11y' ); ?></span></a>
 					<?php endif; ?>
 				</p>
 			<?php endif; ?>
 
-			<?php if ( $is_print ) : ?>
+			<?php if ( $corea11y_is_print ) : ?>
 				<p class="corea11y-where-title"><?php esc_html_e( 'Where it was found', 'corea11y' ); ?></p>
 			<?php else : ?>
 				<details>
@@ -184,20 +184,20 @@ if ( 0 === (int) $counts['total'] ) {
 						<li>
 							<p class="corea11y-instance-page">
 								<a href="<?php echo esc_url( $corea11y_item->page_url ); ?>"><?php echo esc_html( $corea11y_item->page_label ? $corea11y_item->page_label : $corea11y_item->page_url ); ?></a>
-								<?php if ( ! $is_print && 'axe' === $corea11y_item->source && $corea11y_item->selector ) : ?>
+								<?php if ( ! $corea11y_is_print && 'axe' === $corea11y_item->source && $corea11y_item->selector ) : ?>
 									· <a href="<?php echo esc_url( CoreA11y_Highlighter::url( $audit->id, $corea11y_item->page_url, $corea11y_item->id ) ); ?>"><?php esc_html_e( 'Show on page', 'corea11y' ); ?><span class="screen-reader-text"> <?php echo esc_html( $corea11y_item->page_label ); ?></span></a>
 								<?php endif; ?>
-								<?php if ( ! $is_print && $corea11y_item->object_id && current_user_can( 'edit_post', (int) $corea11y_item->object_id ) ) : ?>
+								<?php if ( ! $corea11y_is_print && $corea11y_item->object_id && current_user_can( 'edit_post', (int) $corea11y_item->object_id ) ) : ?>
 									· <a href="<?php echo esc_url( get_edit_post_link( (int) $corea11y_item->object_id ) ); ?>"><?php esc_html_e( 'Edit', 'corea11y' ); ?><span class="screen-reader-text"> <?php echo esc_html( $corea11y_item->page_label ); ?></span></a>
 								<?php endif; ?>
 							</p>
 							<?php if ( $corea11y_item->snippet ) : ?>
 								<pre class="corea11y-snippet"><code><?php echo esc_html( $corea11y_item->snippet ); ?></code></pre>
 							<?php endif; ?>
-							<?php if ( $corea11y_item->detail && ! $is_print ) : ?>
+							<?php if ( $corea11y_item->detail && ! $corea11y_is_print ) : ?>
 								<p class="corea11y-detail"><?php echo nl2br( esc_html( $corea11y_item->detail ) ); ?></p>
 							<?php endif; ?>
-							<?php if ( ! $is_print ) : ?>
+							<?php if ( ! $corea11y_is_print ) : ?>
 								<details class="corea11y-dismiss">
 									<summary>
 										<?php esc_html_e( 'Dismiss', 'corea11y' ); ?><span class="screen-reader-text"> <?php echo esc_html( $corea11y_ex['title'] . ', ' . $corea11y_item->page_label ); ?></span>
@@ -232,7 +232,7 @@ if ( 0 === (int) $counts['total'] ) {
 						?>
 					</p>
 				<?php endif; ?>
-			<?php if ( ! $is_print ) : ?>
+			<?php if ( ! $corea11y_is_print ) : ?>
 				</details>
 			<?php endif; ?>
 		</article>
@@ -249,7 +249,7 @@ if ( 0 === (int) $counts['total'] ) {
 		</h2>
 		<p><?php esc_html_e( 'These issues are not counted in the score or totals. Restore any of them if circumstances change.', 'corea11y' ); ?></p>
 		<table class="widefat striped corea11y-table">
-			<thead><tr><th scope="col"><?php esc_html_e( 'Problem', 'corea11y' ); ?></th><th scope="col"><?php esc_html_e( 'Page', 'corea11y' ); ?></th><th scope="col"><?php esc_html_e( 'Reason', 'corea11y' ); ?></th><th scope="col"><?php esc_html_e( 'By', 'corea11y' ); ?></th><?php if ( ! $is_print ) : ?><th scope="col"><?php esc_html_e( 'Restore', 'corea11y' ); ?></th><?php endif; ?></tr></thead>
+			<thead><tr><th scope="col"><?php esc_html_e( 'Problem', 'corea11y' ); ?></th><th scope="col"><?php esc_html_e( 'Page', 'corea11y' ); ?></th><th scope="col"><?php esc_html_e( 'Reason', 'corea11y' ); ?></th><th scope="col"><?php esc_html_e( 'By', 'corea11y' ); ?></th><?php if ( ! $corea11y_is_print ) : ?><th scope="col"><?php esc_html_e( 'Restore', 'corea11y' ); ?></th><?php endif; ?></tr></thead>
 			<tbody>
 				<?php foreach ( $dismissed as $corea11y_d ) : ?>
 					<?php
@@ -262,7 +262,7 @@ if ( 0 === (int) $counts['total'] ) {
 						<td><?php echo esc_html( $corea11y_d->page_label ? $corea11y_d->page_label : $corea11y_d->page_url ); ?></td>
 						<td><?php echo esc_html( isset( $corea11y_rsn[ $corea11y_d->reason ] ) ? $corea11y_rsn[ $corea11y_d->reason ] : $corea11y_d->reason ); ?><?php echo $corea11y_d->note ? '<br><span class="corea11y-muted">' . esc_html( $corea11y_d->note ) . '</span>' : ''; ?></td>
 						<td><?php echo esc_html( $corea11y_user ? $corea11y_user->display_name : '—' ); ?></td>
-						<?php if ( ! $is_print ) : ?>
+						<?php if ( ! $corea11y_is_print ) : ?>
 							<td>
 								<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 									<input type="hidden" name="action" value="corea11y_restore">
