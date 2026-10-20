@@ -21,8 +21,9 @@ CoreA11y scans your pages with axe-core, the open-source accessibility testing e
 * Before & after: compare any two audits to see what you fixed, what remains and what is new
 * Download any report or comparison as a polished PDF to share with your team or clients
 * Checks each page at desktop and phone width, and lists anything the automated checks can't decide on as "Needs a human check"
+* Three layers of automated checks: axe-core, selected IBM Equal Access rules and CoreA11y's own checks for things like vague link text, placeholder-only fields and tables without headers
 * Works with popular caching and optimization plugins: caches are cleared when you change a fix, and the fixes script is never delayed
-* Manual checklist for the WCAG criteria that software can't judge, with step-by-step instructions
+* Manual checklist of 32 checks for what software can't judge, with step-by-step instructions
 * Checks inside the block editor: every time you save, CoreA11y checks the post's content and explains any problems in the sidebar and before publishing
 * "Show on page": see each problem outlined on your live page, with an explanation and next/previous navigation
 * Dismiss issues that aren't real problems or that you accept for now, with a reason and note. Dismissals carry over to future audits and can be restored at any time.
@@ -47,6 +48,14 @@ No tool can do that automatically. CoreA11y shows you the issues automated testi
 = Do quick fixes change my theme or content? =
 
 No. Fixes are applied as your pages are displayed, using WordPress hooks and a small script for parts that themes hard-code. Turn a fix off and your site is exactly as before.
+
+= How much can CoreA11y find automatically? =
+
+No automated tool can find every accessibility problem. CoreA11y combines axe-core, selected IBM Equal Access rules and its own checks, lists anything it can't decide as "Needs a human check", and guides you through the rest with a 32-step manual checklist.
+
+= Will CoreA11y slow down my site? =
+
+No. The checking engines run only in your admin. Visitors only get the quick fixes you turn on: one small script (about 3 KB) and less than 1 KB of CSS.
 
 = Does CoreA11y send my data anywhere? =
 
@@ -76,6 +85,10 @@ By default, all CoreA11y audits and settings are removed. Your accessibility sta
 
 CoreA11y bundles axe-core 4.14.0 by Deque Systems (https://github.com/dequelabs/axe-core), licensed under the Mozilla Public License 2.0, which is GPL-compatible. The license is included in assets/vendor/axe-core/LICENSE.
 
+CoreA11y bundles the IBM Equal Access Accessibility Checker engine 4.0.34 (accessibility-checker-engine, https://github.com/IBMa/equal-access), licensed under the Apache License 2.0, which is compatible with GPLv3. The license and notices are included in assets/vendor/ibm-equal-access/.
+
+Both engines run only in the WordPress admin, while you run an audit or check a post. They are never loaded for site visitors.
+
 The audit report links to Deque University rule pages (https://dequeuniversity.com/rules/axe/) for detailed fixing guidance. These links are only opened if you click them; no data is sent.
 
 == Changelog ==
@@ -83,6 +96,10 @@ The audit report links to Deque University rule pages (https://dequeuniversity.c
 = 0.5.2 =
 * Checks every page at phone width as well as desktop, to catch problems in mobile menus and layouts (can be turned off in Settings).
 * New "Needs a human check" list in reports: items the automated checks can't decide on, shown separately and never counted in the score.
+* New best-practice suggestions: empty headings, skipped heading levels, missing main heading, empty table headers, repeated alt text, positive tabindex and conflicting roles. Shown as minor and never counted in the score.
+* 17 new CoreA11y checks for problems the main engine doesn't cover, including vague link text, file links without the file type, links that open new tabs without warning, placeholder-only fields, tables without headers, very small, justified or all-caps text, empty paragraphs and access keys.
+* Extended checks: selected rules from the IBM Equal Access engine for form groups, fieldset legends, table headers and keyboard focus. Runs only in the admin during audits (can be turned off in Settings).
+* Manual checklist now has 32 checks, covering zoom and reflow, text spacing, time limits, moving and flashing content, page titles, link text, language changes and more.
 * Turning a quick fix on or off (or undoing it) now clears the page cache of popular caching plugins, so visitors see the change straight away.
 * The quick fixes script is excluded from script delaying and combining in popular optimization plugins, so fixes work for keyboard and screen reader users right away.
 * Pages that block framing with X-Frame-Options: DENY can now be scanned by administrators; clearer messages when a page can't be scanned.

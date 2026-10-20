@@ -93,6 +93,9 @@ class CoreA11y_Scanner {
 				'reportUrl' => admin_url( 'admin.php?page=corea11y-audits&audit=' ),
 				'timeout'   => 30000,
 				'mobile'    => (bool) CoreA11y_Settings::get( 'scan_mobile' ),
+				'checksUrl' => COREA11Y_URL . 'assets/js/checks.js?ver=' . rawurlencode( COREA11Y_VERSION ),
+				'extended'  => (bool) CoreA11y_Settings::get( 'extended_checks' ),
+				'aceUrl'    => COREA11Y_URL . 'assets/vendor/ibm-equal-access/ace.js?ver=4.0.34',
 				'widths'    => array(
 					'desktop' => 1280,
 					'mobile'  => 390,

@@ -113,6 +113,14 @@ if ( 0 === (int) $counts['total'] ) {
 			</h3>
 			<p class="corea11y-badges">
 				<span class="corea11y-badge corea11y-badge-<?php echo esc_attr( $corea11y_group['impact'] ); ?>"><?php echo esc_html( $corea11y_impacts[ $corea11y_group['impact'] ] ); ?></span>
+				<?php if ( 'best-practice' === $corea11y_group['source'] ) : ?>
+					<span class="corea11y-badge"><?php esc_html_e( 'Best practice', 'corea11y' ); ?></span>
+					<?php
+					if ( ! $corea11y_is_print ) {
+						echo CoreA11y_UI::concept_tip( 'bestpractice', __( 'Best practice', 'corea11y' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in CoreA11y_UI.
+					}
+					?>
+				<?php endif; ?>
 				<?php if ( $corea11y_group['wcag'] ) : ?>
 					<span class="corea11y-badge">
 						<?php
@@ -162,7 +170,7 @@ if ( 0 === (int) $counts['total'] ) {
 					/* translators: %s: the technical rule description from the testing engine. */
 					echo esc_html( sprintf( __( 'Technical check: %s', 'corea11y' ), $corea11y_group['help'] ) );
 					?>
-					<?php if ( 'axe' === $corea11y_group['source'] && ! $corea11y_is_print ) : ?>
+					<?php if ( CoreA11y_Audit::is_page_source( $corea11y_group['source'] ) && CoreA11y_Audit::is_axe_rule( $corea11y_group['rule'] ) && ! $corea11y_is_print ) : ?>
 						· <a href="<?php echo esc_url( 'https://dequeuniversity.com/rules/axe/' . $corea11y_axe_ver . '/' . $corea11y_group['rule'] ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Detailed guide', 'corea11y' ); ?><span class="screen-reader-text"> <?php esc_html_e( '(opens in a new tab)', 'corea11y' ); ?></span></a>
 					<?php endif; ?>
 				</p>
@@ -184,7 +192,7 @@ if ( 0 === (int) $counts['total'] ) {
 						<li>
 							<p class="corea11y-instance-page">
 								<a href="<?php echo esc_url( $corea11y_item->page_url ); ?>"><?php echo esc_html( $corea11y_item->page_label ? $corea11y_item->page_label : $corea11y_item->page_url ); ?></a>
-								<?php if ( ! $corea11y_is_print && 'axe' === $corea11y_item->source && $corea11y_item->selector ) : ?>
+								<?php if ( ! $corea11y_is_print && CoreA11y_Audit::is_page_source( $corea11y_item->source ) && $corea11y_item->selector ) : ?>
 									· <a href="<?php echo esc_url( CoreA11y_Highlighter::url( $audit->id, $corea11y_item->page_url, $corea11y_item->id ) ); ?>"><?php esc_html_e( 'Show on page', 'corea11y' ); ?><span class="screen-reader-text"> <?php echo esc_html( $corea11y_item->page_label ); ?></span></a>
 								<?php endif; ?>
 								<?php if ( ! $corea11y_is_print && $corea11y_item->object_id && current_user_can( 'edit_post', (int) $corea11y_item->object_id ) ) : ?>

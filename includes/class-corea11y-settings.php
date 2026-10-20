@@ -26,6 +26,7 @@ class CoreA11y_Settings {
 			'scan_scope'          => 'sample',
 			'custom_urls'         => '',
 			'scan_mobile'         => true,
+			'extended_checks'     => true,
 			'delete_on_uninstall' => true,
 		);
 	}
@@ -83,6 +84,7 @@ class CoreA11y_Settings {
 			array( 'label_for' => 'corea11y-custom-urls' )
 		);
 		add_settings_field( 'scan_mobile', __( 'Screen sizes', 'corea11y' ), array( __CLASS__, 'field_mobile' ), self::PAGE, 'corea11y_scan' );
+		add_settings_field( 'extended_checks', __( 'Extended checks', 'corea11y' ), array( __CLASS__, 'field_extended' ), self::PAGE, 'corea11y_scan' );
 
 		add_settings_section( 'corea11y_data', __( 'Data', 'corea11y' ), '__return_false', self::PAGE );
 		add_settings_field( 'delete_on_uninstall', __( 'On uninstall', 'corea11y' ), array( __CLASS__, 'field_delete' ), self::PAGE, 'corea11y_data' );
@@ -115,6 +117,7 @@ class CoreA11y_Settings {
 		$out['custom_urls'] = implode( "\n", array_unique( $urls ) );
 
 		$out['scan_mobile']         = ! empty( $input['scan_mobile'] );
+		$out['extended_checks']     = ! empty( $input['extended_checks'] );
 		$out['delete_on_uninstall'] = ! empty( $input['delete_on_uninstall'] );
 
 		return $out;
@@ -160,6 +163,19 @@ class CoreA11y_Settings {
 			checked( (bool) self::get( 'scan_mobile' ), true, false ),
 			esc_html__( 'Also check each page at phone width', 'corea11y' ),
 			esc_html__( 'Finds problems in mobile menus and layouts. Audits take about twice as long.', 'corea11y' )
+		);
+	}
+
+	/**
+	 * Extended checks checkbox.
+	 */
+	public static function field_extended() {
+		printf(
+			'<label><input type="checkbox" name="%1$s[extended_checks]" value="1" aria-describedby="corea11y-extended-help" %2$s> %3$s</label><p class="description" id="corea11y-extended-help">%4$s</p>',
+			esc_attr( self::OPTION ),
+			checked( (bool) self::get( 'extended_checks' ), true, false ),
+			esc_html__( 'Also run selected rules from the IBM Equal Access engine', 'corea11y' ),
+			esc_html__( 'Catches form, table and markup problems the main engine doesn\'t cover. Runs only in your admin during audits; visitors never load it. Adds a second or two per page.', 'corea11y' )
 		);
 	}
 

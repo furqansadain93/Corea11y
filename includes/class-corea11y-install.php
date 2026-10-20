@@ -129,7 +129,7 @@ class CoreA11y_Install {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-time migration of the plugin's own table.
 		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT id, rule_id, page_url, selector, snippet, object_id, source FROM %i WHERE fingerprint = '' LIMIT 5000", $table ) );
 		foreach ( (array) $rows as $r ) {
-			$where = 'axe' === $r->source ? $r->selector : (int) $r->object_id . '|' . $r->snippet;
+			$where = CoreA11y_Audit::is_page_source( $r->source ) ? $r->selector : (int) $r->object_id . '|' . $r->snippet;
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-time migration.
 			$wpdb->update( $table, array( 'fingerprint' => CoreA11y_Audit::fingerprint( $r->rule_id, $r->page_url, $where ) ), array( 'id' => $r->id ) );
 		}

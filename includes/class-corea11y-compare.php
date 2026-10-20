@@ -139,10 +139,10 @@ class CoreA11y_Compare {
 		$out  = array();
 		foreach ( $rows as $r ) {
 			$url = self::normalize( $r->page_url );
-			if ( 'axe' === $r->source && ! isset( $shared[ $url ] ) ) {
+			if ( CoreA11y_Audit::is_page_source( $r->source ) && ! isset( $shared[ $url ] ) ) {
 				continue;
 			}
-			$where = 'axe' === $r->source ? $r->selector : $r->object_id . '|' . $r->snippet;
+			$where = CoreA11y_Audit::is_page_source( $r->source ) ? $r->selector : $r->object_id . '|' . $r->snippet;
 			$key   = md5( $r->rule_id . '|' . $url . '|' . $where );
 			$n     = 1;
 			while ( isset( $out[ $key . '#' . $n ] ) ) {

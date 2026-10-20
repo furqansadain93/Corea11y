@@ -65,7 +65,7 @@ class CoreA11y_Highlighter {
 	public static function issues_for( $audit_id, $page_url ) {
 		global $wpdb;
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table.
-		$rows   = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM %i WHERE audit_id = %d AND source = 'axe' AND status <> 'dismissed' ORDER BY id ASC", CoreA11y_Install::tables()['issues'], $audit_id ) );
+		$rows   = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM %i WHERE audit_id = %d AND source IN ('axe', 'best-practice') AND status <> 'dismissed' ORDER BY id ASC", CoreA11y_Install::tables()['issues'], $audit_id ) );
 		$target = CoreA11y_Compare::normalize( $page_url );
 		$rank   = array_flip( array_keys( CoreA11y_Rules::impacts() ) );
 		$out    = array();

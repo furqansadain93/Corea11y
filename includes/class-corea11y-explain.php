@@ -315,6 +315,220 @@ class CoreA11y_Explain {
 			'fix'   => __( 'Add text inside the <summary> element.', 'corea11y' ),
 		);
 
+		// Best-practice suggestions: not strict WCAG failures, never counted in the score.
+		$e['empty-heading']        = array(
+			'title' => __( 'Headings with no text', 'corea11y' ),
+			'who'   => __( 'Screen reader users, who often move around a page by its headings', 'corea11y' ),
+			'why'   => __( 'An empty heading is announced as just "heading", which is confusing and wastes time.', 'corea11y' ),
+			'fix'   => __( 'Add text to the heading, or remove it if it is only used for spacing. In the block editor, look for empty Heading blocks.', 'corea11y' ),
+		);
+		$e['heading-order']        = array(
+			'title' => __( 'Heading levels are skipped', 'corea11y' ),
+			'who'   => __( 'Screen reader users and anyone scanning the page', 'corea11y' ),
+			'why'   => __( 'Headings form an outline of the page. Jumping from a level 2 straight to a level 4 suggests content is missing.', 'corea11y' ),
+			'fix'   => __( 'Use heading levels in order (H2, then H3 inside it). Choose the level for its place in the outline, and change the size with styles instead.', 'corea11y' ),
+		);
+		$e['empty-table-header']   = array(
+			'title' => __( 'Table headers with no text', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'Screen readers read the column or row header before each cell. An empty header leaves those cells without context.', 'corea11y' ),
+			'fix'   => __( 'Add a short label to every header cell, or make the cell a normal data cell if it is not a header.', 'corea11y' ),
+		);
+		$e['image-redundant-alt']  = array(
+			'title' => __( 'Image alt text repeats the text next to it', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'When an image\'s alt text repeats the link or caption text beside it, screen readers say the same thing twice.', 'corea11y' ),
+			'fix'   => __( 'Leave the alt text empty if the nearby text already says it, or describe something the text doesn\'t.', 'corea11y' ),
+		);
+		$e['tabindex']             = array(
+			'title' => __( 'Keyboard order is forced with tabindex', 'corea11y' ),
+			'who'   => __( 'Keyboard and screen reader users', 'corea11y' ),
+			'why'   => __( 'A tabindex above 0 makes those elements jump to the front of the keyboard order, so focus moves around the page unpredictably.', 'corea11y' ),
+			'fix'   => __( 'Remove tabindex values above 0 and arrange the content in a logical order instead. This often comes from a theme or plugin.', 'corea11y' ),
+		);
+		$e['aria-allowed-role']    = array(
+			'title' => __( 'An element has a role that doesn\'t suit it', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'A role tells screen readers what something is. A role that conflicts with the element, such as an image marked decorative that still has a description, sends mixed signals.', 'corea11y' ),
+			'fix'   => __( 'Remove the role attribute, or use an element that matches what it does. For decorative images, use empty alt text.', 'corea11y' ),
+		);
+		$e['page-has-heading-one'] = array(
+			'title' => __( 'Page has no main heading (H1)', 'corea11y' ),
+			'who'   => __( 'Screen reader users and search engines', 'corea11y' ),
+			'why'   => __( 'The main heading tells visitors what the page is about, and many screen reader users jump to it first.', 'corea11y' ),
+			'fix'   => __( 'Give each page one H1 heading, usually the page title. Some themes hide it on the home page; check your theme settings.', 'corea11y' ),
+		);
+
+		// CoreA11y's own checks and curated IBM Equal Access rules.
+		$e['corea11y-link-symbol-only'] = array(
+			'title' => __( 'Links with only a symbol as text', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'A link whose text is just a symbol such as "»" or "." is announced as that symbol, so people can\'t tell where it goes.', 'corea11y' ),
+			'fix'   => __( 'Add words that describe the destination, for example "Next page". If you keep the symbol, add visually hidden text or an aria-label.', 'corea11y' ),
+		);
+		$e['corea11y-link-generic'] = array(
+			'title' => __( 'Link text like "Click here" or "Read more"', 'corea11y' ),
+			'who'   => __( 'Screen reader users, who often list all links on a page', 'corea11y' ),
+			'why'   => __( 'Out of context, "Read more" or "Click here" doesn\'t say where a link goes. Screen reader users often browse a list of links on their own.', 'corea11y' ),
+			'fix'   => __( 'Make the link text describe the destination, for example "Read more about our opening hours". You can hide the extra words visually if needed.', 'corea11y' ),
+		);
+		$e['corea11y-link-no-destination'] = array(
+			'title' => __( 'Links that don\'t go anywhere', 'corea11y' ),
+			'who'   => __( 'Keyboard and screen reader users', 'corea11y' ),
+			'why'   => __( 'A link with href="#" or a javascript: address usually acts as a button. Screen readers announce it as a link, and it may not work with the Space key.', 'corea11y' ),
+			'fix'   => __( 'If it opens or controls something on the page, use a <button>. If it should go somewhere, give it a real address.', 'corea11y' ),
+		);
+		$e['corea11y-link-file-type'] = array(
+			'title' => __( 'File links don\'t say the file type', 'corea11y' ),
+			'who'   => __( 'Everyone, especially screen reader and mobile users', 'corea11y' ),
+			'why'   => __( 'People expect a link to open a web page. A PDF or Word file can be slow to download and hard to use on some devices.', 'corea11y' ),
+			'fix'   => __( 'Add the file type (and ideally the size) to the link text, for example "Annual report (PDF, 2 MB)".', 'corea11y' ),
+		);
+		$e['corea11y-media-link'] = array(
+			'title' => __( 'Audio or video files may need a transcript', 'corea11y' ),
+			'who'   => __( 'People who are deaf or hard of hearing', 'corea11y' ),
+			'why'   => __( 'Audio and video content needs a text alternative so everyone can get the information.', 'corea11y' ),
+			'fix'   => __( 'Provide a transcript next to the link, or captions for video.', 'corea11y' ),
+		);
+		$e['corea11y-link-new-window'] = array(
+			'title' => __( 'Links open a new tab without warning', 'corea11y' ),
+			'who'   => __( 'Screen reader, keyboard and older users', 'corea11y' ),
+			'why'   => __( 'A new tab or window opening unexpectedly can be disorienting, and the Back button no longer works.', 'corea11y' ),
+			'fix'   => __( 'Avoid opening new tabs where possible. If you must, add "(opens in a new tab)" to the link text or as visually hidden text.', 'corea11y' ),
+		);
+		$e['corea11y-link-title-repeat'] = array(
+			'title' => __( 'Link title repeats the link text', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'A title attribute that repeats the link text adds nothing and may be read twice.', 'corea11y' ),
+			'fix'   => __( 'Remove the title attribute, or use it only for extra information that is also available another way.', 'corea11y' ),
+		);
+		$e['corea11y-link-adjacent-duplicate'] = array(
+			'title' => __( 'Two links side by side go to the same place', 'corea11y' ),
+			'who'   => __( 'Keyboard and screen reader users', 'corea11y' ),
+			'why'   => __( 'An image link and a text link next to each other that go to the same page mean two tab stops and the same link announced twice.', 'corea11y' ),
+			'fix'   => __( 'Wrap the image and the text in one link.', 'corea11y' ),
+		);
+		$e['corea11y-link-same-text'] = array(
+			'title' => __( 'Links with the same text go to different pages', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'When several links have identical text but different destinations, people can\'t tell them apart in a list of links.', 'corea11y' ),
+			'fix'   => __( 'Make each link\'s text unique, for example by adding the item name.', 'corea11y' ),
+		);
+		$e['corea11y-placeholder-label'] = array(
+			'title' => __( 'Fields use placeholder text instead of a label', 'corea11y' ),
+			'who'   => __( 'People with memory or cognitive disabilities, and screen reader users', 'corea11y' ),
+			'why'   => __( 'Placeholder text disappears when someone starts typing, and it is often low contrast. People then forget what the field was for.', 'corea11y' ),
+			'fix'   => __( 'Add a visible label to the field. Keep the placeholder only for an example, if at all.', 'corea11y' ),
+		);
+		$e['corea11y-table-no-headers'] = array(
+			'title' => __( 'Tables without header cells', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'Without header cells, screen readers can\'t tell people which column or row a value belongs to.', 'corea11y' ),
+			'fix'   => __( 'Mark the first row or column as headers (th). In the block editor, turn on "Header section" for the Table block. If the table is only for layout, add role="presentation".', 'corea11y' ),
+		);
+		$e['corea11y-small-text'] = array(
+			'title' => __( 'Very small text', 'corea11y' ),
+			'who'   => __( 'People with low vision and older visitors', 'corea11y' ),
+			'why'   => __( 'Text smaller than 12px is hard to read for many people, even if they can zoom.', 'corea11y' ),
+			'fix'   => __( 'Use at least 14 to 16px for body text and at least 12px for small print.', 'corea11y' ),
+		);
+		$e['corea11y-justified-text'] = array(
+			'title' => __( 'Long text is justified', 'corea11y' ),
+			'who'   => __( 'People with dyslexia or low vision', 'corea11y' ),
+			'why'   => __( 'Justified text stretches the gaps between words unevenly, creating "rivers" of white space that make reading harder.', 'corea11y' ),
+			'fix'   => __( 'Align body text to the left (or right, for right-to-left languages).', 'corea11y' ),
+		);
+		$e['corea11y-all-caps'] = array(
+			'title' => __( 'Long text in capital letters', 'corea11y' ),
+			'who'   => __( 'People with dyslexia or low vision, and screen reader users', 'corea11y' ),
+			'why'   => __( 'Text in capitals is harder to read in long passages, and some screen readers spell it out letter by letter.', 'corea11y' ),
+			'fix'   => __( 'Write the text in normal case. Use capitals only for short labels, preferably with CSS text-transform.', 'corea11y' ),
+		);
+		$e['corea11y-empty-paragraph'] = array(
+			'title' => __( 'Empty paragraphs used for spacing', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'Empty paragraphs are sometimes announced as "blank", which is confusing.', 'corea11y' ),
+			'fix'   => __( 'Remove the empty paragraphs and use block spacing or a Spacer block instead.', 'corea11y' ),
+		);
+		$e['corea11y-accesskey'] = array(
+			'title' => __( 'Access keys are used', 'corea11y' ),
+			'who'   => __( 'Keyboard and screen reader users', 'corea11y' ),
+			'why'   => __( 'Access keys can clash with shortcuts in browsers and screen readers, and users rarely know they exist.', 'corea11y' ),
+			'fix'   => __( 'Remove the accesskey attribute.', 'corea11y' ),
+		);
+		$e['corea11y-animated-gif'] = array(
+			'title' => __( 'Animated images may need a pause option', 'corea11y' ),
+			'who'   => __( 'People with attention disorders or vestibular conditions', 'corea11y' ),
+			'why'   => __( 'Moving images that play for more than five seconds can make it impossible to concentrate on the rest of the page.', 'corea11y' ),
+			'fix'   => __( 'Use a still image, or a video with a pause button, if the animation lasts more than five seconds.', 'corea11y' ),
+		);
+		$e['ibm-fieldset-legend-valid'] = array(
+			'title' => __( 'Groups of form fields need a clear legend', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'A fieldset groups related fields, and its legend tells people what the group is about. Without a legend, the group has no name.', 'corea11y' ),
+			'fix'   => __( 'Add a <legend> with text as the first element inside the <fieldset>.', 'corea11y' ),
+		);
+		$e['ibm-input-checkboxes-grouped'] = array(
+			'title' => __( 'Related radio buttons and checkboxes aren\'t grouped', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'When related options aren\'t grouped, screen reader users hear each option without the question it answers.', 'corea11y' ),
+			'fix'   => __( 'Put the options in a <fieldset> with a <legend> that asks the question.', 'corea11y' ),
+		);
+		$e['ibm-img-alt-null'] = array(
+			'title' => __( 'Images marked decorative still have a title', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'An image with empty alt text is hidden from screen readers, but a title attribute suggests it has information. The two signals conflict.', 'corea11y' ),
+			'fix'   => __( 'If the image is decorative, remove the title. If it has information, put it in the alt text.', 'corea11y' ),
+		);
+		$e['ibm-element-tabbable-role-valid'] = array(
+			'title' => __( 'Keyboard focus lands on something that isn\'t interactive', 'corea11y' ),
+			'who'   => __( 'Keyboard and screen reader users', 'corea11y' ),
+			'why'   => __( 'An element with tabindex="0" receives keyboard focus, but if it isn\'t a button, link or control, people land on it and nothing happens.', 'corea11y' ),
+			'fix'   => __( 'Remove tabindex from non-interactive elements, or give the element a proper role and keyboard behavior.', 'corea11y' ),
+		);
+		$e['ibm-table-headers-related'] = array(
+			'title' => __( 'Table cells aren\'t linked to their headers', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'In complex tables, screen readers rely on scope or headers attributes to say which headers belong to each cell.', 'corea11y' ),
+			'fix'   => __( 'Add scope="col" or scope="row" to header cells. For complex tables, split them into simpler ones or use headers and id attributes.', 'corea11y' ),
+		);
+		$e['ibm-element-attribute-deprecated'] = array(
+			'title' => __( 'Outdated HTML is used', 'corea11y' ),
+			'who'   => __( 'Everyone using assistive technology', 'corea11y' ),
+			'why'   => __( 'Old elements such as <center> or <font> are no longer part of HTML and may not be supported in the future.', 'corea11y' ),
+			'fix'   => __( 'Replace them with modern HTML and CSS. This often comes from older content or a theme.', 'corea11y' ),
+		);
+		$e['ibm-img-alt-misuse'] = array(
+			'title' => __( 'Alt text may not describe the image', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'The alt text looks like a file name or placeholder, so it may not tell people what the image shows.', 'corea11y' ),
+			'fix'   => __( 'Write alt text that describes what the image shows or does in context.', 'corea11y' ),
+		);
+		$e['ibm-text-block-heading'] = array(
+			'title' => __( 'Text may look like a heading without being one', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'Bold or large text styled as a heading isn\'t announced as a heading, so people can\'t jump to it.', 'corea11y' ),
+			'fix'   => __( 'If the text is a heading, use a real Heading block (H2, H3...).', 'corea11y' ),
+		);
+		$e['ibm-list-markup-review'] = array(
+			'title' => __( 'Content may be a list without list markup', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'Items written as lines of text (for example with dashes) aren\'t announced as a list, so people don\'t know how many items there are.', 'corea11y' ),
+			'fix'   => __( 'Use a List block (bulleted or numbered) for lists.', 'corea11y' ),
+		);
+		$e['ibm-media-audio-transcribed'] = array(
+			'title' => __( 'Audio may need a transcript', 'corea11y' ),
+			'who'   => __( 'People who are deaf or hard of hearing', 'corea11y' ),
+			'why'   => __( 'Audio content needs a text transcript so everyone can get the information.', 'corea11y' ),
+			'fix'   => __( 'Add a transcript below the audio player or link to one.', 'corea11y' ),
+		);
+		$e['ibm-media-track-available'] = array(
+			'title' => __( 'Video may need captions', 'corea11y' ),
+			'who'   => __( 'People who are deaf or hard of hearing', 'corea11y' ),
+			'why'   => __( 'Videos with speech need captions that match what is said.', 'corea11y' ),
+			'fix'   => __( 'Add a captions track to the video. Check auto-generated captions for accuracy.', 'corea11y' ),
+		);
+
 		/**
 		 * Filter the plain-language rule explanations.
 		 *
@@ -360,6 +574,7 @@ class CoreA11y_Explain {
 	public static function concepts() {
 		return array(
 			'score'     => __( 'The CoreA11y score is our own quick progress indicator from 0 to 100, based only on the automated checks. It goes down with each problem found, weighted by severity, and averaged per page. It is not an official WCAG score or a compliance grade, and other tools score differently: a site can score well and still have issues automated tools can\'t detect.', 'corea11y' ),
+			'bestpractice' => __( 'A widely recommended practice that makes pages easier to use, but isn\'t a strict WCAG requirement. Shown as minor and never counted in the score.', 'corea11y' ),
 			'review'    => __( 'Elements the automated checks could not judge with certainty, such as text over an image or gradient, where a person needs to look. They are listed so nothing is hidden, but they are not counted as issues.', 'corea11y' ),
 			'issues'    => __( 'The number of individual elements with a problem. One missing alt text on five images counts as five issues.', 'corea11y' ),
 			'problems'  => __( 'The number of different kinds of problems found. Fixing one kind (for example, in your theme) often clears many issues at once.', 'corea11y' ),

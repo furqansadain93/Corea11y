@@ -66,6 +66,27 @@ class CoreA11y_Audit {
 	}
 
 	/**
+	 * Whether issues from this source were found by scanning a page (and so have a
+	 * CSS selector that "Show on page" can use), as opposed to server-side checks.
+	 *
+	 * @param string $source Issue source.
+	 * @return bool
+	 */
+	public static function is_page_source( $source ) {
+		return in_array( $source, array( 'axe', 'best-practice' ), true );
+	}
+
+	/**
+	 * Whether a rule comes from axe-core itself (so Deque's rule guide applies).
+	 *
+	 * @param string $rule_id Rule id.
+	 * @return bool
+	 */
+	public static function is_axe_rule( $rule_id ) {
+		return ! preg_match( '/^(corea11y|ibm)-/', (string) $rule_id );
+	}
+
+	/**
 	 * The most recent audit of any status, with its summary decoded.
 	 *
 	 * @return object|null
@@ -147,12 +168,17 @@ class CoreA11y_Audit {
 			$wcag   = CoreA11y_Rules::wcag_from_tags( isset( $v['tags'] ) ? $v['tags'] : array() );
 			$help   = isset( $v['help'] ) ? self::plain_text( $v['help'], 500 ) : '';
 			$nodes  = isset( $v['nodes'] ) && is_array( $v['nodes'] ) ? $v['nodes'] : array();
+			// Best-practice suggestions: shown as minor, labelled, and left out of the score.
+			$is_bp = '' === $wcag && isset( $v['tags'] ) && in_array( 'best-practice', (array) $v['tags'], true );
+			if ( $is_bp ) {
+				$impact = 'minor';
+			}
 
 			$total_nodes = isset( $v['nodeCount'] ) ? absint( $v['nodeCount'] ) : count( $nodes );
 			$truncated  += max( 0, $total_nodes - min( count( $nodes ), self::MAX_NODES_PER_RULE ) );
 
 			foreach ( array_slice( $nodes, 0, self::MAX_NODES_PER_RULE ) as $node ) {
-				$node_impact = isset( $node['impact'] ) ? CoreA11y_Rules::sanitize_impact( $node['impact'] ) : $impact;
+				$node_impact = ( ! $is_bp && isset( $node['impact'] ) ) ? CoreA11y_Rules::sanitize_impact( $node['impact'] ) : $impact;
 				$selector    = self::selector( isset( $node['target'] ) ? $node['target'] : array() );
 				$fp          = self::fingerprint( $rule, $url, $selector );
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table; written once per request.
@@ -167,7 +193,7 @@ class CoreA11y_Audit {
 						'wcag'       => $wcag,
 						'impact'     => $node_impact,
 						'tier'       => CoreA11y_Rules::tier( $rule ),
-						'source'     => 'axe',
+						'source'     => $is_bp ? 'best-practice' : 'axe',
 						'selector'    => $selector,
 						'snippet'     => self::clip( isset( $node['html'] ) ? $node['html'] : '', 1000 ),
 						'help'        => $help,
@@ -300,8 +326,11 @@ class CoreA11y_Audit {
 		}
 		$counts = self::counts( $id );
 		$points = 0;
-		foreach ( $counts['impact'] as $impact => $n ) {
-			$points += CoreA11y_Rules::weight( $impact ) * $n;
+		// Best-practice suggestions don't count toward the score.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table.
+		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT impact, COUNT(*) AS n FROM %i WHERE audit_id = %d AND status <> 'dismissed' AND source <> 'best-practice' GROUP BY impact", CoreA11y_Install::tables()['issues'], $id ) );
+		foreach ( $rows as $r ) {
+			$points += CoreA11y_Rules::weight( $r->impact ) * (int) $r->n;
 		}
 		$pages = max( 1, (int) $audit->pages_scanned );
 		$score = (int) max( 0, 100 - round( 2 * $points / $pages ) );

@@ -2,12 +2,12 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: CoreA11y 0.5.1\n"
+"Project-Id-Version: CoreA11y 0.5.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/corea11y\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-19 14:49+0000\n"
+"POT-Creation-Date: 2026-10-20 11:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,7 +57,7 @@ msgstr ""
 msgid "PDF"
 msgstr ""
 
-#: admin/views/audits.php:44 admin/views/compare.php:25 admin/views/dashboard.php:96 admin/views/partials/report-body.php:166 admin/views/report.php:27
+#: admin/views/audits.php:44 admin/views/compare.php:25 admin/views/dashboard.php:96 admin/views/partials/report-body.php:174 admin/views/report.php:27
 msgid "(opens in a new tab)"
 msgstr ""
 
@@ -185,7 +185,7 @@ msgstr ""
 msgid "Pages to scan: %s."
 msgstr ""
 
-#: admin/views/dashboard.php:51 admin/views/fixes.php:125
+#: admin/views/dashboard.php:51 admin/views/fixes.php:136
 msgid "Change"
 msgstr ""
 
@@ -233,7 +233,7 @@ msgid "Audited %1$s across %2$s pages."
 msgstr ""
 
 #. translators: 1: date, 2: number of pages.
-#: admin/views/dashboard.php:91 admin/views/partials/report-body.php:58
+#: admin/views/dashboard.php:91
 msgid "Scan score"
 msgstr ""
 
@@ -311,119 +311,130 @@ msgstr ""
 msgid "Turned off: %s"
 msgstr ""
 
-#: admin/views/fixes.php:52
+#. translators: %s: names of caching plugins, e.g. "WP Rocket".
+#: admin/views/fixes.php:56
+#, php-format
+msgid "We also cleared the page cache (%s), so visitors see this change now."
+msgstr ""
+
+#. translators: %s: names of caching plugins, e.g. "WP Rocket".
+#: admin/views/fixes.php:58
+msgid "If your host or a CDN such as Cloudflare caches your pages, clear that cache to see this change straight away."
+msgstr ""
+
+#: admin/views/fixes.php:63
 msgid "Verify with a new audit"
 msgstr ""
 
-#: admin/views/fixes.php:55
+#: admin/views/fixes.php:66
 msgid "Redo"
 msgstr ""
 
-#: admin/views/fixes.php:55
+#: admin/views/fixes.php:66
 msgid "Undo this change"
 msgid_plural "Undo these changes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/fixes.php:60
+#: admin/views/fixes.php:71
 msgid "Nothing changed."
 msgstr ""
 
 #. translators: %s: WCAG success criterion numbers.
-#: admin/views/fixes.php:81 admin/views/partials/report-body.php:120
+#: admin/views/fixes.php:92 admin/views/partials/report-body.php:128
 #, php-format
 msgid "WCAG %s"
 msgstr ""
 
 #. translators: %s: number of issues.
-#: admin/views/fixes.php:88
+#: admin/views/fixes.php:99
 #, php-format
 msgid "Fixes %s issue in your latest audit"
 msgid_plural "Fixes %s issues in your latest audit"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/fixes.php:92
+#: admin/views/fixes.php:103
 msgid "Not needed in your latest audit"
 msgstr ""
 
-#: admin/views/fixes.php:94
+#: admin/views/fixes.php:105
 msgid "Recommended for every site"
 msgstr ""
 
-#: admin/views/fixes.php:101 admin/views/fixes.php:125 admin/views/fixes.php:151 admin/views/report.php:59
+#: admin/views/fixes.php:112 admin/views/fixes.php:136 admin/views/fixes.php:162 admin/views/report.php:59
 msgid "Undo"
 msgstr ""
 
-#: admin/views/fixes.php:111
+#: admin/views/fixes.php:122
 msgid "Save fixes"
 msgstr ""
 
-#: admin/views/fixes.php:113
+#: admin/views/fixes.php:124
 msgid "Turn all fixes off"
 msgstr ""
 
-#: admin/views/fixes.php:119
+#: admin/views/fixes.php:130
 msgid "Change history"
 msgstr ""
 
-#: admin/views/fixes.php:121
+#: admin/views/fixes.php:132
 msgid "No changes yet."
 msgstr ""
 
-#: admin/views/fixes.php:124
+#: admin/views/fixes.php:135
 msgid "Quick fix changes, newest first"
 msgstr ""
 
-#: admin/views/fixes.php:125
+#: admin/views/fixes.php:136
 msgid "When"
 msgstr ""
 
-#: admin/views/fixes.php:125
+#: admin/views/fixes.php:136
 msgid "Fix"
 msgstr ""
 
-#: admin/views/fixes.php:125 admin/views/partials/report-body.php:252
+#: admin/views/fixes.php:136 admin/views/partials/report-body.php:306
 msgid "By"
 msgstr ""
 
-#: admin/views/fixes.php:139
+#: admin/views/fixes.php:150
 msgid "Turned back on (undo)"
 msgstr ""
 
-#: admin/views/fixes.php:139
+#: admin/views/fixes.php:150
 msgid "Turned off (undo)"
 msgstr ""
 
-#: admin/views/fixes.php:141
+#: admin/views/fixes.php:152
 msgid "Turned on"
 msgstr ""
 
-#: admin/views/fixes.php:141
+#: admin/views/fixes.php:152
 msgid "Turned off"
 msgstr ""
 
 #. translators: 1: change, 2: fix name.
-#: admin/views/fixes.php:154
+#: admin/views/fixes.php:165
 #, php-format
 msgid "%1$s: %2$s"
 msgstr ""
 
 #. translators: 1: change, 2: fix name.
-#: admin/views/fixes.php:154
+#: admin/views/fixes.php:165
 msgid "turned on"
 msgstr ""
 
 #. translators: 1: change, 2: fix name.
-#: admin/views/fixes.php:154
+#: admin/views/fixes.php:165
 msgid "turned off"
 msgstr ""
 
-#: admin/views/fixes.php:160
+#: admin/views/fixes.php:171
 msgid "Changed since"
 msgstr ""
 
-#: admin/views/fixes.php:170
+#: admin/views/fixes.php:181
 msgid "Some fixes use a small script on your pages because many themes hard-code these parts of the page. Visitors with JavaScript turned off simply see your site as before."
 msgstr ""
 
@@ -503,7 +514,7 @@ msgstr ""
 msgid "Change by problem"
 msgstr ""
 
-#: admin/views/partials/compare-body.php:99 admin/views/partials/report-body.php:252
+#: admin/views/partials/compare-body.php:99 admin/views/partials/report-body.php:306
 msgid "Problem"
 msgstr ""
 
@@ -600,7 +611,11 @@ msgid "critical"
 msgstr ""
 
 #: admin/views/partials/report-body.php:58
-msgid "About the score"
+msgid "About the CoreA11y score"
+msgstr ""
+
+#: admin/views/partials/report-body.php:58
+msgid "CoreA11y score"
 msgstr ""
 
 #: admin/views/partials/report-body.php:63
@@ -623,7 +638,7 @@ msgstr ""
 msgid "Pages with the most issues"
 msgstr ""
 
-#: admin/views/partials/report-body.php:77 admin/views/partials/report-body.php:252
+#: admin/views/partials/report-body.php:77 admin/views/partials/report-body.php:306
 msgid "Page"
 msgstr ""
 
@@ -639,8 +654,12 @@ msgstr ""
 msgid "Problems are listed most severe first. Select \"?\" next to any problem to learn why it matters and how to fix it."
 msgstr ""
 
+#: admin/views/partials/report-body.php:117 admin/views/partials/report-body.php:120
+msgid "Best practice"
+msgstr ""
+
 #. translators: 1: number of elements, 2: number of pages.
-#: admin/views/partials/report-body.php:128
+#: admin/views/partials/report-body.php:136
 #, php-format
 msgid "%s element"
 msgid_plural "%s elements"
@@ -648,123 +667,150 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: 1: number of elements, 2: number of pages.
-#: admin/views/partials/report-body.php:128
+#: admin/views/partials/report-body.php:136 admin/views/partials/report-body.php:275
 #, php-format
 msgid "on %s page"
 msgid_plural "on %s pages"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/partials/report-body.php:140
+#: admin/views/partials/report-body.php:148
 msgid "Quick fix is on"
 msgstr ""
 
-#: admin/views/partials/report-body.php:141
+#: admin/views/partials/report-body.php:149
 msgid "Run a new audit to confirm it resolved these issues."
 msgstr ""
 
-#: admin/views/partials/report-body.php:143
+#: admin/views/partials/report-body.php:151
 msgid "One-click fix available:"
 msgstr ""
 
-#: admin/views/partials/report-body.php:151
+#: admin/views/partials/report-body.php:159
 msgid "Why it matters"
 msgstr ""
 
-#: admin/views/partials/report-body.php:152
+#: admin/views/partials/report-body.php:160
 msgid "Who it affects"
 msgstr ""
 
-#: admin/views/partials/report-body.php:153
+#: admin/views/partials/report-body.php:161
 msgid "How to fix"
 msgstr ""
 
-#: admin/views/partials/report-body.php:156 includes/class-corea11y-highlighter.php:136 includes/class-corea11y-ui.php:82
+#: admin/views/partials/report-body.php:164 includes/class-corea11y-highlighter.php:136 includes/class-corea11y-ui.php:82
 msgid "How to fix:"
 msgstr ""
 
 #. translators: %s: the technical rule description from the testing engine.
-#: admin/views/partials/report-body.php:163
+#: admin/views/partials/report-body.php:171
 #, php-format
 msgid "Technical check: %s"
 msgstr ""
 
-#: admin/views/partials/report-body.php:166
+#: admin/views/partials/report-body.php:174
 msgid "Detailed guide"
 msgstr ""
 
-#: admin/views/partials/report-body.php:172
+#: admin/views/partials/report-body.php:180
 msgid "Where it was found"
 msgstr ""
 
 #. translators: %s: number of elements.
-#: admin/views/partials/report-body.php:178
+#: admin/views/partials/report-body.php:186
 #, php-format
 msgid "Show the %s element"
 msgid_plural "Show all %s elements"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/partials/report-body.php:188
+#: admin/views/partials/report-body.php:196
 msgid "Show on page"
 msgstr ""
 
-#: admin/views/partials/report-body.php:191
+#: admin/views/partials/report-body.php:199
 msgid "Edit"
 msgstr ""
 
-#: admin/views/partials/report-body.php:203
+#: admin/views/partials/report-body.php:211
 msgid "Dismiss"
 msgstr ""
 
-#: admin/views/partials/report-body.php:211
+#: admin/views/partials/report-body.php:219
 msgid "Why are you dismissing this?"
 msgstr ""
 
-#: admin/views/partials/report-body.php:217
+#: admin/views/partials/report-body.php:225
 msgid "Note (optional)"
 msgstr ""
 
-#: admin/views/partials/report-body.php:220
+#: admin/views/partials/report-body.php:228
 msgid "Dismiss issue"
 msgstr ""
 
 #. translators: %s: number of further elements.
-#: admin/views/partials/report-body.php:231
+#: admin/views/partials/report-body.php:239
 #, php-format
 msgid "…and %s more. See the full list in CoreA11y."
 msgstr ""
 
+#. translators: %s: number of problem types that need a person to check them.
+#: admin/views/partials/report-body.php:258
+#, php-format
+msgid "Needs a human check (%s)"
+msgstr ""
+
+#. translators: %s: number of problem types that need a person to check them.
+#: admin/views/partials/report-body.php:260
+msgid "Needs a human check"
+msgstr ""
+
+#: admin/views/partials/report-body.php:262
+msgid "The automated checks couldn't decide on these, for example text placed over a background image. They are not counted in the score or totals. Take a quick look and fix any that turn out to be real problems."
+msgstr ""
+
+#. translators: 1: number of elements, 2: number of pages.
+#: admin/views/partials/report-body.php:275
+#, php-format
+msgid "%1$s element"
+msgid_plural "%1$s elements"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/partials/report-body.php:283
+msgid "Show examples"
+msgstr ""
+
 #. translators: %s: number of dismissed issues.
-#: admin/views/partials/report-body.php:247
+#: admin/views/partials/report-body.php:301
 #, php-format
 msgid "Dismissed issues (%s)"
 msgstr ""
 
-#: admin/views/partials/report-body.php:250
+#: admin/views/partials/report-body.php:304
 msgid "These issues are not counted in the score or totals. Restore any of them if circumstances change."
 msgstr ""
 
-#: admin/views/partials/report-body.php:252
+#: admin/views/partials/report-body.php:306
 msgid "Reason"
 msgstr ""
 
-#: admin/views/partials/report-body.php:252 admin/views/partials/report-body.php:272
+#: admin/views/partials/report-body.php:306 admin/views/partials/report-body.php:326
 msgid "Restore"
 msgstr ""
 
-#: admin/views/partials/report-body.php:285
+#: admin/views/partials/report-body.php:339
 msgid "Pages that could not be scanned"
 msgstr ""
 
 #. translators: %s: number of additional elements not listed.
-#: admin/views/partials/report-body.php:298
+#: admin/views/partials/report-body.php:352
 #, php-format
 msgid "To keep reports readable, up to 25 elements are listed per problem per page. %s more matching elements were found but not listed."
 msgstr ""
 
 #. translators: %s: axe-core version.
-#: admin/views/partials/report-body.php:306
+#: admin/views/partials/report-body.php:360
 #, php-format
 msgid "Scanned with axe-core %s against WCAG 2.0, 2.1 and 2.2 Level A and AA rules, plus CoreA11y content checks. Automated checks find only part of all accessibility issues; the manual checklist covers the rest. This report does not certify WCAG conformance."
 msgstr ""
@@ -823,7 +869,27 @@ msgstr ""
 msgid "CoreA11y Settings"
 msgstr ""
 
-#: admin/views/statement.php:20 admin/views/statement.php:21 includes/class-corea11y-admin.php:52 includes/class-corea11y-statement.php:130 includes/class-corea11y-statement.php:156
+#: admin/views/settings.php:21 admin/views/settings.php:23
+msgid "Support information"
+msgstr ""
+
+#: admin/views/settings.php:22
+msgid "If something isn't working, copy this into your support request. It describes your setup and stays on your site until you choose to share it."
+msgstr ""
+
+#: admin/views/settings.php:26
+msgid "Copied to your clipboard."
+msgstr ""
+
+#: admin/views/settings.php:26
+msgid "Selected. Press Ctrl+C (or Cmd+C) to copy."
+msgstr ""
+
+#: admin/views/settings.php:26
+msgid "Copy support information"
+msgstr ""
+
+#: admin/views/statement.php:20 admin/views/statement.php:21 includes/class-corea11y-admin.php:52 includes/class-corea11y-statement.php:135 includes/class-corea11y-statement.php:161
 msgid "Accessibility statement"
 msgstr ""
 
@@ -887,7 +953,7 @@ msgstr ""
 msgid "How well does your site conform to WCAG 2.2 AA?"
 msgstr ""
 
-#: admin/views/statement.php:70 includes/class-corea11y-statement.php:187
+#: admin/views/statement.php:70 includes/class-corea11y-statement.php:192
 msgid "Conformance status"
 msgstr ""
 
@@ -939,7 +1005,7 @@ msgstr ""
 msgid "Accessibility check"
 msgstr ""
 
-#: assets/js/editor.js:58 assets/js/scanner.js:70
+#: assets/js/editor.js:58
 msgid "The page took too long to load."
 msgstr ""
 
@@ -1005,65 +1071,69 @@ msgstr ""
 msgid "Check now"
 msgstr ""
 
-#: assets/js/scanner.js:66
+#: assets/js/scanner.js:74
 msgid "Page being scanned"
 msgstr ""
 
-#: assets/js/scanner.js:91
-msgid "The page could not be opened for scanning. It may redirect to another site or block framing."
+#: assets/js/scanner.js:78
+msgid "The page took longer than 30 seconds to load. Slow pages, or pages that keep loading (such as some chat widgets), can cause this. Try again, or leave this page out in Settings."
 msgstr ""
 
-#: assets/js/scanner.js:101
+#: assets/js/scanner.js:115
+msgid "The page could not be opened for scanning. Usually a security setting stops pages from being shown in a frame (X-Frame-Options or a Content-Security-Policy frame-ancestors rule), or the page redirects to another address. Ask your host to allow same-origin framing."
+msgstr ""
+
+#: assets/js/scanner.js:125
 msgid "The accessibility engine could not be loaded into the page."
 msgstr ""
 
-#: assets/js/scanner.js:146
+#: assets/js/scanner.js:238
 msgid "Starting audit…"
 msgstr ""
 
-#: assets/js/scanner.js:152 includes/class-corea11y-rest.php:105
+#: assets/js/scanner.js:244 includes/class-corea11y-rest.php:109
 msgid "The audit could not be started."
 msgstr ""
 
 #. translators: 1: current page number, 2: total pages, 3: page name.
-#: assets/js/scanner.js:167
+#: assets/js/scanner.js:259
 #, php-format
 msgid "Scanning page %1$d of %2$d: %3$s"
 msgstr ""
 
 #. translators: 1: page name, 2: error message.
-#: assets/js/scanner.js:185
+#: assets/js/scanner.js:280
 #, php-format
 msgid "%1$s: not scanned (%2$s)"
 msgstr ""
 
 #. translators: 1: page name, 2: number of issues.
-#: assets/js/scanner.js:188
+#: assets/js/scanner.js:283
 #, php-format
 msgid "%1$s: %2$d issues"
 msgstr ""
 
 #. translators: 1: page name, 2: error message.
-#: assets/js/scanner.js:192
+#: assets/js/scanner.js:287
 #, php-format
 msgid "%1$s: results could not be saved (%2$s)"
 msgstr ""
 
-#: assets/js/scanner.js:197
+#: assets/js/scanner.js:292
 msgid "Running site-wide checks and building the report…"
 msgstr ""
 
 #. translators: %d: number of issues found.
-#: assets/js/scanner.js:204
+#: assets/js/scanner.js:299
 #, php-format
 msgid "Audit complete: %d issues found. Opening the report…"
 msgstr ""
 
-#: assets/js/scanner.js:208
+#: assets/js/scanner.js:303
 msgid "The audit could not be finished."
 msgstr ""
 
-#: assets/js/scanner.js:228
+#: assets/js/scanner.js:323
 msgid "Stopping after the current page. Results so far will be saved."
 msgstr ""
 
@@ -1095,7 +1165,7 @@ msgstr ""
 msgid "Accessibility progress report"
 msgstr ""
 
-#: includes/class-corea11y-admin.php:434 includes/class-corea11y-audit.php:101 includes/class-corea11y-audit.php:204
+#: includes/class-corea11y-admin.php:434 includes/class-corea11y-audit.php:114 includes/class-corea11y-audit.php:273
 msgid "Audit not found."
 msgstr ""
 
@@ -1103,15 +1173,15 @@ msgstr ""
 msgid "Accessibility audit report"
 msgstr ""
 
-#: includes/class-corea11y-audit.php:104
+#: includes/class-corea11y-audit.php:117
 msgid "This audit has already finished."
 msgstr ""
 
-#: includes/class-corea11y-audit.php:118
+#: includes/class-corea11y-audit.php:131
 msgid "That page is not part of this audit."
 msgstr ""
 
-#: includes/class-corea11y-audit.php:121
+#: includes/class-corea11y-audit.php:134
 msgid "Results for this page were already saved."
 msgstr ""
 
@@ -1284,10 +1354,106 @@ msgid "Messages like \"Added to cart\" or \"Form sent\" should be announced with
 msgstr ""
 
 #: includes/class-corea11y-checklist.php:57
-msgid "One page tested with a screen reader"
+msgid "Data tables make sense when read aloud"
 msgstr ""
 
 #: includes/class-corea11y-checklist.php:57
+msgid "Check each data table: column and row headings should be marked as header cells, and the table should have a caption or heading that says what it shows. Avoid tables for layout."
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:58
+msgid "Text can be zoomed to 200%"
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:58
+msgid "Zoom your browser to 200% (Ctrl or Cmd and +). All text should get bigger, and nothing should be cut off or overlap."
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:59
+msgid "Pages work on a narrow screen without sideways scrolling"
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:59
+msgid "Set your browser window to about 320px wide, or zoom to 400%. Content should fit the width, with no need to scroll left and right (except maps, data tables and similar)."
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:60
+msgid "Text still works with extra spacing"
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:60
+msgid "Use a text spacing bookmarklet to increase line, letter and word spacing. No text should be cut off or overlap."
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:61
+msgid "Time limits can be turned off or extended"
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:61
+msgid "If anything times out (sessions, forms, quizzes), visitors must be warned and able to extend the time, unless the limit is essential."
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:62
+msgid "Moving content can be paused"
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:62
+msgid "Carousels, sliders, animations and auto-playing video that last more than five seconds need a pause or stop button."
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:63
+msgid "Nothing flashes more than three times a second"
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:63
+msgid "Check videos, animations and GIFs. Content should not flash more than three times in one second, as it can trigger seizures."
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:64
+msgid "Page titles describe each page"
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:64
+msgid "Look at the browser tab for each template. Every page should have a unique title that says what it is, for example \"Contact us - Your Site\"."
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:65
+msgid "Link text makes sense"
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:65
+msgid "Read the links on a page. Each should say where it goes, on its own or with the sentence around it. Replace \"click here\" with descriptive text."
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:66
+msgid "Text in another language is marked"
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:66
+msgid "If a page contains a passage in another language, mark it with that language (in the block editor, select the text and use the Language option where available, or add a lang attribute) so screen readers pronounce it correctly."
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:67
+msgid "Nothing changes unexpectedly when you focus or select something"
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:67
+msgid "Tab through forms and change dropdowns and options. The page should not jump, submit or open new windows unless you press a button."
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:68
+msgid "Content uses plain language and explains abbreviations"
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:68
+msgid "Read key pages as a newcomer. Use short sentences and common words, and spell out abbreviations the first time they appear. (A recommended practice, not a WCAG AA requirement.)"
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:69
+msgid "One page tested with a screen reader"
+msgstr ""
+
+#: includes/class-corea11y-checklist.php:69
 msgid "Use NVDA (Windows, free) or VoiceOver (Mac/iPhone, built in) to navigate your home page and one form. Note anything confusing."
 msgstr ""
 
@@ -1319,7 +1485,7 @@ msgstr ""
 msgid "A screen reader instruction (ARIA) is used incorrectly"
 msgstr ""
 
-#: includes/class-corea11y-explain.php:30 includes/class-corea11y-explain.php:71 includes/class-corea11y-explain.php:77 includes/class-corea11y-explain.php:83 includes/class-corea11y-explain.php:89 includes/class-corea11y-explain.php:95 includes/class-corea11y-explain.php:132 includes/class-corea11y-explain.php:138 includes/class-corea11y-explain.php:156 includes/class-corea11y-explain.php:162 includes/class-corea11y-explain.php:168 includes/class-corea11y-explain.php:198 includes/class-corea11y-explain.php:204 includes/class-corea11y-explain.php:210 includes/class-corea11y-explain.php:217 includes/class-corea11y-explain.php:223 includes/class-corea11y-explain.php:265 includes/class-corea11y-explain.php:271 includes/class-corea11y-explain.php:277 includes/class-corea11y-explain.php:289 includes/class-corea11y-explain.php:313
+#: includes/class-corea11y-explain.php:30 includes/class-corea11y-explain.php:71 includes/class-corea11y-explain.php:77 includes/class-corea11y-explain.php:83 includes/class-corea11y-explain.php:89 includes/class-corea11y-explain.php:95 includes/class-corea11y-explain.php:132 includes/class-corea11y-explain.php:138 includes/class-corea11y-explain.php:156 includes/class-corea11y-explain.php:162 includes/class-corea11y-explain.php:168 includes/class-corea11y-explain.php:198 includes/class-corea11y-explain.php:204 includes/class-corea11y-explain.php:210 includes/class-corea11y-explain.php:217 includes/class-corea11y-explain.php:223 includes/class-corea11y-explain.php:265 includes/class-corea11y-explain.php:271 includes/class-corea11y-explain.php:277 includes/class-corea11y-explain.php:289 includes/class-corea11y-explain.php:313 includes/class-corea11y-explain.php:333 includes/class-corea11y-explain.php:339 includes/class-corea11y-explain.php:351 includes/class-corea11y-explain.php:365 includes/class-corea11y-explain.php:401 includes/class-corea11y-explain.php:413 includes/class-corea11y-explain.php:425 includes/class-corea11y-explain.php:449 includes/class-corea11y-explain.php:467 includes/class-corea11y-explain.php:473 includes/class-corea11y-explain.php:479 includes/class-corea11y-explain.php:491 includes/class-corea11y-explain.php:503 includes/class-corea11y-explain.php:509 includes/class-corea11y-explain.php:515
 msgid "Screen reader users"
 msgstr ""
 
@@ -1639,7 +1805,7 @@ msgstr ""
 msgid "There is no way to skip straight to the main content"
 msgstr ""
 
-#: includes/class-corea11y-explain.php:180 includes/class-corea11y-explain.php:295
+#: includes/class-corea11y-explain.php:180 includes/class-corea11y-explain.php:295 includes/class-corea11y-explain.php:345 includes/class-corea11y-explain.php:377 includes/class-corea11y-explain.php:407 includes/class-corea11y-explain.php:455 includes/class-corea11y-explain.php:485
 msgid "Keyboard and screen reader users"
 msgstr ""
 
@@ -1951,91 +2117,571 @@ msgstr ""
 msgid "Add text inside the <summary> element."
 msgstr ""
 
-#: includes/class-corea11y-explain.php:335 includes/class-corea11y-explain.php:336 includes/class-corea11y-explain.php:337 includes/class-corea11y-explain.php:338 includes/class-corea11y-explain.php:339
-msgid "Some images are missing a text description"
+#: includes/class-corea11y-explain.php:320
+msgid "Headings with no text"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:321
+msgid "Screen reader users, who often move around a page by its headings"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:322
+msgid "An empty heading is announced as just \"heading\", which is confusing and wastes time."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:323
+msgid "Add text to the heading, or remove it if it is only used for spacing. In the block editor, look for empty Heading blocks."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:326
+msgid "Heading levels are skipped"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:327
+msgid "Screen reader users and anyone scanning the page"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:328
+msgid "Headings form an outline of the page. Jumping from a level 2 straight to a level 4 suggests content is missing."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:329
+msgid "Use heading levels in order (H2, then H3 inside it). Choose the level for its place in the outline, and change the size with styles instead."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:332
+msgid "Table headers with no text"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:334
+msgid "Screen readers read the column or row header before each cell. An empty header leaves those cells without context."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:335
+msgid "Add a short label to every header cell, or make the cell a normal data cell if it is not a header."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:338
+msgid "Image alt text repeats the text next to it"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:340
-msgid "Some text has low color contrast"
+msgid "When an image's alt text repeats the link or caption text beside it, screen readers say the same thing twice."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:341
-msgid "Some links don't describe where they go"
+msgid "Leave the alt text empty if the nearby text already says it, or describe something the text doesn't."
 msgstr ""
 
-#: includes/class-corea11y-explain.php:342
-msgid "Some buttons have no accessible name"
-msgstr ""
-
-#: includes/class-corea11y-explain.php:343
-msgid "Some form fields have no label"
-msgstr ""
-
-#: includes/class-corea11y-explain.php:344 includes/class-corea11y-explain.php:345
-msgid "Some lists are not structured correctly"
+#: includes/class-corea11y-explain.php:344
+msgid "Keyboard order is forced with tabindex"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:346
-msgid "Some buttons or links are small to tap"
+msgid "A tabindex above 0 makes those elements jump to the front of the keyboard order, so focus moves around the page unpredictably."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:347
-msgid "Some videos have no captions"
+msgid "Remove tabindex values above 0 and arrange the content in a logical order instead. This often comes from a theme or plugin."
 msgstr ""
 
-#: includes/class-corea11y-explain.php:362
-msgid "A quick progress indicator from 0 to 100. It goes down with each problem found, weighted by severity, and averaged per page. It is not a compliance grade: a site can score well and still have issues automated tools can't detect."
+#: includes/class-corea11y-explain.php:350
+msgid "An element has a role that doesn't suit it"
 msgstr ""
 
-#: includes/class-corea11y-explain.php:363
-msgid "The number of individual elements with a problem. One missing alt text on five images counts as five issues."
+#: includes/class-corea11y-explain.php:352
+msgid "A role tells screen readers what something is. A role that conflicts with the element, such as an image marked decorative that still has a description, sends mixed signals."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:353
+msgid "Remove the role attribute, or use an element that matches what it does. For decorative images, use empty alt text."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:356
+msgid "Page has no main heading (H1)"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:357
+msgid "Screen reader users and search engines"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:358
+msgid "The main heading tells visitors what the page is about, and many screen reader users jump to it first."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:359
+msgid "Give each page one H1 heading, usually the page title. Some themes hide it on the home page; check your theme settings."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:364
-msgid "The number of different kinds of problems found. Fixing one kind (for example, in your theme) often clears many issues at once."
-msgstr ""
-
-#: includes/class-corea11y-explain.php:365
-msgid "Pages successfully scanned out of the pages planned. Change which pages are scanned in Settings."
+msgid "Links with only a symbol as text"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:366
-msgid "Critical: blocks some visitors completely, for example a button a screen reader can't identify. Fix these first."
+msgid "A link whose text is just a symbol such as \"»\" or \".\" is announced as that symbol, so people can't tell where it goes."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:367
-msgid "Serious: causes major difficulty for some visitors, for example hard-to-read text."
-msgstr ""
-
-#: includes/class-corea11y-explain.php:368
-msgid "Moderate: creates friction but visitors can usually work around it."
-msgstr ""
-
-#: includes/class-corea11y-explain.php:369
-msgid "Minor: small annoyances that are still worth fixing."
+msgid "Add words that describe the destination, for example \"Next page\". If you keep the symbol, add visually hidden text or an aria-label."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:370
-msgid "Fixes that have one correct answer and can be applied safely and undone, like adding the page language. Turn them on under CoreA11y > Quick fixes."
+msgid "Link text like \"Click here\" or \"Read more\""
 msgstr ""
 
 #: includes/class-corea11y-explain.php:371
-msgid "Fixes that change how something looks or reads, like a text color. CoreA11y Pro suggests a fix and applies it once you approve."
+msgid "Screen reader users, who often list all links on a page"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:372
-msgid "Fixes only you can make well, like writing a meaningful description of a photo or adding captions to a video."
+msgid "Out of context, \"Read more\" or \"Click here\" doesn't say where a link goes. Screen reader users often browse a list of links on their own."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:373
+msgid "Make the link text describe the destination, for example \"Read more about our opening hours\". You can hide the extra words visually if needed."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:376
+msgid "Links that don't go anywhere"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:378
+msgid "A link with href=\"#\" or a javascript: address usually acts as a button. Screen readers announce it as a link, and it may not work with the Space key."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:379
+msgid "If it opens or controls something on the page, use a <button>. If it should go somewhere, give it a real address."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:382
+msgid "File links don't say the file type"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:383
+msgid "Everyone, especially screen reader and mobile users"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:384
+msgid "People expect a link to open a web page. A PDF or Word file can be slow to download and hard to use on some devices."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:385
+msgid "Add the file type (and ideally the size) to the link text, for example \"Annual report (PDF, 2 MB)\"."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:388
+msgid "Audio or video files may need a transcript"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:389 includes/class-corea11y-explain.php:521 includes/class-corea11y-explain.php:527
+msgid "People who are deaf or hard of hearing"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:390
+msgid "Audio and video content needs a text alternative so everyone can get the information."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:391
+msgid "Provide a transcript next to the link, or captions for video."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:394
+msgid "Links open a new tab without warning"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:395
+msgid "Screen reader, keyboard and older users"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:396
+msgid "A new tab or window opening unexpectedly can be disorienting, and the Back button no longer works."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:397
+msgid "Avoid opening new tabs where possible. If you must, add \"(opens in a new tab)\" to the link text or as visually hidden text."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:400
+msgid "Link title repeats the link text"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:402
+msgid "A title attribute that repeats the link text adds nothing and may be read twice."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:403
+msgid "Remove the title attribute, or use it only for extra information that is also available another way."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:406
+msgid "Two links side by side go to the same place"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:408
+msgid "An image link and a text link next to each other that go to the same page mean two tab stops and the same link announced twice."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:409
+msgid "Wrap the image and the text in one link."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:412
+msgid "Links with the same text go to different pages"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:414
+msgid "When several links have identical text but different destinations, people can't tell them apart in a list of links."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:415
+msgid "Make each link's text unique, for example by adding the item name."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:418
+msgid "Fields use placeholder text instead of a label"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:419
+msgid "People with memory or cognitive disabilities, and screen reader users"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:420
+msgid "Placeholder text disappears when someone starts typing, and it is often low contrast. People then forget what the field was for."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:421
+msgid "Add a visible label to the field. Keep the placeholder only for an example, if at all."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:424
+msgid "Tables without header cells"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:426
+msgid "Without header cells, screen readers can't tell people which column or row a value belongs to."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:427
+msgid "Mark the first row or column as headers (th). In the block editor, turn on \"Header section\" for the Table block. If the table is only for layout, add role=\"presentation\"."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:430
+msgid "Very small text"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:431
+msgid "People with low vision and older visitors"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:432
+msgid "Text smaller than 12px is hard to read for many people, even if they can zoom."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:433
+msgid "Use at least 14 to 16px for body text and at least 12px for small print."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:436
+msgid "Long text is justified"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:437
+msgid "People with dyslexia or low vision"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:438
+msgid "Justified text stretches the gaps between words unevenly, creating \"rivers\" of white space that make reading harder."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:439
+msgid "Align body text to the left (or right, for right-to-left languages)."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:442
+msgid "Long text in capital letters"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:443
+msgid "People with dyslexia or low vision, and screen reader users"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:444
+msgid "Text in capitals is harder to read in long passages, and some screen readers spell it out letter by letter."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:445
+msgid "Write the text in normal case. Use capitals only for short labels, preferably with CSS text-transform."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:448
+msgid "Empty paragraphs used for spacing"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:450
+msgid "Empty paragraphs are sometimes announced as \"blank\", which is confusing."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:451
+msgid "Remove the empty paragraphs and use block spacing or a Spacer block instead."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:454
+msgid "Access keys are used"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:456
+msgid "Access keys can clash with shortcuts in browsers and screen readers, and users rarely know they exist."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:457
+msgid "Remove the accesskey attribute."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:460
+msgid "Animated images may need a pause option"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:461
+msgid "People with attention disorders or vestibular conditions"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:462
+msgid "Moving images that play for more than five seconds can make it impossible to concentrate on the rest of the page."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:463
+msgid "Use a still image, or a video with a pause button, if the animation lasts more than five seconds."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:466
+msgid "Groups of form fields need a clear legend"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:468
+msgid "A fieldset groups related fields, and its legend tells people what the group is about. Without a legend, the group has no name."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:469
+msgid "Add a <legend> with text as the first element inside the <fieldset>."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:472
+msgid "Related radio buttons and checkboxes aren't grouped"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:474
+msgid "When related options aren't grouped, screen reader users hear each option without the question it answers."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:475
+msgid "Put the options in a <fieldset> with a <legend> that asks the question."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:478
+msgid "Images marked decorative still have a title"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:480
+msgid "An image with empty alt text is hidden from screen readers, but a title attribute suggests it has information. The two signals conflict."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:481
+msgid "If the image is decorative, remove the title. If it has information, put it in the alt text."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:484
+msgid "Keyboard focus lands on something that isn't interactive"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:486
+msgid "An element with tabindex=\"0\" receives keyboard focus, but if it isn't a button, link or control, people land on it and nothing happens."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:487
+msgid "Remove tabindex from non-interactive elements, or give the element a proper role and keyboard behavior."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:490
+msgid "Table cells aren't linked to their headers"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:492
+msgid "In complex tables, screen readers rely on scope or headers attributes to say which headers belong to each cell."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:493
+msgid "Add scope=\"col\" or scope=\"row\" to header cells. For complex tables, split them into simpler ones or use headers and id attributes."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:496
+msgid "Outdated HTML is used"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:497
+msgid "Everyone using assistive technology"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:498
+msgid "Old elements such as <center> or <font> are no longer part of HTML and may not be supported in the future."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:499
+msgid "Replace them with modern HTML and CSS. This often comes from older content or a theme."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:502
+msgid "Alt text may not describe the image"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:504
+msgid "The alt text looks like a file name or placeholder, so it may not tell people what the image shows."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:505
+msgid "Write alt text that describes what the image shows or does in context."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:508
+msgid "Text may look like a heading without being one"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:510
+msgid "Bold or large text styled as a heading isn't announced as a heading, so people can't jump to it."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:511
+msgid "If the text is a heading, use a real Heading block (H2, H3...)."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:514
+msgid "Content may be a list without list markup"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:516
+msgid "Items written as lines of text (for example with dashes) aren't announced as a list, so people don't know how many items there are."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:517
+msgid "Use a List block (bulleted or numbered) for lists."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:520
+msgid "Audio may need a transcript"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:522
+msgid "Audio content needs a text transcript so everyone can get the information."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:523
+msgid "Add a transcript below the audio player or link to one."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:526
+msgid "Video may need captions"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:528
+msgid "Videos with speech need captions that match what is said."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:529
+msgid "Add a captions track to the video. Check auto-generated captions for accuracy."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:549 includes/class-corea11y-explain.php:550 includes/class-corea11y-explain.php:551 includes/class-corea11y-explain.php:552 includes/class-corea11y-explain.php:553
+msgid "Some images are missing a text description"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:554
+msgid "Some text has low color contrast"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:555
+msgid "Some links don't describe where they go"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:556
+msgid "Some buttons have no accessible name"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:557
+msgid "Some form fields have no label"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:558 includes/class-corea11y-explain.php:559
+msgid "Some lists are not structured correctly"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:560
+msgid "Some buttons or links are small to tap"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:561
+msgid "Some videos have no captions"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:576
+msgid "The CoreA11y score is our own quick progress indicator from 0 to 100, based only on the automated checks. It goes down with each problem found, weighted by severity, and averaged per page. It is not an official WCAG score or a compliance grade, and other tools score differently: a site can score well and still have issues automated tools can't detect."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:577
+msgid "A widely recommended practice that makes pages easier to use, but isn't a strict WCAG requirement. Shown as minor and never counted in the score."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:578
+msgid "Elements the automated checks could not judge with certainty, such as text over an image or gradient, where a person needs to look. They are listed so nothing is hidden, but they are not counted as issues."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:579
+msgid "The number of individual elements with a problem. One missing alt text on five images counts as five issues."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:580
+msgid "The number of different kinds of problems found. Fixing one kind (for example, in your theme) often clears many issues at once."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:581
+msgid "Pages successfully scanned out of the pages planned. Change which pages are scanned in Settings."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:582
+msgid "Critical: blocks some visitors completely, for example a button a screen reader can't identify. Fix these first."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:583
+msgid "Serious: causes major difficulty for some visitors, for example hard-to-read text."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:584
+msgid "Moderate: creates friction but visitors can usually work around it."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:585
+msgid "Minor: small annoyances that are still worth fixing."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:586
+msgid "Fixes that have one correct answer and can be applied safely and undone, like adding the page language. Turn them on under CoreA11y > Quick fixes."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:587
+msgid "Fixes that change how something looks or reads, like a text color. CoreA11y Pro suggests a fix and applies it once you approve."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:588
+msgid "Fixes only you can make well, like writing a meaningful description of a photo or adding captions to a video."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:589
 msgid "Issues found in the earlier audit that are no longer found in the later one."
 msgstr ""
 
-#: includes/class-corea11y-explain.php:374
+#: includes/class-corea11y-explain.php:590
 msgid "Issues found in both audits."
 msgstr ""
 
-#: includes/class-corea11y-explain.php:375
+#: includes/class-corea11y-explain.php:591
 msgid "Issues found in the later audit that were not in the earlier one, for example on a new page or after a theme change."
 msgstr ""
 
@@ -2087,27 +2733,27 @@ msgstr ""
 msgid "Gives every page a title (shown in the browser tab and read first by screen readers) when your theme does not output one."
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:300
+#: includes/class-corea11y-fixes.php:311
 msgid "Skip to content"
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:301 includes/class-corea11y-fixes.php:350
+#: includes/class-corea11y-fixes.php:312 includes/class-corea11y-fixes.php:361
 msgid "Search"
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:366
+#: includes/class-corea11y-fixes.php:377
 msgid "Comment"
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:367
+#: includes/class-corea11y-fixes.php:378
 msgid "Name"
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:368
+#: includes/class-corea11y-fixes.php:379
 msgid "Email"
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:369
+#: includes/class-corea11y-fixes.php:380
 msgid "Website"
 msgstr ""
 
@@ -2248,43 +2894,67 @@ msgstr ""
 msgid "Add alt text in the Media Library so it is used wherever this image is inserted. Leave it empty only if the image is purely decorative."
 msgstr ""
 
-#: includes/class-corea11y-settings.php:54
+#: includes/class-corea11y-settings.php:56
 msgid "One page per template (fastest)"
 msgstr ""
 
-#: includes/class-corea11y-settings.php:55
+#: includes/class-corea11y-settings.php:57
 msgid "All published pages and posts"
 msgstr ""
 
-#: includes/class-corea11y-settings.php:56
+#: includes/class-corea11y-settings.php:58
 msgid "Only the URLs I list"
 msgstr ""
 
-#: includes/class-corea11y-settings.php:74
+#: includes/class-corea11y-settings.php:76
 msgid "Scanning"
 msgstr ""
 
-#: includes/class-corea11y-settings.php:75 includes/class-corea11y-settings.php:125
+#: includes/class-corea11y-settings.php:77 includes/class-corea11y-settings.php:131
 msgid "Pages to scan"
 msgstr ""
 
-#: includes/class-corea11y-settings.php:78
+#: includes/class-corea11y-settings.php:80
 msgid "Custom URLs"
 msgstr ""
 
-#: includes/class-corea11y-settings.php:85
+#: includes/class-corea11y-settings.php:86
+msgid "Screen sizes"
+msgstr ""
+
+#: includes/class-corea11y-settings.php:87
+msgid "Extended checks"
+msgstr ""
+
+#: includes/class-corea11y-settings.php:89
 msgid "Data"
 msgstr ""
 
-#: includes/class-corea11y-settings.php:86
+#: includes/class-corea11y-settings.php:90
 msgid "On uninstall"
 msgstr ""
 
-#: includes/class-corea11y-settings.php:147
+#: includes/class-corea11y-settings.php:153
 msgid "One URL per line. Used only when \"Only the URLs I list\" is selected. URLs on other sites are ignored."
 msgstr ""
 
-#: includes/class-corea11y-settings.php:158
+#: includes/class-corea11y-settings.php:164
+msgid "Also check each page at phone width"
+msgstr ""
+
+#: includes/class-corea11y-settings.php:165
+msgid "Finds problems in mobile menus and layouts. Audits take about twice as long."
+msgstr ""
+
+#: includes/class-corea11y-settings.php:177
+msgid "Also run selected rules from the IBM Equal Access engine"
+msgstr ""
+
+#: includes/class-corea11y-settings.php:178
+msgid "Catches form, table and markup problems the main engine doesn't cover. Runs only in your admin during audits; visitors never load it. Adds a second or two per page."
+msgstr ""
+
+#: includes/class-corea11y-settings.php:190
 msgid "Delete all CoreA11y audits and settings when the plugin is deleted"
 msgstr ""
 
@@ -2312,109 +2982,109 @@ msgstr ""
 msgid "the content does not conform to the accessibility standard"
 msgstr ""
 
-#: includes/class-corea11y-statement.php:131
+#: includes/class-corea11y-statement.php:136
 msgctxt "page slug"
 msgid "accessibility-statement"
 msgstr ""
 
 #. translators: 1: organization name, 2: website address.
-#: includes/class-corea11y-statement.php:183
+#: includes/class-corea11y-statement.php:188
 #, php-format
 msgid "%1$s is committed to making %2$s accessible to everyone, including people with disabilities. We continually improve the experience for all visitors and apply the relevant accessibility standards."
 msgstr ""
 
 #. translators: 1: website address, 2: conformance status (e.g. "Partially conformant"), 3: explanation of that status.
-#: includes/class-corea11y-statement.php:191
+#: includes/class-corea11y-statement.php:196
 #, php-format
 msgid "The Web Content Accessibility Guidelines (WCAG) define requirements to improve accessibility for people with disabilities. Our assessment of %1$s against WCAG 2.2 Level AA: %2$s. This means that %3$s."
 msgstr ""
 
-#: includes/class-corea11y-statement.php:195
+#: includes/class-corea11y-statement.php:200
 msgid "Measures we take"
 msgstr ""
 
-#: includes/class-corea11y-statement.php:197
+#: includes/class-corea11y-statement.php:202
 msgid "We check our pages regularly with automated accessibility testing (axe-core)."
 msgstr ""
 
-#: includes/class-corea11y-statement.php:198
+#: includes/class-corea11y-statement.php:203
 msgid "We review the requirements that software can't judge with a manual checklist."
 msgstr ""
 
-#: includes/class-corea11y-statement.php:199
+#: includes/class-corea11y-statement.php:204
 msgid "We fix problems at the source rather than relying on an overlay."
 msgstr ""
 
-#: includes/class-corea11y-statement.php:205
+#: includes/class-corea11y-statement.php:210
 msgid "Known limitations"
 msgstr ""
 
 #. translators: 1: date, 2: number of issues, 3: number of pages.
-#: includes/class-corea11y-statement.php:217
+#: includes/class-corea11y-statement.php:222
 #, php-format
 msgid "Our latest automated check on %1$s found %2$s issues across %3$s pages. We are working on these areas:"
 msgstr ""
 
 #. translators: %s: date.
-#: includes/class-corea11y-statement.php:220
+#: includes/class-corea11y-statement.php:225
 #, php-format
 msgid "Our latest automated check on %s found no issues."
 msgstr ""
 
-#: includes/class-corea11y-statement.php:238
+#: includes/class-corea11y-statement.php:243
 msgid "We are not aware of specific limitations. If you find one, please let us know."
 msgstr ""
 
-#: includes/class-corea11y-statement.php:241
+#: includes/class-corea11y-statement.php:246
 msgid "Feedback"
 msgstr ""
 
-#: includes/class-corea11y-statement.php:242
+#: includes/class-corea11y-statement.php:247
 msgid "We welcome your feedback. If you run into an accessibility barrier, please contact us:"
 msgstr ""
 
-#: includes/class-corea11y-statement.php:245
+#: includes/class-corea11y-statement.php:250
 msgid "Email:"
 msgstr ""
 
-#: includes/class-corea11y-statement.php:248
+#: includes/class-corea11y-statement.php:253
 msgid "Phone:"
 msgstr ""
 
 #. translators: %s: number of business days.
-#: includes/class-corea11y-statement.php:254
+#: includes/class-corea11y-statement.php:259
 #, php-format
 msgid "We try to respond within %s business day."
 msgid_plural "We try to respond within %s business days."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-corea11y-statement.php:258
+#: includes/class-corea11y-statement.php:263
 msgid "Assessment approach"
 msgstr ""
 
 #. translators: 1: number of manual checks reviewed, 2: total checks.
-#: includes/class-corea11y-statement.php:262
+#: includes/class-corea11y-statement.php:267
 #, php-format
 msgid "We assess the accessibility of this website by self-evaluation: automated testing of our pages, plus a manual review of requirements that need human judgment (%1$s of %2$s checks reviewed so far)."
 msgstr ""
 
-#: includes/class-corea11y-statement.php:266
+#: includes/class-corea11y-statement.php:271
 msgid "Technical specifications"
 msgstr ""
 
-#: includes/class-corea11y-statement.php:267
+#: includes/class-corea11y-statement.php:272
 msgid "Accessibility of this website relies on HTML, CSS, JavaScript and WAI-ARIA working with your browser and any assistive technologies or plugins installed on your computer."
 msgstr ""
 
 #. translators: %s: date.
-#: includes/class-corea11y-statement.php:273
+#: includes/class-corea11y-statement.php:278
 #, php-format
 msgid "This statement was last reviewed on %s."
 msgstr ""
 
 #. translators: %s: date.
-#: includes/class-corea11y-statement.php:277
+#: includes/class-corea11y-statement.php:282
 #, php-format
 msgid "The latest automated check ran on %s."
 msgstr ""

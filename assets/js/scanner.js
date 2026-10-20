@@ -11,13 +11,20 @@
 	const apiFetch = wp.apiFetch;
 	const config = window.corea11yScanner || {};
 
-	const AXE_OPTIONS = {
-		runOnly: {
-			type: 'tag',
-			values: [ 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa' ],
-		},
-		resultTypes: [ 'violations', 'incomplete' ],
-	};
+	const WCAG_TAGS = [ 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa' ];
+	// Best-practice checks that are widely expected and rarely wrong. Reported as
+	// suggestions and never counted in the score.
+	const BEST_PRACTICE = [ 'empty-heading', 'heading-order', 'empty-table-header', 'image-redundant-alt', 'tabindex', 'aria-allowed-role', 'page-has-heading-one' ];
+
+	function axeOptions( axe ) {
+		const ids = axe.getRules( WCAG_TAGS ).map( ( r ) => r.ruleId );
+		BEST_PRACTICE.forEach( ( id ) => {
+			if ( ids.indexOf( id ) === -1 ) {
+				ids.push( id );
+			}
+		} );
+		return { runOnly: { type: 'rule', values: ids }, resultTypes: [ 'violations', 'incomplete' ] };
+	}
 	const MAX_NODES = 25;
 	const SETTLE_MS = 750;
 
@@ -80,6 +87,22 @@
 		} );
 	}
 
+	// Load a script into the scanned page and resolve with the global it defines.
+	function injectScript( frame, src, globalName ) {
+		return new Promise( ( resolve, reject ) => {
+			const doc = frame.contentDocument;
+			if ( frame.contentWindow[ globalName ] ) {
+				resolve( frame.contentWindow[ globalName ] );
+				return;
+			}
+			const script = doc.createElement( 'script' );
+			script.src = src;
+			script.onload = () => resolve( frame.contentWindow[ globalName ] );
+			script.onerror = () => reject( new Error( globalName ) );
+			( doc.head || doc.documentElement ).appendChild( script );
+		} );
+	}
+
 	function injectAxe( frame ) {
 		return new Promise( ( resolve, reject ) => {
 			let doc;
@@ -128,11 +151,33 @@
 			const doc = frame.contentDocument;
 			const results = await axe.run(
 				{ include: [ doc.documentElement ], exclude: [ [ '#wpadminbar' ] ] },
-				AXE_OPTIONS
+				axeOptions( axe )
 			);
-			return { violations: slim( results.violations ), review: slim( results.incomplete ) };
+			const extra = await extraChecks( frame );
+			return {
+				violations: slim( results.violations.concat( extra.violations ) ),
+				review: slim( results.incomplete.concat( extra.review ) ),
+			};
 		} finally {
 			frame.remove();
+		}
+	}
+
+	// CoreA11y's own checks, plus the curated IBM Equal Access rules when enabled.
+	// Any failure here leaves the axe-core results untouched.
+	async function extraChecks( frame ) {
+		const empty = { violations: [], review: [] };
+		if ( ! config.checksUrl ) {
+			return empty;
+		}
+		try {
+			if ( config.extended && config.aceUrl ) {
+				await injectScript( frame, config.aceUrl, 'ace' ).catch( () => null );
+			}
+			const checks = await injectScript( frame, config.checksUrl, 'corea11yChecks' );
+			return checks ? await checks.run( { ibm: !! config.extended } ) : empty;
+		} catch ( e ) {
+			return empty;
 		}
 	}
 
