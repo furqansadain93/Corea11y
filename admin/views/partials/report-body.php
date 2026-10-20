@@ -55,7 +55,7 @@ if ( 0 === (int) $counts['total'] ) {
 			// phpcs:enable
 			?>
 		</div>
-		<p class="corea11y-score-note"><?php esc_html_e( 'About the score', 'corea11y' ); ?><?php echo CoreA11y_UI::concept_tip( 'score', __( 'Scan score', 'corea11y' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+		<p class="corea11y-score-note"><?php esc_html_e( 'About the CoreA11y score', 'corea11y' ); ?><?php echo CoreA11y_UI::concept_tip( 'score', __( 'CoreA11y score', 'corea11y' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 	</div>
 </section>
 
@@ -238,6 +238,52 @@ if ( 0 === (int) $counts['total'] ) {
 		</article>
 	<?php endforeach; ?>
 </section>
+
+<?php
+$corea11y_review = isset( $audit->summary['review'] ) ? (array) $audit->summary['review'] : array();
+?>
+<?php if ( $corea11y_review ) : ?>
+	<section class="corea11y-section" aria-labelledby="corea11y-review-title">
+		<h2 id="corea11y-review-title">
+			<?php
+			/* translators: %s: number of problem types that need a person to check them. */
+			echo esc_html( sprintf( __( 'Needs a human check (%s)', 'corea11y' ), number_format_i18n( count( $corea11y_review ) ) ) );
+			?>
+			<?php echo CoreA11y_UI::concept_tip( 'review', __( 'Needs a human check', 'corea11y' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in CoreA11y_UI. ?>
+		</h2>
+		<p><?php esc_html_e( 'The automated checks couldn\'t decide on these, for example text placed over a background image. They are not counted in the score or totals. Take a quick look and fix any that turn out to be real problems.', 'corea11y' ); ?></p>
+		<ul class="corea11y-review-list">
+			<?php foreach ( $corea11y_review as $corea11y_rid => $corea11y_r ) : ?>
+				<?php
+				$corea11y_rex   = CoreA11y_Explain::get( (string) $corea11y_rid, isset( $corea11y_r['help'] ) ? $corea11y_r['help'] : '' );
+				$corea11y_rpage = isset( $corea11y_r['page_count'] ) ? (int) $corea11y_r['page_count'] : count( (array) $corea11y_r['pages'] );
+				?>
+				<li>
+					<strong><?php echo esc_html( $corea11y_rex['title'] ); ?></strong>
+					<?php echo CoreA11y_UI::rule_tip( $corea11y_rex ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in CoreA11y_UI. ?>
+					<span class="corea11y-muted">
+						<?php
+						/* translators: 1: number of elements, 2: number of pages. */
+						echo esc_html( sprintf( _n( '%1$s element', '%1$s elements', (int) $corea11y_r['elements'], 'corea11y' ), number_format_i18n( (int) $corea11y_r['elements'] ) ) . ' · ' . sprintf( _n( 'on %s page', 'on %s pages', $corea11y_rpage, 'corea11y' ), number_format_i18n( $corea11y_rpage ) ) );
+						if ( ! empty( $corea11y_r['wcag'] ) ) {
+							echo ' · ' . esc_html( 'WCAG ' . $corea11y_r['wcag'] );
+						}
+						?>
+					</span>
+					<?php if ( ! empty( $corea11y_r['examples'] ) && ! $corea11y_is_print ) : ?>
+						<details>
+							<summary><?php esc_html_e( 'Show examples', 'corea11y' ); ?></summary>
+							<?php foreach ( (array) $corea11y_r['examples'] as $corea11y_ex ) : ?>
+								<p class="corea11y-muted"><?php echo esc_html( $corea11y_ex['page'] ); ?><?php echo $corea11y_ex['why'] ? ': ' . esc_html( $corea11y_ex['why'] ) : ''; ?></p>
+								<pre class="corea11y-snippet"><code><?php echo esc_html( $corea11y_ex['snippet'] ); ?></code></pre>
+							<?php endforeach; ?>
+						</details>
+					<?php endif; ?>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+	</section>
+<?php endif; ?>
 
 <?php if ( ! empty( $dismissed ) ) : ?>
 	<section class="corea11y-section">

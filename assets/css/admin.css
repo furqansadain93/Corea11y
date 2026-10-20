@@ -859,3 +859,23 @@
 	list-style: disc;
 	margin-left: 20px;
 }
+
+/* Needs a human check */
+.corea11y .corea11y-review-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.corea11y .corea11y-review-list > li {
+	padding: 12px 0;
+	border-top: 1px solid #dcdcde;
+}
+.corea11y .corea11y-review-list > li:last-child {
+	border-bottom: 1px solid #dcdcde;
+}
+.corea11y .corea11y-review-list .corea11y-muted {
+	display: block;
+}
+.corea11y .corea11y-review-list details {
+	margin-top: 6px;
+}

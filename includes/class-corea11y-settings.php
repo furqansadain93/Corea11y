@@ -25,6 +25,7 @@ class CoreA11y_Settings {
 		return array(
 			'scan_scope'          => 'sample',
 			'custom_urls'         => '',
+			'scan_mobile'         => true,
 			'delete_on_uninstall' => true,
 		);
 	}
@@ -81,6 +82,7 @@ class CoreA11y_Settings {
 			'corea11y_scan',
 			array( 'label_for' => 'corea11y-custom-urls' )
 		);
+		add_settings_field( 'scan_mobile', __( 'Screen sizes', 'corea11y' ), array( __CLASS__, 'field_mobile' ), self::PAGE, 'corea11y_scan' );
 
 		add_settings_section( 'corea11y_data', __( 'Data', 'corea11y' ), '__return_false', self::PAGE );
 		add_settings_field( 'delete_on_uninstall', __( 'On uninstall', 'corea11y' ), array( __CLASS__, 'field_delete' ), self::PAGE, 'corea11y_data' );
@@ -112,6 +114,7 @@ class CoreA11y_Settings {
 		}
 		$out['custom_urls'] = implode( "\n", array_unique( $urls ) );
 
+		$out['scan_mobile']         = ! empty( $input['scan_mobile'] );
 		$out['delete_on_uninstall'] = ! empty( $input['delete_on_uninstall'] );
 
 		return $out;
@@ -145,6 +148,19 @@ class CoreA11y_Settings {
 			esc_textarea( self::get( 'custom_urls' ) )
 		);
 		echo '<p class="description" id="corea11y-custom-urls-help">' . esc_html__( 'One URL per line. Used only when "Only the URLs I list" is selected. URLs on other sites are ignored.', 'corea11y' ) . '</p>';
+	}
+
+	/**
+	 * Phone-width scan checkbox.
+	 */
+	public static function field_mobile() {
+		printf(
+			'<label><input type="checkbox" name="%1$s[scan_mobile]" value="1" aria-describedby="corea11y-mobile-help" %2$s> %3$s</label><p class="description" id="corea11y-mobile-help">%4$s</p>',
+			esc_attr( self::OPTION ),
+			checked( (bool) self::get( 'scan_mobile' ), true, false ),
+			esc_html__( 'Also check each page at phone width', 'corea11y' ),
+			esc_html__( 'Finds problems in mobile menus and layouts. Audits take about twice as long.', 'corea11y' )
+		);
 	}
 
 	/**

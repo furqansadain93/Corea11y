@@ -359,7 +359,8 @@ class CoreA11y_Explain {
 	 */
 	public static function concepts() {
 		return array(
-			'score'     => __( 'A quick progress indicator from 0 to 100. It goes down with each problem found, weighted by severity, and averaged per page. It is not a compliance grade: a site can score well and still have issues automated tools can\'t detect.', 'corea11y' ),
+			'score'     => __( 'The CoreA11y score is our own quick progress indicator from 0 to 100, based only on the automated checks. It goes down with each problem found, weighted by severity, and averaged per page. It is not an official WCAG score or a compliance grade, and other tools score differently: a site can score well and still have issues automated tools can\'t detect.', 'corea11y' ),
+			'review'    => __( 'Elements the automated checks could not judge with certainty, such as text over an image or gradient, where a person needs to look. They are listed so nothing is hidden, but they are not counted as issues.', 'corea11y' ),
 			'issues'    => __( 'The number of individual elements with a problem. One missing alt text on five images counts as five issues.', 'corea11y' ),
 			'problems'  => __( 'The number of different kinds of problems found. Fixing one kind (for example, in your theme) often clears many issues at once.', 'corea11y' ),
 			'pages'     => __( 'Pages successfully scanned out of the pages planned. Change which pages are scanned in Settings.', 'corea11y' ),

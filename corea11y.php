@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       CoreA11y
  * Description:       Audit your site against WCAG 2.2 AA with axe-core, see exactly what needs fixing, and track progress with before/after reports.
- * Version:           0.5.1
+ * Version:           0.5.2
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Plugin URI:        https://corea11y.com
@@ -18,7 +18,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'COREA11Y_VERSION', '0.5.1' );
+define( 'COREA11Y_VERSION', '0.5.2' );
 define( 'COREA11Y_DB_VERSION', '3' );
 define( 'COREA11Y_FILE', __FILE__ );
 define( 'COREA11Y_DIR', plugin_dir_path( __FILE__ ) );
@@ -36,6 +36,7 @@ require_once COREA11Y_DIR . 'includes/class-corea11y-explain.php';
 require_once COREA11Y_DIR . 'includes/class-corea11y-ui.php';
 require_once COREA11Y_DIR . 'includes/class-corea11y-compare.php';
 require_once COREA11Y_DIR . 'includes/class-corea11y-fixes.php';
+require_once COREA11Y_DIR . 'includes/class-corea11y-compat.php';
 require_once COREA11Y_DIR . 'includes/class-corea11y-dismiss.php';
 require_once COREA11Y_DIR . 'includes/class-corea11y-statement.php';
 require_once COREA11Y_DIR . 'includes/class-corea11y-editor.php';

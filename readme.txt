@@ -4,7 +4,7 @@ Tags: accessibility, wcag, a11y, ada, audit
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.5.1
+Stable tag: 0.5.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,6 +20,8 @@ CoreA11y scans your pages with axe-core, the open-source accessibility testing e
 * A "?" next to every problem explains in plain language why it matters, who it affects and how to fix it
 * Before & after: compare any two audits to see what you fixed, what remains and what is new
 * Download any report or comparison as a polished PDF to share with your team or clients
+* Checks each page at desktop and phone width, and lists anything the automated checks can't decide on as "Needs a human check"
+* Works with popular caching and optimization plugins: caches are cleared when you change a fix, and the fixes script is never delayed
 * Manual checklist for the WCAG criteria that software can't judge, with step-by-step instructions
 * Checks inside the block editor: every time you save, CoreA11y checks the post's content and explains any problems in the sidebar and before publishing
 * "Show on page": see each problem outlined on your live page, with an explanation and next/previous navigation
@@ -77,6 +79,16 @@ CoreA11y bundles axe-core 4.14.0 by Deque Systems (https://github.com/dequelabs/
 The audit report links to Deque University rule pages (https://dequeuniversity.com/rules/axe/) for detailed fixing guidance. These links are only opened if you click them; no data is sent.
 
 == Changelog ==
+
+= 0.5.2 =
+* Checks every page at phone width as well as desktop, to catch problems in mobile menus and layouts (can be turned off in Settings).
+* New "Needs a human check" list in reports: items the automated checks can't decide on, shown separately and never counted in the score.
+* Turning a quick fix on or off (or undoing it) now clears the page cache of popular caching plugins, so visitors see the change straight away.
+* The quick fixes script is excluded from script delaying and combining in popular optimization plugins, so fixes work for keyboard and screen reader users right away.
+* Pages that block framing with X-Frame-Options: DENY can now be scanned by administrators; clearer messages when a page can't be scanned.
+* New "Support information" box in Settings to copy into a support request. Nothing is sent automatically.
+* The score is now called the CoreA11y score, with a clearer explanation.
+* Tested with MySQL/MariaDB.
 
 = 0.5.1 =
 * Passes the WordPress.org Plugin Check with no errors or warnings.

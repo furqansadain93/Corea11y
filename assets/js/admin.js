@@ -7,7 +7,34 @@
 ( function () {
 	'use strict';
 
-	const tips = Array.prototype.slice.call( document.querySelectorAll( '.corea11y-tip' ) );
+	// "Copy support information" button on the Settings screen.
+	const copyBtn = document.getElementById( 'corea11y-copy-info' );
+	const info = document.getElementById( 'corea11y-support-info' );
+	const status = document.getElementById( 'corea11y-copy-status' );
+	if ( copyBtn && info && status ) {
+		copyBtn.hidden = false;
+		copyBtn.addEventListener( 'click', () => {
+			const done = () => {
+				status.textContent = copyBtn.getAttribute( 'data-copied' );
+			};
+			if ( navigator.clipboard && window.isSecureContext ) {
+				navigator.clipboard.writeText( info.value ).then( done, () => {
+					info.select();
+					status.textContent = copyBtn.getAttribute( 'data-select' );
+				} );
+			} else {
+				info.focus();
+				info.select();
+				status.textContent = copyBtn.getAttribute( 'data-select' );
+			}
+		} );
+	}
+}() );
+
+( function () {
+	'use strict';
+
+	const tips =Array.prototype.slice.call( document.querySelectorAll( '.corea11y-tip' ) );
 	if ( ! tips.length ) {
 		return;
 	}

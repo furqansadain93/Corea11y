@@ -150,6 +150,17 @@ class CoreA11y_Fixes {
 		}
 		update_option( self::OPTION, $state );
 		update_option( self::LOG_OPTION, array_slice( $log, 0, self::LOG_MAX ), false );
+
+		if ( '' !== $batch ) {
+			/**
+			 * Fires after quick fixes are turned on or off (including undo and redo).
+			 * CoreA11y clears known page caches here so visitors see the change at once.
+			 *
+			 * @param array<string,bool> $state New state.
+			 * @param string             $batch Batch id.
+			 */
+			do_action( 'corea11y_fixes_changed', $state, $batch );
+		}
 		return $batch;
 	}
 

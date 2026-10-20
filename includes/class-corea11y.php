@@ -42,6 +42,7 @@ final class CoreA11y {
 		( new CoreA11y_Rest() )->register();
 		CoreA11y_Scanner::register();
 		CoreA11y_Fixes::register();
+		CoreA11y_Compat::register();
 		CoreA11y_Statement::register();
 		CoreA11y_Editor::register();
 		CoreA11y_Highlighter::register();

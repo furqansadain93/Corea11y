@@ -100,6 +100,11 @@ class CoreA11y_Statement {
 			'reviewed'    => gmdate( 'Y-m-d' ),
 		);
 		update_option( self::OPTION, $new );
+
+		/**
+		 * Fires after the accessibility statement settings are saved (the footer link may have changed).
+		 */
+		do_action( 'corea11y_statement_changed' );
 	}
 
 	/**

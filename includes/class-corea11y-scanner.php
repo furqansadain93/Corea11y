@@ -23,6 +23,27 @@ class CoreA11y_Scanner {
 	public static function register() {
 		add_filter( 'show_admin_bar', array( __CLASS__, 'hide_admin_bar' ) );
 		add_action( 'send_headers', array( __CLASS__, 'isolation_header' ) );
+		add_action( 'send_headers', array( __CLASS__, 'allow_same_origin_frame' ), PHP_INT_MAX );
+	}
+
+	/**
+	 * Some security plugins send "X-Frame-Options: DENY", which stops the scanner from
+	 * opening the page in its same-origin frame. For pages loaded by the scanner, and only
+	 * for administrators, relax that to SAMEORIGIN: the page can still never be framed by
+	 * another site.
+	 */
+	public static function allow_same_origin_frame() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Header only; no data is changed.
+		if ( ! isset( $_GET[ self::QUERY_ARG ] ) || headers_sent() || ! is_user_logged_in() || ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+		foreach ( headers_list() as $header ) {
+			if ( 0 === stripos( $header, 'X-Frame-Options:' ) && false === stripos( $header, 'sameorigin' ) ) {
+				header_remove( 'X-Frame-Options' );
+				header( 'X-Frame-Options: SAMEORIGIN' );
+				break;
+			}
+		}
 	}
 
 	/**
@@ -71,6 +92,11 @@ class CoreA11y_Scanner {
 				'queryArg'  => self::QUERY_ARG,
 				'reportUrl' => admin_url( 'admin.php?page=corea11y-audits&audit=' ),
 				'timeout'   => 30000,
+				'mobile'    => (bool) CoreA11y_Settings::get( 'scan_mobile' ),
+				'widths'    => array(
+					'desktop' => 1280,
+					'mobile'  => 390,
+				),
 			)
 		);
 	}

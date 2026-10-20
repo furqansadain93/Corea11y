@@ -48,6 +48,17 @@ $corea11y_fmt = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
 					</li>
 				<?php endforeach; ?>
 			</ul>
+			<?php $corea11y_caches = CoreA11y_Compat::active_caches(); ?>
+			<p class="corea11y-muted">
+				<?php
+				if ( $corea11y_caches ) {
+					/* translators: %s: names of caching plugins, e.g. "WP Rocket". */
+					echo esc_html( sprintf( __( 'We also cleared the page cache (%s), so visitors see this change now.', 'corea11y' ), implode( ', ', $corea11y_caches ) ) );
+				} else {
+					esc_html_e( 'If your host or a CDN such as Cloudflare caches your pages, clear that cache to see this change straight away.', 'corea11y' );
+				}
+				?>
+			</p>
 			<div class="corea11y-actions">
 				<a class="button button-primary" href="<?php echo esc_url( admin_url( 'admin.php?page=corea11y&corea11y_autorun=1' ) ); ?>"><?php esc_html_e( 'Verify with a new audit', 'corea11y' ); ?></a>
 				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">

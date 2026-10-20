@@ -66,6 +66,10 @@ class CoreA11y_Rest {
 						'type'    => 'array',
 						'default' => array(),
 					),
+					'review'     => array(
+						'type'    => 'array',
+						'default' => array(),
+					),
 					'error'      => array(
 						'type'              => 'string',
 						'default'           => '',
@@ -125,7 +129,8 @@ class CoreA11y_Rest {
 			$url,
 			url_to_postid( $url ),
 			(array) $request['violations'],
-			(string) $request['error']
+			(string) $request['error'],
+			(array) $request['review']
 		);
 		if ( is_wp_error( $stored ) ) {
 			return $stored;
