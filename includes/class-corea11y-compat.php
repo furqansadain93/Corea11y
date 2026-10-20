@@ -131,21 +131,46 @@ class CoreA11y_Compat {
 	 * @return array<string,bool> Name => whether it is active.
 	 */
 	public static function caches() {
-		return array(
-			'WP Rocket'              => function_exists( 'rocket_clean_domain' ),
-			'W3 Total Cache'         => function_exists( 'w3tc_flush_all' ),
-			'WP Super Cache'         => function_exists( 'wp_cache_clear_cache' ),
-			'LiteSpeed Cache'        => defined( 'LSCWP_V' ),
-			'WP Fastest Cache'       => class_exists( 'WpFastestCache' ),
-			'SiteGround Optimizer'   => function_exists( 'sg_cachepress_purge_cache' ),
-			'Cache Enabler'          => class_exists( 'Cache_Enabler' ),
-			'Breeze'                 => class_exists( 'Breeze_PurgeCache' ),
-			'Hummingbird'            => class_exists( 'Hummingbird\\WP_Hummingbird' ),
-			'WP-Optimize'            => class_exists( 'WP_Optimize' ),
-			'Nginx Helper'           => class_exists( 'Nginx_Helper' ),
-			'Kinsta'                 => class_exists( 'Kinsta\\Cache' ),
-			'WP Engine'              => class_exists( 'WpeCommon' ),
+		$loaded = array(
+			'WP Rocket'            => function_exists( 'rocket_clean_domain' ),
+			'W3 Total Cache'       => function_exists( 'w3tc_flush_all' ),
+			'WP Super Cache'       => function_exists( 'wp_cache_clear_cache' ),
+			'LiteSpeed Cache'      => defined( 'LSCWP_V' ),
+			'WP Fastest Cache'     => class_exists( 'WpFastestCache' ),
+			'SiteGround Optimizer' => function_exists( 'sg_cachepress_purge_cache' ),
+			'Cache Enabler'        => class_exists( 'Cache_Enabler' ),
+			'Breeze'               => class_exists( 'Breeze_PurgeCache' ),
+			'Hummingbird'          => class_exists( 'Hummingbird\\WP_Hummingbird' ),
+			'WP-Optimize'          => class_exists( 'WP_Optimize' ),
+			'Nginx Helper'         => class_exists( 'Nginx_Helper' ),
+			'Kinsta'               => class_exists( 'Kinsta\\Cache' ),
+			'WP Engine'            => class_exists( 'WpeCommon' ),
 		);
+		// Plugin files, so a cache plugin that was just deactivated (but whose drop-in is
+		// still loaded) isn't reported as active. Hosting caches have no plugin file.
+		$files  = array(
+			'WP Rocket'            => 'wp-rocket/wp-rocket.php',
+			'W3 Total Cache'       => 'w3-total-cache/w3-total-cache.php',
+			'WP Super Cache'       => 'wp-super-cache/wp-cache.php',
+			'LiteSpeed Cache'      => 'litespeed-cache/litespeed-cache.php',
+			'WP Fastest Cache'     => 'wp-fastest-cache/wpFastestCache.php',
+			'SiteGround Optimizer' => 'sg-cachepress/sg-cachepress.php',
+			'Cache Enabler'        => 'cache-enabler/cache-enabler.php',
+			'Breeze'               => 'breeze/breeze.php',
+			'Hummingbird'          => 'hummingbird-performance/wp-hummingbird.php',
+			'WP-Optimize'          => 'wp-optimize/wp-optimize.php',
+			'Nginx Helper'         => 'nginx-helper/nginx-helper.php',
+		);
+		$active = (array) get_option( 'active_plugins', array() );
+		if ( is_multisite() ) {
+			$active = array_merge( $active, array_keys( (array) get_site_option( 'active_sitewide_plugins', array() ) ) );
+		}
+		foreach ( $files as $name => $file ) {
+			if ( $loaded[ $name ] && ! in_array( $file, $active, true ) ) {
+				$loaded[ $name ] = false;
+			}
+		}
+		return $loaded;
 	}
 
 	/**
