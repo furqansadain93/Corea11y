@@ -348,6 +348,15 @@ class CoreA11y_UI {
 		echo self::logo_mark( 30 ) . self::wordmark(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static markup.
 		/* translators: %s: site name. */
 		echo '<span class="corea11y-brandbar-site">' . esc_html( sprintf( __( 'Accessibility for %s', 'corea11y' ), get_bloginfo( 'name' ) ) ) . '</span>';
+		/**
+		 * Filter the User guide link in the CoreA11y top bar. Return an empty string to hide it.
+		 *
+		 * @param string $url Guide URL.
+		 */
+		$guide = (string) apply_filters( 'corea11y_guide_url', 'https://corea11y.com/docs/' );
+		if ( '' !== $guide ) {
+			echo '<a class="corea11y-brandbar-guide" href="' . esc_url( $guide ) . '" target="_blank" rel="noopener">' . esc_html__( 'User guide', 'corea11y' ) . '<span class="screen-reader-text"> ' . esc_html__( '(opens in a new tab)', 'corea11y' ) . '</span></a>';
+		}
 		echo '</div>';
 	}
 

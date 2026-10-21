@@ -1107,3 +1107,14 @@
 /* Freemius notices shown on CoreA11y screens: raise their contrast to AA. */
 .fs-notice .fs-plugin-title { background: #555 !important; color: #fff !important; }
 .fs-notice .fs-close, .fs-notice .fs-close > span { color: #555 !important; }
+
+.corea11y .corea11y-brandbar .corea11y-brandbar-guide {
+	margin-left: auto;
+	color: var(--corea11y-accent);
+	font-weight: 700;
+	font-size: 15px;
+}
+
+.corea11y .corea11y-brandbar .corea11y-brandbar-guide:hover {
+	color: #fff;
+}

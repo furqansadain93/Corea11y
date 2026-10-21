@@ -16,3 +16,4 @@ phpcs.xml.dist
 /.wordpress-org
 /test-zips
 /pro
+/docs

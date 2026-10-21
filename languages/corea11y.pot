@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-21 10:50+0000\n"
+"POT-Creation-Date: 2026-10-21 12:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,7 +109,7 @@ msgstr ""
 msgid "View full size"
 msgstr ""
 
-#: admin/views/alt.php:114 admin/views/alt.php:121 admin/views/audits.php:45 admin/views/compare.php:26 admin/views/dashboard.php:97 admin/views/partials/report-body.php:181 admin/views/report.php:28 pro/includes/class-corea11y-pro-fixes.php:522
+#: admin/views/alt.php:114 admin/views/alt.php:121 admin/views/audits.php:45 admin/views/compare.php:26 admin/views/dashboard.php:97 admin/views/partials/report-body.php:181 admin/views/report.php:28 includes/class-corea11y-ui.php:358 pro/includes/class-corea11y-pro-fixes.php:522
 msgid "(opens in a new tab)"
 msgstr ""
 
@@ -3495,6 +3495,10 @@ msgstr[1] ""
 #: includes/class-corea11y-ui.php:350
 #, php-format
 msgid "Accessibility for %s"
+msgstr ""
+
+#: includes/class-corea11y-ui.php:358
+msgid "User guide"
 msgstr ""
 
 #: pro/includes/class-corea11y-pro-fixes.php:53
