@@ -76,6 +76,13 @@ if ( function_exists( 'corea11y_fs' ) ) {
 		corea11y_fs();
 		// Clean up on delete through Freemius, so its uninstall feedback still works.
 		corea11y_fs()->add_action( 'after_uninstall', array( 'CoreA11y_Install', 'uninstall' ) );
+		// CoreA11y branding on the Upgrade (pricing) page.
+		corea11y_fs()->add_filter(
+			'pricing/css_path',
+			static function () {
+				return COREA11Y_DIR . 'assets/css/pricing.css';
+			}
+		);
 		do_action( 'corea11y_fs_loaded' );
 	}
 

@@ -1,0 +1,116 @@
+/*
+ * CoreA11y branding for the Freemius pricing page (CoreA11y > Upgrade).
+ * Charcoal #222 and lime #dce85d; lime is only used behind charcoal text
+ * or on charcoal. Overrides the Freemius design tokens.
+ */
+
+html body #fs_pricing_app,
+html body #fs_pricing_wrapper {
+	--fs-ds-theme-primary-accent-color: #222222;
+	--fs-ds-theme-primary-accent-color-hover: #000000;
+	--fs-ds-theme-button-primary-background-color: #222222;
+	--fs-ds-theme-button-primary-background-hover-color: #000000;
+	--fs-ds-theme-button-primary-border-color: #222222;
+	--fs-ds-theme-button-primary-border-hover-color: #000000;
+	--fs-ds-theme-button-primary-border-focus-color: #dce85d;
+	--fs-ds-theme-button-primary-text-color: #ffffff;
+	--fs-ds-theme-button-border-color: #222222;
+	--fs-ds-theme-button-border-hover-color: #000000;
+	--fs-ds-theme-button-border-focus-color: #222222;
+	--fs-ds-theme-button-text-color: #222222;
+	--fs-ds-theme-heading-text-color: #222222;
+	--fs-ds-theme-text-color: #222222;
+	--fs-ds-theme-muted-text-color: #555555;
+	--fs-ds-theme-package-popular-background: #dce85d;
+	--fs-ds-theme-notice-info-border: #222222;
+	--fs-ds-theme-notice-info-color: #222222;
+	--fs-ds-theme-background-shade: #f6f7ee;
+	--fs-ds-theme-divider-color: #dcdcd4;
+	--fs-ds-theme-border-color: #dcdcd4;
+	font-family: "CoreA11y Atkinson", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+html body #fs_pricing_app button,
+html body #fs_pricing_app input,
+html body #fs_pricing_app select {
+	font-family: inherit;
+}
+
+/* Plan names: charcoal bar; the featured plan gets lime text on charcoal. */
+html body #fs_pricing_app .fs-package .fs-plan-title {
+	background: #222222;
+	color: #ffffff;
+	border-color: #222222;
+	font-weight: 700;
+	letter-spacing: .04em;
+}
+
+html body #fs_pricing_app .fs-package.fs-featured-plan .fs-plan-title {
+	color: #dce85d;
+}
+
+html body #fs_pricing_app .fs-package.fs-featured-plan .fs-most-popular {
+	color: #222222;
+	font-weight: 700;
+}
+
+html body #fs_pricing_app .fs-package.fs-featured-plan {
+	box-shadow: 0 0 0 3px #dce85d;
+}
+
+/* Prices and buttons. */
+html body #fs_pricing_app .fs-package .fs-selected-pricing-amount {
+	color: #222222;
+}
+
+html body #fs_pricing_app .fs-upgrade-button {
+	border-radius: 999px;
+	font-weight: 700;
+}
+
+html body #fs_pricing_app .fs-button:focus-visible,
+html body #fs_pricing_app a:focus-visible {
+	outline: 2px solid #222222;
+	outline-offset: 2px;
+}
+
+html body #fs_pricing_app .fs-section--packages .fs-package-tab.fs-package-tab--selected a {
+	border-color: #222222;
+}
+
+html body #fs_pricing_app .fs-billing-cycles .fs-selected-billing-cycle,
+html body #fs_pricing_app .fs-section--billing-cycles .fs-selected-billing-cycle {
+	background: #222222;
+	color: #ffffff;
+	border-color: #222222;
+}
+
+/* Feature ticks and support line. */
+html body #fs_pricing_app .fs-plan-features li .fs-icon,
+html body #fs_pricing_app .fs-plan-support .fs-icon {
+	color: #222222;
+}
+
+html body #fs_pricing_app .fs-plan-features li {
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+html body #fs_pricing_app .fs-section--money-back-guarantee {
+	border-color: #222222;
+}
+
+html body #fs_pricing_app a {
+	color: #222222;
+	text-decoration: underline;
+}
+
+html body #fs_pricing_app input[type="radio"],
+html body #fs_pricing_app input[type="checkbox"] {
+	accent-color: #222222;
+}
+
+html body #fs_pricing_app .fs-plan-features-with-value li strong,
+html body #fs_pricing_app .fs-feature-title {
+	color: #222222;
+}
