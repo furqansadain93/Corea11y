@@ -22,6 +22,7 @@ require_once COREA11Y_PRO_DIR . 'includes/class-corea11y-pro-settings.php';
 require_once COREA11Y_PRO_DIR . 'includes/class-corea11y-pro-reports.php';
 require_once COREA11Y_PRO_DIR . 'includes/class-corea11y-pro-monitor.php';
 require_once COREA11Y_PRO_DIR . 'includes/class-corea11y-pro-network.php';
+require_once COREA11Y_PRO_DIR . 'includes/class-corea11y-pro-contrast.php';
 
 add_action(
 	'corea11y_loaded',
@@ -32,5 +33,6 @@ add_action(
 		CoreA11y_Pro_Reports::register();
 		CoreA11y_Pro_Monitor::register();
 		CoreA11y_Pro_Network::register();
+		CoreA11y_Pro_Contrast::register();
 	}
 );

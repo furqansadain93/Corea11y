@@ -77,7 +77,7 @@ class CoreA11y_Install {
 			$wpdb->query( $wpdb->prepare( 'DROP TABLE IF EXISTS %i', $wpdb->prefix . $table ) );
 		}
 
-		foreach ( array( 'corea11y_settings', 'corea11y_checklist', 'corea11y_db_version', 'corea11y_fixes', 'corea11y_fix_log', 'corea11y_fix_verified', 'corea11y_alt_log', 'corea11y_statement', 'corea11y_pro', 'corea11y_pro_due', 'corea11y_pro_last_check' ) as $option ) {
+		foreach ( array( 'corea11y_settings', 'corea11y_checklist', 'corea11y_db_version', 'corea11y_fixes', 'corea11y_fix_log', 'corea11y_fix_verified', 'corea11y_alt_log', 'corea11y_statement', 'corea11y_pro', 'corea11y_pro_due', 'corea11y_pro_last_check', 'corea11y_contrast', 'corea11y_contrast_log' ) as $option ) {
 			delete_option( $option );
 		}
 		wp_clear_scheduled_hook( 'corea11y_pro_weekly' );

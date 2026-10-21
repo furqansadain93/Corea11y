@@ -146,6 +146,19 @@ if ( 0 === (int) $counts['total'] ) {
 			<?php endif; ?>
 
 			<?php
+			if ( ! $corea11y_is_print ) {
+				if ( has_action( 'corea11y_rule_actions' ) ) {
+					/**
+					 * Print extra actions under a problem in the report (used by CoreA11y Pro).
+					 *
+					 * @param string $rule  Rule id.
+					 * @param object $audit Audit row.
+					 */
+					do_action( 'corea11y_rule_actions', $corea11y_group['rule'], $audit );
+				} elseif ( 'color-contrast' === $corea11y_group['rule'] ) {
+					echo '<p class="corea11y-quickfix">' . esc_html__( 'CoreA11y Pro suggests readable colours for each of these, which you approve and can undo.', 'corea11y' ) . ' <a href="' . esc_url( (string) apply_filters( 'corea11y_upgrade_url', admin_url( 'admin.php?page=corea11y-pricing' ) ) ) . '">' . esc_html__( 'Learn about Pro', 'corea11y' ) . '</a></p>';
+				}
+			}
 			$corea11y_fix_id = CoreA11y_Fixes::for_rule( $corea11y_group['rule'] );
 			if ( $corea11y_fix_id && ! $corea11y_is_print ) :
 				$corea11y_fix = CoreA11y_Fixes::all()[ $corea11y_fix_id ];

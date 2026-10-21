@@ -114,3 +114,13 @@ html body #fs_pricing_app .fs-plan-features-with-value li strong,
 html body #fs_pricing_app .fs-feature-title {
 	color: #222222;
 }
+
+html body #fs_pricing_app input[type="radio"]:checked::before {
+	background-color: #222222;
+}
+
+html body #fs_pricing_app input[type="radio"]:focus,
+html body #fs_pricing_app input[type="radio"]:checked {
+	border-color: #222222;
+	box-shadow: none;
+}

@@ -40,6 +40,7 @@ The CoreA11y menu:
 | Dashboard | Start audits, see your latest score and checklist progress |
 | Quick fixes | One-click fixes, change history and undo |
 | Alt text | Describe every image missing alt text from one list |
+| Colour contrast (Pro) | Approve readable colours for hard-to-read text |
 | Audits | Every audit and its full report |
 | Before & after | Compare two audits: fixed, still there and new |
 | Statement | Create your accessibility statement page |
@@ -167,11 +168,11 @@ CoreA11y Pro adds two sections here: **Weekly check** and **White-label PDF repo
 
 ## CoreA11y Pro
 
-CoreA11y Pro is the full plugin with 29 more quick fixes and tools for monitoring, reporting and managing many sites.
+CoreA11y Pro is the full plugin with 29 more quick fixes, colour-contrast fixes you approve, and tools for monitoring, reporting and managing many sites.
 
 | Plan | Sites | Monthly | Yearly | Adds |
 | --- | --- | --- | --- | --- |
-| Pro Personal | 1 | $19 | $179 | 29 extra fixes, weekly check, priority email support |
+| Pro Personal | 1 | $19 | $179 | 29 extra fixes, colour-contrast fixes you approve, weekly check, priority email support |
 | Pro Business | 5 | $49 | $449 | Everything in Personal, CSV export, multisite network tools |
 | Agency | 25 | $109 | $999 | Everything in Business, white-label PDF reports |
 
@@ -194,6 +195,16 @@ If your license expires, nothing breaks: fixes already on keep working and can s
 - **Forms:** help browsers fill in forms, keep placeholder text as the field name, connect form labels to their fields, announce required fields, read out form messages.
 - **Keyboard and focus:** keep focused items out from under sticky headers.
 - **Changes how your site looks:** underline links in text, bigger tap targets for small icon links, readable placeholder text.
+
+### Colour contrast
+
+Low-contrast text is the most common accessibility problem, and no automatic fix can safely recolour a whole site. **CoreA11y → Colour contrast** lists every piece of text from your latest audit that is too hard to read, with a suggested colour for each.
+
+1. Compare **Now** and **Suggested**. The suggestion keeps the same colour family and only makes it lighter or darker, just enough to pass WCAG 2.2 AA (4.5:1 for normal text, 3:1 for large text).
+2. Tick **Use this colour** on the ones you like, or type your own colour. CoreA11y only accepts a colour that passes; otherwise it uses the suggestion.
+3. Click **Apply selected colours**, then run a new audit to see your updated score.
+
+An approved colour is applied only to that element, on the page where it was found, as the page is shown. Your theme and content are not edited, so **Undo** (or **Undo all colour changes**) restores everything exactly. Text over images or gradients isn't listed: check those by eye under "Needs a human check" in the report. For a permanent fix across the whole site, also change the colour in your theme settings.
 
 ### Weekly check
 

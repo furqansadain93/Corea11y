@@ -118,7 +118,7 @@ CoreA11y includes the Freemius SDK (https://freemius.com), used to sell and lice
 * One click: the dashboard and latest report show how many issues quick fixes can solve, with a "Fix them now" button that turns them on and checks they worked.
 * Fixed: hidden empty paragraphs were still reported after the empty paragraph fix was turned on.
 * New look: CoreA11y screens and PDF reports now use the CoreA11y colors and Atkinson Hyperlegible, a typeface designed for readability. Every color pair meets WCAG 2.2 AA contrast.
-* Optional CoreA11y Pro, with 29 more fixes, a weekly check, CSV export, network tools and white-label reports.
+* Optional CoreA11y Pro, with 29 more fixes, colour-contrast fixes you approve, a weekly check, CSV export, network tools and white-label reports.
 
 = 0.5.2 =
 * Checks every page at phone width as well as desktop, to catch problems in mobile menus and layouts (can be turned off in Settings).
