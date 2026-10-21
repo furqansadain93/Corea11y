@@ -25,6 +25,7 @@ class CoreA11y_Admin {
 		add_action( 'admin_post_corea11y_save_checklist', array( $this, 'save_checklist' ) );
 		add_action( 'admin_post_corea11y_export', array( $this, 'export' ) );
 		add_action( 'admin_post_corea11y_save_fixes', array( $this, 'save_fixes' ) );
+		add_action( 'admin_post_corea11y_fix_now', array( $this, 'fix_now' ) );
 		add_action( 'admin_post_corea11y_undo_fix', array( $this, 'undo_fix' ) );
 		add_action( 'admin_post_corea11y_dismiss', array( $this, 'dismiss_issue' ) );
 		add_action( 'admin_post_corea11y_save_statement', array( $this, 'save_statement' ) );
@@ -257,6 +258,30 @@ class CoreA11y_Admin {
 		}
 
 		self::fixes_redirect( $flag, $batch );
+	}
+
+	/**
+	 * "Fix them now": turn on every quick fix that solves issues in the latest audit,
+	 * then open the Quick fixes screen, which checks that they worked.
+	 */
+	public function fix_now() {
+		if ( ! current_user_can( self::CAP ) ) {
+			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+		}
+		check_admin_referer( 'corea11y_fix_now' );
+		$latest = self::recent_audits( 1, 'complete' );
+		$batch  = '';
+		if ( $latest ) {
+			$opp = CoreA11y_Fixes::opportunity( (int) $latest[0]->id );
+			if ( $opp['fixes'] ) {
+				$state = CoreA11y_Fixes::state();
+				foreach ( $opp['fixes'] as $id ) {
+					$state[ $id ] = true;
+				}
+				$batch = CoreA11y_Fixes::save( $state );
+			}
+		}
+		self::fixes_redirect( 'saved', $batch );
 	}
 
 	/**

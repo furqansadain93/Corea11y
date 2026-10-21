@@ -170,6 +170,49 @@ class CoreA11y_Fixes {
 	}
 
 	/**
+	 * What one click could fix in an audit: quick fixes that are off, can be turned on,
+	 * solve issues found in that audit and don't change how the site looks.
+	 *
+	 * @param int $audit_id Audit id.
+	 * @return array{total:int,issues:int,fixes:string[],locked_issues:int,locked_fixes:int}
+	 */
+	public static function opportunity( $audit_id ) {
+		global $wpdb;
+		$out = array(
+			'total'         => 0,
+			'issues'        => 0,
+			'fixes'         => array(),
+			'locked_issues' => 0,
+			'locked_fixes'  => 0,
+		);
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table.
+		$rows  = $wpdb->get_results( $wpdb->prepare( "SELECT rule_id, COUNT(*) AS n FROM %i WHERE audit_id = %d AND status <> 'dismissed' GROUP BY rule_id", CoreA11y_Install::tables()['issues'], (int) $audit_id ) );
+		$all   = self::all();
+		$state = self::state();
+		$per   = array();
+		foreach ( (array) $rows as $r ) {
+			$out['total'] += (int) $r->n;
+			$fix           = self::for_rule( $r->rule_id );
+			if ( $fix ) {
+				$per[ $fix ] = ( isset( $per[ $fix ] ) ? $per[ $fix ] : 0 ) + (int) $r->n;
+			}
+		}
+		foreach ( $per as $id => $n ) {
+			if ( ! empty( $state[ $id ] ) || ! empty( $all[ $id ]['look'] ) ) {
+				continue;
+			}
+			if ( self::is_locked( $id ) ) {
+				$out['locked_issues'] += $n;
+				++$out['locked_fixes'];
+				continue;
+			}
+			$out['issues'] += $n;
+			$out['fixes'][] = $id;
+		}
+		return $out;
+	}
+
+	/**
 	 * Save a new state and log each change. All changes from one save share a batch id,
 	 * so they can be undone together.
 	 *

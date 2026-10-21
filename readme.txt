@@ -81,15 +81,16 @@ By default, all CoreA11y audits and settings are removed. Your accessibility sta
 
 == Screenshots ==
 
-1. Dashboard: your latest score, progress and next steps at a glance.
+1. Dashboard: your score, how many issues one click can fix, and your next steps.
 2. Audit report with a score gauge and charts by severity, WCAG principle and type of fix.
 3. Every problem has a "?" that explains why it matters, who it affects and how to fix it.
-4. Before & after: compare any two audits to see what you fixed, what remains and what is new.
-5. Quick fixes: safe, one-click fixes, each with undo.
-6. Show on page: each problem outlined on your live site, with an explanation.
-7. Checks inside the block editor every time you save a post.
-8. Accessibility statement generator that stays up to date with your audits.
-9. Download any report or comparison as a polished PDF.
+4. Quick fixes: one-click fixes that CoreA11y re-checks and marks "Fixed and verified". Every fix can be undone.
+5. Alt text: describe every image from one list. CoreA11y updates the Media Library and the pages that already use the image.
+6. Before & after: compare any two audits to see what you fixed, what remains and what is new.
+7. Show on page: each problem outlined on your live site, with an explanation.
+8. Checks inside the block editor every time you save a post or page.
+9. Accessibility statement generator that stays up to date with your audits.
+10. Download any report or comparison as a PDF.
 
 == Third-party libraries ==
 
@@ -114,6 +115,8 @@ CoreA11y includes the Freemius SDK (https://freemius.com), used to sell and lice
 * Multisite: each site's data is removed when the site or the plugin is deleted.
 * Before & after explains why only some pages are compared when audits check one page of each type.
 * Deleting CoreA11y also removes its fix check results.
+* One click: the dashboard and latest report show how many issues quick fixes can solve, with a "Fix them now" button that turns them on and checks they worked.
+* Fixed: hidden empty paragraphs were still reported after the empty paragraph fix was turned on.
 * New look: CoreA11y screens and PDF reports now use the CoreA11y colors and Atkinson Hyperlegible, a typeface designed for readability. Every color pair meets WCAG 2.2 AA contrast.
 * Optional CoreA11y Pro, with 29 more fixes, a weekly check, CSV export, network tools and white-label reports.
 

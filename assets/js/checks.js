@@ -265,7 +265,7 @@
 
 		// Empty paragraphs used for spacing.
 		doc.querySelectorAll( 'p' ).forEach( ( p ) => {
-			if ( ! p.children.length && ! ( p.textContent || '' ).replace( /[\s ]+/g, '' ) ) {
+			if ( ! p.children.length && ! ( p.textContent || '' ).replace( /[\s ]+/g, '' ) && ! p.closest( '[aria-hidden="true"]' ) ) {
 				c.add( 'violations', 'corea11y-empty-paragraph', 'minor', [ 'best-practice' ], 'Empty paragraphs used for spacing', p, 'Screen readers may announce empty paragraphs as "blank". Use spacing settings instead.' );
 			}
 		} );

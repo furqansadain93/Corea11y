@@ -40,8 +40,8 @@
 		const tag = document.createElement( 'span' );
 		tag.textContent = String( i + 1 );
 		box.appendChild( tag );
-		box.style.cssText = 'position:absolute;border:3px solid ' + ( COLORS[ issue.impact ] || '#3546d1' ) + ';border-radius:4px;box-shadow:0 0 0 3px #fff;display:none;';
-		tag.style.cssText = 'position:absolute;top:-14px;left:-14px;min-width:24px;height:24px;padding:0 4px;border-radius:12px;background:' + ( COLORS[ issue.impact ] || '#3546d1' ) + ';color:#fff;font:700 13px/24px sans-serif;text-align:center;box-shadow:0 0 0 2px #fff;';
+		box.style.cssText = 'position:absolute;border:3px solid ' + ( COLORS[ issue.impact ] || '#222222' ) + ';border-radius:4px;box-shadow:0 0 0 3px #fff;display:none;';
+		tag.style.cssText = 'position:absolute;top:-14px;left:-14px;min-width:24px;height:24px;padding:0 4px;border-radius:12px;background:' + ( COLORS[ issue.impact ] || '#222222' ) + ';color:#fff;font:700 13px/24px sans-serif;text-align:center;box-shadow:0 0 0 2px #fff;';
 		layer.appendChild( box );
 		boxes.push( box );
 	} );
@@ -77,8 +77,8 @@
 		'h2{font-size:16px;margin:0 0 4px}h3{font-size:15px;margin:10px 0 6px}p{margin:0 0 8px}' +
 		'.meta{color:#50575e;font-size:13px}.badge{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;color:#fff}' +
 		'.row{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:10px;flex-wrap:wrap}' +
-		'button,a.btn{font:inherit;font-size:13px;padding:6px 12px;border-radius:6px;border:1px solid #3546d1;background:#fff;color:#3546d1;cursor:pointer;text-decoration:none}' +
-		'button.primary{background:#3546d1;color:#fff}button:focus-visible,a:focus-visible{outline:2px solid #3546d1;outline-offset:2px}' +
+		'button,a.btn{font:inherit;font-size:13px;padding:6px 12px;border-radius:6px;border:1px solid #222222;background:#fff;color:#222222;cursor:pointer;text-decoration:none}' +
+		'button.primary{background:#222222;color:#fff}button:focus-visible,a:focus-visible{outline:2px solid #222222;outline-offset:2px}' +
 		'.close{position:absolute;top:10px;right:10px;border:0;font-size:20px;line-height:1;padding:4px 8px}' +
 		'code{display:block;white-space:pre-wrap;word-break:break-all;background:#f6f7f7;padding:6px 8px;border-radius:6px;font-size:12px}' +
 		'.missing{background:#fdf3e7;padding:8px 10px;border-radius:6px}' +
@@ -109,7 +109,7 @@
 		root.getElementById( 'count' ).textContent = ( t.count || 'Issue %1$d of %2$d' ).replace( '%1$d', index + 1 ).replace( '%2$d', issues.length );
 		body.innerHTML =
 			'<h3>' + esc( issue.title ) + '</h3>' +
-			'<p><span class="badge" style="background:' + ( COLORS[ issue.impact ] || '#3546d1' ) + '">' + esc( issue.impactLabel ) + '</span>' +
+			'<p><span class="badge" style="background:' + ( COLORS[ issue.impact ] || '#222222' ) + '">' + esc( issue.impactLabel ) + '</span>' +
 			( issue.wcag ? ' <span class="meta">WCAG ' + esc( issue.wcag ) + '</span>' : '' ) + '</p>' +
 			( elm ? '' : '<p class="missing">' + esc( t.missing || 'This element is no longer on the page. It may already be fixed.' ) + '</p>' ) +
 			'<p><strong>' + esc( t.why || 'Why it matters:' ) + '</strong> ' + esc( issue.why ) + '</p>' +

@@ -30,6 +30,13 @@ $corea11y_user   = wp_get_current_user();
 		</div>
 	</div>
 
+	<?php
+	if ( $latest ) {
+		$corea11y_fix_audit = $latest;
+		require COREA11Y_DIR . 'admin/views/partials/fix-now.php';
+	}
+	?>
+
 	<?php if ( ! $latest ) : ?>
 		<ol class="corea11y-steps">
 			<li class="corea11y-step"><h2><?php esc_html_e( 'Run an audit', 'corea11y' ); ?></h2><p><?php esc_html_e( 'We check your pages against WCAG 2.2. It takes about a minute.', 'corea11y' ); ?></p></li>

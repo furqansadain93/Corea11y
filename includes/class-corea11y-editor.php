@@ -69,7 +69,7 @@ class CoreA11y_Editor {
 			. '.corea11y-ed-issue{border-left:4px solid #646970;padding:6px 0 6px 10px;margin:0 0 10px}'
 			. '.corea11y-ed-critical{border-left-color:#b32d2e}.corea11y-ed-serious{border-left-color:#b45309}.corea11y-ed-moderate{border-left-color:#8a6d00}'
 			. '.corea11y-ed-title{display:block}.corea11y-ed-meta{display:block;color:#50575e;font-size:12px;margin:2px 0}'
-			. '.corea11y-ed-issue summary{cursor:pointer;color:#2271b1}.corea11y-ed-issue p{margin:6px 0}'
+			. '.corea11y-ed-issue summary{cursor:pointer;color:#222}.corea11y-ed-issue p{margin:6px 0}'
 			. '.corea11y-ed-code{display:block;white-space:pre-wrap;word-break:break-all;font-size:11px;background:#f6f7f7;padding:4px 6px}'
 			. '.corea11y-ed-ok{color:#00703c;font-weight:600}.corea11y-ed-running{display:flex;align-items:center;gap:6px}'
 		);

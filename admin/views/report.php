@@ -73,5 +73,13 @@ $corea11y_date     = $audit->started_at ? get_date_from_gmt( $audit->started_at,
 		<?php endif; ?>
 	</div>
 
+	<?php
+	$corea11y_newest = CoreA11y_Admin::recent_audits( 1, 'complete' );
+	if ( $corea11y_newest && (int) $corea11y_newest[0]->id === (int) $audit->id ) {
+		$corea11y_fix_audit = $audit;
+		require COREA11Y_DIR . 'admin/views/partials/fix-now.php';
+	}
+	?>
+
 	<?php require COREA11Y_DIR . 'admin/views/partials/report-body.php'; ?>
 </div>
