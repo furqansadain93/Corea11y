@@ -37,7 +37,7 @@ Status: **Same** = found the same way. **Similar** = found, but the rule differs
 
 | Item | CoreA11y rule | Status |
 |---|---|---|
-| Very low contrast | `color-contrast` | Same where colours can be measured. Text over images, gradients or overlapping elements is listed under "Needs a human check", because the background colour can't be measured reliably. Some tools report a subset of those as errors, so counts can differ. Colours are measured after animations finish (since 1.0.0). |
+| Very low contrast | `color-contrast`, `corea11y-icon-contrast` | Same where colours can be measured. When the main engine can't decide, CoreA11y measures the text itself if the colour behind it is a plain colour with nothing layered in between (since 1.0.0), and checks icon fonts at 3:1. Text over images, gradients or overlapping elements is listed under "Needs a human check", because the background colour can't be measured reliably. Some tools report a subset of those as errors, so counts can differ. Colours are measured after animations finish (since 1.0.0). |
 
 ## Alerts
 

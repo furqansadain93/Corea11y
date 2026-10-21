@@ -47,7 +47,7 @@ class CoreA11y_Pro_Contrast {
 	 * @param object $audit Audit row.
 	 */
 	public static function report_link( $rule, $audit ) {
-		if ( 'color-contrast' !== $rule ) {
+		if ( ! in_array( $rule, array( 'color-contrast', 'corea11y-icon-contrast' ), true ) ) {
 			return;
 		}
 		echo '<p class="corea11y-quickfix"><strong>' . esc_html__( 'Suggested colours ready:', 'corea11y' ) . '</strong> <a href="' . esc_url( admin_url( 'admin.php?page=' . self::PAGE ) ) . '">' . esc_html__( 'Review and approve them', 'corea11y' ) . '</a></p>';
@@ -259,7 +259,7 @@ class CoreA11y_Pro_Contrast {
 		$out['audit'] = $latest[0];
 		$applied      = self::applied();
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table.
-		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM %i WHERE audit_id = %d AND rule_id = 'color-contrast' AND status <> 'dismissed' ORDER BY id", CoreA11y_Install::tables()['issues'], (int) $latest[0]->id ) );
+		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM %i WHERE audit_id = %d AND rule_id IN ( 'color-contrast', 'corea11y-icon-contrast' ) AND status <> 'dismissed' ORDER BY id", CoreA11y_Install::tables()['issues'], (int) $latest[0]->id ) );
 		foreach ( (array) $rows as $r ) {
 			if ( isset( $applied[ $r->fingerprint ] ) ) {
 				continue;

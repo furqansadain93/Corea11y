@@ -101,6 +101,7 @@ class CoreA11y_Rules {
 		$automatic = array( 'html-has-lang', 'html-lang-valid', 'html-xml-lang-mismatch', 'meta-viewport', 'bypass', 'document-title' );
 		$approval  = array(
 			'color-contrast',
+			'corea11y-icon-contrast',
 			'link-name',
 			'button-name',
 			'input-button-name',

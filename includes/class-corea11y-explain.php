@@ -510,6 +510,12 @@ class CoreA11y_Explain {
 			'why'   => __( 'The field\'s only name is its title attribute, which appears as a tooltip on mouse hover and isn\'t shown to most visitors.', 'corea11y' ),
 			'fix'   => __( 'Add a visible label to the field.', 'corea11y' ),
 		);
+		$e['corea11y-icon-contrast'] = array(
+			'title' => __( 'Icons are hard to see against their background', 'corea11y' ),
+			'who'   => __( 'People with low vision or color blindness, and anyone in bright light', 'corea11y' ),
+			'why'   => __( 'Icons that carry meaning, such as a phone or email symbol, need a contrast of at least 3:1 with their background so people can make them out.', 'corea11y' ),
+			'fix'   => __( 'Make the icon darker or its background lighter (or the reverse). CoreA11y Pro suggests a colour on the Colour contrast screen. If the icon is purely decorative and its meaning is also given in text, it can stay as it is.', 'corea11y' ),
+		);
 		$e['corea11y-table-no-headers'] = array(
 			'title' => __( 'Tables without header cells', 'corea11y' ),
 			'who'   => __( 'Screen reader users', 'corea11y' ),

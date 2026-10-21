@@ -179,7 +179,28 @@
 				{ include: [ doc.documentElement ], exclude: [ [ '#wpadminbar' ] ] },
 				axeOptions( axe )
 			);
-			const extra = await extraChecks( frame );
+			// Text the main engine couldn't decide: our checks measure it when the
+			// background is a plain colour, and those are then no longer "undecided".
+			const undecided = [];
+			results.incomplete.forEach( ( v ) => {
+				if ( v.id === 'color-contrast' ) {
+					v.nodes.forEach( ( n ) => {
+						if ( n.target && 1 === n.target.length && 'string' === typeof n.target[ 0 ] ) {
+							undecided.push( n.target[ 0 ] );
+						}
+					} );
+				}
+			} );
+			const extra = await extraChecks( frame, undecided );
+			if ( extra.resolved && extra.resolved.length ) {
+				results.incomplete = results.incomplete.map( ( v ) => {
+					if ( v.id !== 'color-contrast' ) {
+						return v;
+					}
+					const nodes = v.nodes.filter( ( n ) => extra.resolved.indexOf( n.target[ 0 ] ) === -1 );
+					return Object.assign( {}, v, { nodes, nodeCount: nodes.length } );
+				} ).filter( ( v ) => v.nodes.length );
+			}
 			return {
 				violations: slim( results.violations.concat( extra.violations ) ),
 				review: slim( results.incomplete.concat( extra.review ) ),
@@ -191,7 +212,7 @@
 
 	// CoreA11y's own checks, plus the curated IBM Equal Access rules when enabled.
 	// Any failure here leaves the axe-core results untouched.
-	async function extraChecks( frame ) {
+	async function extraChecks( frame, undecided ) {
 		const empty = { violations: [], review: [] };
 		if ( ! config.checksUrl ) {
 			return empty;
@@ -201,7 +222,7 @@
 				await injectScript( frame, config.aceUrl, 'ace' ).catch( () => null );
 			}
 			const checks = await injectScript( frame, config.checksUrl, 'corea11yChecks' );
-			return checks ? await checks.run( { ibm: !! config.extended } ) : empty;
+			return checks ? await checks.run( { ibm: !! config.extended, contrast: undecided || [] } ) : empty;
 		} catch ( e ) {
 			return empty;
 		}

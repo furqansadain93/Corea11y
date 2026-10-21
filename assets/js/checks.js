@@ -392,6 +392,222 @@
 		} );
 	}
 
+	// Colour maths for the contrast follow-up below.
+	function parseRgb( str ) {
+		const m = String( str ).match( /[\d.]+/g );
+		if ( ! m || m.length < 3 ) {
+			return null;
+		}
+		return [ +m[ 0 ], +m[ 1 ], +m[ 2 ], m.length > 3 ? +m[ 3 ] : 1 ];
+	}
+	function luminance( c ) {
+		const a = c.slice( 0, 3 ).map( ( v ) => {
+			v /= 255;
+			return v <= 0.03928 ? v / 12.92 : Math.pow( ( v + 0.055 ) / 1.055, 2.4 );
+		} );
+		return 0.2126 * a[ 0 ] + 0.7152 * a[ 1 ] + 0.0722 * a[ 2 ];
+	}
+	function ratio( a, b ) {
+		const x = luminance( a );
+		const y = luminance( b );
+		return ( Math.max( x, y ) + 0.05 ) / ( Math.min( x, y ) + 0.05 );
+	}
+	function hex( c ) {
+		return '#' + c.slice( 0, 3 ).map( ( v ) => ( '0' + Math.round( v ).toString( 16 ) ).slice( -2 ) ).join( '' );
+	}
+
+	// The solid colour directly behind an element, or null when it can't be known
+	// for sure (an image, a gradient, transparency, an overlay or a background
+	// layer painted between the text and that colour).
+	function pseudoPaints( node, which ) {
+		const st = node.ownerDocument.defaultView.getComputedStyle( node, which );
+		if ( ! st || ! st.content || st.content === 'none' || st.content === 'normal' ) {
+			return false;
+		}
+		const bg = parseRgb( st.backgroundColor );
+		return ( st.backgroundImage && st.backgroundImage !== 'none' ) || ( bg && bg[ 3 ] > 0 );
+	}
+	function solidBackground( el ) {
+		const doc = el.ownerDocument;
+		const win = doc.defaultView;
+		let node = el;
+		let colour = null;
+		let owner = null;
+		while ( node && node.nodeType === 1 ) {
+			const st = win.getComputedStyle( node );
+			if ( parseFloat( st.opacity ) < 1 || ( st.backgroundImage && st.backgroundImage !== 'none' ) || ( st.filter && st.filter !== 'none' ) || ( st.mixBlendMode && st.mixBlendMode !== 'normal' ) || pseudoPaints( node, '::before' ) || pseudoPaints( node, '::after' ) ) {
+				return null;
+			}
+			const bg = parseRgb( st.backgroundColor );
+			if ( bg && bg[ 3 ] === 1 ) {
+				colour = bg;
+				owner = node;
+				break;
+			}
+			if ( bg && bg[ 3 ] > 0 ) {
+				return null; // Semi-transparent: depends on what's behind.
+			}
+			node = node.parentElement;
+		}
+		if ( ! colour ) {
+			colour = [ 255, 255, 255, 1 ];
+			owner = doc.documentElement;
+		}
+		// Everything drawn at the text's position, top first, must be the element,
+		// something inside it, or one of its own ancestors down to the colour's owner.
+		// Anything else (a parallax image layer, an overlay, a video) means the real
+		// background can't be measured.
+		const r = el.getBoundingClientRect();
+		if ( r.width < 1 || r.height < 1 ) {
+			return null;
+		}
+		const x = r.left + r.width / 2;
+		const y = r.top + r.height / 2;
+		if ( x < 0 || y < 0 || x > win.innerWidth || y > win.innerHeight ) {
+			el.scrollIntoView( { block: 'center' } );
+			return solidBackgroundInView( el, colour, owner );
+		}
+		return solidBackgroundInView( el, colour, owner );
+	}
+	// A background layer (image, video, positioned box) next to the element's
+	// ancestors that sits under the text. Found even when it ignores the mouse.
+	function layerUnder( el, owner, r ) {
+		if ( owner === el ) {
+			return false; // The element paints its own solid background over anything behind.
+		}
+		const win = el.ownerDocument.defaultView;
+		let branch = el;
+		let node = el.parentElement;
+		while ( node ) {
+			const kids = node.children;
+			for ( let i = 0; i < kids.length; i++ ) {
+				const k = kids[ i ];
+				if ( k === branch ) {
+					continue;
+				}
+				const st = win.getComputedStyle( k );
+				const painted = /^(IMG|VIDEO|CANVAS|PICTURE|IFRAME|svg|SVG)$/.test( k.tagName ) || ( st.backgroundImage && st.backgroundImage !== 'none' ) || ( ( parseRgb( st.backgroundColor ) || [ 0, 0, 0, 0 ] )[ 3 ] > 0 );
+				if ( ! painted || st.display === 'none' || st.visibility === 'hidden' || ( st.position !== 'absolute' && st.position !== 'fixed' ) ) {
+					continue;
+				}
+				const kr = k.getBoundingClientRect();
+				if ( kr.left < r.right && kr.right > r.left && kr.top < r.bottom && kr.bottom > r.top ) {
+					return true;
+				}
+			}
+			if ( node === owner ) {
+				break;
+			}
+			branch = node;
+			node = node.parentElement;
+		}
+		return false;
+	}
+	function solidBackgroundInView( el, colour, owner ) {
+		const doc = el.ownerDocument;
+		const r = el.getBoundingClientRect();
+		if ( layerUnder( el, owner, r ) ) {
+			return null;
+		}
+		const stack = doc.elementsFromPoint( r.left + r.width / 2, r.top + r.height / 2 );
+		if ( ! stack.length ) {
+			return null;
+		}
+		for ( let i = 0; i < stack.length; i++ ) {
+			const n = stack[ i ];
+			if ( n === owner ) {
+				return colour;
+			}
+			if ( n === el || el.contains( n ) || n.contains( el ) ) {
+				continue;
+			}
+			return null;
+		}
+		return owner === doc.documentElement ? colour : null;
+	}
+
+	const ICON_FONTS = /(ETmodules|Font ?Awesome|dashicons|icomoon|eicons|elementor-icons|Material Icons|Material Symbols|themify|fontello|Genericons|IcoFont|Ionicons|simple-line-icons|bootstrap-icons)/i;
+	// Text that is really an icon: private-use characters, or a short glyph in an icon font.
+	function isIcon( el ) {
+		const own = ownText( el );
+		if ( ! own ) {
+			return false;
+		}
+		if ( /^[\uE000-\uF8FF\s]+$/.test( own ) ) {
+			return true;
+		}
+		return own.replace( /\s/g, '' ).length <= 2 && ICON_FONTS.test( el.ownerDocument.defaultView.getComputedStyle( el ).fontFamily || '' );
+	}
+
+	function contrastWhy( kind, fg, bg, cr, el, need ) {
+		const st = el.ownerDocument.defaultView.getComputedStyle( el );
+		const px = parseFloat( st.fontSize ) || 16;
+		return kind + ' has insufficient color contrast of ' + ( Math.round( cr * 100 ) / 100 ) + ' (foreground color: ' + hex( fg ) + ', background color: ' + hex( bg ) + ', font size: ' + ( Math.round( px * 7.5 ) / 10 ) + 'pt (' + px + 'px), font weight: ' + ( +st.fontWeight >= 700 ? 'bold' : 'normal' ) + '). Expected contrast ratio of ' + need + ':1';
+	}
+
+	// Follow-up for text the main engine couldn't decide. When the background
+	// behind it is a plain colour we can measure exactly, report the real result.
+	function contrastFollowUp( doc, c, targets ) {
+		const resolved = [];
+		const win = doc.defaultView;
+		( targets || [] ).forEach( ( sel ) => {
+			let el = null;
+			try {
+				el = doc.querySelector( sel );
+			} catch ( e ) {}
+			if ( ! el || ! isVisible( el ) ) {
+				return;
+			}
+			if ( isIcon( el ) ) {
+				resolved.push( sel ); // Icon fonts: checked by iconContrast() at 3:1.
+				return;
+			}
+			const bg = solidBackground( el );
+			if ( ! bg ) {
+				return;
+			}
+			const st = win.getComputedStyle( el );
+			let fg = parseRgb( st.color );
+			if ( ! fg ) {
+				return;
+			}
+			if ( fg[ 3 ] < 1 ) {
+				fg = [ 0, 1, 2 ].map( ( i ) => fg[ i ] * fg[ 3 ] + bg[ i ] * ( 1 - fg[ 3 ] ) ).concat( 1 );
+			}
+			const px = parseFloat( st.fontSize ) || 16;
+			const need = px >= 24 || ( px >= 18.66 && +st.fontWeight >= 700 ) ? 3 : 4.5;
+			const cr = ratio( fg, bg );
+			resolved.push( sel );
+			if ( cr < need ) {
+				c.add( 'violations', 'color-contrast', 'serious', [ 'wcag2aa', 'wcag143' ], 'Elements must meet minimum color contrast ratio thresholds', el, contrastWhy( 'Element', fg, bg, cr, el, need ) );
+			}
+		} );
+		return resolved;
+	}
+
+	// Icon fonts (text made only of private-use characters) aren't checked by the
+	// main engine. Icons that carry meaning need 3:1 against their background.
+	function iconContrast( doc, c ) {
+		const win = doc.defaultView;
+		doc.querySelectorAll( 'body span, body i, body a, body div, body li, body button' ).forEach( ( el ) => {
+			if ( ! isIcon( el ) || ! isVisible( el ) || ( el.closest( '[aria-hidden="true"]' ) && ! el.closest( 'a, button' ) ) ) {
+				return;
+			}
+			const bg = solidBackground( el );
+			if ( ! bg ) {
+				return;
+			}
+			const fg = parseRgb( win.getComputedStyle( el ).color );
+			if ( ! fg || fg[ 3 ] < 1 ) {
+				return;
+			}
+			const cr = ratio( fg, bg );
+			if ( cr < 3 ) {
+				c.add( 'violations', 'corea11y-icon-contrast', 'serious', [ 'wcag2aa', 'wcag1411' ], 'Icons are hard to see against their background', el, contrastWhy( 'Icon', fg, bg, cr, el, 3 ) );
+			}
+		} );
+	}
+
 	// Curated IBM Equal Access rules.
 	async function ibmChecks( doc, c ) {
 		if ( ! window.ace || ! window.ace.Checker ) {
@@ -428,6 +644,8 @@
 		async run( options ) {
 			const c = createCollector();
 			ownChecks( document, c );
+			iconContrast( document, c );
+			const resolved = contrastFollowUp( document, c, options && options.contrast );
 			if ( options && options.ibm ) {
 				try {
 					await ibmChecks( document, c );
@@ -435,7 +653,9 @@
 					// The extra engine is optional; axe-core and CoreA11y results still stand.
 				}
 			}
-			return c.result();
+			const out = c.result();
+			out.resolved = resolved;
+			return out;
 		},
 	};
 }() );

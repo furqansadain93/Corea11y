@@ -155,7 +155,7 @@ if ( 0 === (int) $counts['total'] ) {
 					 * @param object $audit Audit row.
 					 */
 					do_action( 'corea11y_rule_actions', $corea11y_group['rule'], $audit );
-				} elseif ( 'color-contrast' === $corea11y_group['rule'] ) {
+				} elseif ( in_array( $corea11y_group['rule'], array( 'color-contrast', 'corea11y-icon-contrast' ), true ) ) {
 					echo '<p class="corea11y-quickfix">' . esc_html__( 'CoreA11y Pro suggests readable colours for each of these, which you approve and can undo.', 'corea11y' ) . ' <a href="' . esc_url( (string) apply_filters( 'corea11y_upgrade_url', admin_url( 'admin.php?page=corea11y-pricing' ) ) ) . '">' . esc_html__( 'Learn about Pro', 'corea11y' ) . '</a></p>';
 				}
 			}
