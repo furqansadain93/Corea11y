@@ -512,7 +512,7 @@ class CoreA11y_Pro_Fixes {
 
 		if ( $js ) {
 			$min = file_exists( COREA11Y_PRO_DIR . 'assets/js/pro-fixes.min.js' ) && ! ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '.min' : '';
-			wp_enqueue_script( self::HANDLE, COREA11Y_PRO_URL . 'assets/js/pro-fixes' . $min . '.js', array(), COREA11Y_PRO_VERSION, array( 'in_footer' => true ) );
+			wp_enqueue_script( self::HANDLE, COREA11Y_PRO_URL . 'assets/js/pro-fixes' . $min . '.js', array(), corea11y_asset_ver( 'pro/assets/js/pro-fixes' . $min . '.js' ), array( 'in_footer' => true ) );
 			wp_localize_script(
 				self::HANDLE,
 				'corea11yProFixes',

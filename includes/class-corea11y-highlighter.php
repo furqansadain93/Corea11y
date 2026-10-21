@@ -116,7 +116,7 @@ class CoreA11y_Highlighter {
 			);
 		}
 
-		wp_enqueue_script( 'corea11y-highlighter', COREA11Y_URL . 'assets/js/highlighter.js', array(), COREA11Y_VERSION, array( 'in_footer' => true ) );
+		wp_enqueue_script( 'corea11y-highlighter', COREA11Y_URL . 'assets/js/highlighter.js', array(), corea11y_asset_ver( 'assets/js/highlighter.js' ), array( 'in_footer' => true ) );
 		wp_localize_script(
 			'corea11y-highlighter',
 			'corea11yHighlight',

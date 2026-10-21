@@ -528,7 +528,7 @@ class CoreA11y_Fixes {
 
 		$js_fixes = array_keys( array_filter( array_intersect_key( $state, array_flip( array( 'skip-link', 'lang', 'zoom', 'form-labels', 'title', 'iframe-titles', 'empty-headings', 'empty-paragraphs', 'tabindex', 'accesskeys' ) ) ) ) );
 		if ( $js_fixes ) {
-			wp_enqueue_script( 'corea11y-fixes', COREA11Y_URL . 'assets/js/fixes.js', array(), COREA11Y_VERSION, array( 'in_footer' => true ) );
+			wp_enqueue_script( 'corea11y-fixes', COREA11Y_URL . 'assets/js/fixes.js', array(), corea11y_asset_ver( 'assets/js/fixes.js' ), array( 'in_footer' => true ) );
 			wp_localize_script(
 				'corea11y-fixes',
 				'corea11yFixes',

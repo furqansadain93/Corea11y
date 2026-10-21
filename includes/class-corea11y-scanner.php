@@ -80,7 +80,7 @@ class CoreA11y_Scanner {
 			'corea11y-scanner',
 			COREA11Y_URL . 'assets/js/scanner.js',
 			array( 'wp-api-fetch', 'wp-i18n' ),
-			COREA11Y_VERSION,
+			corea11y_asset_ver( 'assets/js/scanner.js' ),
 			true
 		);
 		wp_set_script_translations( 'corea11y-scanner', 'corea11y', COREA11Y_DIR . 'languages' );
@@ -99,7 +99,7 @@ class CoreA11y_Scanner {
 			'reportUrl' => admin_url( 'admin.php?page=corea11y-audits&audit=' ),
 			'timeout'   => 30000,
 			'mobile'    => (bool) CoreA11y_Settings::get( 'scan_mobile' ),
-			'checksUrl' => COREA11Y_URL . 'assets/js/checks.js?ver=' . rawurlencode( COREA11Y_VERSION ),
+			'checksUrl' => COREA11Y_URL . 'assets/js/checks.js?ver=' . rawurlencode( corea11y_asset_ver( 'assets/js/checks.js' ) ),
 			'extended'  => (bool) CoreA11y_Settings::get( 'extended_checks' ),
 			'aceUrl'    => COREA11Y_URL . 'assets/vendor/ibm-equal-access/ace.js?ver=4.0.34',
 			'widths'    => array(
@@ -115,7 +115,7 @@ class CoreA11y_Scanner {
 	 * @param array $plan From CoreA11y_Fixes::verify_plan().
 	 */
 	public static function enqueue_verify( array $plan ) {
-		wp_enqueue_script( 'corea11y-verify', COREA11Y_URL . 'assets/js/verify.js', array( 'wp-api-fetch', 'wp-i18n' ), COREA11Y_VERSION, true );
+		wp_enqueue_script( 'corea11y-verify', COREA11Y_URL . 'assets/js/verify.js', array( 'wp-api-fetch', 'wp-i18n' ), corea11y_asset_ver( 'assets/js/verify.js' ), true );
 		wp_set_script_translations( 'corea11y-verify', 'corea11y', COREA11Y_DIR . 'languages' );
 		wp_localize_script( 'corea11y-verify', 'corea11yVerify', array_merge( self::config(), array( 'plan' => $plan ) ) );
 	}

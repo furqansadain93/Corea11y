@@ -30,6 +30,31 @@
 		return new Promise( ( resolve ) => setTimeout( resolve, ms ) );
 	}
 
+	// Scanned pages load in a hidden frame, where browsers pause CSS transitions and
+	// animations. Colours caught mid-transition (a button fading to white, for example)
+	// would be reported wrongly, so jump every transition and animation to its end state.
+	function finishTransitions( frame ) {
+		try {
+			const doc = frame.contentDocument;
+			const style = doc.createElement( 'style' );
+			style.id = 'corea11y-settle';
+			style.textContent = '*,*::before,*::after{transition-duration:0s!important;transition-delay:0s!important;animation-duration:0s!important;animation-delay:0s!important;animation-iteration-count:1!important}';
+			( doc.head || doc.documentElement ).appendChild( style );
+			void doc.documentElement.offsetHeight; // Apply now.
+			// Transitions already running are not affected by the rule above: finish them.
+			if ( doc.getAnimations ) {
+				doc.getAnimations().forEach( ( anim ) => {
+					try {
+						anim.finish();
+					} catch ( err ) {
+						// Endless animations can't finish; leave them.
+					}
+				} );
+			}
+		} catch ( e ) {}
+		return wait( 60 );
+	}
+
 	function loadFrame( url, width ) {
 		return new Promise( ( resolve, reject ) => {
 			const frame = document.createElement( 'iframe' );
@@ -76,6 +101,7 @@
 		const frame = await loadFrame( url, width );
 		try {
 			await wait( SETTLE_MS );
+			await finishTransitions( frame );
 			const found = {};
 			rules.forEach( ( r ) => {
 				found[ r ] = new Set();

@@ -35,7 +35,7 @@ class CoreA11y_Editor {
 			'corea11y-editor',
 			COREA11Y_URL . 'assets/js/editor.js',
 			array( 'wp-plugins', 'wp-element', 'wp-data', 'wp-components', 'wp-i18n', 'wp-editor' ),
-			COREA11Y_VERSION,
+			corea11y_asset_ver( 'assets/js/editor.js' ),
 			true
 		);
 		wp_set_script_translations( 'corea11y-editor', 'corea11y', COREA11Y_DIR . 'languages' );

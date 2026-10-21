@@ -68,7 +68,7 @@ class CoreA11y_Pro_Network {
 	 */
 	public static function assets( $hook ) {
 		if ( false !== strpos( (string) $hook, self::SLUG ) ) {
-			wp_enqueue_style( 'corea11y-admin', COREA11Y_URL . 'assets/css/admin.css', array(), COREA11Y_VERSION );
+			wp_enqueue_style( 'corea11y-admin', COREA11Y_URL . 'assets/css/admin.css', array(), corea11y_asset_ver( 'assets/css/admin.css' ) );
 		}
 	}
 

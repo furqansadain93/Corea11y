@@ -94,6 +94,18 @@ if ( function_exists( 'corea11y_fs' ) ) {
 		}
 	);
 
+	/**
+	 * Version string for a CoreA11y asset: the plugin version plus the file's last change,
+	 * so browsers never keep an outdated copy after an update.
+	 *
+	 * @param string $rel Path relative to the plugin folder.
+	 * @return string
+	 */
+	function corea11y_asset_ver( $rel ) {
+		$t = @filemtime( COREA11Y_DIR . $rel ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- Missing file falls back to the version.
+		return $t ? COREA11Y_VERSION . '.' . $t : COREA11Y_VERSION;
+	}
+
 	require_once COREA11Y_DIR . 'includes/class-corea11y-settings.php';
 	require_once COREA11Y_DIR . 'includes/class-corea11y-install.php';
 	require_once COREA11Y_DIR . 'includes/class-corea11y-checklist.php';

@@ -67,8 +67,8 @@ class CoreA11y_Admin {
 		if ( false === strpos( $hook, 'corea11y' ) ) {
 			return;
 		}
-		wp_enqueue_style( 'corea11y-admin', COREA11Y_URL . 'assets/css/admin.css', array(), COREA11Y_VERSION );
-		wp_enqueue_script( 'corea11y-admin', COREA11Y_URL . 'assets/js/admin.js', array(), COREA11Y_VERSION, true );
+		wp_enqueue_style( 'corea11y-admin', COREA11Y_URL . 'assets/css/admin.css', array(), corea11y_asset_ver( 'assets/css/admin.css' ) );
+		wp_enqueue_script( 'corea11y-admin', COREA11Y_URL . 'assets/js/admin.js', array(), corea11y_asset_ver( 'assets/js/admin.js' ), true );
 		if ( 'toplevel_page_' . self::SLUG === $hook ) {
 			CoreA11y_Scanner::enqueue();
 		}
@@ -527,8 +527,8 @@ class CoreA11y_Admin {
 		}
 		check_admin_referer( 'corea11y_export' );
 
-		wp_register_style( 'corea11y-admin', COREA11Y_URL . 'assets/css/admin.css', array(), COREA11Y_VERSION );
-		wp_register_style( 'corea11y-print', COREA11Y_URL . 'assets/css/print.css', array( 'corea11y-admin' ), COREA11Y_VERSION );
+		wp_register_style( 'corea11y-admin', COREA11Y_URL . 'assets/css/admin.css', array(), corea11y_asset_ver( 'assets/css/admin.css' ) );
+		wp_register_style( 'corea11y-print', COREA11Y_URL . 'assets/css/print.css', array( 'corea11y-admin' ), corea11y_asset_ver( 'assets/css/print.css' ) );
 
 		$type = isset( $_GET['type'] ) && 'compare' === $_GET['type'] ? 'compare' : 'report';
 		if ( 'compare' === $type ) {
