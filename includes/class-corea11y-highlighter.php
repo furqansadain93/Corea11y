@@ -164,7 +164,7 @@ class CoreA11y_Highlighter {
 			array(
 				'id'    => 'corea11y',
 				/* translators: %s: number of issues. */
-				'title' => esc_html( $n ? sprintf( _n( 'Accessibility: %s issue', 'Accessibility: %s issues', $n, 'corea11y' ), number_format_i18n( $n ) ) : __( 'Accessibility: no issues', 'corea11y' ) ),
+				'title' => esc_html( $n ? sprintf( _n( 'Accessibility: %s issue', 'Accessibility: %s issues', $n, 'corea11y' ), number_format_i18n( $n ) ) : __( 'Accessibility: no automated issues', 'corea11y' ) ),
 				'href'  => $n ? self::url( (int) $latest[0]->id, $url ) : CoreA11y_Admin::report_url( (int) $latest[0]->id ),
 			)
 		);

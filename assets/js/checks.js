@@ -222,6 +222,18 @@
 			if ( [ 'hidden', 'submit', 'button', 'reset', 'image', 'checkbox', 'radio' ].indexOf( type ) !== -1 || ! isVisible( field ) ) {
 				return;
 			}
+			if ( hasLabel( field ) && field.labels && field.labels.length && ! ( field.getAttribute( 'aria-label' ) || '' ).trim() && ! field.getAttribute( 'aria-labelledby' ) && ! ( field.getAttribute( 'title' ) || '' ).trim() ) {
+				// A label exists, but the theme hides it completely (display: none), so some
+				// screen readers and checkers treat the field as unlabelled.
+				const shown = Array.prototype.some.call( field.labels, ( l ) => {
+					const st = field.ownerDocument.defaultView.getComputedStyle( l );
+					return st.display !== 'none' && st.visibility !== 'hidden';
+				} );
+				if ( ! shown ) {
+					c.add( 'violations', 'corea11y-hidden-label', 'serious', [ 'wcag2a', 'wcag131', 'wcag412' ], 'Form labels are hidden from everyone', field, 'This field has a label, but the theme hides it with display: none, so screen readers may announce the field without a name.' );
+					return;
+				}
+			}
 			if ( ! hasLabel( field ) ) {
 				c.add( 'violations', 'corea11y-placeholder-label', 'moderate', [ 'wcag2a', 'wcag332' ], 'Fields need a label, not just placeholder text', field, 'This field relies on placeholder text, which disappears as soon as someone starts typing.' );
 			}
@@ -280,6 +292,102 @@
 			const src = img.currentSrc || img.getAttribute( 'src' ) || '';
 			if ( /\.gif(\?|#|$)/i.test( src ) && isVisible( img ) && img.width >= 50 && img.height >= 50 ) {
 				c.add( 'review', 'corea11y-animated-gif', 'moderate', [ 'wcag2a', 'wcag222' ], 'An image may be animated', img, 'If this GIF moves for more than five seconds, visitors need a way to pause it.' );
+			}
+		} );
+
+		// Same-page links whose target doesn't exist (broken skip links especially).
+		links.forEach( ( a ) => {
+			const href = a.getAttribute( 'href' ) || '';
+			if ( href.length < 2 || href.charAt( 0 ) !== '#' || /^#[!/]/.test( href ) || /^#top$/i.test( href ) ) {
+				return;
+			}
+			let id = href.slice( 1 );
+			try {
+				id = decodeURIComponent( id );
+			} catch ( e ) {}
+			if ( doc.getElementById( id ) || doc.getElementsByName( id ).length ) {
+				return;
+			}
+			if ( /skip/i.test( linkText( a ) ) ) {
+				c.add( 'violations', 'corea11y-skip-link-broken', 'serious', [ 'wcag2a', 'wcag241' ], 'The "Skip to content" link goes nowhere', a, 'This skip link points to "' + href + '", but nothing on the page has that id, so keyboard users can\'t skip the menu.' );
+			} else {
+				c.add( 'violations', 'corea11y-link-anchor-missing', 'minor', [ 'best-practice' ], 'A link to a spot on the page goes nowhere', a, 'This link points to "' + href + '", but nothing on the page has that id.' );
+			}
+		} );
+
+		// Labels that point at nothing, and empty labels.
+		doc.querySelectorAll( 'label' ).forEach( ( label ) => {
+			const forId = label.getAttribute( 'for' );
+			const text = ( label.textContent || '' ).replace( /\s+/g, ' ' ).trim();
+			if ( forId ) {
+				const target = doc.getElementById( forId );
+				if ( ! target || ! /^(INPUT|SELECT|TEXTAREA|METER|OUTPUT|PROGRESS|BUTTON)$/.test( target.tagName ) ) {
+					if ( text && isVisible( label ) ) {
+						c.add( 'violations', 'corea11y-label-orphaned', 'minor', [ 'best-practice' ], 'A form label isn\'t connected to any field', label, 'This label points to "' + forId + '", but there is no form field with that id, so screen readers don\'t read it with the field.' );
+					}
+					return;
+				}
+				if ( ! text && ! label.querySelector( 'img[alt]:not([alt=""])' ) && ( target.getAttribute( 'aria-label' ) || target.getAttribute( 'aria-labelledby' ) || target.getAttribute( 'title' ) ) ) {
+					c.add( 'violations', 'corea11y-label-empty', 'minor', [ 'best-practice' ], 'A form label is empty', label, 'This label has no text. The field gets its name elsewhere, but the empty label can confuse some assistive technology.' );
+				}
+			}
+		} );
+
+		// Images: very long alt text, title instead of alt, title repeating alt,
+		// and the same alt text on images right next to each other.
+		const imgs = Array.prototype.filter.call( doc.querySelectorAll( 'img' ), isVisible );
+		imgs.forEach( ( img, i ) => {
+			const alt = img.getAttribute( 'alt' );
+			const title = ( img.getAttribute( 'title' ) || '' ).trim();
+			if ( alt && alt.trim().length > 150 ) {
+				c.add( 'review', 'corea11y-alt-long', 'minor', [ 'wcag2a', 'wcag111' ], 'Very long alt text', img, 'This alt text is ' + alt.trim().length + ' characters. Alt text should be short; put longer descriptions in the page text or a caption.' );
+			}
+			if ( null === alt && title ) {
+				c.add( 'violations', 'corea11y-image-title-only', 'moderate', [ 'best-practice' ], 'An image is described only by a tooltip', img, 'This image has a title but no alt attribute. Many screen readers and voice tools don\'t use the title, so give it alt text.' );
+			}
+			if ( alt && title && alt.trim().toLowerCase() === title.toLowerCase() ) {
+				c.add( 'violations', 'corea11y-image-title-repeat', 'minor', [ 'best-practice' ], 'Image title repeats the alt text', img, 'The title attribute repeats the alt text, so some screen readers read it twice.' );
+			}
+			const next = imgs[ i + 1 ];
+			if ( next && alt && alt.trim() && next.getAttribute( 'alt' ) && alt.trim().toLowerCase() === next.getAttribute( 'alt' ).trim().toLowerCase() && ( next.parentElement === img.parentElement || ( img.parentElement && next.parentElement && img.parentElement.parentElement === next.parentElement.parentElement ) ) ) {
+				c.add( 'violations', 'corea11y-alt-duplicate', 'minor', [ 'best-practice' ], 'Images next to each other have the same alt text', next, 'This image and the one before it are both described as "' + alt.trim() + '". If they show different things, describe each one; if they are the same, mark one as decorative.' );
+			}
+		} );
+
+		// Text styled with an underline that isn't a link.
+		doc.querySelectorAll( 'u, [style*="underline"], span, strong, em, b, i, p' ).forEach( ( el ) => {
+			if ( el.closest( 'a, button, [role="link"], [role="button"], abbr, ins, summary, label' ) || ! ownText( el ) || ! isVisible( el ) ) {
+				return;
+			}
+			const line = window.getComputedStyle( el ).textDecorationLine || '';
+			if ( line.indexOf( 'underline' ) !== -1 && ( ! el.parentElement || ( window.getComputedStyle( el.parentElement ).textDecorationLine || '' ).indexOf( 'underline' ) === -1 ) ) {
+				c.add( 'violations', 'corea11y-underline-text', 'minor', [ 'best-practice' ], 'Underlined text looks like a link', el, 'Visitors expect underlined text to be a link. Use bold or italics for emphasis instead.' );
+			}
+		} );
+
+		// No landmarks at all (no header, navigation, main or footer regions).
+		if ( ! doc.querySelector( 'main, nav, header, footer, aside, [role="main"], [role="navigation"], [role="banner"], [role="contentinfo"], [role="complementary"], [role="region"][aria-label], [role="search"]' ) ) {
+			c.add( 'violations', 'corea11y-no-landmarks', 'moderate', [ 'best-practice' ], 'The page has no regions', doc.body, 'Screen reader users jump between header, navigation, main content and footer regions. This page has none, so they have to read everything in order.' );
+		}
+
+		// Page titles that don't describe the page.
+		const pageTitle = ( doc.title || '' ).replace( /\s+/g, ' ' ).trim();
+		if ( pageTitle && /^(untitled( document| page)?|new page|page|document|no title|title|\(no title\))$/i.test( pageTitle ) ) {
+			c.add( 'violations', 'corea11y-title-uninformative', 'moderate', [ 'wcag2a', 'wcag242' ], 'The page title doesn\'t describe the page', doc.querySelector( 'title' ) || doc.documentElement, 'The page title is "' + pageTitle + '". Browser tabs, bookmarks and screen readers use it, so it should say what the page is about.' );
+		}
+
+		// Invalid longdesc.
+		doc.querySelectorAll( 'img[longdesc]' ).forEach( ( img ) => {
+			const v = ( img.getAttribute( 'longdesc' ) || '' ).trim();
+			if ( ! v || /\s/.test( v ) || ! /[./#]/.test( v ) ) {
+				c.add( 'violations', 'corea11y-longdesc-invalid', 'moderate', [ 'wcag2a', 'wcag111' ], 'An image\'s long description link is broken', img, 'The longdesc attribute should be the address of a page describing the image, but it is "' + v.slice( 0, 60 ) + '".' );
+			}
+		} );
+
+		// Embedded videos: someone needs to check the captions.
+		doc.querySelectorAll( 'iframe[src]' ).forEach( ( frame ) => {
+			if ( /(youtube(-nocookie)?\.com|youtu\.be|vimeo\.com|wistia\.(com|net)|dailymotion\.com|videopress\.com|loom\.com)/i.test( frame.getAttribute( 'src' ) || '' ) && isVisible( frame ) ) {
+				c.add( 'review', 'corea11y-video-captions', 'moderate', [ 'wcag2a', 'wcag122' ], 'Check that this video has captions', frame, 'This is an embedded video. Videos with speech need accurate captions, and important visual information needs a description. Software can\'t check this, so please watch it with captions on.' );
 			}
 		} );
 	}

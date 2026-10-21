@@ -192,7 +192,7 @@ If your license expires, nothing breaks: fixes already on keep working and can s
 - **Buttons and menus:** name icon-only buttons, name your menus, open dropdown menus with the keyboard, hide decorative icons in links and buttons.
 - **Page structure:** mark the main content, mark the header and footer, add a main heading where a page has none, connect table headers to their cells.
 - **Images and media:** use Media Library alt text in posts, remove tooltips that repeat alt text, stop sound from playing automatically.
-- **Forms:** help browsers fill in forms, keep placeholder text as the field name, connect form labels to their fields, announce required fields, read out form messages.
+- **Forms:** help browsers fill in forms, give every field a name (including labels your theme hides), connect form labels to their fields, announce required fields, read out form messages.
 - **Keyboard and focus:** keep focused items out from under sticky headers.
 - **Changes how your site looks:** underline links in text, bigger tap targets for small icon links, readable placeholder text.
 
@@ -243,7 +243,7 @@ What always stays, because it is your content: alt text you added on the Alt tex
 
 **My score didn't change after turning fixes on.** The score updates when you run a new audit. Click **Verify with a new audit**.
 
-**Another tool (such as WAVE or Lighthouse) gives a different score.** Every tool checks different things and weighs them differently. The biggest gap is usually colour contrast, which quick fixes don't change: adjust colours in your theme or page builder.
+**Another tool (such as WAVE or Lighthouse) gives a different score.** Every tool checks different things and weighs them differently. The biggest gap is usually text over images or gradients: CoreA11y lists it under "Needs a human check" because its contrast can't be measured reliably, while some tools count it as errors. Fix it in your theme or page builder, for example with a darker overlay behind the text. Text on plain backgrounds can be fixed on the Colour contrast screen (Pro). Also make sure both tools checked the same page after the same changes, and clear your page cache first.
 
 **A fix says "needs more than this fix".** The fix did its part, but some of those problems come from your content or theme. Open the report, use the "?" explanation and **Show on page** to fix the rest.
 

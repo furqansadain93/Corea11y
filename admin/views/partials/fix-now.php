@@ -23,7 +23,7 @@ if ( ! $corea11y_opp['fixes'] && ! $corea11y_opp['locked_issues'] ) {
 			<h2 id="corea11y-fixnow-title">
 				<?php
 				/* translators: 1: issues a click can fix, 2: all issues in the audit. */
-				echo esc_html( sprintf( _n( '%1$s of your %2$s issues can be fixed with one click', '%1$s of your %2$s issues can be fixed with one click', $corea11y_opp['total'], 'corea11y' ), number_format_i18n( $corea11y_opp['issues'] ), number_format_i18n( $corea11y_opp['total'] ) ) );
+				echo esc_html( sprintf( _n( '%1$s of your %2$s issues have a one-click fix', '%1$s of your %2$s issues have a one-click fix', $corea11y_opp['total'], 'corea11y' ), number_format_i18n( $corea11y_opp['issues'] ), number_format_i18n( $corea11y_opp['total'] ) ) );
 				?>
 			</h2>
 			<p>
@@ -37,7 +37,7 @@ if ( ! $corea11y_opp['fixes'] && ! $corea11y_opp['locked_issues'] ) {
 			<h2 id="corea11y-fixnow-title">
 				<?php
 				/* translators: %s: number of issues. */
-				echo esc_html( sprintf( _n( 'CoreA11y Pro can fix %s more issue with one click', 'CoreA11y Pro can fix %s more issues with one click', $corea11y_opp['locked_issues'], 'corea11y' ), number_format_i18n( $corea11y_opp['locked_issues'] ) ) );
+				echo esc_html( sprintf( _n( 'CoreA11y Pro has a one-click fix for %s more issue', 'CoreA11y Pro has a one-click fix for %s more issues', $corea11y_opp['locked_issues'], 'corea11y' ), number_format_i18n( $corea11y_opp['locked_issues'] ) ) );
 				?>
 			</h2>
 			<p><?php esc_html_e( 'Activate your CoreA11y Pro license to turn these fixes on.', 'corea11y' ); ?></p>
@@ -46,7 +46,7 @@ if ( ! $corea11y_opp['fixes'] && ! $corea11y_opp['locked_issues'] ) {
 			<p class="corea11y-fixnow-more">
 				<?php
 				/* translators: %s: number of issues. */
-				echo esc_html( sprintf( _n( 'CoreA11y Pro can fix %s more.', 'CoreA11y Pro can fix %s more.', $corea11y_opp['locked_issues'], 'corea11y' ), number_format_i18n( $corea11y_opp['locked_issues'] ) ) );
+				echo esc_html( sprintf( _n( 'CoreA11y Pro has one-click fixes for %s more.', 'CoreA11y Pro has one-click fixes for %s more.', $corea11y_opp['locked_issues'], 'corea11y' ), number_format_i18n( $corea11y_opp['locked_issues'] ) ) );
 				?>
 			</p>
 		<?php endif; ?>

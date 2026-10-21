@@ -21,7 +21,7 @@ $corea11y_d2     = get_date_from_gmt( $corea11y_after->started_at, $corea11y_fmt
 $corea11y_pct    = $corea11y_tb > 0 ? round( 100 * $corea11y_sum['resolved'] / $corea11y_tb ) : 0;
 
 if ( $corea11y_tb > 0 && 0 === $corea11y_ta ) {
-	$corea11y_headline = __( 'Every issue from the earlier audit is gone. Outstanding!', 'corea11y' );
+	$corea11y_headline = __( 'Every issue the earlier audit found is gone from the pages checked in both audits. Outstanding!', 'corea11y' );
 } elseif ( $corea11y_delta < 0 ) {
 	/* translators: %s: number of issues. */
 	$corea11y_headline = sprintf( _n( '%s fewer issue than before. Nice work!', '%s fewer issues than before. Nice work!', -$corea11y_delta, 'corea11y' ), number_format_i18n( -$corea11y_delta ) );

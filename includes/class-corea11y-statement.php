@@ -222,7 +222,7 @@ class CoreA11y_Statement {
 						echo esc_html( sprintf( __( 'Our latest automated check on %1$s found %2$s issues across %3$s pages. We are working on these areas:', 'corea11y' ), get_date_from_gmt( $audit->started_at, $fmt ), number_format_i18n( (int) $audit->issues_total ), number_format_i18n( (int) $audit->pages_scanned ) ) );
 					} else {
 						/* translators: %s: date. */
-						echo esc_html( sprintf( __( 'Our latest automated check on %s found no issues.', 'corea11y' ), get_date_from_gmt( $audit->started_at, $fmt ) ) );
+						echo esc_html( sprintf( __( 'Our latest automated check on %s found no issues that automated testing can detect.', 'corea11y' ), get_date_from_gmt( $audit->started_at, $fmt ) ) );
 					}
 					?>
 				</p>

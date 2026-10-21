@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-21 14:48+0000\n"
+"POT-Creation-Date: 2026-10-21 16:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -379,7 +379,7 @@ msgstr[1] ""
 
 #. translators: %s: number of issues.
 #: admin/views/dashboard.php:87
-msgid "No issues in your latest audit. Brilliant!"
+msgid "The automated checks found no problems in your latest audit. Great work! Use the manual checklist for what software can't check."
 msgstr ""
 
 #. translators: %s: number of issues.
@@ -662,7 +662,7 @@ msgid "Some fixes use a small script on your pages because many themes hard-code
 msgstr ""
 
 #: admin/views/partials/compare-body.php:24
-msgid "Every issue from the earlier audit is gone. Outstanding!"
+msgid "Every issue the earlier audit found is gone from the pages checked in both audits. Outstanding!"
 msgstr ""
 
 #. translators: %s: number of issues.
@@ -796,8 +796,8 @@ msgstr ""
 #. translators: 1: issues a click can fix, 2: all issues in the audit.
 #: admin/views/partials/fix-now.php:26
 #, php-format
-msgid "%1$s of your %2$s issues can be fixed with one click"
-msgid_plural "%1$s of your %2$s issues can be fixed with one click"
+msgid "%1$s of your %2$s issues have a one-click fix"
+msgid_plural "%1$s of your %2$s issues have a one-click fix"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -812,8 +812,8 @@ msgstr[1] ""
 #. translators: %s: number of issues.
 #: admin/views/partials/fix-now.php:40
 #, php-format
-msgid "CoreA11y Pro can fix %s more issue with one click"
-msgid_plural "CoreA11y Pro can fix %s more issues with one click"
+msgid "CoreA11y Pro has a one-click fix for %s more issue"
+msgid_plural "CoreA11y Pro has a one-click fix for %s more issues"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -824,8 +824,8 @@ msgstr ""
 #. translators: %s: number of issues.
 #: admin/views/partials/fix-now.php:49
 #, php-format
-msgid "CoreA11y Pro can fix %s more."
-msgid_plural "CoreA11y Pro can fix %s more."
+msgid "CoreA11y Pro has one-click fixes for %s more."
+msgid_plural "CoreA11y Pro has one-click fixes for %s more."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -1362,87 +1362,87 @@ msgstr ""
 msgid "Check now"
 msgstr ""
 
-#: assets/js/scanner.js:74
+#: assets/js/scanner.js:99
 msgid "Page being scanned"
 msgstr ""
 
-#: assets/js/scanner.js:78
+#: assets/js/scanner.js:103
 msgid "The page took longer than 30 seconds to load. Slow pages, or pages that keep loading (such as some chat widgets), can cause this. Try again, or leave this page out in Settings."
 msgstr ""
 
-#: assets/js/scanner.js:115
+#: assets/js/scanner.js:140
 msgid "The page could not be opened for scanning. Usually a security setting stops pages from being shown in a frame (X-Frame-Options or a Content-Security-Policy frame-ancestors rule), or the page redirects to another address. Ask your host to allow same-origin framing."
 msgstr ""
 
-#: assets/js/scanner.js:125
+#: assets/js/scanner.js:150
 msgid "The accessibility engine could not be loaded into the page."
 msgstr ""
 
-#: assets/js/scanner.js:238
+#: assets/js/scanner.js:264
 msgid "Starting audit…"
 msgstr ""
 
-#: assets/js/scanner.js:244 includes/class-corea11y-rest.php:150
+#: assets/js/scanner.js:270 includes/class-corea11y-rest.php:150
 msgid "The audit could not be started."
 msgstr ""
 
 #. translators: 1: current page number, 2: total pages, 3: page name.
-#: assets/js/scanner.js:259
+#: assets/js/scanner.js:285
 #, php-format
 msgid "Scanning page %1$d of %2$d: %3$s"
 msgstr ""
 
 #. translators: 1: page name, 2: error message.
-#: assets/js/scanner.js:280
+#: assets/js/scanner.js:306
 #, php-format
 msgid "%1$s: not scanned (%2$s)"
 msgstr ""
 
 #. translators: 1: page name, 2: number of issues.
-#: assets/js/scanner.js:283
+#: assets/js/scanner.js:309
 #, php-format
 msgid "%1$s: %2$d issues"
 msgstr ""
 
 #. translators: 1: page name, 2: error message.
-#: assets/js/scanner.js:287
+#: assets/js/scanner.js:313
 #, php-format
 msgid "%1$s: results could not be saved (%2$s)"
 msgstr ""
 
-#: assets/js/scanner.js:292
+#: assets/js/scanner.js:318
 msgid "Running site-wide checks and building the report…"
 msgstr ""
 
 #. translators: %d: number of issues found.
-#: assets/js/scanner.js:299
+#: assets/js/scanner.js:325
 #, php-format
 msgid "Audit complete: %d issues found. Opening the report…"
 msgstr ""
 
-#: assets/js/scanner.js:303
+#: assets/js/scanner.js:329
 msgid "The audit could not be finished."
 msgstr ""
 
-#: assets/js/scanner.js:323
+#: assets/js/scanner.js:349
 msgid "Stopping after the current page. Results so far will be saved."
 msgstr ""
 
-#: assets/js/verify.js:40
+#: assets/js/verify.js:65
 msgid "Page being checked"
 msgstr ""
 
 #. translators: 1: current page number, 2: number of pages, 3: page name.
-#: assets/js/verify.js:143
+#: assets/js/verify.js:169
 #, php-format
 msgid "Checking that the fixes worked: page %1$d of %2$d (%3$s)…"
 msgstr ""
 
-#: assets/js/verify.js:163
+#: assets/js/verify.js:189
 msgid "Check complete. Showing the results…"
 msgstr ""
 
-#: assets/js/verify.js:171
+#: assets/js/verify.js:197
 msgid "The results could not be saved."
 msgstr ""
 
@@ -1794,7 +1794,7 @@ msgstr ""
 msgid "A screen reader instruction (ARIA) is used incorrectly"
 msgstr ""
 
-#: includes/class-corea11y-explain.php:30 includes/class-corea11y-explain.php:71 includes/class-corea11y-explain.php:77 includes/class-corea11y-explain.php:83 includes/class-corea11y-explain.php:89 includes/class-corea11y-explain.php:95 includes/class-corea11y-explain.php:132 includes/class-corea11y-explain.php:138 includes/class-corea11y-explain.php:156 includes/class-corea11y-explain.php:162 includes/class-corea11y-explain.php:168 includes/class-corea11y-explain.php:198 includes/class-corea11y-explain.php:204 includes/class-corea11y-explain.php:210 includes/class-corea11y-explain.php:217 includes/class-corea11y-explain.php:223 includes/class-corea11y-explain.php:265 includes/class-corea11y-explain.php:271 includes/class-corea11y-explain.php:277 includes/class-corea11y-explain.php:289 includes/class-corea11y-explain.php:313 includes/class-corea11y-explain.php:333 includes/class-corea11y-explain.php:339 includes/class-corea11y-explain.php:351 includes/class-corea11y-explain.php:365 includes/class-corea11y-explain.php:401 includes/class-corea11y-explain.php:413 includes/class-corea11y-explain.php:425 includes/class-corea11y-explain.php:449 includes/class-corea11y-explain.php:467 includes/class-corea11y-explain.php:473 includes/class-corea11y-explain.php:479 includes/class-corea11y-explain.php:491 includes/class-corea11y-explain.php:503 includes/class-corea11y-explain.php:509 includes/class-corea11y-explain.php:515
+#: includes/class-corea11y-explain.php:30 includes/class-corea11y-explain.php:71 includes/class-corea11y-explain.php:77 includes/class-corea11y-explain.php:83 includes/class-corea11y-explain.php:89 includes/class-corea11y-explain.php:95 includes/class-corea11y-explain.php:132 includes/class-corea11y-explain.php:138 includes/class-corea11y-explain.php:156 includes/class-corea11y-explain.php:162 includes/class-corea11y-explain.php:168 includes/class-corea11y-explain.php:198 includes/class-corea11y-explain.php:204 includes/class-corea11y-explain.php:210 includes/class-corea11y-explain.php:217 includes/class-corea11y-explain.php:223 includes/class-corea11y-explain.php:265 includes/class-corea11y-explain.php:271 includes/class-corea11y-explain.php:277 includes/class-corea11y-explain.php:289 includes/class-corea11y-explain.php:313 includes/class-corea11y-explain.php:333 includes/class-corea11y-explain.php:339 includes/class-corea11y-explain.php:351 includes/class-corea11y-explain.php:365 includes/class-corea11y-explain.php:401 includes/class-corea11y-explain.php:413 includes/class-corea11y-explain.php:449 includes/class-corea11y-explain.php:455 includes/class-corea11y-explain.php:467 includes/class-corea11y-explain.php:473 includes/class-corea11y-explain.php:485 includes/class-corea11y-explain.php:497 includes/class-corea11y-explain.php:515 includes/class-corea11y-explain.php:539 includes/class-corea11y-explain.php:557 includes/class-corea11y-explain.php:563 includes/class-corea11y-explain.php:569 includes/class-corea11y-explain.php:581 includes/class-corea11y-explain.php:593 includes/class-corea11y-explain.php:599 includes/class-corea11y-explain.php:605
 msgid "Screen reader users"
 msgstr ""
 
@@ -1962,7 +1962,7 @@ msgstr ""
 msgid "Links don't say where they go"
 msgstr ""
 
-#: includes/class-corea11y-explain.php:113 includes/class-corea11y-explain.php:119
+#: includes/class-corea11y-explain.php:113 includes/class-corea11y-explain.php:119 includes/class-corea11y-explain.php:425 includes/class-corea11y-explain.php:443
 msgid "Screen reader and voice control users"
 msgstr ""
 
@@ -2114,7 +2114,7 @@ msgstr ""
 msgid "There is no way to skip straight to the main content"
 msgstr ""
 
-#: includes/class-corea11y-explain.php:180 includes/class-corea11y-explain.php:295 includes/class-corea11y-explain.php:345 includes/class-corea11y-explain.php:377 includes/class-corea11y-explain.php:407 includes/class-corea11y-explain.php:455 includes/class-corea11y-explain.php:485
+#: includes/class-corea11y-explain.php:180 includes/class-corea11y-explain.php:295 includes/class-corea11y-explain.php:345 includes/class-corea11y-explain.php:377 includes/class-corea11y-explain.php:407 includes/class-corea11y-explain.php:431 includes/class-corea11y-explain.php:437 includes/class-corea11y-explain.php:545 includes/class-corea11y-explain.php:575
 msgid "Keyboard and screen reader users"
 msgstr ""
 
@@ -2582,7 +2582,7 @@ msgstr ""
 msgid "Audio or video files may need a transcript"
 msgstr ""
 
-#: includes/class-corea11y-explain.php:389 includes/class-corea11y-explain.php:521 includes/class-corea11y-explain.php:527
+#: includes/class-corea11y-explain.php:389 includes/class-corea11y-explain.php:611 includes/class-corea11y-explain.php:617
 msgid "People who are deaf or hard of hearing"
 msgstr ""
 
@@ -2663,334 +2663,530 @@ msgid "Add a visible label to the field. Keep the placeholder only for an exampl
 msgstr ""
 
 #: includes/class-corea11y-explain.php:424
-msgid "Tables without header cells"
+msgid "Form labels are hidden from everyone"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:426
-msgid "Without header cells, screen readers can't tell people which column or row a value belongs to."
+msgid "The field has a label, but the theme hides it completely (display: none). Some screen readers then announce just \"edit text\", and people can't tell what to type."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:427
-msgid "Mark the first row or column as headers (th). In the block editor, turn on \"Header section\" for the Table block. If the table is only for layout, add role=\"presentation\"."
+msgid "Show the label, or hide it only visually with a \"screen reader text\" class instead of display: none. CoreA11y Pro can do this in one click."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:430
-msgid "Very small text"
-msgstr ""
-
-#: includes/class-corea11y-explain.php:431
-msgid "People with low vision and older visitors"
+msgid "The \"Skip to content\" link goes nowhere"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:432
-msgid "Text smaller than 12px is hard to read for many people, even if they can zoom."
+msgid "A skip link lets keyboard users jump past the menu. When its target is missing, pressing it does nothing and they have to tab through the whole menu."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:433
-msgid "Use at least 14 to 16px for body text and at least 12px for small print."
+msgid "Point the link at the id of your main content area (for example #main), or give that area the id the link uses."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:436
-msgid "Long text is justified"
-msgstr ""
-
-#: includes/class-corea11y-explain.php:437
-msgid "People with dyslexia or low vision"
+msgid "A link to a spot on the page goes nowhere"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:438
-msgid "Justified text stretches the gaps between words unevenly, creating \"rivers\" of white space that make reading harder."
+msgid "The link points to a part of the page that doesn't exist, so following it does nothing."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:439
-msgid "Align body text to the left (or right, for right-to-left languages)."
+msgid "Fix the link's #target, or add the matching id to the section it should jump to."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:442
-msgid "Long text in capital letters"
-msgstr ""
-
-#: includes/class-corea11y-explain.php:443
-msgid "People with dyslexia or low vision, and screen reader users"
+msgid "A form label isn't connected to any field"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:444
-msgid "Text in capitals is harder to read in long passages, and some screen readers spell it out letter by letter."
+msgid "The label's \"for\" value doesn't match any field's id, so the label isn't read with the field and clicking it doesn't focus the field."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:445
-msgid "Write the text in normal case. Use capitals only for short labels, preferably with CSS text-transform."
+msgid "Make the label's \"for\" match the field's id."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:448
-msgid "Empty paragraphs used for spacing"
+msgid "A form label is empty"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:450
-msgid "Empty paragraphs are sometimes announced as \"blank\", which is confusing."
+msgid "The field has a name from somewhere else, but an empty label element can still be announced as blank by some assistive technology."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:451
-msgid "Remove the empty paragraphs and use block spacing or a Spacer block instead."
+msgid "Put the field's name in the label, or remove the empty label."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:454
-msgid "Access keys are used"
+msgid "Very long alt text"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:456
-msgid "Access keys can clash with shortcuts in browsers and screen readers, and users rarely know they exist."
+msgid "Long alt text is read in one go and can't be paused or skimmed, which makes the page tiring to listen to."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:457
-msgid "Remove the accesskey attribute."
+msgid "Keep alt text short, usually under 125 characters. Put detailed descriptions in the page text or a caption."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:460
-msgid "Animated images may need a pause option"
+msgid "An image is described only by a tooltip"
 msgstr ""
 
-#: includes/class-corea11y-explain.php:461
-msgid "People with attention disorders or vestibular conditions"
+#: includes/class-corea11y-explain.php:461 includes/class-corea11y-explain.php:509
+msgid "Screen reader, voice control and keyboard users"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:462
-msgid "Moving images that play for more than five seconds can make it impossible to concentrate on the rest of the page."
+msgid "A title attribute shows as a tooltip on mouse hover only, and many screen readers don't announce it."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:463
-msgid "Use a still image, or a video with a pause button, if the animation lasts more than five seconds."
+msgid "Give the image alt text. You can do this from the Alt text screen."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:466
-msgid "Groups of form fields need a clear legend"
+msgid "Image title repeats the alt text"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:468
-msgid "A fieldset groups related fields, and its legend tells people what the group is about. Without a legend, the group has no name."
+msgid "When the title and alt text are the same, some screen readers read the description twice."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:469
-msgid "Add a <legend> with text as the first element inside the <fieldset>."
+msgid "Remove the title attribute."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:472
-msgid "Related radio buttons and checkboxes aren't grouped"
+msgid "Images next to each other have the same alt text"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:474
-msgid "When related options aren't grouped, screen reader users hear each option without the question it answers."
+msgid "Hearing the same description twice in a row is confusing: people can't tell whether the images differ."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:475
-msgid "Put the options in a <fieldset> with a <legend> that asks the question."
+msgid "Describe each image by what it shows. If one is purely decorative, mark it as decorative on the Alt text screen."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:478
-msgid "Images marked decorative still have a title"
+msgid "Underlined text looks like a link"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:479
+msgid "Everyone, especially people with cognitive disabilities"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:480
-msgid "An image with empty alt text is hidden from screen readers, but a title attribute suggests it has information. The two signals conflict."
+msgid "On the web, underlined text means \"link\". People click it and nothing happens."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:481
-msgid "If the image is decorative, remove the title. If it has information, put it in the alt text."
+msgid "Use bold or italics for emphasis, and keep underlines for links."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:484
-msgid "Keyboard focus lands on something that isn't interactive"
+msgid "The page has no regions"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:486
-msgid "An element with tabindex=\"0\" receives keyboard focus, but if it isn't a button, link or control, people land on it and nothing happens."
+msgid "Regions (header, navigation, main content, footer) let screen reader users jump straight to the part they want."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:487
-msgid "Remove tabindex from non-interactive elements, or give the element a proper role and keyboard behavior."
+msgid "Use your theme's header, main and footer areas, or add HTML landmarks. CoreA11y Pro's \"Mark the main content area\" fix can add the main region when your theme has a recognisable content area."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:490
-msgid "Table cells aren't linked to their headers"
+msgid "The page title doesn't describe the page"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:491
+msgid "Screen reader users, and everyone using tabs or bookmarks"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:492
-msgid "In complex tables, screen readers rely on scope or headers attributes to say which headers belong to each cell."
+msgid "The page title is read first by screen readers and shown in browser tabs. A generic title like \"Untitled\" doesn't say where you are."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:493
-msgid "Add scope=\"col\" or scope=\"row\" to header cells. For complex tables, split them into simpler ones or use headers and id attributes."
+msgid "Give the page a title that describes it, for example \"Contact us | Harbour Bakery\"."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:496
-msgid "Outdated HTML is used"
-msgstr ""
-
-#: includes/class-corea11y-explain.php:497
-msgid "Everyone using assistive technology"
+msgid "An image's long description link is broken"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:498
-msgid "Old elements such as <center> or <font> are no longer part of HTML and may not be supported in the future."
+msgid "The longdesc attribute should point to a page that describes a complex image, but its value isn't an address."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:499
-msgid "Replace them with modern HTML and CSS. This often comes from older content or a theme."
+msgid "Change longdesc to the address of the description page, or remove it and describe the image in the page text."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:502
-msgid "Alt text may not describe the image"
+msgid "Check that this video has captions"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:503
+msgid "Deaf and hard of hearing visitors, and anyone watching without sound"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:504
-msgid "The alt text looks like a file name or placeholder, so it may not tell people what the image shows."
+msgid "Speech in a video needs accurate captions. Software can't tell whether captions exist or are correct, so this needs a person to check."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:505
-msgid "Write alt text that describes what the image shows or does in context."
+msgid "Play the video with captions on. For YouTube, upload a caption file or correct the automatic captions in YouTube Studio."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:508
-msgid "Text may look like a heading without being one"
+msgid "A field is labelled only by a tooltip"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:510
-msgid "Bold or large text styled as a heading isn't announced as a heading, so people can't jump to it."
+msgid "The field's only name is its title attribute, which appears as a tooltip on mouse hover and isn't shown to most visitors."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:511
-msgid "If the text is a heading, use a real Heading block (H2, H3...)."
+msgid "Add a visible label to the field."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:514
-msgid "Content may be a list without list markup"
+msgid "Tables without header cells"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:516
-msgid "Items written as lines of text (for example with dashes) aren't announced as a list, so people don't know how many items there are."
+msgid "Without header cells, screen readers can't tell people which column or row a value belongs to."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:517
-msgid "Use a List block (bulleted or numbered) for lists."
+msgid "Mark the first row or column as headers (th). In the block editor, turn on \"Header section\" for the Table block. If the table is only for layout, add role=\"presentation\"."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:520
-msgid "Audio may need a transcript"
+msgid "Very small text"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:521
+msgid "People with low vision and older visitors"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:522
-msgid "Audio content needs a text transcript so everyone can get the information."
+msgid "Text smaller than 12px is hard to read for many people, even if they can zoom."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:523
-msgid "Add a transcript below the audio player or link to one."
+msgid "Use at least 14 to 16px for body text and at least 12px for small print."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:526
-msgid "Video may need captions"
+msgid "Long text is justified"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:527
+msgid "People with dyslexia or low vision"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:528
-msgid "Videos with speech need captions that match what is said."
+msgid "Justified text stretches the gaps between words unevenly, creating \"rivers\" of white space that make reading harder."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:529
-msgid "Add a captions track to the video. Check auto-generated captions for accuracy."
+msgid "Align body text to the left (or right, for right-to-left languages)."
 msgstr ""
 
-#: includes/class-corea11y-explain.php:549 includes/class-corea11y-explain.php:550 includes/class-corea11y-explain.php:551 includes/class-corea11y-explain.php:552 includes/class-corea11y-explain.php:553
-msgid "Some images are missing a text description"
+#: includes/class-corea11y-explain.php:532
+msgid "Long text in capital letters"
 msgstr ""
 
-#: includes/class-corea11y-explain.php:554
-msgid "Some text has low color contrast"
+#: includes/class-corea11y-explain.php:533
+msgid "People with dyslexia or low vision, and screen reader users"
 msgstr ""
 
-#: includes/class-corea11y-explain.php:555
-msgid "Some links don't describe where they go"
+#: includes/class-corea11y-explain.php:534
+msgid "Text in capitals is harder to read in long passages, and some screen readers spell it out letter by letter."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:535
+msgid "Write the text in normal case. Use capitals only for short labels, preferably with CSS text-transform."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:538
+msgid "Empty paragraphs used for spacing"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:540
+msgid "Empty paragraphs are sometimes announced as \"blank\", which is confusing."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:541
+msgid "Remove the empty paragraphs and use block spacing or a Spacer block instead."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:544
+msgid "Access keys are used"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:546
+msgid "Access keys can clash with shortcuts in browsers and screen readers, and users rarely know they exist."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:547
+msgid "Remove the accesskey attribute."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:550
+msgid "Animated images may need a pause option"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:551
+msgid "People with attention disorders or vestibular conditions"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:552
+msgid "Moving images that play for more than five seconds can make it impossible to concentrate on the rest of the page."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:553
+msgid "Use a still image, or a video with a pause button, if the animation lasts more than five seconds."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:556
-msgid "Some buttons have no accessible name"
+msgid "Groups of form fields need a clear legend"
 msgstr ""
 
-#: includes/class-corea11y-explain.php:557
-msgid "Some form fields have no label"
+#: includes/class-corea11y-explain.php:558
+msgid "A fieldset groups related fields, and its legend tells people what the group is about. Without a legend, the group has no name."
 msgstr ""
 
-#: includes/class-corea11y-explain.php:558 includes/class-corea11y-explain.php:559
-msgid "Some lists are not structured correctly"
+#: includes/class-corea11y-explain.php:559
+msgid "Add a <legend> with text as the first element inside the <fieldset>."
 msgstr ""
 
-#: includes/class-corea11y-explain.php:560
-msgid "Some buttons or links are small to tap"
+#: includes/class-corea11y-explain.php:562
+msgid "Related radio buttons and checkboxes aren't grouped"
 msgstr ""
 
-#: includes/class-corea11y-explain.php:561
-msgid "Some videos have no captions"
+#: includes/class-corea11y-explain.php:564
+msgid "When related options aren't grouped, screen reader users hear each option without the question it answers."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:565
+msgid "Put the options in a <fieldset> with a <legend> that asks the question."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:568
+msgid "Images marked decorative still have a title"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:570
+msgid "An image with empty alt text is hidden from screen readers, but a title attribute suggests it has information. The two signals conflict."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:571
+msgid "If the image is decorative, remove the title. If it has information, put it in the alt text."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:574
+msgid "Keyboard focus lands on something that isn't interactive"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:576
-msgid "The CoreA11y score is our own quick progress indicator from 0 to 100, based only on the automated checks. It goes down with each problem found, weighted by severity, and averaged per page. It is not an official WCAG score or a compliance grade, and other tools score differently: a site can score well and still have issues automated tools can't detect."
+msgid "An element with tabindex=\"0\" receives keyboard focus, but if it isn't a button, link or control, people land on it and nothing happens."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:577
-msgid "A widely recommended practice that makes pages easier to use, but isn't a strict WCAG requirement. Shown as minor and never counted in the score."
-msgstr ""
-
-#: includes/class-corea11y-explain.php:578
-msgid "Elements the automated checks could not judge with certainty, such as text over an image or gradient, where a person needs to look. They are listed so nothing is hidden, but they are not counted as issues."
-msgstr ""
-
-#: includes/class-corea11y-explain.php:579
-msgid "The number of individual elements with a problem. One missing alt text on five images counts as five issues."
+msgid "Remove tabindex from non-interactive elements, or give the element a proper role and keyboard behavior."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:580
-msgid "The number of different kinds of problems found. Fixing one kind (for example, in your theme) often clears many issues at once."
-msgstr ""
-
-#: includes/class-corea11y-explain.php:581
-msgid "Pages successfully scanned out of the pages planned. Change which pages are scanned in Settings."
+msgid "Table cells aren't linked to their headers"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:582
-msgid "Critical: blocks some visitors completely, for example a button a screen reader can't identify. Fix these first."
+msgid "In complex tables, screen readers rely on scope or headers attributes to say which headers belong to each cell."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:583
-msgid "Serious: causes major difficulty for some visitors, for example hard-to-read text."
-msgstr ""
-
-#: includes/class-corea11y-explain.php:584
-msgid "Moderate: creates friction but visitors can usually work around it."
-msgstr ""
-
-#: includes/class-corea11y-explain.php:585
-msgid "Minor: small annoyances that are still worth fixing."
+msgid "Add scope=\"col\" or scope=\"row\" to header cells. For complex tables, split them into simpler ones or use headers and id attributes."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:586
-msgid "Fixes that have one correct answer and can be applied safely and undone, like adding the page language. Turn them on under CoreA11y > Quick fixes."
+msgid "Outdated HTML is used"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:587
-msgid "Fixes that change how something looks or reads, like a text color. CoreA11y Pro suggests a fix and applies it once you approve."
+msgid "Everyone using assistive technology"
 msgstr ""
 
 #: includes/class-corea11y-explain.php:588
-msgid "Fixes only you can make well, like writing a meaningful description of a photo or adding captions to a video."
+msgid "Old elements such as <center> or <font> are no longer part of HTML and may not be supported in the future."
 msgstr ""
 
 #: includes/class-corea11y-explain.php:589
+msgid "Replace them with modern HTML and CSS. This often comes from older content or a theme."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:592
+msgid "Alt text may not describe the image"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:594
+msgid "The alt text looks like a file name or placeholder, so it may not tell people what the image shows."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:595
+msgid "Write alt text that describes what the image shows or does in context."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:598
+msgid "Text may look like a heading without being one"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:600
+msgid "Bold or large text styled as a heading isn't announced as a heading, so people can't jump to it."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:601
+msgid "If the text is a heading, use a real Heading block (H2, H3...)."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:604
+msgid "Content may be a list without list markup"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:606
+msgid "Items written as lines of text (for example with dashes) aren't announced as a list, so people don't know how many items there are."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:607
+msgid "Use a List block (bulleted or numbered) for lists."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:610
+msgid "Audio may need a transcript"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:612
+msgid "Audio content needs a text transcript so everyone can get the information."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:613
+msgid "Add a transcript below the audio player or link to one."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:616
+msgid "Video may need captions"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:618
+msgid "Videos with speech need captions that match what is said."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:619
+msgid "Add a captions track to the video. Check auto-generated captions for accuracy."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:639 includes/class-corea11y-explain.php:640 includes/class-corea11y-explain.php:641 includes/class-corea11y-explain.php:642 includes/class-corea11y-explain.php:643
+msgid "Some images are missing a text description"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:644
+msgid "Some text has low color contrast"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:645
+msgid "Some links don't describe where they go"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:646
+msgid "Some buttons have no accessible name"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:647
+msgid "Some form fields have no label"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:648 includes/class-corea11y-explain.php:649
+msgid "Some lists are not structured correctly"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:650
+msgid "Some buttons or links are small to tap"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:651
+msgid "Some videos have no captions"
+msgstr ""
+
+#: includes/class-corea11y-explain.php:666
+msgid "The CoreA11y score is our own quick progress indicator from 0 to 100, based only on the automated checks. It goes down with each problem found, weighted by severity, and averaged per page. It is not an official WCAG score or a compliance grade, and other tools score differently: a site can score well and still have issues automated tools can't detect."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:667
+msgid "A widely recommended practice that makes pages easier to use, but isn't a strict WCAG requirement. Shown as minor and never counted in the score."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:668
+msgid "Elements the automated checks could not judge with certainty, such as text over an image or gradient, where a person needs to look. They are listed so nothing is hidden, but they are not counted as issues."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:669
+msgid "The number of individual elements with a problem. One missing alt text on five images counts as five issues."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:670
+msgid "The number of different kinds of problems found. Fixing one kind (for example, in your theme) often clears many issues at once."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:671
+msgid "Pages successfully scanned out of the pages planned. Change which pages are scanned in Settings."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:672
+msgid "Critical: blocks some visitors completely, for example a button a screen reader can't identify. Fix these first."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:673
+msgid "Serious: causes major difficulty for some visitors, for example hard-to-read text."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:674
+msgid "Moderate: creates friction but visitors can usually work around it."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:675
+msgid "Minor: small annoyances that are still worth fixing."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:676
+msgid "Fixes that have one correct answer and can be applied safely and undone, like adding the page language. Turn them on under CoreA11y > Quick fixes."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:677
+msgid "Fixes that change how something looks or reads, like a text color. CoreA11y Pro suggests a fix and applies it once you approve."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:678
+msgid "Fixes only you can make well, like writing a meaningful description of a photo or adding captions to a video."
+msgstr ""
+
+#: includes/class-corea11y-explain.php:679
 msgid "Issues found in the earlier audit that are no longer found in the later one."
 msgstr ""
 
-#: includes/class-corea11y-explain.php:590
+#: includes/class-corea11y-explain.php:680
 msgid "Issues found in both audits."
 msgstr ""
 
-#: includes/class-corea11y-explain.php:591
+#: includes/class-corea11y-explain.php:681
 msgid "Issues found in the later audit that were not in the earlier one, for example on a new page or after a theme change."
 msgstr ""
 
@@ -3187,7 +3383,7 @@ msgstr[1] ""
 
 #. translators: %s: number of issues.
 #: includes/class-corea11y-highlighter.php:167
-msgid "Accessibility: no issues"
+msgid "Accessibility: no automated issues"
 msgstr ""
 
 #: includes/class-corea11y-pages.php:55 includes/class-corea11y-pages.php:97 includes/class-corea11y-pages.php:129
@@ -3412,7 +3608,7 @@ msgstr ""
 #. translators: %s: date.
 #: includes/class-corea11y-statement.php:225
 #, php-format
-msgid "Our latest automated check on %s found no issues."
+msgid "Our latest automated check on %s found no issues that automated testing can detect."
 msgstr ""
 
 #: includes/class-corea11y-statement.php:243
@@ -3634,11 +3830,11 @@ msgid "Marks common fields (name, email, phone, address) so browsers and assisti
 msgstr ""
 
 #: pro/includes/class-corea11y-pro-fixes.php:101
-msgid "Keep placeholder text as the field name"
+msgid "Give every form field a name"
 msgstr ""
 
 #: pro/includes/class-corea11y-pro-fixes.php:102
-msgid "For fields that only have placeholder text, keeps that text as the field's name for screen readers after someone starts typing. A visible label is still best."
+msgid "Keeps placeholder text as the field's name for screen readers after someone starts typing, and makes form labels your theme hides completely readable to screen readers. Nothing changes visually. A visible label is still best."
 msgstr ""
 
 #: pro/includes/class-corea11y-pro-fixes.php:107

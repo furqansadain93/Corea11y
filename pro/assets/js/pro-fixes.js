@@ -169,6 +169,16 @@
 					field.setAttribute( 'autocomplete', value );
 				}
 			}
+			if ( on( 'placeholder-names' ) && field.labels && field.labels.length ) {
+				// Labels the theme hides with display: none: keep them hidden on screen,
+				// but readable to screen readers.
+				Array.prototype.forEach.call( field.labels, ( label ) => {
+					if ( ( label.textContent || '' ).trim() && window.getComputedStyle( label ).display === 'none' ) {
+						label.classList.add( 'corea11y-sr' );
+						label.style.setProperty( 'display', 'block', 'important' );
+					}
+				} );
+			}
 			if ( on( 'placeholder-names' ) ) {
 				const placeholder = ( field.getAttribute( 'placeholder' ) || '' ).trim();
 				const labelled = ( field.labels && field.labels.length ) || field.getAttribute( 'aria-label' ) || field.getAttribute( 'aria-labelledby' ) || ( field.getAttribute( 'title' ) || '' ).trim();

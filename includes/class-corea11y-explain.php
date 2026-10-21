@@ -420,6 +420,96 @@ class CoreA11y_Explain {
 			'why'   => __( 'Placeholder text disappears when someone starts typing, and it is often low contrast. People then forget what the field was for.', 'corea11y' ),
 			'fix'   => __( 'Add a visible label to the field. Keep the placeholder only for an example, if at all.', 'corea11y' ),
 		);
+		$e['corea11y-hidden-label'] = array(
+			'title' => __( 'Form labels are hidden from everyone', 'corea11y' ),
+			'who'   => __( 'Screen reader and voice control users', 'corea11y' ),
+			'why'   => __( 'The field has a label, but the theme hides it completely (display: none). Some screen readers then announce just "edit text", and people can\'t tell what to type.', 'corea11y' ),
+			'fix'   => __( 'Show the label, or hide it only visually with a "screen reader text" class instead of display: none. CoreA11y Pro can do this in one click.', 'corea11y' ),
+		);
+		$e['corea11y-skip-link-broken'] = array(
+			'title' => __( 'The "Skip to content" link goes nowhere', 'corea11y' ),
+			'who'   => __( 'Keyboard and screen reader users', 'corea11y' ),
+			'why'   => __( 'A skip link lets keyboard users jump past the menu. When its target is missing, pressing it does nothing and they have to tab through the whole menu.', 'corea11y' ),
+			'fix'   => __( 'Point the link at the id of your main content area (for example #main), or give that area the id the link uses.', 'corea11y' ),
+		);
+		$e['corea11y-link-anchor-missing'] = array(
+			'title' => __( 'A link to a spot on the page goes nowhere', 'corea11y' ),
+			'who'   => __( 'Keyboard and screen reader users', 'corea11y' ),
+			'why'   => __( 'The link points to a part of the page that doesn\'t exist, so following it does nothing.', 'corea11y' ),
+			'fix'   => __( 'Fix the link\'s #target, or add the matching id to the section it should jump to.', 'corea11y' ),
+		);
+		$e['corea11y-label-orphaned'] = array(
+			'title' => __( 'A form label isn\'t connected to any field', 'corea11y' ),
+			'who'   => __( 'Screen reader and voice control users', 'corea11y' ),
+			'why'   => __( 'The label\'s "for" value doesn\'t match any field\'s id, so the label isn\'t read with the field and clicking it doesn\'t focus the field.', 'corea11y' ),
+			'fix'   => __( 'Make the label\'s "for" match the field\'s id.', 'corea11y' ),
+		);
+		$e['corea11y-label-empty'] = array(
+			'title' => __( 'A form label is empty', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'The field has a name from somewhere else, but an empty label element can still be announced as blank by some assistive technology.', 'corea11y' ),
+			'fix'   => __( 'Put the field\'s name in the label, or remove the empty label.', 'corea11y' ),
+		);
+		$e['corea11y-alt-long'] = array(
+			'title' => __( 'Very long alt text', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'Long alt text is read in one go and can\'t be paused or skimmed, which makes the page tiring to listen to.', 'corea11y' ),
+			'fix'   => __( 'Keep alt text short, usually under 125 characters. Put detailed descriptions in the page text or a caption.', 'corea11y' ),
+		);
+		$e['corea11y-image-title-only'] = array(
+			'title' => __( 'An image is described only by a tooltip', 'corea11y' ),
+			'who'   => __( 'Screen reader, voice control and keyboard users', 'corea11y' ),
+			'why'   => __( 'A title attribute shows as a tooltip on mouse hover only, and many screen readers don\'t announce it.', 'corea11y' ),
+			'fix'   => __( 'Give the image alt text. You can do this from the Alt text screen.', 'corea11y' ),
+		);
+		$e['corea11y-image-title-repeat'] = array(
+			'title' => __( 'Image title repeats the alt text', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'When the title and alt text are the same, some screen readers read the description twice.', 'corea11y' ),
+			'fix'   => __( 'Remove the title attribute.', 'corea11y' ),
+		);
+		$e['corea11y-alt-duplicate'] = array(
+			'title' => __( 'Images next to each other have the same alt text', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'Hearing the same description twice in a row is confusing: people can\'t tell whether the images differ.', 'corea11y' ),
+			'fix'   => __( 'Describe each image by what it shows. If one is purely decorative, mark it as decorative on the Alt text screen.', 'corea11y' ),
+		);
+		$e['corea11y-underline-text'] = array(
+			'title' => __( 'Underlined text looks like a link', 'corea11y' ),
+			'who'   => __( 'Everyone, especially people with cognitive disabilities', 'corea11y' ),
+			'why'   => __( 'On the web, underlined text means "link". People click it and nothing happens.', 'corea11y' ),
+			'fix'   => __( 'Use bold or italics for emphasis, and keep underlines for links.', 'corea11y' ),
+		);
+		$e['corea11y-no-landmarks'] = array(
+			'title' => __( 'The page has no regions', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'Regions (header, navigation, main content, footer) let screen reader users jump straight to the part they want.', 'corea11y' ),
+			'fix'   => __( 'Use your theme\'s header, main and footer areas, or add HTML landmarks. CoreA11y Pro\'s "Mark the main content area" fix can add the main region when your theme has a recognisable content area.', 'corea11y' ),
+		);
+		$e['corea11y-title-uninformative'] = array(
+			'title' => __( 'The page title doesn\'t describe the page', 'corea11y' ),
+			'who'   => __( 'Screen reader users, and everyone using tabs or bookmarks', 'corea11y' ),
+			'why'   => __( 'The page title is read first by screen readers and shown in browser tabs. A generic title like "Untitled" doesn\'t say where you are.', 'corea11y' ),
+			'fix'   => __( 'Give the page a title that describes it, for example "Contact us | Harbour Bakery".', 'corea11y' ),
+		);
+		$e['corea11y-longdesc-invalid'] = array(
+			'title' => __( 'An image\'s long description link is broken', 'corea11y' ),
+			'who'   => __( 'Screen reader users', 'corea11y' ),
+			'why'   => __( 'The longdesc attribute should point to a page that describes a complex image, but its value isn\'t an address.', 'corea11y' ),
+			'fix'   => __( 'Change longdesc to the address of the description page, or remove it and describe the image in the page text.', 'corea11y' ),
+		);
+		$e['corea11y-video-captions'] = array(
+			'title' => __( 'Check that this video has captions', 'corea11y' ),
+			'who'   => __( 'Deaf and hard of hearing visitors, and anyone watching without sound', 'corea11y' ),
+			'why'   => __( 'Speech in a video needs accurate captions. Software can\'t tell whether captions exist or are correct, so this needs a person to check.', 'corea11y' ),
+			'fix'   => __( 'Play the video with captions on. For YouTube, upload a caption file or correct the automatic captions in YouTube Studio.', 'corea11y' ),
+		);
+		$e['label-title-only'] = array(
+			'title' => __( 'A field is labelled only by a tooltip', 'corea11y' ),
+			'who'   => __( 'Screen reader, voice control and keyboard users', 'corea11y' ),
+			'why'   => __( 'The field\'s only name is its title attribute, which appears as a tooltip on mouse hover and isn\'t shown to most visitors.', 'corea11y' ),
+			'fix'   => __( 'Add a visible label to the field.', 'corea11y' ),
+		);
 		$e['corea11y-table-no-headers'] = array(
 			'title' => __( 'Tables without header cells', 'corea11y' ),
 			'who'   => __( 'Screen reader users', 'corea11y' ),

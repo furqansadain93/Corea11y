@@ -11,13 +11,20 @@
 	const apiFetch = wp.apiFetch;
 	const config = window.corea11yScanner || {};
 
-	const AXE_OPTIONS = {
-		runOnly: {
-			type: 'tag',
-			values: [ 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa' ],
-		},
-		resultTypes: [ 'violations' ],
-	};
+	const WCAG_TAGS = [ 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa' ];
+	// Best-practice checks that are widely expected and rarely wrong. Reported as
+	// suggestions and never counted in the score.
+	const BEST_PRACTICE = [ 'empty-heading', 'heading-order', 'empty-table-header', 'image-redundant-alt', 'tabindex', 'aria-allowed-role', 'page-has-heading-one', 'label-title-only' ];
+
+	function axeOptions( axe ) {
+		const ids = axe.getRules( WCAG_TAGS ).map( ( r ) => r.ruleId );
+		BEST_PRACTICE.forEach( ( id ) => {
+			if ( ids.indexOf( id ) === -1 ) {
+				ids.push( id );
+			}
+		} );
+		return { runOnly: { type: 'rule', values: ids }, resultTypes: [ 'violations', 'incomplete' ] };
+	}
 	const MAX_NODES = 25;
 	const SETTLE_MS = 750;
 
@@ -57,17 +64,43 @@
 		return new Promise( ( resolve ) => setTimeout( resolve, ms ) );
 	}
 
-	function loadFrame( url ) {
+	// Scanned pages load in a hidden frame, where browsers pause CSS transitions and
+	// animations. Colours caught mid-transition (a button fading to white, for example)
+	// would be reported wrongly, so jump every transition and animation to its end state.
+	function finishTransitions( frame ) {
+		try {
+			const doc = frame.contentDocument;
+			const style = doc.createElement( 'style' );
+			style.id = 'corea11y-settle';
+			style.textContent = '*,*::before,*::after{transition-duration:0s!important;transition-delay:0s!important;animation-duration:0s!important;animation-delay:0s!important;animation-iteration-count:1!important}';
+			( doc.head || doc.documentElement ).appendChild( style );
+			void doc.documentElement.offsetHeight; // Apply now.
+			// Transitions already running are not affected by the rule above: finish them.
+			if ( doc.getAnimations ) {
+				doc.getAnimations().forEach( ( anim ) => {
+					try {
+						anim.finish();
+					} catch ( err ) {
+						// Endless animations can't finish; leave them.
+					}
+				} );
+			}
+		} catch ( e ) {}
+		return wait( 60 );
+	}
+
+	function loadFrame( url, width ) {
 		return new Promise( ( resolve, reject ) => {
 			const frame = document.createElement( 'iframe' );
 			frame.className = 'corea11y-scan-frame';
+			frame.style.width = width + 'px';
 			frame.setAttribute( 'aria-hidden', 'true' );
 			frame.setAttribute( 'tabindex', '-1' );
 			frame.title = __( 'Page being scanned', 'corea11y' );
 
 			const timer = setTimeout( () => {
 				frame.remove();
-				reject( new Error( __( 'The page took too long to load.', 'corea11y' ) ) );
+				reject( new Error( __( 'The page took longer than 30 seconds to load. Slow pages, or pages that keep loading (such as some chat widgets), can cause this. Try again, or leave this page out in Settings.', 'corea11y' ) ) );
 			}, config.timeout || 30000 );
 
 			frame.addEventListener( 'load', () => {
@@ -76,6 +109,22 @@
 			} );
 			frame.src = withScanArg( url );
 			document.body.appendChild( frame );
+		} );
+	}
+
+	// Load a script into the scanned page and resolve with the global it defines.
+	function injectScript( frame, src, globalName ) {
+		return new Promise( ( resolve, reject ) => {
+			const doc = frame.contentDocument;
+			if ( frame.contentWindow[ globalName ] ) {
+				resolve( frame.contentWindow[ globalName ] );
+				return;
+			}
+			const script = doc.createElement( 'script' );
+			script.src = src;
+			script.onload = () => resolve( frame.contentWindow[ globalName ] );
+			script.onerror = () => reject( new Error( globalName ) );
+			( doc.head || doc.documentElement ).appendChild( script );
 		} );
 	}
 
@@ -88,7 +137,7 @@
 				doc = null;
 			}
 			if ( ! doc || ! doc.documentElement ) {
-				reject( new Error( __( 'The page could not be opened for scanning. It may redirect to another site or block framing.', 'corea11y' ) ) );
+				reject( new Error( __( 'The page could not be opened for scanning. Usually a security setting stops pages from being shown in a frame (X-Frame-Options or a Content-Security-Policy frame-ancestors rule), or the page redirects to another address. Ask your host to allow same-origin framing.', 'corea11y' ) ) );
 				return;
 			}
 			if ( frame.contentWindow.axe ) {
@@ -119,20 +168,89 @@
 		} ) );
 	}
 
-	async function scanPage( url ) {
-		const frame = await loadFrame( url );
+	async function scanAtWidth( url, width ) {
+		const frame = await loadFrame( url, width );
 		try {
 			await wait( SETTLE_MS );
+			await finishTransitions( frame );
 			const axe = await injectAxe( frame );
 			const doc = frame.contentDocument;
 			const results = await axe.run(
 				{ include: [ doc.documentElement ], exclude: [ [ '#wpadminbar' ] ] },
-				AXE_OPTIONS
+				axeOptions( axe )
 			);
-			return slim( results.violations );
+			const extra = await extraChecks( frame );
+			return {
+				violations: slim( results.violations.concat( extra.violations ) ),
+				review: slim( results.incomplete.concat( extra.review ) ),
+			};
 		} finally {
 			frame.remove();
 		}
+	}
+
+	// CoreA11y's own checks, plus the curated IBM Equal Access rules when enabled.
+	// Any failure here leaves the axe-core results untouched.
+	async function extraChecks( frame ) {
+		const empty = { violations: [], review: [] };
+		if ( ! config.checksUrl ) {
+			return empty;
+		}
+		try {
+			if ( config.extended && config.aceUrl ) {
+				await injectScript( frame, config.aceUrl, 'ace' ).catch( () => null );
+			}
+			const checks = await injectScript( frame, config.checksUrl, 'corea11yChecks' );
+			return checks ? await checks.run( { ibm: !! config.extended } ) : empty;
+		} catch ( e ) {
+			return empty;
+		}
+	}
+
+	// Combine results from several screen widths: one entry per rule, each element once.
+	function merge( lists ) {
+		const byId = new Map();
+		lists.forEach( ( list ) => {
+			list.forEach( ( v ) => {
+				const hidden = Math.max( 0, v.nodeCount - v.nodes.length );
+				const seen = byId.get( v.id );
+				if ( ! seen ) {
+					byId.set( v.id, Object.assign( {}, v, { nodes: v.nodes.slice(), hidden } ) );
+					return;
+				}
+				const keys = new Set( seen.nodes.map( ( n ) => JSON.stringify( n.target ) ) );
+				v.nodes.forEach( ( n ) => {
+					if ( ! keys.has( JSON.stringify( n.target ) ) ) {
+						seen.nodes.push( n );
+					}
+				} );
+				seen.hidden = Math.max( seen.hidden, hidden );
+			} );
+		} );
+		return Array.from( byId.values() ).map( ( v ) => {
+			const out = Object.assign( {}, v, { nodeCount: v.nodes.length + v.hidden } );
+			delete out.hidden;
+			return out;
+		} );
+	}
+
+	async function scanPage( url ) {
+		const widths = config.widths || { desktop: 1280, mobile: 390 };
+		const desktop = await scanAtWidth( url, widths.desktop );
+		if ( ! config.mobile ) {
+			return desktop;
+		}
+		let mobile;
+		try {
+			mobile = await scanAtWidth( url, widths.mobile );
+		} catch ( e ) {
+			// The desktop results are still valid on their own.
+			return desktop;
+		}
+		return {
+			violations: merge( [ desktop.violations, mobile.violations ] ),
+			review: merge( [ desktop.review, mobile.review ] ),
+		};
 	}
 
 	async function run() {
@@ -167,9 +285,12 @@
 			announce( sprintf( __( 'Scanning page %1$d of %2$d: %3$s', 'corea11y' ), i + 1, pages.length, page.label ) );
 
 			let violations = [];
+			let review = [];
 			let error = '';
 			try {
-				violations = await scanPage( page.url );
+				const result = await scanPage( page.url );
+				violations = result.violations;
+				review = result.review;
 			} catch ( e ) {
 				error = e.message || String( e );
 			}
@@ -178,7 +299,7 @@
 				const saved = await apiFetch( {
 					path: '/corea11y/v1/audits/' + audit.id + '/pages',
 					method: 'POST',
-					data: { url: page.url, violations, error },
+					data: { url: page.url, violations, review, error },
 				} );
 				if ( error ) {
 					/* translators: 1: page name, 2: error message. */

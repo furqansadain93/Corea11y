@@ -105,6 +105,7 @@ class CoreA11y_Rules {
 			'button-name',
 			'input-button-name',
 			'label',
+			'corea11y-hidden-label',
 			'select-name',
 			'frame-title',
 			'svg-img-alt',

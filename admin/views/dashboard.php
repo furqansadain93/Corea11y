@@ -84,7 +84,7 @@ $corea11y_user   = wp_get_current_user();
 						/* translators: %s: number of issues. */
 						echo esc_html( sprintf( _n( 'Great progress: %s fewer issue than last time!', 'Great progress: %s fewer issues than last time!', -$corea11y_diff, 'corea11y' ), number_format_i18n( -$corea11y_diff ) ) );
 					} elseif ( 0 === (int) $latest->issues_total ) {
-						esc_html_e( 'No issues in your latest audit. Brilliant!', 'corea11y' );
+						esc_html_e( 'The automated checks found no problems in your latest audit. Great work! Use the manual checklist for what software can\'t check.', 'corea11y' );
 					} else {
 						/* translators: %s: number of issues. */
 						echo esc_html( sprintf( _n( 'Your latest audit found %s issue', 'Your latest audit found %s issues', (int) $latest->issues_total, 'corea11y' ), number_format_i18n( (int) $latest->issues_total ) ) );

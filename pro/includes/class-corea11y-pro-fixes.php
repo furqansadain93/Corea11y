@@ -98,16 +98,16 @@ class CoreA11y_Pro_Fixes {
 				'rules' => array(),
 			),
 			'placeholder-names' => array(
-				'title' => __( 'Keep placeholder text as the field name', 'corea11y' ),
-				'desc'  => __( 'For fields that only have placeholder text, keeps that text as the field\'s name for screen readers after someone starts typing. A visible label is still best.', 'corea11y' ),
-				'wcag'  => '4.1.2',
-				'rules' => array(),
+				'title' => __( 'Give every form field a name', 'corea11y' ),
+				'desc'  => __( 'Keeps placeholder text as the field\'s name for screen readers after someone starts typing, and makes form labels your theme hides completely readable to screen readers. Nothing changes visually. A visible label is still best.', 'corea11y' ),
+				'wcag'  => '1.3.1, 4.1.2',
+				'rules' => array( 'corea11y-hidden-label' ),
 			),
 			'main-landmark'     => array(
 				'title' => __( 'Mark the main content area', 'corea11y' ),
 				'desc'  => __( 'Marks your theme\'s main content area as "main", so screen reader users can jump straight to it.', 'corea11y' ),
 				'wcag'  => '1.3.1',
-				'rules' => array( 'landmark-one-main' ),
+				'rules' => array( 'landmark-one-main', 'corea11y-no-landmarks' ),
 			),
 			'decorative-svg'    => array(
 				'title' => __( 'Hide decorative icons in links and buttons', 'corea11y' ),
@@ -192,7 +192,7 @@ class CoreA11y_Pro_Fixes {
 				'title' => __( 'Remove tooltips that repeat alt text', 'corea11y' ),
 				'desc'  => __( 'Removes image tooltips that only repeat the alt text, so screen readers don\'t read it twice.', 'corea11y' ),
 				'wcag'  => '',
-				'rules' => array(),
+				'rules' => array( 'corea11y-image-title-repeat' ),
 			),
 			'form-label-links' => array(
 				'title' => __( 'Connect form labels to their fields', 'corea11y' ),
