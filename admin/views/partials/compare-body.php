@@ -58,6 +58,7 @@ if ( $corea11y_tb > 0 && 0 === $corea11y_ta ) {
 				?>
 			</p>
 		<?php endif; ?>
+		<?php echo CoreA11y_UI::checklist_note( empty( $corea11y_is_print ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in CoreA11y_UI. ?>
 		<div class="corea11y-tiles">
 			<?php
 			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in CoreA11y_UI.

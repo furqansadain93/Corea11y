@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-21 16:56+0000\n"
+"POT-Creation-Date: 2026-10-21 17:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,7 +109,7 @@ msgstr ""
 msgid "View full size"
 msgstr ""
 
-#: admin/views/alt.php:114 admin/views/alt.php:121 admin/views/audits.php:45 admin/views/compare.php:26 admin/views/dashboard.php:104 admin/views/partials/report-body.php:194 admin/views/report.php:28 includes/class-corea11y-ui.php:358 pro/includes/class-corea11y-pro-fixes.php:522
+#: admin/views/alt.php:114 admin/views/alt.php:121 admin/views/audits.php:45 admin/views/compare.php:26 admin/views/dashboard.php:105 admin/views/partials/report-body.php:195 admin/views/report.php:28 includes/class-corea11y-ui.php:385 pro/includes/class-corea11y-pro-fixes.php:522
 msgid "(opens in a new tab)"
 msgstr ""
 
@@ -209,7 +209,7 @@ msgstr ""
 msgid "Pages scanned"
 msgstr ""
 
-#: admin/views/audits.php:25 admin/views/partials/report-body.php:77 pro/includes/class-corea11y-pro-network.php:186
+#: admin/views/audits.php:25 admin/views/partials/report-body.php:78 pro/includes/class-corea11y-pro-network.php:186
 msgid "Issues"
 msgstr ""
 
@@ -225,7 +225,7 @@ msgstr ""
 msgid "PDF"
 msgstr ""
 
-#: admin/views/checklist.php:16 admin/views/dashboard.php:115 admin/views/dashboard.php:116 includes/class-corea11y-admin.php:57
+#: admin/views/checklist.php:16 admin/views/dashboard.php:116 admin/views/dashboard.php:117 includes/class-corea11y-admin.php:57
 msgid "Manual checklist"
 msgstr ""
 
@@ -259,7 +259,7 @@ msgstr ""
 msgid "See what you fixed, what is left, and anything new."
 msgstr ""
 
-#: admin/views/compare.php:26 admin/views/dashboard.php:104 admin/views/report.php:28
+#: admin/views/compare.php:26 admin/views/dashboard.php:105 admin/views/report.php:28
 msgid "Download PDF"
 msgstr ""
 
@@ -275,7 +275,7 @@ msgstr ""
 msgid "Go to the dashboard"
 msgstr ""
 
-#: admin/views/compare.php:41 admin/views/partials/compare-body.php:100 includes/class-corea11y-ui.php:202
+#: admin/views/compare.php:41 admin/views/partials/compare-body.php:101 includes/class-corea11y-ui.php:205
 msgid "Before"
 msgstr ""
 
@@ -285,7 +285,7 @@ msgstr ""
 msgid "%1$s (%2$s issues)"
 msgstr ""
 
-#: admin/views/compare.php:54 admin/views/partials/compare-body.php:101 includes/class-corea11y-ui.php:202
+#: admin/views/compare.php:54 admin/views/partials/compare-body.php:102 includes/class-corea11y-ui.php:205
 msgid "After"
 msgstr ""
 
@@ -401,45 +401,45 @@ msgstr ""
 msgid "Scan score"
 msgstr ""
 
-#: admin/views/dashboard.php:103
+#: admin/views/dashboard.php:104
 msgid "View report"
 msgstr ""
 
-#: admin/views/dashboard.php:106
+#: admin/views/dashboard.php:107
 msgid "See before & after"
 msgstr ""
 
-#: admin/views/dashboard.php:116
+#: admin/views/dashboard.php:117
 msgid "Some WCAG requirements need human judgment, like whether alt text is meaningful or a video's captions are accurate. The checklist walks you through them one by one."
 msgstr ""
 
 #. translators: 1: number of checks reviewed, 2: total number of checks, 3: number passed.
-#: admin/views/dashboard.php:122
+#: admin/views/dashboard.php:123
 #, php-format
 msgid "%1$d of %2$d checks reviewed, %3$d passed."
 msgstr ""
 
-#: admin/views/dashboard.php:132
+#: admin/views/dashboard.php:133
 msgid "Passed"
 msgstr ""
 
-#: admin/views/dashboard.php:137
+#: admin/views/dashboard.php:138
 msgid "Failed"
 msgstr ""
 
-#: admin/views/dashboard.php:142
+#: admin/views/dashboard.php:143
 msgid "Not checked yet"
 msgstr ""
 
-#: admin/views/dashboard.php:147
+#: admin/views/dashboard.php:148
 msgid "Checklist progress"
 msgstr ""
 
-#: admin/views/dashboard.php:149
+#: admin/views/dashboard.php:150
 msgid "Open the checklist"
 msgstr ""
 
-#: admin/views/dashboard.php:153
+#: admin/views/dashboard.php:154
 msgid "CoreA11y reports automated scan results and your own manual checks. Automated tools can't confirm full WCAG conformance on their own."
 msgstr ""
 
@@ -555,12 +555,12 @@ msgid "Pro"
 msgstr ""
 
 #. translators: %s: WCAG success criterion numbers.
-#: admin/views/fixes.php:153 admin/views/partials/report-body.php:128
+#: admin/views/fixes.php:153 admin/views/partials/report-body.php:129
 #, php-format
 msgid "WCAG %s"
 msgstr ""
 
-#: admin/views/fixes.php:157 admin/views/partials/report-body.php:117 admin/views/partials/report-body.php:120 pro/includes/class-corea11y-pro-reports.php:107
+#: admin/views/fixes.php:157 admin/views/partials/report-body.php:118 admin/views/partials/report-body.php:121 pro/includes/class-corea11y-pro-reports.php:107
 msgid "Best practice"
 msgstr ""
 
@@ -616,7 +616,7 @@ msgstr ""
 msgid "Fix"
 msgstr ""
 
-#: admin/views/fixes.php:217 admin/views/partials/report-body.php:326
+#: admin/views/fixes.php:217 admin/views/partials/report-body.php:327
 msgid "By"
 msgstr ""
 
@@ -713,83 +713,83 @@ msgstr ""
 msgid "You resolved %s%% of the issues found in the earlier audit."
 msgstr ""
 
-#: admin/views/partials/compare-body.php:64
+#: admin/views/partials/compare-body.php:65
 msgid "resolved"
 msgstr ""
 
-#: admin/views/partials/compare-body.php:65
+#: admin/views/partials/compare-body.php:66
 msgid "remaining"
 msgstr ""
 
-#: admin/views/partials/compare-body.php:66
+#: admin/views/partials/compare-body.php:67
 msgid "new"
 msgstr ""
 
-#: admin/views/partials/compare-body.php:85
+#: admin/views/partials/compare-body.php:86
 msgid "Total"
 msgstr ""
 
-#: admin/views/partials/compare-body.php:89
+#: admin/views/partials/compare-body.php:90
 msgid "Issues before and after, by severity"
 msgstr ""
 
-#: admin/views/partials/compare-body.php:95
+#: admin/views/partials/compare-body.php:96
 msgid "Change by problem"
 msgstr ""
 
-#: admin/views/partials/compare-body.php:99 admin/views/partials/report-body.php:326 pro/includes/class-corea11y-pro-reports.php:88
+#: admin/views/partials/compare-body.php:100 admin/views/partials/report-body.php:327 pro/includes/class-corea11y-pro-reports.php:88
 msgid "Problem"
 msgstr ""
 
-#: admin/views/partials/compare-body.php:102
+#: admin/views/partials/compare-body.php:103
 msgid "Resolved"
 msgstr ""
 
-#: admin/views/partials/compare-body.php:103
+#: admin/views/partials/compare-body.php:104
 msgid "New"
 msgstr ""
 
-#: admin/views/partials/compare-body.php:119
+#: admin/views/partials/compare-body.php:120
 msgid "Fixed"
 msgstr ""
 
-#: admin/views/partials/compare-body.php:134
+#: admin/views/partials/compare-body.php:135
 msgid "What was compared"
 msgstr ""
 
 #. translators: %s: number of pages.
-#: admin/views/partials/compare-body.php:138
+#: admin/views/partials/compare-body.php:139
 #, php-format
 msgid "%s page was scanned in both audits and compared, plus site-wide content checks."
 msgid_plural "%s pages were scanned in both audits and compared, plus site-wide content checks."
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/partials/compare-body.php:143
+#: admin/views/partials/compare-body.php:144
 msgid "Your audits check one page of each type (for example the home page, one page, one post and one archive), which is fastest. To compare every page, choose \"All published pages and posts\" under Pages to scan, then run your next audits."
 msgstr ""
 
-#: admin/views/partials/compare-body.php:145
+#: admin/views/partials/compare-body.php:146
 msgid "Change pages to scan"
 msgstr ""
 
-#: admin/views/partials/compare-body.php:150
+#: admin/views/partials/compare-body.php:151
 msgid "These pages were scanned in only one audit, so their issues are not counted as resolved or new:"
 msgstr ""
 
 #. translators: %s: page name.
-#: admin/views/partials/compare-body.php:156
+#: admin/views/partials/compare-body.php:157
 #, php-format
 msgid "%s (earlier audit only)"
 msgstr ""
 
 #. translators: %s: page name.
-#: admin/views/partials/compare-body.php:164
+#: admin/views/partials/compare-body.php:165
 #, php-format
 msgid "%s (later audit only)"
 msgstr ""
 
-#: admin/views/partials/compare-body.php:170
+#: admin/views/partials/compare-body.php:171
 msgid "Comparisons are based on automated scan results. An element counts as the same issue when the same problem is found on the same element of the same page."
 msgstr ""
 
@@ -889,52 +889,52 @@ msgstr ""
 msgid "critical"
 msgstr ""
 
-#: admin/views/partials/report-body.php:58
+#: admin/views/partials/report-body.php:59
 msgid "About the CoreA11y score"
 msgstr ""
 
-#: admin/views/partials/report-body.php:58 pro/includes/class-corea11y-pro-network.php:185
+#: admin/views/partials/report-body.php:59 pro/includes/class-corea11y-pro-network.php:185
 msgid "CoreA11y score"
 msgstr ""
 
-#: admin/views/partials/report-body.php:63
+#: admin/views/partials/report-body.php:64
 msgid "Charts"
 msgstr ""
 
-#: admin/views/partials/report-body.php:66
+#: admin/views/partials/report-body.php:67
 msgid "Issues by severity"
 msgstr ""
 
-#: admin/views/partials/report-body.php:67
+#: admin/views/partials/report-body.php:68
 msgid "Issues by WCAG principle"
 msgstr ""
 
-#: admin/views/partials/report-body.php:68
+#: admin/views/partials/report-body.php:69
 msgid "Issues by type of fix"
 msgstr ""
 
-#: admin/views/partials/report-body.php:75
+#: admin/views/partials/report-body.php:76
 msgid "Pages with the most issues"
 msgstr ""
 
-#: admin/views/partials/report-body.php:77 admin/views/partials/report-body.php:326 pro/includes/class-corea11y-pro-reports.php:86
+#: admin/views/partials/report-body.php:78 admin/views/partials/report-body.php:327 pro/includes/class-corea11y-pro-reports.php:86
 msgid "Page"
 msgstr ""
 
-#: admin/views/partials/report-body.php:92
+#: admin/views/partials/report-body.php:93
 msgid "What to fix"
 msgstr ""
 
-#: admin/views/partials/report-body.php:94
+#: admin/views/partials/report-body.php:95
 msgid "Nothing to fix from the automated checks. Head to the manual checklist next."
 msgstr ""
 
-#: admin/views/partials/report-body.php:96
+#: admin/views/partials/report-body.php:97
 msgid "Problems are listed most severe first. Select \"?\" next to any problem to learn why it matters and how to fix it."
 msgstr ""
 
 #. translators: 1: number of elements, 2: number of pages.
-#: admin/views/partials/report-body.php:136
+#: admin/views/partials/report-body.php:137
 #, php-format
 msgid "%s element"
 msgid_plural "%s elements"
@@ -942,166 +942,166 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: 1: number of elements, 2: number of pages.
-#: admin/views/partials/report-body.php:136 admin/views/partials/report-body.php:295
+#: admin/views/partials/report-body.php:137 admin/views/partials/report-body.php:296
 #, php-format
 msgid "on %s page"
 msgid_plural "on %s pages"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/partials/report-body.php:143
+#: admin/views/partials/report-body.php:144
 msgid "Add alt text in one place:"
 msgstr ""
 
-#: admin/views/partials/report-body.php:144
+#: admin/views/partials/report-body.php:145
 msgid "Open the Alt text screen"
 msgstr ""
 
-#: admin/views/partials/report-body.php:159
+#: admin/views/partials/report-body.php:160
 msgid "CoreA11y Pro suggests readable colours for each of these, which you approve and can undo."
 msgstr ""
 
-#: admin/views/partials/report-body.php:159
+#: admin/views/partials/report-body.php:160
 msgid "Learn about Pro"
 msgstr ""
 
-#: admin/views/partials/report-body.php:168
+#: admin/views/partials/report-body.php:169
 msgid "Quick fix is on"
 msgstr ""
 
-#: admin/views/partials/report-body.php:169
+#: admin/views/partials/report-body.php:170
 msgid "Run a new audit to confirm it resolved these issues."
 msgstr ""
 
-#: admin/views/partials/report-body.php:171
+#: admin/views/partials/report-body.php:172
 msgid "One-click fix available:"
 msgstr ""
 
-#: admin/views/partials/report-body.php:179
+#: admin/views/partials/report-body.php:180
 msgid "Why it matters"
 msgstr ""
 
-#: admin/views/partials/report-body.php:180 pro/includes/class-corea11y-pro-reports.php:96
+#: admin/views/partials/report-body.php:181 pro/includes/class-corea11y-pro-reports.php:96
 msgid "Who it affects"
 msgstr ""
 
-#: admin/views/partials/report-body.php:181 pro/includes/class-corea11y-pro-reports.php:97
+#: admin/views/partials/report-body.php:182 pro/includes/class-corea11y-pro-reports.php:97
 msgid "How to fix"
 msgstr ""
 
-#: admin/views/partials/report-body.php:184 includes/class-corea11y-highlighter.php:136 includes/class-corea11y-ui.php:82
+#: admin/views/partials/report-body.php:185 includes/class-corea11y-highlighter.php:136 includes/class-corea11y-ui.php:82
 msgid "How to fix:"
 msgstr ""
 
 #. translators: %s: the technical rule description from the testing engine.
-#: admin/views/partials/report-body.php:191
+#: admin/views/partials/report-body.php:192
 #, php-format
 msgid "Technical check: %s"
 msgstr ""
 
-#: admin/views/partials/report-body.php:194
+#: admin/views/partials/report-body.php:195
 msgid "Detailed guide"
 msgstr ""
 
-#: admin/views/partials/report-body.php:200
+#: admin/views/partials/report-body.php:201
 msgid "Where it was found"
 msgstr ""
 
 #. translators: %s: number of elements.
-#: admin/views/partials/report-body.php:206
+#: admin/views/partials/report-body.php:207
 #, php-format
 msgid "Show the %s element"
 msgid_plural "Show all %s elements"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/partials/report-body.php:216
+#: admin/views/partials/report-body.php:217
 msgid "Show on page"
 msgstr ""
 
-#: admin/views/partials/report-body.php:219
+#: admin/views/partials/report-body.php:220
 msgid "Edit"
 msgstr ""
 
-#: admin/views/partials/report-body.php:231
+#: admin/views/partials/report-body.php:232
 msgid "Dismiss"
 msgstr ""
 
-#: admin/views/partials/report-body.php:239
+#: admin/views/partials/report-body.php:240
 msgid "Why are you dismissing this?"
 msgstr ""
 
-#: admin/views/partials/report-body.php:245
+#: admin/views/partials/report-body.php:246
 msgid "Note (optional)"
 msgstr ""
 
-#: admin/views/partials/report-body.php:248
+#: admin/views/partials/report-body.php:249
 msgid "Dismiss issue"
 msgstr ""
 
 #. translators: %s: number of further elements.
-#: admin/views/partials/report-body.php:259
+#: admin/views/partials/report-body.php:260
 #, php-format
 msgid "…and %s more. See the full list in CoreA11y."
 msgstr ""
 
 #. translators: %s: number of problem types that need a person to check them.
-#: admin/views/partials/report-body.php:278
+#: admin/views/partials/report-body.php:279
 #, php-format
 msgid "Needs a human check (%s)"
 msgstr ""
 
 #. translators: %s: number of problem types that need a person to check them.
-#: admin/views/partials/report-body.php:280 pro/includes/class-corea11y-pro-reports.php:109
+#: admin/views/partials/report-body.php:281 pro/includes/class-corea11y-pro-reports.php:109
 msgid "Needs a human check"
 msgstr ""
 
-#: admin/views/partials/report-body.php:282
+#: admin/views/partials/report-body.php:283
 msgid "The automated checks couldn't decide on these, for example text placed over a background image. They are not counted in the score or totals. Take a quick look and fix any that turn out to be real problems."
 msgstr ""
 
 #. translators: 1: number of elements, 2: number of pages.
-#: admin/views/partials/report-body.php:295
+#: admin/views/partials/report-body.php:296
 #, php-format
 msgid "%1$s element"
 msgid_plural "%1$s elements"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/partials/report-body.php:303
+#: admin/views/partials/report-body.php:304
 msgid "Show examples"
 msgstr ""
 
 #. translators: %s: number of dismissed issues.
-#: admin/views/partials/report-body.php:321
+#: admin/views/partials/report-body.php:322
 #, php-format
 msgid "Dismissed issues (%s)"
 msgstr ""
 
-#: admin/views/partials/report-body.php:324
+#: admin/views/partials/report-body.php:325
 msgid "These issues are not counted in the score or totals. Restore any of them if circumstances change."
 msgstr ""
 
-#: admin/views/partials/report-body.php:326
+#: admin/views/partials/report-body.php:327
 msgid "Reason"
 msgstr ""
 
-#: admin/views/partials/report-body.php:326 admin/views/partials/report-body.php:346
+#: admin/views/partials/report-body.php:327 admin/views/partials/report-body.php:347
 msgid "Restore"
 msgstr ""
 
-#: admin/views/partials/report-body.php:359
+#: admin/views/partials/report-body.php:360
 msgid "Pages that could not be scanned"
 msgstr ""
 
 #. translators: %s: number of additional elements not listed.
-#: admin/views/partials/report-body.php:372
+#: admin/views/partials/report-body.php:373
 #, php-format
 msgid "To keep reports readable, up to 25 elements are listed per problem per page. %s more matching elements were found but not listed."
 msgstr ""
 
 #. translators: %s: axe-core version.
-#: admin/views/partials/report-body.php:380
+#: admin/views/partials/report-body.php:381
 #, php-format
 msgid "Scanned with axe-core %s against WCAG 2.0, 2.1 and 2.2 Level A and AA rules, plus CoreA11y content checks. Automated checks find only part of all accessibility issues; the manual checklist covers the rest. This report does not certify WCAG conformance."
 msgstr ""
@@ -1462,7 +1462,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: includes/class-corea11y-admin.php:240 includes/class-corea11y-admin.php:269 includes/class-corea11y-admin.php:313 includes/class-corea11y-admin.php:337 includes/class-corea11y-admin.php:366 includes/class-corea11y-admin.php:385 includes/class-corea11y-admin.php:402 includes/class-corea11y-admin.php:417 includes/class-corea11y-admin.php:526 includes/class-corea11y-admin.php:592 pro/includes/class-corea11y-pro-contrast.php:467 pro/includes/class-corea11y-pro-contrast.php:499 pro/includes/class-corea11y-pro-monitor.php:326 pro/includes/class-corea11y-pro-network.php:266 pro/includes/class-corea11y-pro-network.php:317 pro/includes/class-corea11y-pro-reports.php:56
+#: includes/class-corea11y-admin.php:240 includes/class-corea11y-admin.php:269 includes/class-corea11y-admin.php:313 includes/class-corea11y-admin.php:337 includes/class-corea11y-admin.php:366 includes/class-corea11y-admin.php:385 includes/class-corea11y-admin.php:402 includes/class-corea11y-admin.php:417 includes/class-corea11y-admin.php:526 includes/class-corea11y-admin.php:592 pro/includes/class-corea11y-pro-contrast.php:479 pro/includes/class-corea11y-pro-contrast.php:511 pro/includes/class-corea11y-pro-monitor.php:326 pro/includes/class-corea11y-pro-network.php:266 pro/includes/class-corea11y-pro-network.php:317 pro/includes/class-corea11y-pro-reports.php:56
 msgid "You do not have permission to do this."
 msgstr ""
 
@@ -3721,16 +3721,20 @@ msgstr ""
 msgid "Scan score %1$d out of 100: %2$s"
 msgstr ""
 
-#: includes/class-corea11y-ui.php:209
-msgid "Before:"
+#: includes/class-corea11y-ui.php:160
+msgid "Automated checks only"
 msgstr ""
 
 #: includes/class-corea11y-ui.php:212
+msgid "Before:"
+msgstr ""
+
+#: includes/class-corea11y-ui.php:215
 msgid "After:"
 msgstr ""
 
 #. translators: %d: number of pages checked.
-#: includes/class-corea11y-ui.php:306
+#: includes/class-corea11y-ui.php:309
 #, php-format
 msgid "%d page checked"
 msgid_plural "%d pages checked"
@@ -3738,7 +3742,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: 1: number of problems, 2: "3 pages checked".
-#: includes/class-corea11y-ui.php:309
+#: includes/class-corea11y-ui.php:312
 #, php-format
 msgid "Fixed and verified: %1$s problem gone (%2$s)"
 msgid_plural "Fixed and verified: %1$s problems gone (%2$s)"
@@ -3746,26 +3750,42 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: 1: problems before, 2: problems still found, 3: "3 pages checked".
-#: includes/class-corea11y-ui.php:313
+#: includes/class-corea11y-ui.php:316
 #, php-format
 msgid "Partly fixed: %1$s problems before, %2$s still found (%3$s)"
 msgstr ""
 
 #. translators: 1: problems still found.
-#: includes/class-corea11y-ui.php:316
+#: includes/class-corea11y-ui.php:319
 #, php-format
 msgid "%1$s problem needs more than this fix. See the report."
 msgid_plural "%1$s problems need more than this fix. See the report."
 msgstr[0] ""
 msgstr[1] ""
 
+#: includes/class-corea11y-ui.php:334
+msgid "The score covers automated checks. Manual checklist: complete, no failures."
+msgstr ""
+
+#. translators: 1: checks reviewed, 2: total checks, 3: checks failed.
+#: includes/class-corea11y-ui.php:337
+#, php-format
+msgid "The score covers automated checks only. Manual checklist: %1$s of %2$s reviewed, %3$s failed."
+msgid_plural "The score covers automated checks only. Manual checklist: %1$s of %2$s reviewed, %3$s failed."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-corea11y-ui.php:341
+msgid "Continue the checklist"
+msgstr ""
+
 #. translators: %s: site name.
-#: includes/class-corea11y-ui.php:350
+#: includes/class-corea11y-ui.php:377
 #, php-format
 msgid "Accessibility for %s"
 msgstr ""
 
-#: includes/class-corea11y-ui.php:358
+#: includes/class-corea11y-ui.php:385
 msgid "User guide"
 msgstr ""
 

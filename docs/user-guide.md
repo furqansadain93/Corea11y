@@ -53,7 +53,7 @@ An audit opens each page in a hidden frame in your browser, runs three layers of
 
 - **Three layers of checks:** axe-core (the most widely used open-source engine), selected IBM Equal Access rules, and CoreA11y's own checks for things like vague link text, placeholder-only fields and tables without headers.
 - **Desktop and phone width:** every page is checked at 1280 px and 390 px, so problems in mobile menus are found too.
-- **CoreA11y score (0–100):** a summary of the problems found, weighted by severity. It moves when you fix things; it is not a compliance grade, and other tools score differently.
+- **CoreA11y score (0–100):** a summary of the problems found, weighted by severity. It moves when you fix things; it is not a compliance grade, and other tools score differently. It covers automated checks only: 100 means the automated checks found no WCAG failures. Best-practice suggestions, "Needs a human check" items and the manual checklist aren't part of it, so the dashboard shows your checklist progress next to the score.
 - **Severity:** Critical, Serious, Moderate and Minor. Fix Critical first: those block some visitors completely.
 
 In a report, each problem shows:

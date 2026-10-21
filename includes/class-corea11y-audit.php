@@ -66,39 +66,6 @@ class CoreA11y_Audit {
 	}
 
 	/**
-	 * Whether issues from this source were found by scanning a page (and so have a
-	 * CSS selector that "Show on page" can use), as opposed to server-side checks.
-	 *
-	 * @param string $source Issue source.
-	 * @return bool
-	 */
-	public static function is_page_source( $source ) {
-		return in_array( $source, array( 'axe', 'best-practice' ), true );
-	}
-
-	/**
-	 * Whether a rule comes from axe-core itself (so Deque's rule guide applies).
-	 *
-	 * @param string $rule_id Rule id.
-	 * @return bool
-	 */
-	public static function is_axe_rule( $rule_id ) {
-		return ! preg_match( '/^(corea11y|ibm)-/', (string) $rule_id );
-	}
-
-	/**
-	 * The most recent audit of any status, with its summary decoded.
-	 *
-	 * @return object|null
-	 */
-	public static function latest() {
-		global $wpdb;
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table.
-		$id = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT id FROM %i ORDER BY id DESC LIMIT 1', CoreA11y_Install::tables()['audits'] ) );
-		return $id ? self::get( $id ) : null;
-	}
-
-	/**
 	 * Get an audit row with its summary decoded.
 	 *
 	 * @param int $id Audit id.
@@ -125,10 +92,9 @@ class CoreA11y_Audit {
 	 * @param int    $object_id  Post id or 0.
 	 * @param array  $violations axe-core violations.
 	 * @param string $error      Error message if the page could not be scanned.
-	 * @param array  $review     axe-core "incomplete" results: elements a person needs to check.
 	 * @return int|WP_Error Number of issues stored.
 	 */
-	public static function add_page_results( $id, $url, $object_id, array $violations, $error = '', array $review = array() ) {
+	public static function add_page_results( $id, $url, $object_id, array $violations, $error = '' ) {
 		global $wpdb;
 		$audit = self::get( $id );
 		if ( ! $audit ) {
@@ -168,17 +134,12 @@ class CoreA11y_Audit {
 			$wcag   = CoreA11y_Rules::wcag_from_tags( isset( $v['tags'] ) ? $v['tags'] : array() );
 			$help   = isset( $v['help'] ) ? self::plain_text( $v['help'], 500 ) : '';
 			$nodes  = isset( $v['nodes'] ) && is_array( $v['nodes'] ) ? $v['nodes'] : array();
-			// Best-practice suggestions: shown as minor, labelled, and left out of the score.
-			$is_bp = '' === $wcag && isset( $v['tags'] ) && in_array( 'best-practice', (array) $v['tags'], true );
-			if ( $is_bp ) {
-				$impact = 'minor';
-			}
 
 			$total_nodes = isset( $v['nodeCount'] ) ? absint( $v['nodeCount'] ) : count( $nodes );
 			$truncated  += max( 0, $total_nodes - min( count( $nodes ), self::MAX_NODES_PER_RULE ) );
 
 			foreach ( array_slice( $nodes, 0, self::MAX_NODES_PER_RULE ) as $node ) {
-				$node_impact = ( ! $is_bp && isset( $node['impact'] ) ) ? CoreA11y_Rules::sanitize_impact( $node['impact'] ) : $impact;
+				$node_impact = isset( $node['impact'] ) ? CoreA11y_Rules::sanitize_impact( $node['impact'] ) : $impact;
 				$selector    = self::selector( isset( $node['target'] ) ? $node['target'] : array() );
 				$fp          = self::fingerprint( $rule, $url, $selector );
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table; written once per request.
@@ -193,7 +154,7 @@ class CoreA11y_Audit {
 						'wcag'       => $wcag,
 						'impact'     => $node_impact,
 						'tier'       => CoreA11y_Rules::tier( $rule ),
-						'source'     => $is_bp ? 'best-practice' : 'axe',
+						'source'     => 'axe',
 						'selector'    => $selector,
 						'snippet'     => self::clip( isset( $node['html'] ) ? $node['html'] : '', 1000 ),
 						'help'        => $help,
@@ -214,9 +175,6 @@ class CoreA11y_Audit {
 		if ( $error ) {
 			$summary['pages'][ $index ]['error'] = sanitize_text_field( $error );
 		}
-		if ( ! $error && $review ) {
-			$summary['review'] = self::merge_review( isset( $summary['review'] ) ? (array) $summary['review'] : array(), $review, $label );
-		}
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table; written once per request.
 		$wpdb->update(
@@ -231,54 +189,6 @@ class CoreA11y_Audit {
 		);
 
 		return $stored;
-	}
-
-	/**
-	 * Add one page's "needs review" results to the audit summary. These are elements
-	 * axe-core could not decide on automatically (for example text over a background
-	 * image). They are listed for a person to check and never count toward the score.
-	 *
-	 * @param array  $current Existing summary['review'], keyed by rule id.
-	 * @param array  $review  axe-core incomplete results for the page.
-	 * @param string $label   Page label.
-	 * @return array
-	 */
-	private static function merge_review( array $current, array $review, $label ) {
-		foreach ( $review as $r ) {
-			if ( ! is_array( $r ) || empty( $r['id'] ) ) {
-				continue;
-			}
-			$rule  = CoreA11y_Rules::sanitize_rule_id( $r['id'] );
-			$nodes = isset( $r['nodes'] ) && is_array( $r['nodes'] ) ? $r['nodes'] : array();
-			$count = isset( $r['nodeCount'] ) ? absint( $r['nodeCount'] ) : count( $nodes );
-			if ( ! isset( $current[ $rule ] ) ) {
-				$current[ $rule ] = array(
-					'help'     => isset( $r['help'] ) ? self::plain_text( $r['help'], 500 ) : '',
-					'wcag'     => CoreA11y_Rules::wcag_from_tags( isset( $r['tags'] ) ? $r['tags'] : array() ),
-					'elements' => 0,
-					'pages'    => array(),
-					'examples' => array(),
-				);
-			}
-			$current[ $rule ]['elements'] += $count;
-			if ( ! in_array( $label, $current[ $rule ]['pages'], true ) ) {
-				$current[ $rule ]['page_count'] = ( isset( $current[ $rule ]['page_count'] ) ? (int) $current[ $rule ]['page_count'] : 0 ) + 1;
-				if ( count( $current[ $rule ]['pages'] ) < 10 ) {
-					$current[ $rule ]['pages'][] = $label;
-				}
-			}
-			foreach ( $nodes as $node ) {
-				if ( count( $current[ $rule ]['examples'] ) >= 3 ) {
-					break;
-				}
-				$current[ $rule ]['examples'][] = array(
-					'page'    => $label,
-					'snippet' => self::clip( isset( $node['html'] ) ? $node['html'] : '', 300 ),
-					'why'     => isset( $node['failureSummary'] ) ? self::plain_text( $node['failureSummary'], 400 ) : '',
-				);
-			}
-		}
-		return $current;
 	}
 
 	/**
@@ -326,11 +236,8 @@ class CoreA11y_Audit {
 		}
 		$counts = self::counts( $id );
 		$points = 0;
-		// Best-practice suggestions don't count toward the score.
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table.
-		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT impact, COUNT(*) AS n FROM %i WHERE audit_id = %d AND status <> 'dismissed' AND source <> 'best-practice' GROUP BY impact", CoreA11y_Install::tables()['issues'], $id ) );
-		foreach ( $rows as $r ) {
-			$points += CoreA11y_Rules::weight( $r->impact ) * (int) $r->n;
+		foreach ( $counts['impact'] as $impact => $n ) {
+			$points += CoreA11y_Rules::weight( $impact ) * $n;
 		}
 		$pages = max( 1, (int) $audit->pages_scanned );
 		$score = (int) max( 0, 100 - round( 2 * $points / $pages ) );

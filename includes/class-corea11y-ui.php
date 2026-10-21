@@ -353,7 +353,7 @@ class CoreA11y_UI {
 		 *
 		 * @param string $url Guide URL.
 		 */
-		$guide = (string) apply_filters( 'corea11y_guide_url', 'https://corea11y.com/docs/' );
+		$guide = (string) apply_filters( 'corea11y_guide_url', 'https://corea11y.com/docs/wordpress/' );
 		if ( '' !== $guide ) {
 			echo '<a class="corea11y-brandbar-guide" href="' . esc_url( $guide ) . '" target="_blank" rel="noopener">' . esc_html__( 'User guide', 'corea11y' ) . '<span class="screen-reader-text"> ' . esc_html__( '(opens in a new tab)', 'corea11y' ) . '</span></a>';
 		}
