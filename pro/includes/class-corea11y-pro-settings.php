@@ -251,7 +251,7 @@ class CoreA11y_Pro_Settings {
 			esc_attr( self::OPTION ),
 			esc_attr( self::get( 'brand_color' ) )
 		);
-		echo '<p class="description" id="corea11y-pro-brand-color-desc">' . esc_html__( 'A hex color such as #1a7f5a, used for headings and bars. Pick a dark color so text on it stays readable.', 'corea11y' ) . '</p>';
+		echo '<p class="description" id="corea11y-pro-brand-color-desc">' . esc_html__( 'A hex color such as #1a7f5a, used for the score card, bars and the stripe under your logo. Any color works: CoreA11y picks white or dark text on it, and darkens it where needed, so the report stays readable.', 'corea11y' ) . '</p>';
 	}
 
 	/**

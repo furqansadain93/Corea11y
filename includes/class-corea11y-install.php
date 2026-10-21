@@ -77,10 +77,12 @@ class CoreA11y_Install {
 			$wpdb->query( $wpdb->prepare( 'DROP TABLE IF EXISTS %i', $wpdb->prefix . $table ) );
 		}
 
-		foreach ( array( 'corea11y_settings', 'corea11y_checklist', 'corea11y_db_version', 'corea11y_fixes', 'corea11y_fix_log', 'corea11y_fix_verified', 'corea11y_statement', 'corea11y_pro', 'corea11y_pro_due', 'corea11y_pro_last_check' ) as $option ) {
+		foreach ( array( 'corea11y_settings', 'corea11y_checklist', 'corea11y_db_version', 'corea11y_fixes', 'corea11y_fix_log', 'corea11y_fix_verified', 'corea11y_alt_log', 'corea11y_statement', 'corea11y_pro', 'corea11y_pro_due', 'corea11y_pro_last_check' ) as $option ) {
 			delete_option( $option );
 		}
 		wp_clear_scheduled_hook( 'corea11y_pro_weekly' );
+		// The alt text itself is the owner's content and stays; only CoreA11y's marker goes.
+		delete_post_meta_by_key( '_corea11y_decorative' );
 	}
 
 	/**

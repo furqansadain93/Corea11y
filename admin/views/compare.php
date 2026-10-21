@@ -15,6 +15,7 @@ $corea11y_is_print = false;
 $corea11y_fmt      = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
 ?>
 <div class="wrap corea11y">
+	<?php CoreA11y_UI::brand_bar(); ?>
 	<div class="corea11y-page-head">
 		<div>
 			<h1><?php esc_html_e( 'Before & after', 'corea11y' ); ?></h1>

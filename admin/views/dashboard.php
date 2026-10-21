@@ -17,6 +17,7 @@ $corea11y_scope  = CoreA11y_Settings::get( 'scan_scope' );
 $corea11y_user   = wp_get_current_user();
 ?>
 <div class="wrap corea11y">
+	<?php CoreA11y_UI::brand_bar(); ?>
 	<div class="corea11y-page-head">
 		<div>
 			<h1>

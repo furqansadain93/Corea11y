@@ -138,6 +138,13 @@ if ( 0 === (int) $counts['total'] ) {
 				</span>
 			</p>
 
+			<?php if ( ! $corea11y_is_print && in_array( $corea11y_group['rule'], array( 'image-alt', 'input-image-alt', 'role-img-alt', 'corea11y-content-img-alt', 'corea11y-media-alt', 'ibm-img_alt_misuse' ), true ) ) : ?>
+				<p class="corea11y-quickfix">
+					<strong><?php esc_html_e( 'Add alt text in one place:', 'corea11y' ); ?></strong>
+					<a href="<?php echo esc_url( admin_url( 'admin.php?page=corea11y-alt' ) ); ?>"><?php esc_html_e( 'Open the Alt text screen', 'corea11y' ); ?></a>
+				</p>
+			<?php endif; ?>
+
 			<?php
 			$corea11y_fix_id = CoreA11y_Fixes::for_rule( $corea11y_group['rule'] );
 			if ( $corea11y_fix_id && ! $corea11y_is_print ) :

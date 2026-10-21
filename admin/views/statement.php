@@ -14,6 +14,7 @@ defined( 'ABSPATH' ) || exit;
 $corea11y_flag = isset( $_GET['statement'] ) ? sanitize_key( wp_unslash( $_GET['statement'] ) ) : '';
 ?>
 <div class="wrap corea11y">
+	<?php CoreA11y_UI::brand_bar(); ?>
 	<div class="corea11y-page-head">
 		<div>
 			<h1>

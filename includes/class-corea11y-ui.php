@@ -315,4 +315,111 @@ class CoreA11y_UI {
 		/* translators: 1: problems still found. */
 		return sprintf( _n( '%1$s problem needs more than this fix. See the report.', '%1$s problems need more than this fix. See the report.', (int) $v['after'], 'corea11y' ), $after );
 	}
+
+	/**
+	 * The CoreA11y dot mark (inline SVG, decorative).
+	 *
+	 * @param int $height Height in pixels.
+	 * @return string
+	 */
+	public static function logo_mark( $height = 28 ) {
+		$h = (int) $height;
+		$w = (int) round( $h * 30 / 44 );
+		return '<svg class="corea11y-mark" width="' . $w . '" height="' . $h . '" viewBox="0 0 30 44" aria-hidden="true" focusable="false">'
+			. '<circle cx="7" cy="7" r="6" fill="#fff"/><circle cx="23" cy="7" r="6" fill="#dce85d"/>'
+			. '<g fill="none" stroke="#8a8a8a" stroke-width="1.6"><circle cx="7" cy="22" r="5.2"/><circle cx="23" cy="22" r="5.2"/><circle cx="7" cy="37" r="5.2"/><circle cx="23" cy="37" r="5.2"/></g>'
+			. '</svg>';
+	}
+
+	/**
+	 * The "corea11y" wordmark, readable as "CoreA11y" by screen readers.
+	 *
+	 * @return string
+	 */
+	public static function wordmark() {
+		return '<span class="corea11y-wordmark"><span aria-hidden="true">corea<span class="corea11y-wordmark-11">11</span>y</span><span class="screen-reader-text">CoreA11y</span></span>';
+	}
+
+	/**
+	 * Branded bar shown at the top of every CoreA11y admin screen.
+	 */
+	public static function brand_bar() {
+		echo '<div class="corea11y-brandbar">';
+		echo self::logo_mark( 30 ) . self::wordmark(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static markup.
+		/* translators: %s: site name. */
+		echo '<span class="corea11y-brandbar-site">' . esc_html( sprintf( __( 'Accessibility for %s', 'corea11y' ), get_bloginfo( 'name' ) ) ) . '</span>';
+		echo '</div>';
+	}
+
+	/**
+	 * Relative luminance of a hex color (WCAG formula).
+	 *
+	 * @param string $hex Color like #1a7f5a.
+	 * @return float
+	 */
+	public static function luminance( $hex ) {
+		$hex = ltrim( (string) $hex, '#' );
+		if ( 3 === strlen( $hex ) ) {
+			$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+		}
+		$l = array();
+		foreach ( array( 0, 2, 4 ) as $i ) {
+			$c   = hexdec( substr( $hex, $i, 2 ) ) / 255;
+			$l[] = $c <= 0.03928 ? $c / 12.92 : pow( ( $c + 0.055 ) / 1.055, 2.4 );
+		}
+		return 0.2126 * $l[0] + 0.7152 * $l[1] + 0.0722 * $l[2];
+	}
+
+	/**
+	 * Contrast ratio between two hex colors.
+	 *
+	 * @param string $a Color.
+	 * @param string $b Color.
+	 * @return float
+	 */
+	public static function contrast( $a, $b ) {
+		$x = self::luminance( $a );
+		$y = self::luminance( $b );
+		return ( max( $x, $y ) + 0.05 ) / ( min( $x, $y ) + 0.05 );
+	}
+
+	/**
+	 * Darken a color step by step until it reads on white (4.5:1).
+	 *
+	 * @param string $hex Color.
+	 * @return string
+	 */
+	public static function readable_on_white( $hex ) {
+		$hex = '#' . ltrim( $hex, '#' );
+		for ( $i = 0; $i < 20 && self::contrast( $hex, '#ffffff' ) < 4.5; $i++ ) {
+			$rgb = sscanf( strlen( $hex ) === 4 ? '#' . $hex[1] . $hex[1] . $hex[2] . $hex[2] . $hex[3] . $hex[3] : $hex, '#%02x%02x%02x' );
+			$hex = sprintf( '#%02x%02x%02x', $rgb[0] * 0.88, $rgb[1] * 0.88, $rgb[2] * 0.88 );
+		}
+		return $hex;
+	}
+
+	/**
+	 * CSS custom properties for a white-label accent color, with readable text picked automatically.
+	 *
+	 * @param string $hex Brand color.
+	 * @return string CSS declarations.
+	 */
+	public static function brand_css_vars( $hex ) {
+		$hex  = sanitize_hex_color( $hex );
+		if ( ! $hex ) {
+			return '';
+		}
+		// Dark text on light colors when it reads at 4.5:1, otherwise white text on the color (darkened if needed).
+		$dark = self::contrast( $hex, '#222222' ) < 4.5;
+		$fg   = $dark ? '#ffffff' : '#222222';
+		$text = self::readable_on_white( $hex );
+		return '--corea11y-brand:' . $text . ';'
+			. '--corea11y-brand-dark:' . $text . ';'
+			. '--corea11y-stripe:' . $hex . ';'
+			. '--corea11y-hero-bg:' . ( $dark ? $text : $hex ) . ';'
+			. '--corea11y-hero-fg:' . $fg . ';'
+			. '--corea11y-hero-muted:' . $fg . ';'
+			. '--corea11y-ring:' . $fg . ';'
+			. '--corea11y-ring-track:' . ( $dark ? 'rgba(255,255,255,.28)' : 'rgba(0,0,0,.16)' ) . ';';
+	}
 }

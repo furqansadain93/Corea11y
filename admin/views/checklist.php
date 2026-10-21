@@ -12,6 +12,7 @@ defined( 'ABSPATH' ) || exit;
 $corea11y_statuses = CoreA11y_Checklist::statuses();
 ?>
 <div class="wrap corea11y">
+	<?php CoreA11y_UI::brand_bar(); ?>
 	<h1><?php esc_html_e( 'Manual checklist', 'corea11y' ); ?></h1>
 	<p class="corea11y-lead"><?php esc_html_e( 'Automated scans can\'t judge these WCAG 2.2 criteria. Check each one by hand, then record the result.', 'corea11y' ); ?></p>
 

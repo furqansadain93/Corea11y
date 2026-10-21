@@ -138,6 +138,14 @@ if ( $corea11y_tb > 0 && 0 === $corea11y_ta ) {
 		echo esc_html( sprintf( _n( '%s page was scanned in both audits and compared, plus site-wide content checks.', '%s pages were scanned in both audits and compared, plus site-wide content checks.', count( $cmp['shared'] ), 'corea11y' ), number_format_i18n( count( $cmp['shared'] ) ) ) );
 		?>
 	</p>
+	<?php if ( 'sample' === CoreA11y_Settings::get( 'scan_scope' ) ) : ?>
+		<p>
+			<?php esc_html_e( 'Your audits check one page of each type (for example the home page, one page, one post and one archive), which is fastest. To compare every page, choose "All published pages and posts" under Pages to scan, then run your next audits.', 'corea11y' ); ?>
+			<?php if ( empty( $corea11y_is_print ) ) : ?>
+				<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . CoreA11y_Settings::PAGE ) ); ?>"><?php esc_html_e( 'Change pages to scan', 'corea11y' ); ?></a>
+			<?php endif; ?>
+		</p>
+	<?php endif; ?>
 	<?php if ( $cmp['only_before'] || $cmp['only_after'] ) : ?>
 		<p><?php esc_html_e( 'These pages were scanned in only one audit, so their issues are not counted as resolved or new:', 'corea11y' ); ?></p>
 		<ul>

@@ -17,6 +17,7 @@ $corea11y_is_print = false;
 $corea11y_date     = $audit->started_at ? get_date_from_gmt( $audit->started_at, get_option( 'date_format' ) . ' ' . get_option( 'time_format' ) ) : '';
 ?>
 <div class="wrap corea11y">
+	<?php CoreA11y_UI::brand_bar(); ?>
 	<p class="corea11y-crumb"><a href="<?php echo esc_url( admin_url( 'admin.php?page=corea11y-audits' ) ); ?>">&larr; <?php esc_html_e( 'All audits', 'corea11y' ); ?></a></p>
 	<div class="corea11y-page-head">
 		<div>

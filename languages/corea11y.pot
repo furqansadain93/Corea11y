@@ -7,206 +7,370 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-21 08:47+0000\n"
+"POT-Creation-Date: 2026-10-21 10:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Domain: corea11y\n"
 
-#: admin/views/audits.php:12 includes/class-corea11y-admin.php:50
-msgid "Audits"
+#: admin/views/alt.php:28 admin/views/alt.php:143 includes/class-corea11y-admin.php:52
+msgid "Alt text"
 msgstr ""
 
-#: admin/views/audits.php:12
-msgid "Every audit you have run. Open one to see the full report."
+#: admin/views/alt.php:29
+msgid "Every image on your site that has no alt text, in one place. Type a short description and save: CoreA11y adds it to the Media Library and to the pages where the image is already used."
 msgstr ""
 
-#: admin/views/audits.php:15
-msgid "No audits have been run yet."
+#. translators: 1: number of images, 2: number of pages and posts.
+#: admin/views/alt.php:39
+#, php-format
+msgid "Alt text saved for %1$d image and added to %2$d pages and posts."
+msgid_plural "Alt text saved for %1$d images and added to %2$d pages and posts."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/alt.php:42
+msgid "This alt text is now part of your site and stays even if CoreA11y is removed. Changed pages also have a WordPress revision."
 msgstr ""
 
-#: admin/views/audits.php:18
-msgid "Audit history, newest first"
+#: admin/views/alt.php:44 admin/views/fixes.php:73
+msgid "Verify with a new audit"
 msgstr ""
 
-#: admin/views/audits.php:21
-msgid "Date"
+#: admin/views/alt.php:50 admin/views/alt.php:184 admin/views/alt.php:198 admin/views/fixes.php:181 admin/views/fixes.php:217 admin/views/fixes.php:243 admin/views/report.php:68
+msgid "Undo"
 msgstr ""
 
-#: admin/views/audits.php:22 pro/includes/class-corea11y-pro-reports.php:93
-msgid "Status"
+#: admin/views/alt.php:55
+msgid "Nothing to save: type alt text or tick \"Decorative\" for at least one image."
 msgstr ""
 
-#: admin/views/audits.php:23
-msgid "Pages scanned"
+#: admin/views/alt.php:59
+msgid "Undone. The images have their previous alt text again."
 msgstr ""
 
-#: admin/views/audits.php:24 admin/views/partials/report-body.php:77 pro/includes/class-corea11y-pro-network.php:185
-msgid "Issues"
+#: admin/views/alt.php:59
+msgid "That change was already undone."
 msgstr ""
 
-#: admin/views/audits.php:25
-msgid "Score"
+#: admin/views/alt.php:63
+msgid "How to write good alt text"
 msgstr ""
 
-#: admin/views/audits.php:26 admin/views/print.php:36
-msgid "Export"
+#: admin/views/alt.php:65
+msgid "Describe what matters about the image in this context, in a short sentence (usually under 125 characters)."
 msgstr ""
 
-#: admin/views/audits.php:44 pro/includes/class-corea11y-pro-fixes.php:524
-msgid "PDF"
+#: admin/views/alt.php:66
+msgid "Don't start with \"Image of\" or \"Picture of\": screen readers already say it's an image."
 msgstr ""
 
-#: admin/views/audits.php:44 admin/views/compare.php:25 admin/views/dashboard.php:96 admin/views/partials/report-body.php:174 admin/views/report.php:27 pro/includes/class-corea11y-pro-fixes.php:522
+#: admin/views/alt.php:67
+msgid "For a logo, write the company name. For a linked image, say where the link goes."
+msgstr ""
+
+#: admin/views/alt.php:68
+msgid "If the image is only decoration (a background, a divider), tick \"Decorative\" so screen readers skip it."
+msgstr ""
+
+#: admin/views/alt.php:69
+msgid "If the image contains text, include that text."
+msgstr ""
+
+#: admin/views/alt.php:75 admin/views/alt.php:77
+msgid "Images used on your site"
+msgstr ""
+
+#: admin/views/alt.php:75 admin/views/alt.php:77
+msgid "All Media Library images without alt text"
+msgstr ""
+
+#: admin/views/alt.php:83
+msgid "Every image here has alt text."
+msgstr ""
+
+#: admin/views/alt.php:84
+msgid "Images you add later will appear here if they have none."
+msgstr ""
+
+#. translators: %d: number of images.
+#: admin/views/alt.php:90
+#, php-format
+msgid "%d image needs alt text."
+msgid_plural "%d images need alt text."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/alt.php:112
+msgid "Image"
+msgstr ""
+
+#: admin/views/alt.php:114
+msgid "View full size"
+msgstr ""
+
+#: admin/views/alt.php:114 admin/views/alt.php:121 admin/views/audits.php:45 admin/views/compare.php:26 admin/views/dashboard.php:97 admin/views/partials/report-body.php:181 admin/views/report.php:28 pro/includes/class-corea11y-pro-fixes.php:522
 msgid "(opens in a new tab)"
 msgstr ""
 
-#: admin/views/checklist.php:15 admin/views/dashboard.php:107 admin/views/dashboard.php:108 includes/class-corea11y-admin.php:53
+#: admin/views/alt.php:119
+msgid "Used on:"
+msgstr ""
+
+#: admin/views/alt.php:121
+msgid "(no title)"
+msgstr ""
+
+#. translators: %d: number of other pages.
+#: admin/views/alt.php:126
+#, php-format
+msgid " and %d more"
+msgstr ""
+
+#: admin/views/alt.php:130
+msgid "In the Media Library, not used in a published page yet."
+msgstr ""
+
+#. translators: %d: number of pages.
+#: admin/views/alt.php:137
+#, php-format
+msgid "This image has alt text in the Media Library, but not where it was placed on %d page. Save to add it there."
+msgid_plural "This image has alt text in the Media Library, but not where it was placed on %d pages. Save to add it there."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/alt.php:146
+msgid "Decorative"
+msgstr ""
+
+#: admin/views/alt.php:153
+msgid "Save alt text"
+msgstr ""
+
+#: admin/views/alt.php:154
+msgid "Images you leave empty are not changed."
+msgstr ""
+
+#: admin/views/alt.php:159
+msgid "Pages of images"
+msgstr ""
+
+#. translators: %s: page number.
+#: admin/views/alt.php:167 pro/includes/class-corea11y-pro-fixes.php:547
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+#: admin/views/alt.php:181
+msgid "Recent changes"
+msgstr ""
+
+#: admin/views/alt.php:183
+msgid "Recent alt text changes, newest first"
+msgstr ""
+
+#: admin/views/alt.php:184 admin/views/fixes.php:217
+msgid "When"
+msgstr ""
+
+#: admin/views/alt.php:184
+msgid "Images"
+msgstr ""
+
+#: admin/views/alt.php:192
+msgid "Undone"
+msgstr ""
+
+#: admin/views/audits.php:13 includes/class-corea11y-admin.php:53
+msgid "Audits"
+msgstr ""
+
+#: admin/views/audits.php:13
+msgid "Every audit you have run. Open one to see the full report."
+msgstr ""
+
+#: admin/views/audits.php:16
+msgid "No audits have been run yet."
+msgstr ""
+
+#: admin/views/audits.php:19
+msgid "Audit history, newest first"
+msgstr ""
+
+#: admin/views/audits.php:22
+msgid "Date"
+msgstr ""
+
+#: admin/views/audits.php:23 pro/includes/class-corea11y-pro-reports.php:93
+msgid "Status"
+msgstr ""
+
+#: admin/views/audits.php:24
+msgid "Pages scanned"
+msgstr ""
+
+#: admin/views/audits.php:25 admin/views/partials/report-body.php:77 pro/includes/class-corea11y-pro-network.php:186
+msgid "Issues"
+msgstr ""
+
+#: admin/views/audits.php:26
+msgid "Score"
+msgstr ""
+
+#: admin/views/audits.php:27 admin/views/print.php:39
+msgid "Export"
+msgstr ""
+
+#: admin/views/audits.php:45 pro/includes/class-corea11y-pro-fixes.php:524
+msgid "PDF"
+msgstr ""
+
+#: admin/views/checklist.php:16 admin/views/dashboard.php:108 admin/views/dashboard.php:109 includes/class-corea11y-admin.php:56
 msgid "Manual checklist"
 msgstr ""
 
-#: admin/views/checklist.php:16
+#: admin/views/checklist.php:17
 msgid "Automated scans can't judge these WCAG 2.2 criteria. Check each one by hand, then record the result."
 msgstr ""
 
-#: admin/views/checklist.php:20
+#: admin/views/checklist.php:21
 msgid "Checklist saved."
 msgstr ""
 
 #. translators: 1: WCAG success criterion number, 2: conformance level (A or AA).
-#: admin/views/checklist.php:41
+#: admin/views/checklist.php:42
 #, php-format
 msgid "WCAG %1$s (%2$s)"
 msgstr ""
 
-#: admin/views/checklist.php:47
+#: admin/views/checklist.php:48
 msgid "Result"
 msgstr ""
 
-#: admin/views/checklist.php:57
+#: admin/views/checklist.php:58
 msgid "Save checklist"
 msgstr ""
 
-#: admin/views/compare.php:20 includes/class-corea11y-admin.php:51
+#: admin/views/compare.php:21 includes/class-corea11y-admin.php:54
 msgid "Before & after"
 msgstr ""
 
-#: admin/views/compare.php:21
+#: admin/views/compare.php:22
 msgid "See what you fixed, what is left, and anything new."
 msgstr ""
 
-#: admin/views/compare.php:25 admin/views/dashboard.php:96 admin/views/report.php:27
+#: admin/views/compare.php:26 admin/views/dashboard.php:97 admin/views/report.php:28
 msgid "Download PDF"
 msgstr ""
 
-#: admin/views/compare.php:32
+#: admin/views/compare.php:33
 msgid "You need two audits to compare"
 msgstr ""
 
-#: admin/views/compare.php:33
+#: admin/views/compare.php:34
 msgid "Run an audit, fix a few things, then run another one. This page will show your progress side by side."
 msgstr ""
 
-#: admin/views/compare.php:34
+#: admin/views/compare.php:35
 msgid "Go to the dashboard"
 msgstr ""
 
-#: admin/views/compare.php:40 admin/views/partials/compare-body.php:100 includes/class-corea11y-ui.php:202
+#: admin/views/compare.php:41 admin/views/partials/compare-body.php:100 includes/class-corea11y-ui.php:202
 msgid "Before"
 msgstr ""
 
 #. translators: 1: date, 2: number of issues.
-#: admin/views/compare.php:46 admin/views/compare.php:59
+#: admin/views/compare.php:47 admin/views/compare.php:60
 #, php-format
 msgid "%1$s (%2$s issues)"
 msgstr ""
 
-#: admin/views/compare.php:53 admin/views/partials/compare-body.php:101 includes/class-corea11y-ui.php:202
+#: admin/views/compare.php:54 admin/views/partials/compare-body.php:101 includes/class-corea11y-ui.php:202
 msgid "After"
 msgstr ""
 
-#: admin/views/compare.php:65
+#: admin/views/compare.php:66
 msgid "Compare"
 msgstr ""
 
 #. translators: %s: user's display name.
-#: admin/views/dashboard.php:25
+#: admin/views/dashboard.php:26
 #, php-format
 msgid "Hi %s, let's make your site welcoming for everyone"
 msgstr ""
 
-#: admin/views/dashboard.php:28
+#: admin/views/dashboard.php:29
 msgid "CoreA11y finds accessibility problems, explains them in plain language and tracks your progress."
 msgstr ""
 
-#: admin/views/dashboard.php:34
+#: admin/views/dashboard.php:35
 msgid "Run an audit"
 msgstr ""
 
-#: admin/views/dashboard.php:34
+#: admin/views/dashboard.php:35
 msgid "We check your pages against WCAG 2.2. It takes about a minute."
 msgstr ""
 
-#: admin/views/dashboard.php:35
+#: admin/views/dashboard.php:36
 msgid "Read the report"
 msgstr ""
 
-#: admin/views/dashboard.php:35
+#: admin/views/dashboard.php:36
 msgid "Every problem comes with a \"?\" that explains why it matters and how to fix it."
 msgstr ""
 
-#: admin/views/dashboard.php:36
+#: admin/views/dashboard.php:37
 msgid "Fix, starting with critical"
 msgstr ""
 
-#: admin/views/dashboard.php:36
+#: admin/views/dashboard.php:37
 msgid "Critical problems block some visitors completely, so they make the biggest difference."
 msgstr ""
 
-#: admin/views/dashboard.php:37
+#: admin/views/dashboard.php:38
 msgid "Re-audit and celebrate"
 msgstr ""
 
-#: admin/views/dashboard.php:37
+#: admin/views/dashboard.php:38
 msgid "Compare before and after, and download a PDF to share your progress."
 msgstr ""
 
-#: admin/views/dashboard.php:42 admin/views/report.php:39
+#: admin/views/dashboard.php:43 admin/views/report.php:40
 msgid "Run a new audit"
 msgstr ""
 
-#: admin/views/dashboard.php:42
+#: admin/views/dashboard.php:43
 msgid "Ready when you are"
 msgstr ""
 
 #. translators: %s: the selected set of pages, e.g. "One page per template".
-#: admin/views/dashboard.php:47
+#: admin/views/dashboard.php:48
 #, php-format
 msgid "Pages to scan: %s."
 msgstr ""
 
-#: admin/views/dashboard.php:51 admin/views/fixes.php:216
+#: admin/views/dashboard.php:52 admin/views/fixes.php:217
 msgid "Change"
 msgstr ""
 
-#: admin/views/dashboard.php:53
+#: admin/views/dashboard.php:54
 msgid "Keep this tab open while the audit runs. Your pages are opened quietly in the background, so visitors notice nothing."
 msgstr ""
 
-#: admin/views/dashboard.php:55
+#: admin/views/dashboard.php:56
 msgid "Run audit"
 msgstr ""
 
-#: admin/views/dashboard.php:55
+#: admin/views/dashboard.php:56
 msgid "Run my first audit"
 msgstr ""
 
-#: admin/views/dashboard.php:56
+#: admin/views/dashboard.php:57
 msgid "Stop and save results so far"
 msgstr ""
 
 #. translators: %s: number of issues.
-#: admin/views/dashboard.php:77
+#: admin/views/dashboard.php:78
 #, php-format
 msgid "Great progress: %s fewer issue than last time!"
 msgid_plural "Great progress: %s fewer issues than last time!"
@@ -214,12 +378,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s: number of issues.
-#: admin/views/dashboard.php:79
+#: admin/views/dashboard.php:80
 msgid "No issues in your latest audit. Brilliant!"
 msgstr ""
 
 #. translators: %s: number of issues.
-#: admin/views/dashboard.php:82
+#: admin/views/dashboard.php:83
 #, php-format
 msgid "Your latest audit found %s issue"
 msgid_plural "Your latest audit found %s issues"
@@ -227,285 +391,273 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: 1: date, 2: number of pages.
-#: admin/views/dashboard.php:89
+#: admin/views/dashboard.php:90
 #, php-format
 msgid "Audited %1$s across %2$s pages."
 msgstr ""
 
 #. translators: 1: date, 2: number of pages.
-#: admin/views/dashboard.php:91
+#: admin/views/dashboard.php:92
 msgid "Scan score"
 msgstr ""
 
-#: admin/views/dashboard.php:95
+#: admin/views/dashboard.php:96
 msgid "View report"
 msgstr ""
 
-#: admin/views/dashboard.php:98
+#: admin/views/dashboard.php:99
 msgid "See before & after"
 msgstr ""
 
-#: admin/views/dashboard.php:108
+#: admin/views/dashboard.php:109
 msgid "Some WCAG requirements need human judgment, like whether alt text is meaningful or a video's captions are accurate. The checklist walks you through them one by one."
 msgstr ""
 
 #. translators: 1: number of checks reviewed, 2: total number of checks, 3: number passed.
-#: admin/views/dashboard.php:114
+#: admin/views/dashboard.php:115
 #, php-format
 msgid "%1$d of %2$d checks reviewed, %3$d passed."
 msgstr ""
 
-#: admin/views/dashboard.php:124
+#: admin/views/dashboard.php:125
 msgid "Passed"
 msgstr ""
 
-#: admin/views/dashboard.php:129
+#: admin/views/dashboard.php:130
 msgid "Failed"
 msgstr ""
 
-#: admin/views/dashboard.php:134
+#: admin/views/dashboard.php:135
 msgid "Not checked yet"
 msgstr ""
 
-#: admin/views/dashboard.php:139
+#: admin/views/dashboard.php:140
 msgid "Checklist progress"
 msgstr ""
 
-#: admin/views/dashboard.php:141
+#: admin/views/dashboard.php:142
 msgid "Open the checklist"
 msgstr ""
 
-#: admin/views/dashboard.php:145
+#: admin/views/dashboard.php:146
 msgid "CoreA11y reports automated scan results and your own manual checks. Automated tools can't confirm full WCAG conformance on their own."
 msgstr ""
 
-#: admin/views/fixes.php:24 includes/class-corea11y-admin.php:49
+#: admin/views/fixes.php:25 includes/class-corea11y-admin.php:51
 msgid "Quick fixes"
 msgstr ""
 
-#: admin/views/fixes.php:25
+#: admin/views/fixes.php:26
 msgid "Safe, one-click fixes for common problems. Nothing in your theme or content is edited, and every change can be undone."
 msgstr ""
 
-#: admin/views/fixes.php:42
+#: admin/views/fixes.php:43
 msgid "Undone."
 msgstr ""
 
-#: admin/views/fixes.php:42
+#: admin/views/fixes.php:43
 msgid "Redone."
 msgstr ""
 
-#: admin/views/fixes.php:42
+#: admin/views/fixes.php:43
 msgid "Fixes saved."
 msgstr ""
 
 #. translators: %s: internal fix name.
-#: admin/views/fixes.php:47 admin/views/fixes.php:221
+#: admin/views/fixes.php:48 admin/views/fixes.php:222
 #, php-format
 msgid "Pro fix (%s)"
 msgstr ""
 
 #. translators: %s: fix name.
-#: admin/views/fixes.php:49
+#: admin/views/fixes.php:50
 #, php-format
 msgid "Turned on: %s"
 msgstr ""
 
 #. translators: %s: fix name.
-#: admin/views/fixes.php:49
+#: admin/views/fixes.php:50
 #, php-format
 msgid "Turned off: %s"
 msgstr ""
 
 #. translators: %s: names of caching plugins, e.g. "WP Rocket".
-#: admin/views/fixes.php:59
+#: admin/views/fixes.php:60
 #, php-format
 msgid "We also cleared the page cache (%s), so visitors see this change now."
 msgstr ""
 
 #. translators: %s: names of caching plugins, e.g. "WP Rocket".
-#: admin/views/fixes.php:61
+#: admin/views/fixes.php:62
 msgid "If your host or a CDN such as Cloudflare caches your pages, clear that cache to see this change straight away."
 msgstr ""
 
-#: admin/views/fixes.php:66
+#: admin/views/fixes.php:67
 msgid "Checking that the fixes worked…"
 msgstr ""
 
-#: admin/views/fixes.php:70
+#: admin/views/fixes.php:71
 msgid "Check again"
 msgstr ""
 
-#: admin/views/fixes.php:72
-msgid "Verify with a new audit"
-msgstr ""
-
-#: admin/views/fixes.php:76
+#: admin/views/fixes.php:77
 msgid "Redo"
 msgstr ""
 
-#: admin/views/fixes.php:76
+#: admin/views/fixes.php:77
 msgid "Undo this change"
 msgid_plural "Undo these changes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/fixes.php:81
+#: admin/views/fixes.php:82
 msgid "Nothing changed."
 msgstr ""
 
-#: admin/views/fixes.php:90
+#: admin/views/fixes.php:91
 msgid "Check complete."
 msgstr ""
 
-#: admin/views/fixes.php:90
+#: admin/views/fixes.php:91
 msgid "CoreA11y opened the pages where these problems were found and checked them again:"
 msgstr ""
 
-#: admin/views/fixes.php:101
+#: admin/views/fixes.php:102
 msgid "Problems the fixes don't cover are not part of this check. Run a full audit to update your score."
 msgstr ""
 
 #. translators: %d: number of quick fixes.
-#: admin/views/fixes.php:108
+#: admin/views/fixes.php:109
 #, php-format
 msgid "%d fix that is on hasn't been checked against your latest audit yet."
 msgid_plural "%d fixes that are on haven't been checked against your latest audit yet."
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/fixes.php:111
+#: admin/views/fixes.php:112
 msgid "Check that they work"
 msgstr ""
 
-#: admin/views/fixes.php:131
+#: admin/views/fixes.php:132
 msgid "This fix changes how your site looks. Check a few pages after turning it on."
 msgstr ""
 
-#: admin/views/fixes.php:135
+#: admin/views/fixes.php:136
 msgid "Activate your CoreA11y Pro license to turn this fix on."
 msgstr ""
 
-#: admin/views/fixes.php:140
+#: admin/views/fixes.php:141
 msgid "Activate license"
 msgstr ""
 
-#: admin/views/fixes.php:146
+#: admin/views/fixes.php:147
 msgid "Pro"
 msgstr ""
 
 #. translators: %s: WCAG success criterion numbers.
-#: admin/views/fixes.php:152 admin/views/partials/report-body.php:128
+#: admin/views/fixes.php:153 admin/views/partials/report-body.php:128
 #, php-format
 msgid "WCAG %s"
 msgstr ""
 
-#: admin/views/fixes.php:156 admin/views/partials/report-body.php:117 admin/views/partials/report-body.php:120 pro/includes/class-corea11y-pro-reports.php:107
+#: admin/views/fixes.php:157 admin/views/partials/report-body.php:117 admin/views/partials/report-body.php:120 pro/includes/class-corea11y-pro-reports.php:107
 msgid "Best practice"
 msgstr ""
 
 #. translators: %s: number of issues.
-#: admin/views/fixes.php:167
+#: admin/views/fixes.php:168
 #, php-format
 msgid "Fixes %s issue in your latest audit"
 msgid_plural "Fixes %s issues in your latest audit"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/fixes.php:171
+#: admin/views/fixes.php:172
 msgid "Not needed in your latest audit"
 msgstr ""
 
-#: admin/views/fixes.php:173
+#: admin/views/fixes.php:174
 msgid "Recommended for every site"
 msgstr ""
 
-#: admin/views/fixes.php:180 admin/views/fixes.php:216 admin/views/fixes.php:242 admin/views/report.php:67
-msgid "Undo"
-msgstr ""
-
-#: admin/views/fixes.php:195
+#: admin/views/fixes.php:196
 msgid "Want more fixes?"
 msgstr ""
 
-#: admin/views/fixes.php:196
+#: admin/views/fixes.php:197
 msgid "CoreA11y Pro adds 29 more one-click fixes, such as naming icon-only links and buttons, opening dropdown menus with the keyboard, stopping sound that plays automatically and warning when links open a new tab. Every fix can be undone, like the ones above."
 msgstr ""
 
-#: admin/views/fixes.php:197
+#: admin/views/fixes.php:198
 msgid "See CoreA11y Pro"
 msgstr ""
 
-#: admin/views/fixes.php:202
+#: admin/views/fixes.php:203
 msgid "Save fixes"
 msgstr ""
 
-#: admin/views/fixes.php:204
+#: admin/views/fixes.php:205
 msgid "Turn all fixes off"
 msgstr ""
 
-#: admin/views/fixes.php:210
+#: admin/views/fixes.php:211
 msgid "Change history"
 msgstr ""
 
-#: admin/views/fixes.php:212
+#: admin/views/fixes.php:213
 msgid "No changes yet."
 msgstr ""
 
-#: admin/views/fixes.php:215
+#: admin/views/fixes.php:216
 msgid "Quick fix changes, newest first"
 msgstr ""
 
-#: admin/views/fixes.php:216
-msgid "When"
-msgstr ""
-
-#: admin/views/fixes.php:216
+#: admin/views/fixes.php:217
 msgid "Fix"
 msgstr ""
 
-#: admin/views/fixes.php:216 admin/views/partials/report-body.php:306
+#: admin/views/fixes.php:217 admin/views/partials/report-body.php:313
 msgid "By"
 msgstr ""
 
-#: admin/views/fixes.php:230
+#: admin/views/fixes.php:231
 msgid "Turned back on (undo)"
 msgstr ""
 
-#: admin/views/fixes.php:230
+#: admin/views/fixes.php:231
 msgid "Turned off (undo)"
 msgstr ""
 
-#: admin/views/fixes.php:232
+#: admin/views/fixes.php:233
 msgid "Turned on"
 msgstr ""
 
-#: admin/views/fixes.php:232
+#: admin/views/fixes.php:233
 msgid "Turned off"
 msgstr ""
 
 #. translators: 1: change, 2: fix name.
 #. translators: 1: link text such as "Read more", 2: post title.
-#: admin/views/fixes.php:245 pro/includes/class-corea11y-pro-fixes.php:477
+#: admin/views/fixes.php:246 pro/includes/class-corea11y-pro-fixes.php:477
 #, php-format
 msgid "%1$s: %2$s"
 msgstr ""
 
 #. translators: 1: change, 2: fix name.
-#: admin/views/fixes.php:245
+#: admin/views/fixes.php:246
 msgid "turned on"
 msgstr ""
 
 #. translators: 1: change, 2: fix name.
-#: admin/views/fixes.php:245
+#: admin/views/fixes.php:246
 msgid "turned off"
 msgstr ""
 
-#: admin/views/fixes.php:251
+#: admin/views/fixes.php:252
 msgid "Changed since"
 msgstr ""
 
-#: admin/views/fixes.php:261
+#: admin/views/fixes.php:262
 msgid "Some fixes use a small script on your pages because many themes hard-code these parts of the page. Visitors with JavaScript turned off simply see your site as before."
 msgstr ""
 
@@ -585,7 +737,7 @@ msgstr ""
 msgid "Change by problem"
 msgstr ""
 
-#: admin/views/partials/compare-body.php:99 admin/views/partials/report-body.php:306 pro/includes/class-corea11y-pro-reports.php:88
+#: admin/views/partials/compare-body.php:99 admin/views/partials/report-body.php:313 pro/includes/class-corea11y-pro-reports.php:88
 msgid "Problem"
 msgstr ""
 
@@ -613,23 +765,31 @@ msgid_plural "%s pages were scanned in both audits and compared, plus site-wide 
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/partials/compare-body.php:142
-msgid "These pages were scanned in only one audit, so their issues are not counted as resolved or new:"
+#: admin/views/partials/compare-body.php:143
+msgid "Your audits check one page of each type (for example the home page, one page, one post and one archive), which is fastest. To compare every page, choose \"All published pages and posts\" under Pages to scan, then run your next audits."
 msgstr ""
 
-#. translators: %s: page name.
-#: admin/views/partials/compare-body.php:148
-#, php-format
-msgid "%s (earlier audit only)"
+#: admin/views/partials/compare-body.php:145
+msgid "Change pages to scan"
+msgstr ""
+
+#: admin/views/partials/compare-body.php:150
+msgid "These pages were scanned in only one audit, so their issues are not counted as resolved or new:"
 msgstr ""
 
 #. translators: %s: page name.
 #: admin/views/partials/compare-body.php:156
 #, php-format
+msgid "%s (earlier audit only)"
+msgstr ""
+
+#. translators: %s: page name.
+#: admin/views/partials/compare-body.php:164
+#, php-format
 msgid "%s (later audit only)"
 msgstr ""
 
-#: admin/views/partials/compare-body.php:162
+#: admin/views/partials/compare-body.php:170
 msgid "Comparisons are based on automated scan results. An element counts as the same issue when the same problem is found on the same element of the same page."
 msgstr ""
 
@@ -685,7 +845,7 @@ msgstr ""
 msgid "About the CoreA11y score"
 msgstr ""
 
-#: admin/views/partials/report-body.php:58 pro/includes/class-corea11y-pro-network.php:184
+#: admin/views/partials/report-body.php:58 pro/includes/class-corea11y-pro-network.php:185
 msgid "CoreA11y score"
 msgstr ""
 
@@ -709,7 +869,7 @@ msgstr ""
 msgid "Pages with the most issues"
 msgstr ""
 
-#: admin/views/partials/report-body.php:77 admin/views/partials/report-body.php:306 pro/includes/class-corea11y-pro-reports.php:86
+#: admin/views/partials/report-body.php:77 admin/views/partials/report-body.php:313 pro/includes/class-corea11y-pro-reports.php:86
 msgid "Page"
 msgstr ""
 
@@ -734,337 +894,345 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: 1: number of elements, 2: number of pages.
-#: admin/views/partials/report-body.php:136 admin/views/partials/report-body.php:275
+#: admin/views/partials/report-body.php:136 admin/views/partials/report-body.php:282
 #, php-format
 msgid "on %s page"
 msgid_plural "on %s pages"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/partials/report-body.php:148
+#: admin/views/partials/report-body.php:143
+msgid "Add alt text in one place:"
+msgstr ""
+
+#: admin/views/partials/report-body.php:144
+msgid "Open the Alt text screen"
+msgstr ""
+
+#: admin/views/partials/report-body.php:155
 msgid "Quick fix is on"
 msgstr ""
 
-#: admin/views/partials/report-body.php:149
+#: admin/views/partials/report-body.php:156
 msgid "Run a new audit to confirm it resolved these issues."
 msgstr ""
 
-#: admin/views/partials/report-body.php:151
+#: admin/views/partials/report-body.php:158
 msgid "One-click fix available:"
 msgstr ""
 
-#: admin/views/partials/report-body.php:159
+#: admin/views/partials/report-body.php:166
 msgid "Why it matters"
 msgstr ""
 
-#: admin/views/partials/report-body.php:160 pro/includes/class-corea11y-pro-reports.php:96
+#: admin/views/partials/report-body.php:167 pro/includes/class-corea11y-pro-reports.php:96
 msgid "Who it affects"
 msgstr ""
 
-#: admin/views/partials/report-body.php:161 pro/includes/class-corea11y-pro-reports.php:97
+#: admin/views/partials/report-body.php:168 pro/includes/class-corea11y-pro-reports.php:97
 msgid "How to fix"
 msgstr ""
 
-#: admin/views/partials/report-body.php:164 includes/class-corea11y-highlighter.php:136 includes/class-corea11y-ui.php:82
+#: admin/views/partials/report-body.php:171 includes/class-corea11y-highlighter.php:136 includes/class-corea11y-ui.php:82
 msgid "How to fix:"
 msgstr ""
 
 #. translators: %s: the technical rule description from the testing engine.
-#: admin/views/partials/report-body.php:171
+#: admin/views/partials/report-body.php:178
 #, php-format
 msgid "Technical check: %s"
 msgstr ""
 
-#: admin/views/partials/report-body.php:174
+#: admin/views/partials/report-body.php:181
 msgid "Detailed guide"
 msgstr ""
 
-#: admin/views/partials/report-body.php:180
+#: admin/views/partials/report-body.php:187
 msgid "Where it was found"
 msgstr ""
 
 #. translators: %s: number of elements.
-#: admin/views/partials/report-body.php:186
+#: admin/views/partials/report-body.php:193
 #, php-format
 msgid "Show the %s element"
 msgid_plural "Show all %s elements"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/partials/report-body.php:196
+#: admin/views/partials/report-body.php:203
 msgid "Show on page"
 msgstr ""
 
-#: admin/views/partials/report-body.php:199
+#: admin/views/partials/report-body.php:206
 msgid "Edit"
 msgstr ""
 
-#: admin/views/partials/report-body.php:211
+#: admin/views/partials/report-body.php:218
 msgid "Dismiss"
 msgstr ""
 
-#: admin/views/partials/report-body.php:219
+#: admin/views/partials/report-body.php:226
 msgid "Why are you dismissing this?"
 msgstr ""
 
-#: admin/views/partials/report-body.php:225
+#: admin/views/partials/report-body.php:232
 msgid "Note (optional)"
 msgstr ""
 
-#: admin/views/partials/report-body.php:228
+#: admin/views/partials/report-body.php:235
 msgid "Dismiss issue"
 msgstr ""
 
 #. translators: %s: number of further elements.
-#: admin/views/partials/report-body.php:239
+#: admin/views/partials/report-body.php:246
 #, php-format
 msgid "…and %s more. See the full list in CoreA11y."
 msgstr ""
 
 #. translators: %s: number of problem types that need a person to check them.
-#: admin/views/partials/report-body.php:258
+#: admin/views/partials/report-body.php:265
 #, php-format
 msgid "Needs a human check (%s)"
 msgstr ""
 
 #. translators: %s: number of problem types that need a person to check them.
-#: admin/views/partials/report-body.php:260 pro/includes/class-corea11y-pro-reports.php:109
+#: admin/views/partials/report-body.php:267 pro/includes/class-corea11y-pro-reports.php:109
 msgid "Needs a human check"
 msgstr ""
 
-#: admin/views/partials/report-body.php:262
+#: admin/views/partials/report-body.php:269
 msgid "The automated checks couldn't decide on these, for example text placed over a background image. They are not counted in the score or totals. Take a quick look and fix any that turn out to be real problems."
 msgstr ""
 
 #. translators: 1: number of elements, 2: number of pages.
-#: admin/views/partials/report-body.php:275
+#: admin/views/partials/report-body.php:282
 #, php-format
 msgid "%1$s element"
 msgid_plural "%1$s elements"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/partials/report-body.php:283
+#: admin/views/partials/report-body.php:290
 msgid "Show examples"
 msgstr ""
 
 #. translators: %s: number of dismissed issues.
-#: admin/views/partials/report-body.php:301
+#: admin/views/partials/report-body.php:308
 #, php-format
 msgid "Dismissed issues (%s)"
 msgstr ""
 
-#: admin/views/partials/report-body.php:304
+#: admin/views/partials/report-body.php:311
 msgid "These issues are not counted in the score or totals. Restore any of them if circumstances change."
 msgstr ""
 
-#: admin/views/partials/report-body.php:306
+#: admin/views/partials/report-body.php:313
 msgid "Reason"
 msgstr ""
 
-#: admin/views/partials/report-body.php:306 admin/views/partials/report-body.php:326
+#: admin/views/partials/report-body.php:313 admin/views/partials/report-body.php:333
 msgid "Restore"
 msgstr ""
 
-#: admin/views/partials/report-body.php:339
+#: admin/views/partials/report-body.php:346
 msgid "Pages that could not be scanned"
 msgstr ""
 
 #. translators: %s: number of additional elements not listed.
-#: admin/views/partials/report-body.php:352
+#: admin/views/partials/report-body.php:359
 #, php-format
 msgid "To keep reports readable, up to 25 elements are listed per problem per page. %s more matching elements were found but not listed."
 msgstr ""
 
 #. translators: %s: axe-core version.
-#: admin/views/partials/report-body.php:360
+#: admin/views/partials/report-body.php:367
 #, php-format
 msgid "Scanned with axe-core %s against WCAG 2.0, 2.1 and 2.2 Level A and AA rules, plus CoreA11y content checks. Automated checks find only part of all accessibility issues; the manual checklist covers the rest. This report does not certify WCAG conformance."
 msgstr ""
 
-#: admin/views/print.php:37
+#: admin/views/print.php:40
 msgid "In the print window, choose \"Save as PDF\" as the destination."
 msgstr ""
 
-#: admin/views/print.php:38
+#: admin/views/print.php:41
 msgid "Save as PDF"
 msgstr ""
 
 #. translators: %s: date the PDF was generated.
-#: admin/views/print.php:71
+#: admin/views/print.php:73
 #, php-format
 msgid "Generated %s"
 msgstr ""
 
 #. translators: %s: plugin version.
-#: admin/views/print.php:86
+#: admin/views/print.php:88
 #, php-format
 msgid "Report generated by CoreA11y %s · Automated results do not certify WCAG conformance."
 msgstr ""
 
-#: admin/views/report.php:20
+#: admin/views/report.php:21
 msgid "All audits"
 msgstr ""
 
-#: admin/views/report.php:23
+#: admin/views/report.php:24
 msgid "Audit report"
 msgstr ""
 
-#: admin/views/report.php:37
+#: admin/views/report.php:38
 msgid "Compare with previous audit"
 msgstr ""
 
 #. translators: %s: audit status, e.g. "running" or "abandoned".
-#: admin/views/report.php:47
+#: admin/views/report.php:48
 #, php-format
 msgid "This audit did not finish (status: %s). Results may be incomplete."
 msgstr ""
 
-#: admin/views/report.php:61
+#: admin/views/report.php:62
 msgid "Issue dismissed."
 msgstr ""
 
-#: admin/views/report.php:61
+#: admin/views/report.php:62
 msgid "It no longer counts in this report, and it stays dismissed in future audits."
 msgstr ""
 
-#: admin/views/report.php:71
+#: admin/views/report.php:72
 msgid "Issue restored. It counts in your reports again."
 msgstr ""
 
-#: admin/views/settings.php:11
+#: admin/views/settings.php:12
 msgid "CoreA11y Settings"
 msgstr ""
 
-#: admin/views/settings.php:21 admin/views/settings.php:23
+#: admin/views/settings.php:22 admin/views/settings.php:24
 msgid "Support information"
 msgstr ""
 
-#: admin/views/settings.php:22
+#: admin/views/settings.php:23
 msgid "If something isn't working, copy this into your support request. It describes your setup and stays on your site until you choose to share it."
 msgstr ""
 
-#: admin/views/settings.php:26
+#: admin/views/settings.php:27
 msgid "Copied to your clipboard."
 msgstr ""
 
-#: admin/views/settings.php:26
+#: admin/views/settings.php:27
 msgid "Selected. Press Ctrl+C (or Cmd+C) to copy."
 msgstr ""
 
-#: admin/views/settings.php:26
+#: admin/views/settings.php:27
 msgid "Copy support information"
 msgstr ""
 
-#: admin/views/statement.php:20 admin/views/statement.php:21 includes/class-corea11y-admin.php:52 includes/class-corea11y-statement.php:135 includes/class-corea11y-statement.php:161
+#: admin/views/statement.php:21 admin/views/statement.php:22 includes/class-corea11y-admin.php:55 includes/class-corea11y-statement.php:135 includes/class-corea11y-statement.php:161
 msgid "Accessibility statement"
 msgstr ""
 
-#: admin/views/statement.php:21
+#: admin/views/statement.php:22
 msgid "A public page explaining your commitment to accessibility, how accessible your site is, known problems and how visitors can contact you. Many laws, including the European Accessibility Act, expect one, and it shows good faith."
 msgstr ""
 
-#: admin/views/statement.php:23
+#: admin/views/statement.php:24
 msgid "Fill in a few details and CoreA11y writes the statement for you. It stays up to date with your latest audit automatically."
 msgstr ""
 
-#: admin/views/statement.php:27
+#: admin/views/statement.php:28
 msgid "Edit page"
 msgstr ""
 
-#: admin/views/statement.php:28
+#: admin/views/statement.php:29
 msgid "View page"
 msgstr ""
 
-#: admin/views/statement.php:28
+#: admin/views/statement.php:29
 msgid "Preview page"
 msgstr ""
 
-#: admin/views/statement.php:34
+#: admin/views/statement.php:35
 msgid "Statement saved. Your statement page shows the changes right away."
 msgstr ""
 
-#: admin/views/statement.php:37
+#: admin/views/statement.php:38
 msgid "Statement page created as a draft."
 msgstr ""
 
-#: admin/views/statement.php:37
+#: admin/views/statement.php:38
 msgid "Review it, then publish it from the page editor."
 msgstr ""
 
-#: admin/views/statement.php:38
+#: admin/views/statement.php:39
 msgid "Review and publish"
 msgstr ""
 
-#: admin/views/statement.php:43
+#: admin/views/statement.php:44
 msgid "You selected \"Fully conformant\", but your latest audit still found issues. Only claim full conformance after a thorough review, ideally by an accessibility expert."
 msgstr ""
 
-#: admin/views/statement.php:51
+#: admin/views/statement.php:52
 msgid "Organization name"
 msgstr ""
 
-#: admin/views/statement.php:55
+#: admin/views/statement.php:56
 msgid "Contact email for accessibility feedback"
 msgstr ""
 
-#: admin/views/statement.php:59
+#: admin/views/statement.php:60
 msgid "Contact phone (optional)"
 msgstr ""
 
-#: admin/views/statement.php:63
+#: admin/views/statement.php:64
 msgid "Response time (business days)"
 msgstr ""
 
-#: admin/views/statement.php:69
+#: admin/views/statement.php:70
 msgid "How well does your site conform to WCAG 2.2 AA?"
 msgstr ""
 
-#: admin/views/statement.php:70 includes/class-corea11y-statement.php:192
+#: admin/views/statement.php:71 includes/class-corea11y-statement.php:192
 msgid "Conformance status"
 msgstr ""
 
-#: admin/views/statement.php:70
+#: admin/views/statement.php:71
 msgid "Choose honestly. Automated audits can't prove full conformance. Most sites should choose \"Partially conformant\" until a full manual review is done."
 msgstr ""
 
-#: admin/views/statement.php:78
+#: admin/views/statement.php:79
 msgid "List the problem areas from my latest audit automatically (recommended)"
 msgstr ""
 
-#: admin/views/statement.php:81
+#: admin/views/statement.php:82
 msgid "Other known limitations (optional)"
 msgstr ""
 
-#: admin/views/statement.php:83
+#: admin/views/statement.php:84
 msgid "For example: \"Older PDF documents may not be fully accessible. Contact us for an accessible version.\""
 msgstr ""
 
-#: admin/views/statement.php:86
+#: admin/views/statement.php:87
 msgid "Extra measures you take (optional, one per line)"
 msgstr ""
 
-#: admin/views/statement.php:88
+#: admin/views/statement.php:89
 msgid "For example: \"Our content team is trained in writing accessible content.\""
 msgstr ""
 
-#: admin/views/statement.php:91
+#: admin/views/statement.php:92
 msgid "Add a link to the statement at the bottom of every page (once the page is published)"
 msgstr ""
 
-#: admin/views/statement.php:95
+#: admin/views/statement.php:96
 msgid "Save statement"
 msgstr ""
 
-#: admin/views/statement.php:97
+#: admin/views/statement.php:98
 msgid "Save and create statement page"
 msgstr ""
 
-#: admin/views/statement.php:103
+#: admin/views/statement.php:104
 msgid "Preview"
 msgstr ""
 
-#: admin/views/statement.php:107
+#: admin/views/statement.php:108
 msgid "This statement follows the structure recommended by the W3C Web Accessibility Initiative. It is a template, not legal advice. Review it before publishing."
 msgstr ""
 
@@ -1222,39 +1390,39 @@ msgstr ""
 msgid "The results could not be saved."
 msgstr ""
 
-#: includes/class-corea11y-admin.php:40 includes/class-corea11y-admin.php:41
+#: includes/class-corea11y-admin.php:42 includes/class-corea11y-admin.php:43
 msgid "CoreA11y"
 msgstr ""
 
-#: includes/class-corea11y-admin.php:48
+#: includes/class-corea11y-admin.php:50
 msgid "Dashboard"
 msgstr ""
 
-#: includes/class-corea11y-admin.php:52
+#: includes/class-corea11y-admin.php:55
 msgid "Statement"
 msgstr ""
 
-#: includes/class-corea11y-admin.php:54 includes/class-corea11y-admin.php:81
+#: includes/class-corea11y-admin.php:57 includes/class-corea11y-admin.php:84
 msgid "Settings"
 msgstr ""
 
-#: includes/class-corea11y-admin.php:236 includes/class-corea11y-admin.php:279 includes/class-corea11y-admin.php:298 includes/class-corea11y-admin.php:315 includes/class-corea11y-admin.php:330 includes/class-corea11y-admin.php:439 includes/class-corea11y-admin.php:505 pro/includes/class-corea11y-pro-monitor.php:326 pro/includes/class-corea11y-pro-network.php:265 pro/includes/class-corea11y-pro-network.php:316 pro/includes/class-corea11y-pro-reports.php:56
+#: includes/class-corea11y-admin.php:239 includes/class-corea11y-admin.php:288 includes/class-corea11y-admin.php:312 includes/class-corea11y-admin.php:341 includes/class-corea11y-admin.php:360 includes/class-corea11y-admin.php:377 includes/class-corea11y-admin.php:392 includes/class-corea11y-admin.php:501 includes/class-corea11y-admin.php:567 pro/includes/class-corea11y-pro-monitor.php:326 pro/includes/class-corea11y-pro-network.php:266 pro/includes/class-corea11y-pro-network.php:317 pro/includes/class-corea11y-pro-reports.php:56
 msgid "You do not have permission to do this."
 msgstr ""
 
-#: includes/class-corea11y-admin.php:391
+#: includes/class-corea11y-admin.php:453
 msgid "Pick two different audits to compare."
 msgstr ""
 
-#: includes/class-corea11y-admin.php:454
+#: includes/class-corea11y-admin.php:516
 msgid "Accessibility progress report"
 msgstr ""
 
-#: includes/class-corea11y-admin.php:459 includes/class-corea11y-audit.php:135 includes/class-corea11y-audit.php:294 pro/includes/class-corea11y-pro-reports.php:64
+#: includes/class-corea11y-admin.php:521 includes/class-corea11y-audit.php:135 includes/class-corea11y-audit.php:294 pro/includes/class-corea11y-pro-reports.php:64
 msgid "Audit not found."
 msgstr ""
 
-#: includes/class-corea11y-admin.php:461
+#: includes/class-corea11y-admin.php:523
 msgid "Accessibility audit report"
 msgstr ""
 
@@ -3323,6 +3491,12 @@ msgid_plural "%1$s problems need more than this fix. See the report."
 msgstr[0] ""
 msgstr[1] ""
 
+#. translators: %s: site name.
+#: includes/class-corea11y-ui.php:350
+#, php-format
+msgid "Accessibility for %s"
+msgstr ""
+
 #: pro/includes/class-corea11y-pro-fixes.php:53
 msgid "Use Media Library alt text in posts"
 msgstr ""
@@ -3617,12 +3791,6 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#. translators: %s: page number.
-#: pro/includes/class-corea11y-pro-fixes.php:547
-#, php-format
-msgid "Page %s"
-msgstr ""
-
 #. translators: %s: site name.
 #: pro/includes/class-corea11y-pro-monitor.php:211
 #, php-format
@@ -3741,113 +3909,113 @@ msgstr ""
 msgid "Not now"
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:54 pro/includes/class-corea11y-pro-network.php:158
+#: pro/includes/class-corea11y-pro-network.php:54 pro/includes/class-corea11y-pro-network.php:159
 msgid "CoreA11y network overview"
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:159
+#: pro/includes/class-corea11y-pro-network.php:160
 msgid "The latest audit and quick fixes of every site in your network."
 msgstr ""
 
 #. translators: %d: number of sites.
-#: pro/includes/class-corea11y-pro-network.php:165
+#: pro/includes/class-corea11y-pro-network.php:166
 #, php-format
 msgid "Quick fixes copied to %d site. Each site logged the change, so it can be undone there or below."
 msgid_plural "Quick fixes copied to %d sites. Each site logged the change, so it can be undone there or below."
 msgstr[0] ""
 msgstr[1] ""
 
-#: pro/includes/class-corea11y-pro-network.php:169
+#: pro/includes/class-corea11y-pro-network.php:170
 msgid "The last copy was undone on every site."
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:174
+#: pro/includes/class-corea11y-pro-network.php:175
 msgid "Network tools are part of the Business and Agency plans"
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:175
+#: pro/includes/class-corea11y-pro-network.php:176
 msgid "See every site's audit at a glance and copy quick fixes to all your sites at once. CoreA11y itself still works on each site, from that site's dashboard."
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:180
+#: pro/includes/class-corea11y-pro-network.php:181
 msgid "Sites in this network"
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:182
+#: pro/includes/class-corea11y-pro-network.php:183
 msgid "Site"
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:183
+#: pro/includes/class-corea11y-pro-network.php:184
 msgid "Latest audit"
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:186
+#: pro/includes/class-corea11y-pro-network.php:187
 msgid "Quick fixes on"
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:187 pro/includes/class-corea11y-pro-reports.php:125
+#: pro/includes/class-corea11y-pro-network.php:188 pro/includes/class-corea11y-pro-reports.php:125
 msgid "Open"
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:194
+#: pro/includes/class-corea11y-pro-network.php:195
 msgid "CoreA11y is not active on this site."
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:197
+#: pro/includes/class-corea11y-pro-network.php:198
 msgid "No audit yet"
 msgstr ""
 
 #. translators: %d: number of verified fixes.
-#: pro/includes/class-corea11y-pro-network.php:205
+#: pro/includes/class-corea11y-pro-network.php:206
 #, php-format
 msgid "%d verified"
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:209
+#: pro/includes/class-corea11y-pro-network.php:210
 msgid "CoreA11y dashboard"
 msgstr ""
 
 #. translators: %d: number of sites shown.
-#: pro/includes/class-corea11y-pro-network.php:219
+#: pro/includes/class-corea11y-pro-network.php:220
 #, php-format
 msgid "Showing the first %d sites."
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:226
+#: pro/includes/class-corea11y-pro-network.php:227
 msgid "Copy quick fixes to every site"
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:227
+#: pro/includes/class-corea11y-pro-network.php:228
 msgid "Turns the same quick fixes on and off on every site where CoreA11y is active, using one site as the example. Every site logs the change, so it can be undone."
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:231
+#: pro/includes/class-corea11y-pro-network.php:232
 msgid "Copy the quick fixes of"
 msgstr ""
 
 #. translators: 1: site name, 2: number of fixes on.
-#: pro/includes/class-corea11y-pro-network.php:238
+#: pro/includes/class-corea11y-pro-network.php:239
 #, php-format
 msgid "%1$s (%2$d on)"
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:245
+#: pro/includes/class-corea11y-pro-network.php:246
 msgid "Also turn them on for sites created later"
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:246
+#: pro/includes/class-corea11y-pro-network.php:247
 msgid "Copy to all sites"
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:251
+#: pro/includes/class-corea11y-pro-network.php:252
 msgid "Undo the last copy on every site"
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:269
+#: pro/includes/class-corea11y-pro-network.php:270
 msgid "Network tools are part of the Business and Agency plans."
 msgstr ""
 
-#: pro/includes/class-corea11y-pro-network.php:273
+#: pro/includes/class-corea11y-pro-network.php:274
 msgid "Choose a site to copy from."
 msgstr ""
 
@@ -3992,7 +4160,7 @@ msgid "Give the logo alt text in the Media Library (usually your company name). 
 msgstr ""
 
 #: pro/includes/class-corea11y-pro-settings.php:254
-msgid "A hex color such as #1a7f5a, used for headings and bars. Pick a dark color so text on it stays readable."
+msgid "A hex color such as #1a7f5a, used for the score card, bars and the stripe under your logo. Any color works: CoreA11y picks white or dark text on it, and darkens it where needed, so the report stays readable."
 msgstr ""
 
 #: pro/includes/class-corea11y-pro-settings.php:266

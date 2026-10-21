@@ -9,6 +9,7 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 <div class="wrap corea11y">
+	<?php CoreA11y_UI::brand_bar(); ?>
 	<div class="corea11y-page-head"><div><h1><?php esc_html_e( 'Audits', 'corea11y' ); ?></h1><p class="corea11y-meta"><?php esc_html_e( 'Every audit you have run. Open one to see the full report.', 'corea11y' ); ?></p></div></div>
 
 	<?php if ( empty( $audits ) ) : ?>

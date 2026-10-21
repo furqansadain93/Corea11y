@@ -29,6 +29,8 @@ class CoreA11y_Admin {
 		add_action( 'admin_post_corea11y_dismiss', array( $this, 'dismiss_issue' ) );
 		add_action( 'admin_post_corea11y_save_statement', array( $this, 'save_statement' ) );
 		add_action( 'admin_post_corea11y_restore', array( $this, 'restore_issue' ) );
+		add_action( 'admin_post_corea11y_save_alt', array( $this, 'save_alt' ) );
+		add_action( 'admin_post_corea11y_undo_alt', array( $this, 'undo_alt' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( COREA11Y_FILE ), array( $this, 'action_links' ) );
 	}
 
@@ -47,6 +49,7 @@ class CoreA11y_Admin {
 		);
 		add_submenu_page( self::SLUG, __( 'Dashboard', 'corea11y' ), __( 'Dashboard', 'corea11y' ), self::CAP, self::SLUG, array( $this, 'render_dashboard' ) );
 		add_submenu_page( self::SLUG, __( 'Quick fixes', 'corea11y' ), __( 'Quick fixes', 'corea11y' ), self::CAP, 'corea11y-fixes', array( $this, 'render_fixes' ) );
+		add_submenu_page( self::SLUG, __( 'Alt text', 'corea11y' ), __( 'Alt text', 'corea11y' ), self::CAP, 'corea11y-alt', array( $this, 'render_alt' ) );
 		add_submenu_page( self::SLUG, __( 'Audits', 'corea11y' ), __( 'Audits', 'corea11y' ), self::CAP, 'corea11y-audits', array( $this, 'render_audits' ) );
 		add_submenu_page( self::SLUG, __( 'Before & after', 'corea11y' ), __( 'Before & after', 'corea11y' ), self::CAP, 'corea11y-compare', array( $this, 'render_compare' ) );
 		add_submenu_page( self::SLUG, __( 'Accessibility statement', 'corea11y' ), __( 'Statement', 'corea11y' ), self::CAP, 'corea11y-statement', array( $this, 'render_statement' ) );
@@ -254,6 +257,65 @@ class CoreA11y_Admin {
 		}
 
 		self::fixes_redirect( $flag, $batch );
+	}
+
+	/**
+	 * Alt text screen.
+	 */
+	public function render_alt() {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Display-only filters and flags.
+		$show  = isset( $_GET['show'] ) && 'all' === $_GET['show'] ? 'all' : 'used';
+		$paged = isset( $_GET['paged'] ) ? max( 1, absint( $_GET['paged'] ) ) : 1;
+		// phpcs:enable
+		$rows = CoreA11y_Alt::rows( $show );
+		$this->view(
+			'alt',
+			array(
+				'rows'  => array_slice( $rows, ( $paged - 1 ) * CoreA11y_Alt::PER_PAGE, CoreA11y_Alt::PER_PAGE ),
+				'total' => count( $rows ),
+				'paged' => $paged,
+				'show'  => $show,
+				'log'   => CoreA11y_Alt::log(),
+			)
+		);
+	}
+
+	/**
+	 * Save alt text (admin-post handler).
+	 */
+	public function save_alt() {
+		if ( ! current_user_can( self::CAP ) ) {
+			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+		}
+		check_admin_referer( 'corea11y_save_alt' );
+		$alts = isset( $_POST['alt'] ) && is_array( $_POST['alt'] ) ? wp_unslash( $_POST['alt'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized per value in CoreA11y_Alt::save().
+		$deco = isset( $_POST['decorative'] ) && is_array( $_POST['decorative'] ) ? wp_unslash( $_POST['decorative'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Only keys and truthiness are used.
+		$res  = CoreA11y_Alt::save( $alts, $deco );
+		$args = array(
+			'page'   => 'corea11y-alt',
+			'saved'  => $res['images'],
+			'posts'  => $res['posts'],
+			'batch'  => $res['batch'],
+		);
+		if ( isset( $_POST['show'] ) && 'all' === $_POST['show'] ) {
+			$args['show'] = 'all';
+		}
+		wp_safe_redirect( add_query_arg( $args, admin_url( 'admin.php' ) ) );
+		exit;
+	}
+
+	/**
+	 * Undo an alt text save (admin-post handler).
+	 */
+	public function undo_alt() {
+		if ( ! current_user_can( self::CAP ) ) {
+			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+		}
+		check_admin_referer( 'corea11y_undo_alt' );
+		$batch = isset( $_POST['batch'] ) ? sanitize_text_field( wp_unslash( $_POST['batch'] ) ) : '';
+		$done  = CoreA11y_Alt::undo( $batch );
+		wp_safe_redirect( add_query_arg( array( 'page' => 'corea11y-alt', 'undone' => $done ? 1 : 0 ), admin_url( 'admin.php' ) ) );
+		exit;
 	}
 
 	/**

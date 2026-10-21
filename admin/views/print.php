@@ -27,12 +27,15 @@ extract( $data, EXTR_SKIP );
 	/** This filter is documented below. */
 	$corea11y_brand_head = (array) apply_filters( 'corea11y_report_brand', array( 'name' => 'CoreA11y', 'logo' => '' ) );
 	$corea11y_color      = isset( $corea11y_brand_head['color'] ) ? sanitize_hex_color( $corea11y_brand_head['color'] ) : '';
-	if ( $corea11y_color ) :
+	$corea11y_white      = ! empty( $corea11y_brand_head['logo'] ) || ( isset( $corea11y_brand_head['name'] ) && 'CoreA11y' !== $corea11y_brand_head['name'] );
+	if ( $corea11y_white ) :
+		// White label: their color (if any), with readable text picked automatically. Otherwise neutral charcoal.
+		$corea11y_vars = $corea11y_color ? CoreA11y_UI::brand_css_vars( $corea11y_color ) : '--corea11y-stripe:#222222;--corea11y-ring:#ffffff;--corea11y-ring-track:rgba(255,255,255,.28);';
 		?>
-		<style>.corea11y-print{--corea11y-brand:<?php echo esc_html( $corea11y_color ); ?>;}</style>
+		<style>.corea11y-print{<?php echo esc_html( $corea11y_vars ); ?>}</style>
 	<?php endif; ?>
 </head>
-<body class="corea11y corea11y-print">
+<body class="corea11y corea11y-print<?php echo $corea11y_white ? ' is-white-label' : ''; ?>">
 	<div class="corea11y-print-bar" role="region" aria-label="<?php esc_attr_e( 'Export', 'corea11y' ); ?>">
 		<p><?php esc_html_e( 'In the print window, choose "Save as PDF" as the destination.', 'corea11y' ); ?></p>
 		<button type="button" class="button button-primary" id="corea11y-print-now"><?php esc_html_e( 'Save as PDF', 'corea11y' ); ?></button>
@@ -51,11 +54,10 @@ extract( $data, EXTR_SKIP );
 			<div class="corea11y-brand">
 				<?php if ( ! empty( $corea11y_brand['logo'] ) ) : ?>
 					<img class="corea11y-brand-logo" src="<?php echo esc_url( $corea11y_brand['logo'] ); ?>" alt="<?php echo esc_attr( isset( $corea11y_brand['name'] ) ? $corea11y_brand['name'] : '' ); ?>">
+				<?php elseif ( $corea11y_white ) : ?>
+					<span class="corea11y-brand-name"><?php echo esc_html( $corea11y_brand['name'] ); ?></span>
 				<?php else : ?>
-					<span class="corea11y-logo" aria-hidden="true">
-						<svg width="28" height="28" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor"/><circle cx="12" cy="6.5" r="1.8" fill="#fff"/><path d="M6.5 9.5h11M12 9.5v5m0 0-3 4.5m3-4.5 3 4.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
-					</span>
-					<span class="corea11y-brand-name"><?php echo esc_html( isset( $corea11y_brand['name'] ) ? $corea11y_brand['name'] : 'CoreA11y' ); ?></span>
+					<?php echo CoreA11y_UI::logo_mark( 34 ) . CoreA11y_UI::wordmark(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static markup. ?>
 				<?php endif; ?>
 			</div>
 			<div class="corea11y-doc-site">

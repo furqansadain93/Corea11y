@@ -99,6 +99,7 @@ if ( function_exists( 'corea11y_fs' ) ) {
 	require_once COREA11Y_DIR . 'includes/class-corea11y-ui.php';
 	require_once COREA11Y_DIR . 'includes/class-corea11y-compare.php';
 	require_once COREA11Y_DIR . 'includes/class-corea11y-fixes.php';
+	require_once COREA11Y_DIR . 'includes/class-corea11y-alt.php';
 	require_once COREA11Y_DIR . 'includes/class-corea11y-compat.php';
 	require_once COREA11Y_DIR . 'includes/class-corea11y-dismiss.php';
 	require_once COREA11Y_DIR . 'includes/class-corea11y-statement.php';

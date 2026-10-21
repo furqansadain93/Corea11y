@@ -155,6 +155,7 @@ class CoreA11y_Pro_Network {
 		// phpcs:enable
 		?>
 		<div class="wrap corea11y">
+			<?php CoreA11y_UI::brand_bar(); ?>
 			<h1><?php esc_html_e( 'CoreA11y network overview', 'corea11y' ); ?></h1>
 			<p class="corea11y-meta"><?php esc_html_e( 'The latest audit and quick fixes of every site in your network.', 'corea11y' ); ?></p>
 

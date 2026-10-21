@@ -8,6 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 <div class="wrap corea11y">
+	<?php CoreA11y_UI::brand_bar(); ?>
 	<h1><?php esc_html_e( 'CoreA11y Settings', 'corea11y' ); ?></h1>
 	<?php settings_errors(); ?>
 	<form action="options.php" method="post">

@@ -9,7 +9,7 @@ html,
 body.corea11y-print {
 	margin: 0;
 	background: #eef0f4;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-family: "CoreA11y Atkinson", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	font-size: 13px;
 	line-height: 1.5;
 }
@@ -60,36 +60,55 @@ body.corea11y-print {
 	box-sizing: border-box;
 }
 
+/* Header: charcoal bar with a lime stripe (CoreA11y), or white with the
+   agency's logo and a stripe in their color (white label). */
 .corea11y-print .corea11y-doc-head {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding-bottom: 14px;
-	margin-bottom: 20px;
-	border-bottom: 3px solid var(--corea11y-brand);
+	gap: 16px;
+	margin: -36px -40px 24px;
+	padding: 22px 40px;
+	background: #222;
+	color: #fff;
+	border-bottom: 6px solid var(--corea11y-stripe);
+	-webkit-print-color-adjust: exact;
+	print-color-adjust: exact;
 }
 
 .corea11y-print .corea11y-brand {
 	display: flex;
 	align-items: center;
-	gap: 8px;
-	color: var(--corea11y-brand);
-}
-
-.corea11y-print .corea11y-brand-name {
-	font-size: 20px;
-	font-weight: 800;
-	color: var(--corea11y-ink);
-	letter-spacing: -.01em;
+	gap: 12px;
 }
 
 .corea11y-print .corea11y-doc-site {
 	text-align: right;
-	color: var(--corea11y-muted);
+	color: #c8c8c8;
 }
 
 .corea11y-print .corea11y-doc-site strong {
+	color: #fff;
+}
+
+.corea11y-print.is-white-label .corea11y-doc-head {
+	background: #fff;
 	color: var(--corea11y-ink);
+}
+
+.corea11y-print.is-white-label .corea11y-doc-site {
+	color: var(--corea11y-muted);
+}
+
+.corea11y-print.is-white-label .corea11y-doc-site strong {
+	color: var(--corea11y-ink);
+}
+
+.corea11y-print .corea11y-brand-name {
+	font-size: 20px;
+	font-weight: 700;
+	color: var(--corea11y-ink);
+	letter-spacing: -.01em;
 }
 
 .corea11y-print .corea11y-doc-title {
@@ -213,6 +232,12 @@ body.corea11y-print {
 		box-shadow: none;
 	}
 
+	.corea11y-print .corea11y-doc-head {
+		margin: 0 0 24px;
+		padding: 18px 20px;
+		border-radius: 8px;
+	}
+
 	.corea11y-print .corea11y-rule h3,
 	.corea11y-print .corea11y-badges,
 	.corea11y-print .corea11y-explain,
@@ -232,5 +257,15 @@ body.corea11y-print {
 		color: var(--corea11y-ink);
 		text-decoration: none;
 	}
+
+	.corea11y-print .corea11y-hero a:not(.button) {
+		color: var(--corea11y-hero-fg);
+	}
 }
 .corea11y-print .corea11y-brand-logo { display: block; max-height: 48px; max-width: 240px; height: auto; width: auto; }
+
+.corea11y-print .corea11y-print-bar .button {
+	background: #dce85d;
+	color: #222;
+	font-weight: 700;
+}

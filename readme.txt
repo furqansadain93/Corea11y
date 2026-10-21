@@ -16,6 +16,7 @@ CoreA11y scans your pages with axe-core, the open-source accessibility testing e
 
 * Full audit of your pages, run from your WordPress admin
 * 12 quick fixes with one-click undo: a skip link, keyboard focus outline, page language, mobile zoom, search and comment field labels, missing page titles, titles for embedded videos and maps, hidden empty headings and paragraphs, natural keyboard order, no clashing shortcut keys, and respect for "reduce motion" settings
+* Alt text screen: every image missing alt text in one list. Type a description (or mark it decorative) and save: CoreA11y adds it to the Media Library and to the pages where the image is already used. Undo is one click, and the alt text stays even if you remove CoreA11y.
 * Fixed and verified: after you turn a fix on, CoreA11y re-checks the affected pages and shows whether the problems are gone
 * Visual report with a score gauge and charts by severity, WCAG principle and type of fix
 * A "?" next to every problem explains in plain language why it matters, who it affects and how to fix it
@@ -94,6 +95,8 @@ By default, all CoreA11y audits and settings are removed. Your accessibility sta
 
 CoreA11y bundles axe-core 4.14.0 by Deque Systems (https://github.com/dequelabs/axe-core), licensed under the Mozilla Public License 2.0, which is GPL-compatible. The license is included in assets/vendor/axe-core/LICENSE.
 
+CoreA11y's admin screens and PDF reports use the Atkinson Hyperlegible typeface by the Braille Institute of America (https://www.brailleinstitute.org/freefont/), licensed under the SIL Open Font License 1.1, which is GPL-compatible. The license is included in assets/fonts/OFL.txt. The font is bundled with the plugin and only loads on CoreA11y's own screens, never on your site's pages.
+
 CoreA11y bundles the IBM Equal Access Accessibility Checker engine 4.0.34 (accessibility-checker-engine, https://github.com/IBMa/equal-access), licensed under the Apache License 2.0, which is compatible with GPLv3. The license and notices are included in assets/vendor/ibm-equal-access/.
 
 Both engines run only in the WordPress admin, while you run an audit or check a post. They are never loaded for site visitors.
@@ -106,9 +109,12 @@ CoreA11y includes the Freemius SDK (https://freemius.com), used to sell and lice
 
 = 1.0.0 =
 * 12 quick fixes (was 6). New: titles for embedded videos and maps, hide empty headings and empty paragraphs from screen readers, restore the natural keyboard order, remove clashing shortcut keys, and respect "reduce motion" settings.
+* New Alt text screen: add alt text to every image from one list, including copies already placed in pages and posts. Mark images as decorative, undo any save.
 * Fixed and verified: after you turn fixes on, CoreA11y re-checks the pages where those problems were found and shows, for each fix, whether the problems are gone.
 * Multisite: each site's data is removed when the site or the plugin is deleted.
+* Before & after explains why only some pages are compared when audits check one page of each type.
 * Deleting CoreA11y also removes its fix check results.
+* New look: CoreA11y screens and PDF reports now use the CoreA11y colors and Atkinson Hyperlegible, a typeface designed for readability. Every color pair meets WCAG 2.2 AA contrast.
 * Optional CoreA11y Pro, with 29 more fixes, a weekly check, CSV export, network tools and white-label reports.
 
 = 0.5.2 =
