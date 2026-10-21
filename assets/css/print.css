@@ -233,3 +233,4 @@ body.corea11y-print {
 		text-decoration: none;
 	}
 }
+.corea11y-print .corea11y-brand-logo { display: block; max-height: 48px; max-width: 240px; height: auto; width: auto; }

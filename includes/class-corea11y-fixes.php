@@ -18,6 +18,7 @@ class CoreA11y_Fixes {
 
 	const OPTION     = 'corea11y_fixes';
 	const LOG_OPTION = 'corea11y_fix_log';
+	const VERIFY     = 'corea11y_fix_verified';
 	const LOG_MAX    = 200;
 
 	/**
@@ -63,6 +64,42 @@ class CoreA11y_Fixes {
 				'wcag'  => '2.4.2',
 				'rules' => array( 'document-title' ),
 			),
+			'iframe-titles'     => array(
+				'title' => __( 'Title embedded videos, maps and widgets', 'corea11y' ),
+				'desc'  => __( 'Adds a title such as "YouTube video" or "Map" to embedded frames that have none, so screen reader users know what they contain.', 'corea11y' ),
+				'wcag'  => '4.1.2',
+				'rules' => array( 'frame-title' ),
+			),
+			'empty-headings'    => array(
+				'title' => __( 'Hide empty headings from screen readers', 'corea11y' ),
+				'desc'  => __( 'Empty headings, often left by page builders, are hidden from screen readers so they aren\'t announced as blank headings.', 'corea11y' ),
+				'wcag'  => '1.3.1',
+				'rules' => array( 'empty-heading' ),
+			),
+			'empty-paragraphs'  => array(
+				'title' => __( 'Hide empty paragraphs from screen readers', 'corea11y' ),
+				'desc'  => __( 'Empty paragraphs used for spacing are hidden from screen readers so they aren\'t announced as "blank". The spacing stays.', 'corea11y' ),
+				'wcag'  => '',
+				'rules' => array( 'corea11y-empty-paragraph' ),
+			),
+			'tabindex'          => array(
+				'title' => __( 'Restore the natural keyboard order', 'corea11y' ),
+				'desc'  => __( 'Removes forced keyboard order (tabindex above 0), so Tab moves through the page in the order it is read.', 'corea11y' ),
+				'wcag'  => '2.4.3',
+				'rules' => array( 'tabindex' ),
+			),
+			'accesskeys'        => array(
+				'title' => __( 'Remove clashing keyboard shortcuts', 'corea11y' ),
+				'desc'  => __( 'Removes access keys, which can clash with screen reader and browser shortcuts.', 'corea11y' ),
+				'wcag'  => '2.1.4',
+				'rules' => array( 'corea11y-accesskey' ),
+			),
+			'reduced-motion'    => array(
+				'title' => __( 'Respect "reduce motion" settings', 'corea11y' ),
+				'desc'  => __( 'For visitors who ask their device for less motion, animations and smooth scrolling are switched off.', 'corea11y' ),
+				'wcag'  => '2.3.3',
+				'rules' => array(),
+			),
 		);
 
 		/**
@@ -100,6 +137,24 @@ class CoreA11y_Fixes {
 	}
 
 	/**
+	 * Whether a fix can't be turned on right now (for example a Pro fix without an
+	 * active license). A locked fix that is already on keeps working and can still be
+	 * turned off or undone.
+	 *
+	 * @param string $id Fix id.
+	 * @return bool
+	 */
+	public static function is_locked( $id ) {
+		/**
+		 * Filter whether a quick fix is locked.
+		 *
+		 * @param bool   $locked Locked.
+		 * @param string $id     Fix id.
+		 */
+		return (bool) apply_filters( 'corea11y_fix_locked', false, $id );
+	}
+
+	/**
 	 * Fix id that resolves a rule, if any.
 	 *
 	 * @param string $rule_id Rule id.
@@ -128,9 +183,13 @@ class CoreA11y_Fixes {
 		$log   = self::log();
 		$state = array();
 		foreach ( $old as $id => $was ) {
-			$now          = ! empty( $new[ $id ] );
+			$now = ! empty( $new[ $id ] );
+			if ( $now && ! $was && self::is_locked( $id ) ) {
+				$now = false;
+			}
 			$state[ $id ] = $now;
 			if ( $now !== $was ) {
+				self::forget_verification( $id );
 				if ( '' === $batch ) {
 					$batch = wp_generate_uuid4();
 				}
@@ -237,7 +296,130 @@ class CoreA11y_Fixes {
 	}
 
 	/**
-	 * Change history, newest first.
+	 * Pages to re-check for a set of fixes: the pages of the latest complete audit where
+	 * each fix's rules were found (up to 10 per fix).
+	 *
+	 * @param string[] $ids Fix ids.
+	 * @return array{audit:int,fixes:array}
+	 */
+	public static function verify_plan( array $ids ) {
+		global $wpdb;
+		$plan = array(
+			'audit' => 0,
+			'fixes' => array(),
+		);
+		$audits = CoreA11y_Install::tables()['audits'];
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table.
+		$audit = (int) $wpdb->get_var( $wpdb->prepare( "SELECT id FROM %i WHERE status = 'complete' ORDER BY id DESC LIMIT 1", $audits ) );
+		if ( ! $audit ) {
+			return $plan;
+		}
+		$plan['audit'] = $audit;
+		$all           = self::all();
+		$state         = self::state();
+		foreach ( $ids as $id ) {
+			if ( empty( $all[ $id ]['rules'] ) || empty( $state[ $id ] ) ) {
+				continue;
+			}
+			$rules = array_values( $all[ $id ]['rules'] );
+			$in    = implode( ',', array_fill( 0, count( $rules ), '%s' ) );
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Custom table; placeholders built above.
+			$pages = $wpdb->get_results( $wpdb->prepare( "SELECT page_url, MAX(page_label) AS page_label, COUNT(*) AS n FROM %i WHERE audit_id = %d AND rule_id IN ($in) AND status <> 'dismissed' GROUP BY page_url ORDER BY n DESC LIMIT 10", ...array_merge( array( CoreA11y_Install::tables()['issues'], $audit ), $rules ) ) );
+			if ( ! $pages ) {
+				continue;
+			}
+			$plan['fixes'][] = array(
+				'id'    => $id,
+				'title' => $all[ $id ]['title'],
+				'rules' => $rules,
+				'pages' => array_map(
+					static function ( $r ) {
+						return array(
+							'url'    => $r->page_url,
+							'label'  => $r->page_label,
+							'before' => (int) $r->n,
+						);
+					},
+					$pages
+				),
+			);
+		}
+		return $plan;
+	}
+
+	/**
+	 * Store the result of re-checking pages after fixes were turned on.
+	 *
+	 * @param int   $audit   Audit the "before" counts come from.
+	 * @param array $results List of { fix, url, after } (after = issues still found, -1 if the page could not be checked).
+	 * @return array Saved records keyed by fix id.
+	 */
+	public static function record_verification( $audit, array $results ) {
+		$plan  = self::verify_plan( array_unique( wp_list_pluck( $results, 'fix' ) ) );
+		$saved = get_option( self::VERIFY, array() );
+		$saved = is_array( $saved ) ? $saved : array();
+		$out   = array();
+		if ( (int) $plan['audit'] !== (int) $audit ) {
+			return $out;
+		}
+		foreach ( $plan['fixes'] as $fix ) {
+			$before  = 0;
+			$after   = 0;
+			$checked = 0;
+			foreach ( $fix['pages'] as $page ) {
+				foreach ( $results as $r ) {
+					if ( isset( $r['fix'], $r['url'], $r['after'] ) && $r['fix'] === $fix['id'] && $r['url'] === $page['url'] && (int) $r['after'] >= 0 ) {
+						$before += $page['before'];
+						$after  += min( (int) $r['after'], $page['before'] + 50 );
+						++$checked;
+						break;
+					}
+				}
+			}
+			if ( ! $checked ) {
+				continue;
+			}
+			$status = 0 === $after ? 'verified' : ( $after < $before ? 'partial' : 'unchanged' );
+			$record = array(
+				'status' => $status,
+				'before' => $before,
+				'after'  => $after,
+				'pages'  => $checked,
+				'audit'  => (int) $audit,
+				'time'   => time(),
+			);
+			$saved[ $fix['id'] ] = $record;
+			$out[ $fix['id'] ]   = $record;
+		}
+		update_option( self::VERIFY, $saved, false );
+		return $out;
+	}
+
+	/**
+	 * Verification results, keyed by fix id.
+	 *
+	 * @return array
+	 */
+	public static function verifications() {
+		$saved = get_option( self::VERIFY, array() );
+		return is_array( $saved ) ? $saved : array();
+	}
+
+	/**
+	 * Drop a fix's verification (it was turned off or on again, so it needs a new check).
+	 *
+	 * @param string $id Fix id.
+	 */
+	public static function forget_verification( $id ) {
+		$saved = self::verifications();
+		if ( isset( $saved[ $id ] ) ) {
+			unset( $saved[ $id ] );
+			update_option( self::VERIFY, $saved, false );
+		}
+	}
+
+	/**
+	 * Change history.
 	 *
 	 * @return array
 	 */
@@ -292,13 +474,16 @@ class CoreA11y_Fixes {
 		if ( $state['focus'] ) {
 			$css .= ':where(a,button,input,select,textarea,summary,[tabindex]:not([tabindex="-1"]),[contenteditable="true"]):focus-visible{outline:3px solid #1d2327!important;outline-offset:2px!important;box-shadow:0 0 0 5px #fff!important}';
 		}
+		if ( $state['reduced-motion'] ) {
+			$css .= '@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}';
+		}
 		if ( $css ) {
 			wp_register_style( 'corea11y-fixes', false, array(), COREA11Y_VERSION );
 			wp_enqueue_style( 'corea11y-fixes' );
 			wp_add_inline_style( 'corea11y-fixes', $css );
 		}
 
-		$js_fixes = array_keys( array_filter( array_intersect_key( $state, array_flip( array( 'skip-link', 'lang', 'zoom', 'form-labels', 'title' ) ) ) ) );
+		$js_fixes = array_keys( array_filter( array_intersect_key( $state, array_flip( array( 'skip-link', 'lang', 'zoom', 'form-labels', 'title', 'iframe-titles', 'empty-headings', 'empty-paragraphs', 'tabindex', 'accesskeys' ) ) ) ) );
 		if ( $js_fixes ) {
 			wp_enqueue_script( 'corea11y-fixes', COREA11Y_URL . 'assets/js/fixes.js', array(), COREA11Y_VERSION, array( 'in_footer' => true ) );
 			wp_localize_script(
@@ -310,6 +495,16 @@ class CoreA11y_Fixes {
 					'title'       => wp_get_document_title(),
 					'skipText'    => __( 'Skip to content', 'corea11y' ),
 					'searchLabel' => __( 'Search', 'corea11y' ),
+					'frames'      => array(
+						'embedded' => __( 'Embedded content', 'corea11y' ),
+						/* translators: %s: video service, e.g. "YouTube". */
+						'video'    => __( '%s video', 'corea11y' ),
+						'map'      => __( 'Map', 'corea11y' ),
+						/* translators: %s: audio service, e.g. "Spotify". */
+						'player'   => __( '%s player', 'corea11y' ),
+						/* translators: %s: social network, e.g. "Instagram". */
+						'post'     => __( '%s post', 'corea11y' ),
+					),
 				)
 			);
 		}

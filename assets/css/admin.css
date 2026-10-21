@@ -879,3 +879,19 @@
 .corea11y .corea11y-review-list details {
 	margin-top: 6px;
 }
+
+.corea11y .corea11y-badge-pro { background: #1d2327; color: #fff; font-weight: 600; }
+.corea11y .corea11y-fix-look { margin: 0 0 8px; color: #614d00; }
+.corea11y .corea11y-fix-lock { margin: 0 0 8px; color: #50575e; }
+.corea11y .corea11y-fix.is-locked .corea11y-switch { opacity: .5; cursor: not-allowed; }
+.corea11y .corea11y-upsell { margin: 16px 0; padding: 16px 20px; border: 1px solid #c3c4c7; border-radius: 8px; background: #fff; }
+.corea11y .corea11y-upsell h2 { margin: 0 0 6px; font-size: 16px; }
+
+/* Freemius gives its menu items the plugin slug as a class; keep them looking like normal menu items. */
+#adminmenu .fs-submenu-item.corea11y { color: inherit; font: inherit; background: none; }
+#adminmenu .fs-submenu-item.corea11y.upgrade-mode { color: #adff2f; }
+
+.corea11y .corea11y-verify-line { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
+.corea11y .corea11y-verify-line .spinner { float: none; margin: 0; }
+.corea11y .corea11y-verify-box { margin: 16px 0; padding: 12px 20px; border: 1px solid #c3c4c7; border-left: 4px solid var(--corea11y-brand); border-radius: 4px; background: #fff; }
+.corea11y .corea11y-verify-box p { margin: 8px 0; }

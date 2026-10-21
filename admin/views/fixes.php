@@ -8,6 +8,9 @@
  * @var array       $found  Issue counts per fix from the latest audit.
  * @var object|null $latest Latest completed audit.
  * @var array       $log    Change history.
+ * @var array       $plan      Pages to re-check (CoreA11y_Fixes::verify_plan()).
+ * @var bool        $autostart Start the re-check straight away.
+ * @var array       $verified  Verification results keyed by fix id.
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -41,7 +44,7 @@ $corea11y_fmt = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
 				<?php foreach ( $corea11y_entries as $corea11y_e ) : ?>
 					<li>
 						<?php
-						$corea11y_t = isset( $fixes[ $corea11y_e['fix'] ] ) ? $fixes[ $corea11y_e['fix'] ]['title'] : $corea11y_e['fix'];
+						$corea11y_t = isset( $fixes[ $corea11y_e['fix'] ] ) ? $fixes[ $corea11y_e['fix'] ]['title'] : sprintf( /* translators: %s: internal fix name. */ __( 'Pro fix (%s)', 'corea11y' ), $corea11y_e['fix'] );
 						/* translators: %s: fix name. */
 						echo esc_html( sprintf( $corea11y_e['on'] ? __( 'Turned on: %s', 'corea11y' ) : __( 'Turned off: %s', 'corea11y' ), $corea11y_t ) );
 						?>
@@ -59,8 +62,15 @@ $corea11y_fmt = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
 				}
 				?>
 			</p>
+			<?php if ( $autostart && $plan['fixes'] ) : ?>
+				<p class="corea11y-verify-line"><span class="spinner is-active" aria-hidden="true"></span><span id="corea11y-verify-status" role="status"><?php esc_html_e( 'Checking that the fixes worked…', 'corea11y' ); ?></span></p>
+			<?php endif; ?>
 			<div class="corea11y-actions">
-				<a class="button button-primary" href="<?php echo esc_url( admin_url( 'admin.php?page=corea11y&corea11y_autorun=1' ) ); ?>"><?php esc_html_e( 'Verify with a new audit', 'corea11y' ); ?></a>
+				<?php if ( $autostart && $plan['fixes'] ) : ?>
+					<button type="button" class="button button-primary" id="corea11y-verify-fixes" data-autostart><?php esc_html_e( 'Check again', 'corea11y' ); ?></button>
+				<?php else : ?>
+					<a class="button button-primary" href="<?php echo esc_url( admin_url( 'admin.php?page=corea11y&corea11y_autorun=1' ) ); ?>"><?php esc_html_e( 'Verify with a new audit', 'corea11y' ); ?></a>
+				<?php endif; ?>
 				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 					<?php CoreA11y_Admin::undo_fields( '', $corea11y_batch, $corea11y_undone ); ?>
 					<button type="submit" class="button"><?php echo $corea11y_undone ? esc_html__( 'Redo', 'corea11y' ) : esc_html( _n( 'Undo this change', 'Undo these changes', count( $corea11y_entries ), 'corea11y' ) ); ?></button>
@@ -71,28 +81,86 @@ $corea11y_fmt = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
 		<div class="notice notice-info" role="status"><p><?php esc_html_e( 'Nothing changed.', 'corea11y' ); ?></p></div>
 	<?php endif; ?>
 
+	<?php
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Display only.
+	$corea11y_just_checked = isset( $_GET['verified'] );
+	if ( $corea11y_just_checked && $verified ) :
+		?>
+		<div class="notice notice-success corea11y-verify" role="status">
+			<p><strong><?php esc_html_e( 'Check complete.', 'corea11y' ); ?></strong> <?php esc_html_e( 'CoreA11y opened the pages where these problems were found and checked them again:', 'corea11y' ); ?></p>
+			<ul class="corea11y-change-list">
+				<?php foreach ( $verified as $corea11y_vid => $corea11y_v ) : ?>
+					<?php
+					if ( time() - (int) $corea11y_v['time'] > 300 || ! isset( $fixes[ $corea11y_vid ] ) ) {
+						continue;
+					}
+					?>
+					<li><?php echo esc_html( $fixes[ $corea11y_vid ]['title'] . ': ' . CoreA11y_UI::verify_text( $corea11y_v ) ); ?></li>
+				<?php endforeach; ?>
+			</ul>
+			<p class="corea11y-muted"><?php esc_html_e( 'Problems the fixes don\'t cover are not part of this check. Run a full audit to update your score.', 'corea11y' ); ?></p>
+		</div>
+	<?php elseif ( ! $autostart && $plan['fixes'] ) : ?>
+		<div class="corea11y-verify-box">
+			<p>
+				<?php
+				/* translators: %d: number of quick fixes. */
+				echo esc_html( sprintf( _n( '%d fix that is on hasn\'t been checked against your latest audit yet.', '%d fixes that are on haven\'t been checked against your latest audit yet.', count( $plan['fixes'] ), 'corea11y' ), count( $plan['fixes'] ) ) );
+				?>
+			</p>
+			<p><button type="button" class="button" id="corea11y-verify-fixes"><?php esc_html_e( 'Check that they work', 'corea11y' ); ?></button> <span id="corea11y-verify-status" role="status"></span></p>
+		</div>
+	<?php endif; ?>
+
 	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 		<input type="hidden" name="action" value="corea11y_save_fixes">
 		<?php wp_nonce_field( 'corea11y_save_fixes' ); ?>
 
-		<ul class="corea11y-fixes">
+		<ul class="corea11y-fixes" id="corea11y-fix-list">
 			<?php foreach ( $fixes as $corea11y_id => $corea11y_fix ) : ?>
 				<?php
 				$corea11y_field = 'corea11y-fix-' . $corea11y_id;
-				$corea11y_count = isset( $found[ $corea11y_id ] ) ? (int) $found[ $corea11y_id ] : 0;
+				$corea11y_count  = isset( $found[ $corea11y_id ] ) ? (int) $found[ $corea11y_id ] : 0;
+				$corea11y_locked = ! $state[ $corea11y_id ] && CoreA11y_Fixes::is_locked( $corea11y_id );
 				?>
-				<li class="corea11y-fix<?php echo $state[ $corea11y_id ] ? ' is-on' : ''; ?>">
+				<li class="corea11y-fix<?php echo $state[ $corea11y_id ] ? ' is-on' : ''; ?><?php echo $corea11y_locked ? ' is-locked' : ''; ?>">
 					<div class="corea11y-fix-text">
 						<h2 class="corea11y-fix-title"><label for="<?php echo esc_attr( $corea11y_field ); ?>"><?php echo esc_html( $corea11y_fix['title'] ); ?></label></h2>
 						<p id="<?php echo esc_attr( $corea11y_field . '-desc' ); ?>"><?php echo esc_html( $corea11y_fix['desc'] ); ?></p>
-						<p class="corea11y-badges">
-							<span class="corea11y-badge">
+						<?php if ( ! empty( $corea11y_fix['look'] ) ) : ?>
+							<p class="corea11y-fix-look"><?php esc_html_e( 'This fix changes how your site looks. Check a few pages after turning it on.', 'corea11y' ); ?></p>
+						<?php endif; ?>
+						<?php if ( $corea11y_locked ) : ?>
+							<p class="corea11y-fix-lock" id="<?php echo esc_attr( $corea11y_field . '-lock' ); ?>">
+								<?php esc_html_e( 'Activate your CoreA11y Pro license to turn this fix on.', 'corea11y' ); ?>
 								<?php
-								/* translators: %s: WCAG success criterion numbers. */
-								echo esc_html( sprintf( __( 'WCAG %s', 'corea11y' ), $corea11y_fix['wcag'] ) );
-								?>
-							</span>
-							<?php if ( $latest && $corea11y_count ) : ?>
+								$corea11y_lic = apply_filters( 'corea11y_license_url', '' );
+								if ( $corea11y_lic ) :
+									?>
+									<a href="<?php echo esc_url( $corea11y_lic ); ?>"><?php esc_html_e( 'Activate license', 'corea11y' ); ?></a>
+								<?php endif; ?>
+							</p>
+						<?php endif; ?>
+						<p class="corea11y-badges">
+							<?php if ( ! empty( $corea11y_fix['pro'] ) ) : ?>
+								<span class="corea11y-badge corea11y-badge-pro"><?php esc_html_e( 'Pro', 'corea11y' ); ?></span>
+							<?php endif; ?>
+							<?php if ( '' !== $corea11y_fix['wcag'] ) : ?>
+								<span class="corea11y-badge">
+									<?php
+									/* translators: %s: WCAG success criterion numbers. */
+									echo esc_html( sprintf( __( 'WCAG %s', 'corea11y' ), $corea11y_fix['wcag'] ) );
+									?>
+								</span>
+							<?php else : ?>
+								<span class="corea11y-badge"><?php esc_html_e( 'Best practice', 'corea11y' ); ?></span>
+							<?php endif; ?>
+							<?php if ( $state[ $corea11y_id ] && isset( $verified[ $corea11y_id ] ) ) : ?>
+								<?php $corea11y_v = $verified[ $corea11y_id ]; ?>
+								<span class="corea11y-badge <?php echo 'verified' === $corea11y_v['status'] ? 'corea11y-badge-good' : 'corea11y-badge-moderate'; ?>">
+									<?php echo esc_html( CoreA11y_UI::verify_text( $corea11y_v ) ); ?>
+								</span>
+							<?php elseif ( $latest && $corea11y_count ) : ?>
 								<span class="corea11y-badge corea11y-badge-serious">
 									<?php
 									/* translators: %s: number of issues. */
@@ -112,11 +180,23 @@ $corea11y_fmt = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
 								<?php esc_html_e( 'Undo', 'corea11y' ); ?><span class="screen-reader-text"> <?php echo esc_html( $corea11y_fix['title'] ); ?></span>
 							</button>
 						<?php endif; ?>
-						<input type="checkbox" role="switch" class="corea11y-switch" id="<?php echo esc_attr( $corea11y_field ); ?>" name="corea11y_fix[<?php echo esc_attr( $corea11y_id ); ?>]" value="1" aria-describedby="<?php echo esc_attr( $corea11y_field . '-desc' ); ?>" <?php checked( $state[ $corea11y_id ] ); ?>>
+						<input type="checkbox" role="switch" class="corea11y-switch" id="<?php echo esc_attr( $corea11y_field ); ?>" name="corea11y_fix[<?php echo esc_attr( $corea11y_id ); ?>]" value="1" aria-describedby="<?php echo esc_attr( $corea11y_field . '-desc' . ( $corea11y_locked ? ' ' . $corea11y_field . '-lock' : '' ) ); ?>" <?php checked( $state[ $corea11y_id ] ); ?> <?php disabled( $corea11y_locked ); ?>>
 					</div>
 				</li>
 			<?php endforeach; ?>
 		</ul>
+
+		<?php
+		$corea11y_has_pro = (bool) array_filter( wp_list_pluck( $fixes, 'pro' ) );
+		$corea11y_upgrade = $corea11y_has_pro ? '' : apply_filters( 'corea11y_upgrade_url', '' );
+		if ( $corea11y_upgrade ) :
+			?>
+			<div class="corea11y-upsell">
+				<h2><?php esc_html_e( 'Want more fixes?', 'corea11y' ); ?></h2>
+				<p><?php esc_html_e( 'CoreA11y Pro adds 29 more one-click fixes, such as naming icon-only links and buttons, opening dropdown menus with the keyboard, stopping sound that plays automatically and warning when links open a new tab. Every fix can be undone, like the ones above.', 'corea11y' ); ?></p>
+				<p><a class="button" href="<?php echo esc_url( $corea11y_upgrade ); ?>"><?php esc_html_e( 'See CoreA11y Pro', 'corea11y' ); ?></a></p>
+			</div>
+		<?php endif; ?>
 
 		<p class="corea11y-actions">
 			<?php submit_button( __( 'Save fixes', 'corea11y' ), 'primary', 'submit', false ); ?>
@@ -138,7 +218,7 @@ $corea11y_fmt = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
 					<?php foreach ( array_slice( $log, 0, 20 ) as $corea11y_entry ) : ?>
 						<?php
 						$corea11y_user = get_userdata( (int) $corea11y_entry['user'] );
-						$corea11y_name = isset( $fixes[ $corea11y_entry['fix'] ] ) ? $fixes[ $corea11y_entry['fix'] ]['title'] : $corea11y_entry['fix'];
+						$corea11y_name = isset( $fixes[ $corea11y_entry['fix'] ] ) ? $fixes[ $corea11y_entry['fix'] ]['title'] : sprintf( /* translators: %s: internal fix name. */ __( 'Pro fix (%s)', 'corea11y' ), $corea11y_entry['fix'] );
 						$corea11y_kind = isset( $corea11y_entry['kind'] ) && 'undo' === $corea11y_entry['kind'];
 						?>
 						<tr>

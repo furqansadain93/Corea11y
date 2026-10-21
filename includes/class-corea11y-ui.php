@@ -291,4 +291,28 @@ class CoreA11y_UI {
 		}
 		return $rows;
 	}
+
+	/**
+	 * Plain-language result of re-checking a quick fix.
+	 *
+	 * @param array $v Verification record.
+	 * @return string
+	 */
+	public static function verify_text( array $v ) {
+		$before = number_format_i18n( (int) $v['before'] );
+		$after  = number_format_i18n( (int) $v['after'] );
+		$pages  = (int) $v['pages'];
+		/* translators: %d: number of pages checked. */
+		$checked = sprintf( _n( '%d page checked', '%d pages checked', $pages, 'corea11y' ), $pages );
+		if ( 'verified' === $v['status'] ) {
+			/* translators: 1: number of problems, 2: "3 pages checked". */
+			return sprintf( _n( 'Fixed and verified: %1$s problem gone (%2$s)', 'Fixed and verified: %1$s problems gone (%2$s)', (int) $v['before'], 'corea11y' ), $before, $checked );
+		}
+		if ( 'partial' === $v['status'] ) {
+			/* translators: 1: problems before, 2: problems still found, 3: "3 pages checked". */
+			return sprintf( __( 'Partly fixed: %1$s problems before, %2$s still found (%3$s)', 'corea11y' ), $before, $after, $checked );
+		}
+		/* translators: 1: problems still found. */
+		return sprintf( _n( '%1$s problem needs more than this fix. See the report.', '%1$s problems need more than this fix. See the report.', (int) $v['after'], 'corea11y' ), $after );
+	}
 }

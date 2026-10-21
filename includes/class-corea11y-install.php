@@ -38,6 +38,68 @@ class CoreA11y_Install {
 	}
 
 	/**
+	 * Remove CoreA11y's data when the plugin is deleted (runs on Freemius's
+	 * after_uninstall action). On multisite, every site is cleaned and each site's own
+	 * "delete data" setting is respected. The statement page is the owner's content and stays.
+	 */
+	public static function uninstall() {
+		if ( is_multisite() ) {
+			foreach ( get_sites(
+				array(
+					'fields' => 'ids',
+					'number' => 0,
+				)
+			) as $site_id ) {
+				switch_to_blog( $site_id );
+				self::uninstall_site();
+				restore_current_blog();
+			}
+			delete_site_option( 'corea11y_network' );
+		} else {
+			self::uninstall_site();
+		}
+	}
+
+	/**
+	 * Remove CoreA11y's tables and options from the current site, if the owner allowed it.
+	 */
+	private static function uninstall_site() {
+		global $wpdb;
+
+		$settings = get_option( 'corea11y_settings', array() );
+		$delete   = ! is_array( $settings ) || ! isset( $settings['delete_on_uninstall'] ) || ! empty( $settings['delete_on_uninstall'] );
+		if ( ! $delete ) {
+			return;
+		}
+
+		foreach ( array( 'corea11y_audits', 'corea11y_issues', 'corea11y_dismissals' ) as $table ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange -- Removing the plugin's own tables on uninstall.
+			$wpdb->query( $wpdb->prepare( 'DROP TABLE IF EXISTS %i', $wpdb->prefix . $table ) );
+		}
+
+		foreach ( array( 'corea11y_settings', 'corea11y_checklist', 'corea11y_db_version', 'corea11y_fixes', 'corea11y_fix_log', 'corea11y_fix_verified', 'corea11y_statement', 'corea11y_pro', 'corea11y_pro_due', 'corea11y_pro_last_check' ) as $option ) {
+			delete_option( $option );
+		}
+		wp_clear_scheduled_hook( 'corea11y_pro_weekly' );
+	}
+
+	/**
+	 * Add this site's CoreA11y tables to the list WordPress drops when a site is deleted.
+	 *
+	 * @param string[] $tables  Tables to drop.
+	 * @param int      $site_id Site being deleted.
+	 * @return string[]
+	 */
+	public static function drop_with_site( $tables, $site_id ) {
+		global $wpdb;
+		$prefix = $wpdb->get_blog_prefix( $site_id );
+		foreach ( array( 'corea11y_audits', 'corea11y_issues', 'corea11y_dismissals' ) as $t ) {
+			$tables[] = $prefix . $t;
+		}
+		return array_values( array_unique( $tables ) );
+	}
+
+	/**
 	 * Table names, keyed by short name.
 	 *
 	 * @return array<string,string>

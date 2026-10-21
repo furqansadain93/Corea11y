@@ -81,6 +81,26 @@ class CoreA11y_Rest {
 
 		register_rest_route(
 			self::NS,
+			'/fixes/verify',
+			array(
+				'methods'             => WP_REST_Server::CREATABLE,
+				'callback'            => array( $this, 'verify_fixes' ),
+				'permission_callback' => array( $this, 'can_manage' ),
+				'args'                => array(
+					'audit'   => array(
+						'type'     => 'integer',
+						'required' => true,
+					),
+					'results' => array(
+						'type'    => 'array',
+						'default' => array(),
+					),
+				),
+			)
+		);
+
+		register_rest_route(
+			self::NS,
 			'/audits/(?P<id>\d+)/complete',
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
@@ -94,6 +114,27 @@ class CoreA11y_Rest {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Save the result of re-checking pages after quick fixes were turned on.
+	 *
+	 * @param WP_REST_Request $request Request.
+	 * @return WP_REST_Response
+	 */
+	public function verify_fixes( WP_REST_Request $request ) {
+		$clean = array();
+		foreach ( (array) $request['results'] as $r ) {
+			if ( ! is_array( $r ) || ! isset( $r['fix'], $r['url'], $r['after'] ) ) {
+				continue;
+			}
+			$clean[] = array(
+				'fix'   => sanitize_key( $r['fix'] ),
+				'url'   => esc_url_raw( (string) $r['url'] ),
+				'after' => (int) $r['after'],
+			);
+		}
+		return rest_ensure_response( array( 'fixes' => CoreA11y_Fixes::record_verification( (int) $request['audit'], array_slice( $clean, 0, 500 ) ) ) );
 	}
 
 	/**

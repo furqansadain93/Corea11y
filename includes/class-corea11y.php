@@ -38,6 +38,8 @@ final class CoreA11y {
 	 */
 	private function boot() {
 		CoreA11y_Install::maybe_upgrade();
+		// Multisite: remove a site's CoreA11y tables when the site itself is deleted.
+		add_filter( 'wpmu_drop_tables', array( 'CoreA11y_Install', 'drop_with_site' ), 10, 2 );
 
 		( new CoreA11y_Rest() )->register();
 		CoreA11y_Scanner::register();

@@ -191,13 +191,38 @@ class CoreA11y_Admin {
 				}
 			}
 		}
+		// Pages to re-check: right after a save, the fixes just turned on (checked
+		// automatically); otherwise, fixes that are on but haven't been checked yet.
+		$state    = CoreA11y_Fixes::state();
+		$verified = CoreA11y_Fixes::verifications();
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Display only.
+		$batch     = isset( $_GET['batch'] ) ? sanitize_key( wp_unslash( $_GET['batch'] ) ) : '';
+		$just_on   = array();
+		$autostart = false;
+		if ( $batch && ( isset( $_GET['saved'] ) || isset( $_GET['redone'] ) ) ) {
+			foreach ( CoreA11y_Fixes::batch_entries( $batch ) as $e ) {
+				if ( ! empty( $e['on'] ) ) {
+					$just_on[] = $e['fix'];
+				}
+			}
+			$autostart = (bool) $just_on;
+		}
+		// phpcs:enable
+		$ids  = $just_on ? $just_on : array_keys( array_diff_key( array_filter( $state ), $verified ) );
+		$plan = CoreA11y_Fixes::verify_plan( $ids );
+		if ( $plan['fixes'] ) {
+			CoreA11y_Scanner::enqueue_verify( $plan );
+		}
 		$this->view(
 			'fixes',
 			array(
-				'fixes'  => $fixes,
-				'state'  => CoreA11y_Fixes::state(),
-				'found'  => $found,
-				'latest' => $latest,
+				'fixes'     => $fixes,
+				'state'     => $state,
+				'found'     => $found,
+				'latest'    => $latest,
+				'plan'      => $plan,
+				'autostart' => $autostart,
+				'verified'  => $verified,
 				'log'    => CoreA11y_Fixes::log(),
 			)
 		);

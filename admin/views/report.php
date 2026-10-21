@@ -25,6 +25,14 @@ $corea11y_date     = $audit->started_at ? get_date_from_gmt( $audit->started_at,
 		</div>
 		<div class="corea11y-actions">
 			<a class="button button-primary" href="<?php echo esc_url( CoreA11y_Admin::export_url( 'report', array( 'audit' => $audit->id ) ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Download PDF', 'corea11y' ); ?><span class="screen-reader-text"> <?php esc_html_e( '(opens in a new tab)', 'corea11y' ); ?></span></a>
+			<?php
+			/**
+			 * Add buttons next to "Download PDF" on an audit report (CoreA11y Pro adds CSV export).
+			 *
+			 * @param object $audit Audit row.
+			 */
+			do_action( 'corea11y_report_actions', $audit );
+			?>
 			<?php if ( $previous ) : ?>
 				<a class="button" href="<?php echo esc_url( CoreA11y_Admin::compare_url( $previous->id, $audit->id ) ); ?>"><?php esc_html_e( 'Compare with previous audit', 'corea11y' ); ?></a>
 			<?php endif; ?>

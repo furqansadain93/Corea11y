@@ -49,6 +49,92 @@
 		} );
 	}
 
+	// Embedded frames without a title, named from where they come from.
+	const FRAMES = [ [ /(youtube\.com|youtube-nocookie\.com|youtu\.be)/, 'video', 'YouTube' ], [ /vimeo\.com/, 'video', 'Vimeo' ], [ /(google\.[a-z.]+\/maps|maps\.google)/, 'map' ], [ /spotify\.com/, 'player', 'Spotify' ], [ /soundcloud\.com/, 'player', 'SoundCloud' ], [ /(twitter\.com|platform\.x\.com)/, 'post', 'X' ], [ /instagram\.com/, 'post', 'Instagram' ], [ /facebook\.com/, 'post', 'Facebook' ] ];
+	const t = cfg.frames || {};
+	function textOf( el ) {
+		let out = '';
+		el.childNodes.forEach( function walk( n ) {
+			if ( n.nodeType === 3 ) {
+				out += n.nodeValue;
+			} else if ( n.nodeType === 1 && n.getAttribute( 'aria-hidden' ) !== 'true' ) {
+				if ( n.tagName === 'IMG' ) {
+					out += n.getAttribute( 'alt' ) || '';
+				} else {
+					n.childNodes.forEach( walk );
+				}
+			}
+		} );
+		return out.replace( /[\s\u00a0]+/g, '' );
+	}
+	function fixPage( root ) {
+		if ( on( 'iframe-titles' ) ) {
+			root.querySelectorAll( 'iframe:not([title])' ).forEach( ( f ) => {
+				if ( f.getAttribute( 'aria-label' ) || f.getAttribute( 'aria-labelledby' ) ) {
+					return;
+				}
+				const src = f.getAttribute( 'src' ) || f.getAttribute( 'data-src' ) || '';
+				const known = FRAMES.find( ( k ) => k[ 0 ].test( src ) );
+				let title = t.embedded || 'Embedded content';
+				if ( known ) {
+					title = known[ 1 ] === 'map' ? t.map || 'Map' : ( t[ known[ 1 ] ] || '%s' ).replace( '%s', known[ 2 ] );
+				}
+				f.setAttribute( 'title', title );
+			} );
+		}
+		if ( on( 'tabindex' ) ) {
+			root.querySelectorAll( '[tabindex]' ).forEach( ( el ) => {
+				if ( parseInt( el.getAttribute( 'tabindex' ), 10 ) > 0 ) {
+					el.setAttribute( 'tabindex', '0' );
+				}
+			} );
+		}
+		if ( on( 'accesskeys' ) ) {
+			root.querySelectorAll( '[accesskey]' ).forEach( ( el ) => el.removeAttribute( 'accesskey' ) );
+		}
+		if ( on( 'empty-headings' ) ) {
+			root.querySelectorAll( 'h1, h2, h3, h4, h5, h6, [role="heading"]' ).forEach( ( h ) => {
+				if ( ! textOf( h ) && ! h.getAttribute( 'aria-label' ) && ! h.querySelector( 'svg[aria-label]' ) ) {
+					h.setAttribute( 'aria-hidden', 'true' );
+				}
+			} );
+		}
+		if ( on( 'empty-paragraphs' ) ) {
+			root.querySelectorAll( 'p' ).forEach( ( p ) => {
+				if ( ! p.children.length && ! ( p.textContent || '' ).replace( /[\s\u00a0]+/g, '' ) ) {
+					p.setAttribute( 'aria-hidden', 'true' );
+				}
+			} );
+		}
+	}
+	const pageFixes = [ 'iframe-titles', 'tabindex', 'accesskeys', 'empty-headings', 'empty-paragraphs' ].some( on );
+	function startPage() {
+		fixPage( doc );
+		// Also fix content added later (pop-ups, sliders, lazy embeds), in small batches.
+		if ( window.MutationObserver ) {
+			let pending = [];
+			let timer = null;
+			new MutationObserver( ( records ) => {
+				records.forEach( ( r ) => r.addedNodes.forEach( ( n ) => n.nodeType === 1 && pending.push( n ) ) );
+				if ( pending.length && ! timer ) {
+					timer = setTimeout( () => {
+						const nodes = pending;
+						pending = [];
+						timer = null;
+						nodes.forEach( ( n ) => n.isConnected && fixPage( n.parentElement || n ) );
+					}, 200 );
+				}
+			} ).observe( doc.body, { childList: true, subtree: true } );
+		}
+	}
+	if ( pageFixes ) {
+		if ( doc.readyState === 'loading' ) {
+			doc.addEventListener( 'DOMContentLoaded', startPage );
+		} else {
+			startPage();
+		}
+	}
+
 	// Skip link, unless the theme (or WordPress for block themes) already provides one.
 	// Runs on load so WordPress's own skip-link script has had its turn.
 	function addSkipLink() {

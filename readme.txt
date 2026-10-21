@@ -4,7 +4,7 @@ Tags: accessibility, wcag, a11y, ada, audit
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.5.2
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,8 @@ Audit your site against WCAG 2.2 AA, see exactly what needs fixing, and track pr
 CoreA11y scans your pages with axe-core, the open-source accessibility testing engine, and shows every issue it finds grouped by WCAG criterion, page and severity, with a plain-language explanation of how to fix it.
 
 * Full audit of your pages, run from your WordPress admin
-* Quick fixes with one-click undo: reversible fixes for a skip link, keyboard focus outline, page language, mobile zoom, search and comment field labels, and missing page titles
+* 12 quick fixes with one-click undo: a skip link, keyboard focus outline, page language, mobile zoom, search and comment field labels, missing page titles, titles for embedded videos and maps, hidden empty headings and paragraphs, natural keyboard order, no clashing shortcut keys, and respect for "reduce motion" settings
+* Fixed and verified: after you turn a fix on, CoreA11y re-checks the affected pages and shows whether the problems are gone
 * Visual report with a score gauge and charts by severity, WCAG principle and type of fix
 * A "?" next to every problem explains in plain language why it matters, who it affects and how to fix it
 * Before & after: compare any two audits to see what you fixed, what remains and what is new
@@ -55,7 +56,7 @@ No automated tool can find every accessibility problem. CoreA11y combines axe-co
 
 = Will CoreA11y slow down my site? =
 
-No. The checking engines run only in your admin. Visitors only get the quick fixes you turn on: one small script (about 3 KB) and less than 1 KB of CSS.
+No. The checking engines run only in your admin. Visitors only get the quick fixes you turn on: one small script (under 2 KB compressed) and less than 1 KB of CSS.
 
 = Does CoreA11y send my data anywhere? =
 
@@ -64,6 +65,14 @@ No. Scans run in your own browser and results are stored in your WordPress datab
 = Does the accessibility statement claim my site is compliant? =
 
 Only if you say so. You choose the conformance status yourself, and CoreA11y recommends "Partially conformant" until a full manual review has been done. It warns you if you choose "Fully conformant" while your latest audit still finds issues.
+
+= Does CoreA11y work on multisite? =
+
+Yes. Activate it for the whole network or on single sites. Each site has its own audits, fixes and settings, and is managed from that site's dashboard.
+
+= What happens if I deactivate CoreA11y? =
+
+All quick fixes stop immediately, because they are applied as pages are shown and never written into your theme or content. CoreA11y also clears the page cache of popular caching plugins, so visitors don't see old cached copies. Your settings, audits and history are kept: reactivate and everything comes back as it was.
 
 = What happens to my data if I delete the plugin? =
 
@@ -91,7 +100,16 @@ Both engines run only in the WordPress admin, while you run an audit or check a 
 
 The audit report links to Deque University rule pages (https://dequeuniversity.com/rules/axe/) for detailed fixing guidance. These links are only opened if you click them; no data is sent.
 
+CoreA11y includes the Freemius SDK (https://freemius.com), used to sell and license the optional CoreA11y Pro. In the free version it runs in anonymous mode: there is no opt-in screen and no information about your site is sent. Freemius is only contacted if you open the Upgrade page or buy and activate a Pro license. Freemius terms: https://freemius.com/terms/ and privacy policy: https://freemius.com/privacy/.
+
 == Changelog ==
+
+= 1.0.0 =
+* 12 quick fixes (was 6). New: titles for embedded videos and maps, hide empty headings and empty paragraphs from screen readers, restore the natural keyboard order, remove clashing shortcut keys, and respect "reduce motion" settings.
+* Fixed and verified: after you turn fixes on, CoreA11y re-checks the pages where those problems were found and shows, for each fix, whether the problems are gone.
+* Multisite: each site's data is removed when the site or the plugin is deleted.
+* Deleting CoreA11y also removes its fix check results.
+* Optional CoreA11y Pro, with 29 more fixes, a weekly check, CSV export, network tools and white-label reports.
 
 = 0.5.2 =
 * Checks every page at phone width as well as desktop, to catch problems in mobile menus and layouts (can be turned off in Settings).
@@ -106,6 +124,8 @@ The audit report links to Deque University rule pages (https://dequeuniversity.c
 * New "Support information" box in Settings to copy into a support request. Nothing is sent automatically.
 * The score is now called the CoreA11y score, with a clearer explanation.
 * Tested with MySQL/MariaDB.
+* Tested with Astra, GeneratePress, Kadence, OceanWP, WooCommerce, Elementor, Contact Form 7, Polylang, Yoast SEO, Wordfence, Really Simple Security, Autoptimize, WP Super Cache, W3 Total Cache and LiteSpeed Cache.
+* Deactivating CoreA11y now also clears page caches, so fixes disappear for visitors straight away.
 
 = 0.5.1 =
 * Passes the WordPress.org Plugin Check with no errors or warnings.

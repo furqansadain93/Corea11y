@@ -2,12 +2,12 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: CoreA11y 0.5.2\n"
+"Project-Id-Version: CoreA11y 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/corea11y\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-20 11:31+0000\n"
+"POT-Creation-Date: 2026-10-21 08:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: admin/views/audits.php:22
+#: admin/views/audits.php:22 pro/includes/class-corea11y-pro-reports.php:93
 msgid "Status"
 msgstr ""
 
@@ -41,7 +41,7 @@ msgstr ""
 msgid "Pages scanned"
 msgstr ""
 
-#: admin/views/audits.php:24 admin/views/partials/report-body.php:77
+#: admin/views/audits.php:24 admin/views/partials/report-body.php:77 pro/includes/class-corea11y-pro-network.php:185
 msgid "Issues"
 msgstr ""
 
@@ -49,15 +49,15 @@ msgstr ""
 msgid "Score"
 msgstr ""
 
-#: admin/views/audits.php:26 admin/views/print.php:28
+#: admin/views/audits.php:26 admin/views/print.php:36
 msgid "Export"
 msgstr ""
 
-#: admin/views/audits.php:44
+#: admin/views/audits.php:44 pro/includes/class-corea11y-pro-fixes.php:524
 msgid "PDF"
 msgstr ""
 
-#: admin/views/audits.php:44 admin/views/compare.php:25 admin/views/dashboard.php:96 admin/views/partials/report-body.php:174 admin/views/report.php:27
+#: admin/views/audits.php:44 admin/views/compare.php:25 admin/views/dashboard.php:96 admin/views/partials/report-body.php:174 admin/views/report.php:27 pro/includes/class-corea11y-pro-fixes.php:522
 msgid "(opens in a new tab)"
 msgstr ""
 
@@ -171,7 +171,7 @@ msgstr ""
 msgid "Compare before and after, and download a PDF to share your progress."
 msgstr ""
 
-#: admin/views/dashboard.php:42 admin/views/report.php:31
+#: admin/views/dashboard.php:42 admin/views/report.php:39
 msgid "Run a new audit"
 msgstr ""
 
@@ -185,7 +185,7 @@ msgstr ""
 msgid "Pages to scan: %s."
 msgstr ""
 
-#: admin/views/dashboard.php:51 admin/views/fixes.php:136
+#: admin/views/dashboard.php:51 admin/views/fixes.php:216
 msgid "Change"
 msgstr ""
 
@@ -279,162 +279,233 @@ msgstr ""
 msgid "CoreA11y reports automated scan results and your own manual checks. Automated tools can't confirm full WCAG conformance on their own."
 msgstr ""
 
-#: admin/views/fixes.php:21 includes/class-corea11y-admin.php:49
+#: admin/views/fixes.php:24 includes/class-corea11y-admin.php:49
 msgid "Quick fixes"
 msgstr ""
 
-#: admin/views/fixes.php:22
+#: admin/views/fixes.php:25
 msgid "Safe, one-click fixes for common problems. Nothing in your theme or content is edited, and every change can be undone."
 msgstr ""
 
-#: admin/views/fixes.php:39
+#: admin/views/fixes.php:42
 msgid "Undone."
 msgstr ""
 
-#: admin/views/fixes.php:39
+#: admin/views/fixes.php:42
 msgid "Redone."
 msgstr ""
 
-#: admin/views/fixes.php:39
+#: admin/views/fixes.php:42
 msgid "Fixes saved."
 msgstr ""
 
+#. translators: %s: internal fix name.
+#: admin/views/fixes.php:47 admin/views/fixes.php:221
+#, php-format
+msgid "Pro fix (%s)"
+msgstr ""
+
 #. translators: %s: fix name.
-#: admin/views/fixes.php:46
+#: admin/views/fixes.php:49
 #, php-format
 msgid "Turned on: %s"
 msgstr ""
 
 #. translators: %s: fix name.
-#: admin/views/fixes.php:46
+#: admin/views/fixes.php:49
 #, php-format
 msgid "Turned off: %s"
 msgstr ""
 
 #. translators: %s: names of caching plugins, e.g. "WP Rocket".
-#: admin/views/fixes.php:56
+#: admin/views/fixes.php:59
 #, php-format
 msgid "We also cleared the page cache (%s), so visitors see this change now."
 msgstr ""
 
 #. translators: %s: names of caching plugins, e.g. "WP Rocket".
-#: admin/views/fixes.php:58
+#: admin/views/fixes.php:61
 msgid "If your host or a CDN such as Cloudflare caches your pages, clear that cache to see this change straight away."
 msgstr ""
 
-#: admin/views/fixes.php:63
+#: admin/views/fixes.php:66
+msgid "Checking that the fixes worked…"
+msgstr ""
+
+#: admin/views/fixes.php:70
+msgid "Check again"
+msgstr ""
+
+#: admin/views/fixes.php:72
 msgid "Verify with a new audit"
 msgstr ""
 
-#: admin/views/fixes.php:66
+#: admin/views/fixes.php:76
 msgid "Redo"
 msgstr ""
 
-#: admin/views/fixes.php:66
+#: admin/views/fixes.php:76
 msgid "Undo this change"
 msgid_plural "Undo these changes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/fixes.php:71
+#: admin/views/fixes.php:81
 msgid "Nothing changed."
 msgstr ""
 
+#: admin/views/fixes.php:90
+msgid "Check complete."
+msgstr ""
+
+#: admin/views/fixes.php:90
+msgid "CoreA11y opened the pages where these problems were found and checked them again:"
+msgstr ""
+
+#: admin/views/fixes.php:101
+msgid "Problems the fixes don't cover are not part of this check. Run a full audit to update your score."
+msgstr ""
+
+#. translators: %d: number of quick fixes.
+#: admin/views/fixes.php:108
+#, php-format
+msgid "%d fix that is on hasn't been checked against your latest audit yet."
+msgid_plural "%d fixes that are on haven't been checked against your latest audit yet."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/fixes.php:111
+msgid "Check that they work"
+msgstr ""
+
+#: admin/views/fixes.php:131
+msgid "This fix changes how your site looks. Check a few pages after turning it on."
+msgstr ""
+
+#: admin/views/fixes.php:135
+msgid "Activate your CoreA11y Pro license to turn this fix on."
+msgstr ""
+
+#: admin/views/fixes.php:140
+msgid "Activate license"
+msgstr ""
+
+#: admin/views/fixes.php:146
+msgid "Pro"
+msgstr ""
+
 #. translators: %s: WCAG success criterion numbers.
-#: admin/views/fixes.php:92 admin/views/partials/report-body.php:128
+#: admin/views/fixes.php:152 admin/views/partials/report-body.php:128
 #, php-format
 msgid "WCAG %s"
 msgstr ""
 
+#: admin/views/fixes.php:156 admin/views/partials/report-body.php:117 admin/views/partials/report-body.php:120 pro/includes/class-corea11y-pro-reports.php:107
+msgid "Best practice"
+msgstr ""
+
 #. translators: %s: number of issues.
-#: admin/views/fixes.php:99
+#: admin/views/fixes.php:167
 #, php-format
 msgid "Fixes %s issue in your latest audit"
 msgid_plural "Fixes %s issues in your latest audit"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/views/fixes.php:103
+#: admin/views/fixes.php:171
 msgid "Not needed in your latest audit"
 msgstr ""
 
-#: admin/views/fixes.php:105
+#: admin/views/fixes.php:173
 msgid "Recommended for every site"
 msgstr ""
 
-#: admin/views/fixes.php:112 admin/views/fixes.php:136 admin/views/fixes.php:162 admin/views/report.php:59
+#: admin/views/fixes.php:180 admin/views/fixes.php:216 admin/views/fixes.php:242 admin/views/report.php:67
 msgid "Undo"
 msgstr ""
 
-#: admin/views/fixes.php:122
+#: admin/views/fixes.php:195
+msgid "Want more fixes?"
+msgstr ""
+
+#: admin/views/fixes.php:196
+msgid "CoreA11y Pro adds 29 more one-click fixes, such as naming icon-only links and buttons, opening dropdown menus with the keyboard, stopping sound that plays automatically and warning when links open a new tab. Every fix can be undone, like the ones above."
+msgstr ""
+
+#: admin/views/fixes.php:197
+msgid "See CoreA11y Pro"
+msgstr ""
+
+#: admin/views/fixes.php:202
 msgid "Save fixes"
 msgstr ""
 
-#: admin/views/fixes.php:124
+#: admin/views/fixes.php:204
 msgid "Turn all fixes off"
 msgstr ""
 
-#: admin/views/fixes.php:130
+#: admin/views/fixes.php:210
 msgid "Change history"
 msgstr ""
 
-#: admin/views/fixes.php:132
+#: admin/views/fixes.php:212
 msgid "No changes yet."
 msgstr ""
 
-#: admin/views/fixes.php:135
+#: admin/views/fixes.php:215
 msgid "Quick fix changes, newest first"
 msgstr ""
 
-#: admin/views/fixes.php:136
+#: admin/views/fixes.php:216
 msgid "When"
 msgstr ""
 
-#: admin/views/fixes.php:136
+#: admin/views/fixes.php:216
 msgid "Fix"
 msgstr ""
 
-#: admin/views/fixes.php:136 admin/views/partials/report-body.php:306
+#: admin/views/fixes.php:216 admin/views/partials/report-body.php:306
 msgid "By"
 msgstr ""
 
-#: admin/views/fixes.php:150
+#: admin/views/fixes.php:230
 msgid "Turned back on (undo)"
 msgstr ""
 
-#: admin/views/fixes.php:150
+#: admin/views/fixes.php:230
 msgid "Turned off (undo)"
 msgstr ""
 
-#: admin/views/fixes.php:152
+#: admin/views/fixes.php:232
 msgid "Turned on"
 msgstr ""
 
-#: admin/views/fixes.php:152
+#: admin/views/fixes.php:232
 msgid "Turned off"
 msgstr ""
 
 #. translators: 1: change, 2: fix name.
-#: admin/views/fixes.php:165
+#. translators: 1: link text such as "Read more", 2: post title.
+#: admin/views/fixes.php:245 pro/includes/class-corea11y-pro-fixes.php:477
 #, php-format
 msgid "%1$s: %2$s"
 msgstr ""
 
 #. translators: 1: change, 2: fix name.
-#: admin/views/fixes.php:165
+#: admin/views/fixes.php:245
 msgid "turned on"
 msgstr ""
 
 #. translators: 1: change, 2: fix name.
-#: admin/views/fixes.php:165
+#: admin/views/fixes.php:245
 msgid "turned off"
 msgstr ""
 
-#: admin/views/fixes.php:171
+#: admin/views/fixes.php:251
 msgid "Changed since"
 msgstr ""
 
-#: admin/views/fixes.php:181
+#: admin/views/fixes.php:261
 msgid "Some fixes use a small script on your pages because many themes hard-code these parts of the page. Visitors with JavaScript turned off simply see your site as before."
 msgstr ""
 
@@ -514,7 +585,7 @@ msgstr ""
 msgid "Change by problem"
 msgstr ""
 
-#: admin/views/partials/compare-body.php:99 admin/views/partials/report-body.php:306
+#: admin/views/partials/compare-body.php:99 admin/views/partials/report-body.php:306 pro/includes/class-corea11y-pro-reports.php:88
 msgid "Problem"
 msgstr ""
 
@@ -614,7 +685,7 @@ msgstr ""
 msgid "About the CoreA11y score"
 msgstr ""
 
-#: admin/views/partials/report-body.php:58
+#: admin/views/partials/report-body.php:58 pro/includes/class-corea11y-pro-network.php:184
 msgid "CoreA11y score"
 msgstr ""
 
@@ -638,7 +709,7 @@ msgstr ""
 msgid "Pages with the most issues"
 msgstr ""
 
-#: admin/views/partials/report-body.php:77 admin/views/partials/report-body.php:306
+#: admin/views/partials/report-body.php:77 admin/views/partials/report-body.php:306 pro/includes/class-corea11y-pro-reports.php:86
 msgid "Page"
 msgstr ""
 
@@ -652,10 +723,6 @@ msgstr ""
 
 #: admin/views/partials/report-body.php:96
 msgid "Problems are listed most severe first. Select \"?\" next to any problem to learn why it matters and how to fix it."
-msgstr ""
-
-#: admin/views/partials/report-body.php:117 admin/views/partials/report-body.php:120
-msgid "Best practice"
 msgstr ""
 
 #. translators: 1: number of elements, 2: number of pages.
@@ -690,11 +757,11 @@ msgstr ""
 msgid "Why it matters"
 msgstr ""
 
-#: admin/views/partials/report-body.php:160
+#: admin/views/partials/report-body.php:160 pro/includes/class-corea11y-pro-reports.php:96
 msgid "Who it affects"
 msgstr ""
 
-#: admin/views/partials/report-body.php:161
+#: admin/views/partials/report-body.php:161 pro/includes/class-corea11y-pro-reports.php:97
 msgid "How to fix"
 msgstr ""
 
@@ -761,7 +828,7 @@ msgid "Needs a human check (%s)"
 msgstr ""
 
 #. translators: %s: number of problem types that need a person to check them.
-#: admin/views/partials/report-body.php:260
+#: admin/views/partials/report-body.php:260 pro/includes/class-corea11y-pro-reports.php:109
 msgid "Needs a human check"
 msgstr ""
 
@@ -815,22 +882,22 @@ msgstr ""
 msgid "Scanned with axe-core %s against WCAG 2.0, 2.1 and 2.2 Level A and AA rules, plus CoreA11y content checks. Automated checks find only part of all accessibility issues; the manual checklist covers the rest. This report does not certify WCAG conformance."
 msgstr ""
 
-#: admin/views/print.php:29
+#: admin/views/print.php:37
 msgid "In the print window, choose \"Save as PDF\" as the destination."
 msgstr ""
 
-#: admin/views/print.php:30
+#: admin/views/print.php:38
 msgid "Save as PDF"
 msgstr ""
 
 #. translators: %s: date the PDF was generated.
-#: admin/views/print.php:51
+#: admin/views/print.php:71
 #, php-format
 msgid "Generated %s"
 msgstr ""
 
 #. translators: %s: plugin version.
-#: admin/views/print.php:66
+#: admin/views/print.php:86
 #, php-format
 msgid "Report generated by CoreA11y %s · Automated results do not certify WCAG conformance."
 msgstr ""
@@ -843,25 +910,25 @@ msgstr ""
 msgid "Audit report"
 msgstr ""
 
-#: admin/views/report.php:29
+#: admin/views/report.php:37
 msgid "Compare with previous audit"
 msgstr ""
 
 #. translators: %s: audit status, e.g. "running" or "abandoned".
-#: admin/views/report.php:39
+#: admin/views/report.php:47
 #, php-format
 msgid "This audit did not finish (status: %s). Results may be incomplete."
 msgstr ""
 
-#: admin/views/report.php:53
+#: admin/views/report.php:61
 msgid "Issue dismissed."
 msgstr ""
 
-#: admin/views/report.php:53
+#: admin/views/report.php:61
 msgid "It no longer counts in this report, and it stays dismissed in future audits."
 msgstr ""
 
-#: admin/views/report.php:63
+#: admin/views/report.php:71
 msgid "Issue restored. It counts in your reports again."
 msgstr ""
 
@@ -1091,7 +1158,7 @@ msgstr ""
 msgid "Starting audit…"
 msgstr ""
 
-#: assets/js/scanner.js:244 includes/class-corea11y-rest.php:109
+#: assets/js/scanner.js:244 includes/class-corea11y-rest.php:150
 msgid "The audit could not be started."
 msgstr ""
 
@@ -1137,6 +1204,24 @@ msgstr ""
 msgid "Stopping after the current page. Results so far will be saved."
 msgstr ""
 
+#: assets/js/verify.js:40
+msgid "Page being checked"
+msgstr ""
+
+#. translators: 1: current page number, 2: number of pages, 3: page name.
+#: assets/js/verify.js:143
+#, php-format
+msgid "Checking that the fixes worked: page %1$d of %2$d (%3$s)…"
+msgstr ""
+
+#: assets/js/verify.js:163
+msgid "Check complete. Showing the results…"
+msgstr ""
+
+#: assets/js/verify.js:171
+msgid "The results could not be saved."
+msgstr ""
+
 #: includes/class-corea11y-admin.php:40 includes/class-corea11y-admin.php:41
 msgid "CoreA11y"
 msgstr ""
@@ -1153,35 +1238,35 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: includes/class-corea11y-admin.php:211 includes/class-corea11y-admin.php:254 includes/class-corea11y-admin.php:273 includes/class-corea11y-admin.php:290 includes/class-corea11y-admin.php:305 includes/class-corea11y-admin.php:414 includes/class-corea11y-admin.php:480
+#: includes/class-corea11y-admin.php:236 includes/class-corea11y-admin.php:279 includes/class-corea11y-admin.php:298 includes/class-corea11y-admin.php:315 includes/class-corea11y-admin.php:330 includes/class-corea11y-admin.php:439 includes/class-corea11y-admin.php:505 pro/includes/class-corea11y-pro-monitor.php:326 pro/includes/class-corea11y-pro-network.php:265 pro/includes/class-corea11y-pro-network.php:316 pro/includes/class-corea11y-pro-reports.php:56
 msgid "You do not have permission to do this."
 msgstr ""
 
-#: includes/class-corea11y-admin.php:366
+#: includes/class-corea11y-admin.php:391
 msgid "Pick two different audits to compare."
 msgstr ""
 
-#: includes/class-corea11y-admin.php:429
+#: includes/class-corea11y-admin.php:454
 msgid "Accessibility progress report"
 msgstr ""
 
-#: includes/class-corea11y-admin.php:434 includes/class-corea11y-audit.php:114 includes/class-corea11y-audit.php:273
+#: includes/class-corea11y-admin.php:459 includes/class-corea11y-audit.php:135 includes/class-corea11y-audit.php:294 pro/includes/class-corea11y-pro-reports.php:64
 msgid "Audit not found."
 msgstr ""
 
-#: includes/class-corea11y-admin.php:436
+#: includes/class-corea11y-admin.php:461
 msgid "Accessibility audit report"
 msgstr ""
 
-#: includes/class-corea11y-audit.php:117
+#: includes/class-corea11y-audit.php:138
 msgid "This audit has already finished."
 msgstr ""
 
-#: includes/class-corea11y-audit.php:131
+#: includes/class-corea11y-audit.php:152
 msgid "That page is not part of this audit."
 msgstr ""
 
-#: includes/class-corea11y-audit.php:134
+#: includes/class-corea11y-audit.php:155
 msgid "Results for this page were already saved."
 msgstr ""
 
@@ -2685,75 +2770,150 @@ msgstr ""
 msgid "Issues found in the later audit that were not in the earlier one, for example on a new page or after a theme change."
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:31
+#: includes/class-corea11y-fixes.php:32
 msgid "Add a \"Skip to content\" link"
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:32
+#: includes/class-corea11y-fixes.php:33
 msgid "Adds a link that appears when keyboard users press Tab, letting them jump past the menu straight to the main content. It is skipped if your theme already has one."
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:37
+#: includes/class-corea11y-fixes.php:38
 msgid "Show a clear keyboard focus outline"
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:38
+#: includes/class-corea11y-fixes.php:39
 msgid "Draws a high-contrast outline around links, buttons and fields when they are reached with the keyboard, even if your theme removed it. Mouse clicks are not affected."
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:43
+#: includes/class-corea11y-fixes.php:44
 msgid "Add the page language"
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:44
+#: includes/class-corea11y-fixes.php:45
 msgid "Tells screen readers which language your pages are in, using the language from Settings > General, so text is pronounced correctly."
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:49
+#: includes/class-corea11y-fixes.php:50
 msgid "Allow pinch-zoom on phones"
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:50
+#: includes/class-corea11y-fixes.php:51
 msgid "Removes the setting some themes use to block zooming, so visitors who need bigger text can zoom in on mobile."
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:55
+#: includes/class-corea11y-fixes.php:56
 msgid "Label search and comment fields"
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:56
+#: includes/class-corea11y-fixes.php:57
 msgid "Gives WordPress search boxes and comment form fields a name screen readers can announce, when your theme leaves it out."
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:61
+#: includes/class-corea11y-fixes.php:62
 msgid "Add a missing page title"
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:62
+#: includes/class-corea11y-fixes.php:63
 msgid "Gives every page a title (shown in the browser tab and read first by screen readers) when your theme does not output one."
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:311
+#: includes/class-corea11y-fixes.php:68
+msgid "Title embedded videos, maps and widgets"
+msgstr ""
+
+#: includes/class-corea11y-fixes.php:69
+msgid "Adds a title such as \"YouTube video\" or \"Map\" to embedded frames that have none, so screen reader users know what they contain."
+msgstr ""
+
+#: includes/class-corea11y-fixes.php:74
+msgid "Hide empty headings from screen readers"
+msgstr ""
+
+#: includes/class-corea11y-fixes.php:75
+msgid "Empty headings, often left by page builders, are hidden from screen readers so they aren't announced as blank headings."
+msgstr ""
+
+#: includes/class-corea11y-fixes.php:80
+msgid "Hide empty paragraphs from screen readers"
+msgstr ""
+
+#: includes/class-corea11y-fixes.php:81
+msgid "Empty paragraphs used for spacing are hidden from screen readers so they aren't announced as \"blank\". The spacing stays."
+msgstr ""
+
+#: includes/class-corea11y-fixes.php:86
+msgid "Restore the natural keyboard order"
+msgstr ""
+
+#: includes/class-corea11y-fixes.php:87
+msgid "Removes forced keyboard order (tabindex above 0), so Tab moves through the page in the order it is read."
+msgstr ""
+
+#: includes/class-corea11y-fixes.php:92
+msgid "Remove clashing keyboard shortcuts"
+msgstr ""
+
+#: includes/class-corea11y-fixes.php:93
+msgid "Removes access keys, which can clash with screen reader and browser shortcuts."
+msgstr ""
+
+#: includes/class-corea11y-fixes.php:98
+msgid "Respect \"reduce motion\" settings"
+msgstr ""
+
+#: includes/class-corea11y-fixes.php:99
+msgid "For visitors who ask their device for less motion, animations and smooth scrolling are switched off."
+msgstr ""
+
+#: includes/class-corea11y-fixes.php:496
 msgid "Skip to content"
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:312 includes/class-corea11y-fixes.php:361
+#: includes/class-corea11y-fixes.php:497 includes/class-corea11y-fixes.php:556 pro/includes/class-corea11y-pro-fixes.php:534
 msgid "Search"
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:377
+#: includes/class-corea11y-fixes.php:499
+msgid "Embedded content"
+msgstr ""
+
+#. translators: %s: video service, e.g. "YouTube".
+#: includes/class-corea11y-fixes.php:501
+#, php-format
+msgid "%s video"
+msgstr ""
+
+#. translators: %s: video service, e.g. "YouTube".
+#: includes/class-corea11y-fixes.php:502
+msgid "Map"
+msgstr ""
+
+#. translators: %s: audio service, e.g. "Spotify".
+#: includes/class-corea11y-fixes.php:504
+#, php-format
+msgid "%s player"
+msgstr ""
+
+#. translators: %s: social network, e.g. "Instagram".
+#: includes/class-corea11y-fixes.php:506
+#, php-format
+msgid "%s post"
+msgstr ""
+
+#: includes/class-corea11y-fixes.php:572
 msgid "Comment"
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:378
+#: includes/class-corea11y-fixes.php:573
 msgid "Name"
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:379
+#: includes/class-corea11y-fixes.php:574 pro/includes/class-corea11y-pro-fixes.php:544
 msgid "Email"
 msgstr ""
 
-#: includes/class-corea11y-fixes.php:380
+#: includes/class-corea11y-fixes.php:575
 msgid "Website"
 msgstr ""
 
@@ -2768,16 +2928,16 @@ msgid "Issue %1$d of %2$d"
 msgstr ""
 
 #. translators: 1: current issue number, 2: total issues. Keep the placeholders as they are.
-#: includes/class-corea11y-highlighter.php:131
+#: includes/class-corea11y-highlighter.php:131 pro/includes/class-corea11y-pro-fixes.php:540
 msgid "Previous"
 msgstr ""
 
 #. translators: 1: current issue number, 2: total issues. Keep the placeholders as they are.
-#: includes/class-corea11y-highlighter.php:132
+#: includes/class-corea11y-highlighter.php:132 pro/includes/class-corea11y-pro-fixes.php:539
 msgid "Next"
 msgstr ""
 
-#: includes/class-corea11y-highlighter.php:133
+#: includes/class-corea11y-highlighter.php:133 pro/includes/class-corea11y-pro-fixes.php:536
 msgid "Close"
 msgstr ""
 
@@ -3131,5 +3291,711 @@ msgstr ""
 
 #: includes/class-corea11y-ui.php:212
 msgid "After:"
+msgstr ""
+
+#. translators: %d: number of pages checked.
+#: includes/class-corea11y-ui.php:306
+#, php-format
+msgid "%d page checked"
+msgid_plural "%d pages checked"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: number of problems, 2: "3 pages checked".
+#: includes/class-corea11y-ui.php:309
+#, php-format
+msgid "Fixed and verified: %1$s problem gone (%2$s)"
+msgid_plural "Fixed and verified: %1$s problems gone (%2$s)"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: problems before, 2: problems still found, 3: "3 pages checked".
+#: includes/class-corea11y-ui.php:313
+#, php-format
+msgid "Partly fixed: %1$s problems before, %2$s still found (%3$s)"
+msgstr ""
+
+#. translators: 1: problems still found.
+#: includes/class-corea11y-ui.php:316
+#, php-format
+msgid "%1$s problem needs more than this fix. See the report."
+msgid_plural "%1$s problems need more than this fix. See the report."
+msgstr[0] ""
+msgstr[1] ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:53
+msgid "Use Media Library alt text in posts"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:54
+msgid "When an image in a post has no alt text but you have written one in the Media Library, use it. Images you marked decorative are left alone."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:59
+msgid "Name icon-only links"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:60
+msgid "Gives links with no text a name screen readers can announce, using their tooltip or, for social media and email icons, the service name."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:65
+msgid "Name icon-only buttons"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:66
+msgid "Gives buttons with no text a name, using their tooltip or a clear purpose such as \"Search\", \"Menu\" or \"Close\"."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:71
+msgid "Warn when links open a new tab"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:72
+msgid "Adds \"(opens in a new tab)\" for screen readers to links that open a new tab or window without saying so. Nothing changes visually."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:77
+msgid "Say the file type on file links"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:78
+msgid "Tells screen readers when a link opens a PDF, Word, Excel, PowerPoint or ZIP file. Nothing changes visually."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:83
+msgid "Make \"Read more\" links specific"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:84
+msgid "Adds the post title to \"Read more\" and \"Continue reading\" links for screen readers, so each says which post it opens."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:89
+msgid "Remove tooltips that repeat link text"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:90
+msgid "Removes link tooltips that only repeat the link text, so screen readers don't say it twice."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:95
+msgid "Help browsers fill in forms"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:96
+msgid "Marks common fields (name, email, phone, address) so browsers and assistive technology can fill them in automatically."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:101
+msgid "Keep placeholder text as the field name"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:102
+msgid "For fields that only have placeholder text, keeps that text as the field's name for screen readers after someone starts typing. A visible label is still best."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:107
+msgid "Mark the main content area"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:108
+msgid "Marks your theme's main content area as \"main\", so screen reader users can jump straight to it."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:113
+msgid "Hide decorative icons in links and buttons"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:114
+msgid "Icons inside links and buttons that already have text are hidden from screen readers, so only the text is read."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:119
+msgid "Keep focused items out from under sticky headers"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:120
+msgid "When a sticky header or bar covers the top of the screen, scrolls keyboard focus into view below it."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:125
+msgid "Underline links in text"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:126
+msgid "Underlines links inside paragraphs and lists, so they can be told apart without relying on color. This changes how your site looks."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:132
+msgid "Name your menus"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:133
+msgid "Gives each menu a name screen readers announce, such as \"Main menu\" or \"Footer menu\", taken from Appearance > Menus."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:138
+msgid "Mark the header and footer"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:139
+msgid "Marks your theme's header and footer areas, so screen reader users can jump to them like the main content."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:144
+msgid "Add a main heading where a page has none"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:145
+msgid "When a page has no main (H1) heading, adds the page title as one for screen readers. Nothing changes visually."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:150
+msgid "Open dropdown menus with the keyboard"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:151
+msgid "Submenus that only open on mouse hover also open when keyboard users Tab into them, and close with Escape."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:156
+msgid "Stop sound from playing automatically"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:157
+msgid "Videos and audio that would start playing with sound wait until the visitor presses play. Muted background videos are left alone."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:162
+msgid "Combine duplicate image and text links"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:163
+msgid "When an image and the text next to it link to the same page, keyboard and screen reader users get one link instead of two."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:168
+msgid "Skip empty links"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:169
+msgid "Links with nothing inside them are skipped by the keyboard and screen readers, so visitors don't land on a blank stop."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:174
+msgid "Name image links from your own site"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:175
+msgid "When a linked image has no alt text, uses the title of the page or image it links to on your site."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:180
+msgid "Say \"Page\" on page-number links"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:181
+msgid "Page-number links such as \"2\" are read as \"Page 2\", and the current page is announced as current."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:186
+msgid "Connect table headers to their cells"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:187
+msgid "Tells screen readers which cells each table header describes, so tables are read row by row correctly."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:192
+msgid "Remove tooltips that repeat alt text"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:193
+msgid "Removes image tooltips that only repeat the alt text, so screen readers don't read it twice."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:198
+msgid "Connect form labels to their fields"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:199
+msgid "When a form shows a label that isn't linked to its field (common with page builders), links them so screen readers read the label."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:204
+msgid "Announce required fields"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:205
+msgid "Fields marked with * or \"(required)\" are announced as required to screen reader users."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:210
+msgid "Read out form messages"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:211
+msgid "Error and success messages from common form plugins are read out by screen readers when they appear."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:216
+msgid "Make small icon links easier to tap"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:217
+msgid "Gives icon-only links and buttons a tap area of at least 24 by 24 pixels. This can change how your site looks."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:223
+msgid "Make placeholder text readable"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:224
+msgid "Makes faint placeholder text in form fields dark enough to read (or light enough on dark fields). This changes how your site looks."
+msgstr ""
+
+#. translators: %s: search query.
+#: pro/includes/class-corea11y-pro-fixes.php:403
+#, php-format
+msgid "Search results for \"%s\""
+msgstr ""
+
+#. translators: %s: search query.
+#: pro/includes/class-corea11y-pro-fixes.php:405
+msgid "Page not found"
+msgstr ""
+
+#. translators: %s: post title.
+#: pro/includes/class-corea11y-pro-fixes.php:451
+#, php-format
+msgid ": %s"
+msgstr ""
+
+#. translators: 1: link text such as "Read more", 2: post title.
+#: pro/includes/class-corea11y-pro-fixes.php:477
+msgid "Read more"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:525 pro/includes/class-corea11y-pro-fixes.php:526
+msgid "Word document"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:527 pro/includes/class-corea11y-pro-fixes.php:528
+msgid "Excel spreadsheet"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:529 pro/includes/class-corea11y-pro-fixes.php:530
+msgid "PowerPoint"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:531
+msgid "ZIP file"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:535
+msgid "Menu"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:537
+msgid "Cart"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:538
+msgid "Account"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:541
+msgid "Play"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:542
+msgid "Pause"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-fixes.php:545
+msgid "Call"
+msgstr ""
+
+#. translators: %s: page number.
+#: pro/includes/class-corea11y-pro-fixes.php:547
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+#. translators: %s: site name.
+#: pro/includes/class-corea11y-pro-monitor.php:211
+#, php-format
+msgid "[%s] Weekly accessibility check"
+msgstr ""
+
+#. translators: %s: site name.
+#: pro/includes/class-corea11y-pro-monitor.php:213
+msgid "Hi,"
+msgstr ""
+
+#. translators: 1: site name, 2: site address.
+#: pro/includes/class-corea11y-pro-monitor.php:216
+#, php-format
+msgid "Here is this week's CoreA11y check for %1$s (%2$s)."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-monitor.php:220
+msgid "You haven't run an audit yet. It takes about a minute and shows what to fix first:"
+msgstr ""
+
+#. translators: 1: score out of 100, 2: number of issues.
+#: pro/includes/class-corea11y-pro-monitor.php:227
+#, php-format
+msgid "Last audit: today. CoreA11y score %1$s/100, %2$s issues."
+msgstr ""
+
+#. translators: 1: date, 2: number of days ago, 3: score out of 100, 4: number of issues.
+#: pro/includes/class-corea11y-pro-monitor.php:234
+#, php-format
+msgid "Last audit: %1$s (%2$d day ago). CoreA11y score %3$s/100, %4$s issues."
+msgid_plural "Last audit: %1$s (%2$d days ago). CoreA11y score %3$s/100, %4$s issues."
+msgstr[0] ""
+msgstr[1] ""
+
+#: pro/includes/class-corea11y-pro-monitor.php:242
+msgid "Since then:"
+msgstr ""
+
+#. translators: %d: number of pages or posts.
+#: pro/includes/class-corea11y-pro-monitor.php:244
+#, php-format
+msgid "%d page or post was added or edited"
+msgid_plural "%d pages or posts were added or edited"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of further pages.
+#: pro/includes/class-corea11y-pro-monitor.php:250
+#, php-format
+msgid "…and %d more"
+msgstr ""
+
+#. translators: %d: number of images.
+#: pro/includes/class-corea11y-pro-monitor.php:253
+#, php-format
+msgid "%d image in those pages has no alt text"
+msgid_plural "%d images in those pages have no alt text"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of images.
+#: pro/includes/class-corea11y-pro-monitor.php:255
+#, php-format
+msgid "%d new image in the Media Library has no alt text"
+msgid_plural "%d new images in the Media Library have no alt text"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of quick fixes.
+#: pro/includes/class-corea11y-pro-monitor.php:257
+#, php-format
+msgid "%d quick fix is on"
+msgid_plural "%d quick fixes are on"
+msgstr[0] ""
+msgstr[1] ""
+
+#: pro/includes/class-corea11y-pro-monitor.php:260
+msgid "Run this week's audit (about a minute) to see whether these changes added any problems:"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-monitor.php:263
+msgid "Nothing changed since your last audit. No action needed this week."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-monitor.php:269
+msgid "You get this email because the weekly check is on in CoreA11y > Settings. You can change who gets it or turn it off there:"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-monitor.php:271
+msgid "Automated checks find many common problems but not all of them, and do not certify WCAG conformance."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-monitor.php:310
+msgid "CoreA11y weekly check:"
+msgstr ""
+
+#. translators: %d: number of pages or posts.
+#: pro/includes/class-corea11y-pro-monitor.php:313
+#, php-format
+msgid "%d page or post changed since your last audit."
+msgid_plural "%d pages or posts changed since your last audit."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of pages or posts.
+#: pro/includes/class-corea11y-pro-monitor.php:315
+msgid "it's time for this week's audit."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-monitor.php:317
+msgid "Run this week's audit"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-monitor.php:318
+msgid "Not now"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:54 pro/includes/class-corea11y-pro-network.php:158
+msgid "CoreA11y network overview"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:159
+msgid "The latest audit and quick fixes of every site in your network."
+msgstr ""
+
+#. translators: %d: number of sites.
+#: pro/includes/class-corea11y-pro-network.php:165
+#, php-format
+msgid "Quick fixes copied to %d site. Each site logged the change, so it can be undone there or below."
+msgid_plural "Quick fixes copied to %d sites. Each site logged the change, so it can be undone there or below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: pro/includes/class-corea11y-pro-network.php:169
+msgid "The last copy was undone on every site."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:174
+msgid "Network tools are part of the Business and Agency plans"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:175
+msgid "See every site's audit at a glance and copy quick fixes to all your sites at once. CoreA11y itself still works on each site, from that site's dashboard."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:180
+msgid "Sites in this network"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:182
+msgid "Site"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:183
+msgid "Latest audit"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:186
+msgid "Quick fixes on"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:187 pro/includes/class-corea11y-pro-reports.php:125
+msgid "Open"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:194
+msgid "CoreA11y is not active on this site."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:197
+msgid "No audit yet"
+msgstr ""
+
+#. translators: %d: number of verified fixes.
+#: pro/includes/class-corea11y-pro-network.php:205
+#, php-format
+msgid "%d verified"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:209
+msgid "CoreA11y dashboard"
+msgstr ""
+
+#. translators: %d: number of sites shown.
+#: pro/includes/class-corea11y-pro-network.php:219
+#, php-format
+msgid "Showing the first %d sites."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:226
+msgid "Copy quick fixes to every site"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:227
+msgid "Turns the same quick fixes on and off on every site where CoreA11y is active, using one site as the example. Every site logs the change, so it can be undone."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:231
+msgid "Copy the quick fixes of"
+msgstr ""
+
+#. translators: 1: site name, 2: number of fixes on.
+#: pro/includes/class-corea11y-pro-network.php:238
+#, php-format
+msgid "%1$s (%2$d on)"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:245
+msgid "Also turn them on for sites created later"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:246
+msgid "Copy to all sites"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:251
+msgid "Undo the last copy on every site"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:269
+msgid "Network tools are part of the Business and Agency plans."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-network.php:273
+msgid "Choose a site to copy from."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-reports.php:47
+msgid "Download CSV"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-reports.php:60
+msgid "CSV export is part of the CoreA11y Pro Business and Agency plans."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-reports.php:87
+msgid "URL"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-reports.php:89
+msgid "Rule"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-reports.php:90
+msgid "WCAG"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-reports.php:91
+msgid "Impact"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-reports.php:92
+msgid "Type"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-reports.php:94
+msgid "Element"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-reports.php:95
+msgid "HTML"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-reports.php:111
+msgid "Issue"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-reports.php:125
+msgid "Dismissed"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-reports.php:190
+msgid "your accessibility partner"
+msgstr ""
+
+#. translators: %s: agency name.
+#: pro/includes/class-corea11y-pro-reports.php:193
+#, php-format
+msgid "Report prepared by %s"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-reports.php:198
+msgid "Automated results do not certify WCAG conformance."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:82
+msgid "Weekly check (Pro)"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:83
+msgid "Weekly email"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:84
+msgid "Send it to"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:86
+msgid "White-label PDF reports (Agency)"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:88
+msgid "Your company name"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:89
+msgid "Your logo"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:90
+msgid "Accent color"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:91
+msgid "Footer line"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:158
+msgid "Choose your logo"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:166
+msgid "Once a week, CoreA11y checks what changed on your site since the last audit (new or edited pages, images without alt text) and emails you a short summary. The check runs on your own server; nothing is sent anywhere except the email itself."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:168
+msgid "Activate your CoreA11y Pro license to use the weekly check."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:177
+msgid "Put your own name and logo on PDF reports you send to clients, instead of CoreA11y."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:179
+msgid "Available on the Agency plan: put your own name and logo on PDF reports you send to clients."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:193
+msgid "Email me a weekly summary"
+msgstr ""
+
+#. translators: %s: date and time of the next weekly check.
+#: pro/includes/class-corea11y-pro-settings.php:198
+#, php-format
+msgid "Next check: %s"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:212
+msgid "Separate several addresses with commas. Leave empty to use the site admin email."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:224
+msgid "Shown at the top of PDF reports. Leave empty to keep CoreA11y branding."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:240
+msgid "Choose logo"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:241
+msgid "Remove logo"
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:242
+msgid "Give the logo alt text in the Media Library (usually your company name). It is used in the PDF."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:254
+msgid "A hex color such as #1a7f5a, used for headings and bars. Pick a dark color so text on it stays readable."
+msgstr ""
+
+#: pro/includes/class-corea11y-pro-settings.php:266
+msgid "For example your website or phone number. The note that automated results do not certify WCAG conformance is always kept."
 msgstr ""
 
