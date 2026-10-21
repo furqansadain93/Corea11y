@@ -1,6 +1,6 @@
 # CoreA11y user guide
 
-Last updated October 21, 2026. The latest version is at https://corea11y.com/docs/.
+Last updated October 21, 2026. The latest version is at https://corea11y.com/docs/wordpress/.
 
 ## What CoreA11y does
 
