@@ -117,6 +117,9 @@ CoreA11y includes the Freemius SDK (https://freemius.com), used to sell and lice
 * Deleting CoreA11y also removes its fix check results.
 * One click: the dashboard and latest report show how many issues quick fixes can solve, with a "Fix them now" button that turns them on and checks they worked.
 * Fixed: hidden empty paragraphs were still reported after the empty paragraph fix was turned on.
+* 14 new checks, including broken skip links and same-page links, form labels hidden or connected to no field, images described only by a tooltip, repeated or very long alt text, underlined text that isn't a link, pages without regions, icon contrast, and embedded videos that need a caption check.
+* Contrast is now measured on plain backgrounds the main engine couldn't decide on, and after page animations finish, so faded-in colours aren't reported wrongly.
+* The score now reaches 100 only when the automated checks find no WCAG failures, and the manual checklist progress is shown next to it.
 * New look: CoreA11y screens and PDF reports now use the CoreA11y colors and Atkinson Hyperlegible, a typeface designed for readability. Every color pair meets WCAG 2.2 AA contrast.
 * Optional CoreA11y Pro, with 29 more fixes, colour-contrast fixes you approve, a weekly check, CSV export, network tools and white-label reports.
 
