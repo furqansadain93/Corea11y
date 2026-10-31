@@ -1,8 +1,8 @@
 /**
- * CoreA11y scanner.
+ * MSACAlab Accessibility Checker scanner.
  *
  * Loads each page of the site in a hidden, same-origin frame, runs axe-core
- * inside it, and sends the violations to the CoreA11y REST API.
+ * inside it, and sends the violations to the MSACAlab Accessibility Checker REST API.
  */
 ( function () {
 	'use strict';
@@ -96,11 +96,11 @@
 			frame.style.width = width + 'px';
 			frame.setAttribute( 'aria-hidden', 'true' );
 			frame.setAttribute( 'tabindex', '-1' );
-			frame.title = __( 'Page being scanned', 'corea11y' );
+			frame.title = __( 'Page being scanned', 'msacalab-accessibility-checker' );
 
 			const timer = setTimeout( () => {
 				frame.remove();
-				reject( new Error( __( 'The page took longer than 30 seconds to load. Slow pages, or pages that keep loading (such as some chat widgets), can cause this. Try again, or leave this page out in Settings.', 'corea11y' ) ) );
+				reject( new Error( __( 'The page took longer than 30 seconds to load. Slow pages, or pages that keep loading (such as some chat widgets), can cause this. Try again, or leave this page out in Settings.', 'msacalab-accessibility-checker' ) ) );
 			}, config.timeout || 30000 );
 
 			frame.addEventListener( 'load', () => {
@@ -137,7 +137,7 @@
 				doc = null;
 			}
 			if ( ! doc || ! doc.documentElement ) {
-				reject( new Error( __( 'The page could not be opened for scanning. Usually a security setting stops pages from being shown in a frame (X-Frame-Options or a Content-Security-Policy frame-ancestors rule), or the page redirects to another address. Ask your host to allow same-origin framing.', 'corea11y' ) ) );
+				reject( new Error( __( 'The page could not be opened for scanning. Usually a security setting stops pages from being shown in a frame (X-Frame-Options or a Content-Security-Policy frame-ancestors rule), or the page redirects to another address. Ask your host to allow same-origin framing.', 'msacalab-accessibility-checker' ) ) );
 				return;
 			}
 			if ( frame.contentWindow.axe ) {
@@ -147,7 +147,7 @@
 			const script = doc.createElement( 'script' );
 			script.src = config.axeUrl;
 			script.onload = () => resolve( frame.contentWindow.axe );
-			script.onerror = () => reject( new Error( __( 'The accessibility engine could not be loaded into the page.', 'corea11y' ) ) );
+			script.onerror = () => reject( new Error( __( 'The accessibility engine could not be loaded into the page.', 'msacalab-accessibility-checker' ) ) );
 			( doc.head || doc.documentElement ).appendChild( script );
 		} );
 	}
@@ -210,7 +210,7 @@
 		}
 	}
 
-	// CoreA11y's own checks, plus the curated IBM Equal Access rules when enabled.
+	// MSACAlab Accessibility Checker's own checks, plus the curated IBM Equal Access rules when enabled.
 	// Any failure here leaves the axe-core results untouched.
 	async function extraChecks( frame, undecided ) {
 		const empty = { violations: [], review: [] };
@@ -282,13 +282,13 @@
 		stopButton.hidden = false;
 		stopButton.disabled = false;
 		log.textContent = '';
-		announce( __( 'Starting audit…', 'corea11y' ) );
+		announce( __( 'Starting audit…', 'msacalab-accessibility-checker' ) );
 
 		let audit;
 		try {
 			audit = await apiFetch( { path: '/corea11y/v1/audits', method: 'POST' } );
 		} catch ( e ) {
-			announce( __( 'The audit could not be started.', 'corea11y' ) + ' ' + ( e.message || '' ) );
+			announce( __( 'The audit could not be started.', 'msacalab-accessibility-checker' ) + ' ' + ( e.message || '' ) );
 			finish();
 			return;
 		}
@@ -303,7 +303,7 @@
 			}
 			const page = pages[ i ];
 			/* translators: 1: current page number, 2: total pages, 3: page name. */
-			announce( sprintf( __( 'Scanning page %1$d of %2$d: %3$s', 'corea11y' ), i + 1, pages.length, page.label ) );
+			announce( sprintf( __( 'Scanning page %1$d of %2$d: %3$s', 'msacalab-accessibility-checker' ), i + 1, pages.length, page.label ) );
 
 			let violations = [];
 			let review = [];
@@ -324,30 +324,30 @@
 				} );
 				if ( error ) {
 					/* translators: 1: page name, 2: error message. */
-					logLine( sprintf( __( '%1$s: not scanned (%2$s)', 'corea11y' ), page.label, error ), true );
+					logLine( sprintf( __( '%1$s: not scanned (%2$s)', 'msacalab-accessibility-checker' ), page.label, error ), true );
 				} else {
 					/* translators: 1: page name, 2: number of issues. */
-					logLine( sprintf( __( '%1$s: %2$d issues', 'corea11y' ), page.label, saved.stored ) );
+					logLine( sprintf( __( '%1$s: %2$d issues', 'msacalab-accessibility-checker' ), page.label, saved.stored ) );
 				}
 			} catch ( e ) {
 				/* translators: 1: page name, 2: error message. */
-				logLine( sprintf( __( '%1$s: results could not be saved (%2$s)', 'corea11y' ), page.label, e.message || '' ), true );
+				logLine( sprintf( __( '%1$s: results could not be saved (%2$s)', 'msacalab-accessibility-checker' ), page.label, e.message || '' ), true );
 			}
 			bar.value = i + 1;
 		}
 
-		announce( __( 'Running site-wide checks and building the report…', 'corea11y' ) );
+		announce( __( 'Running site-wide checks and building the report…', 'msacalab-accessibility-checker' ) );
 		try {
 			const done = await apiFetch( {
 				path: '/corea11y/v1/audits/' + audit.id + '/complete',
 				method: 'POST',
 			} );
 			/* translators: %d: number of issues found. */
-			announce( sprintf( __( 'Audit complete: %d issues found. Opening the report…', 'corea11y' ), done.issues ) );
+			announce( sprintf( __( 'Audit complete: %d issues found. Opening the report…', 'msacalab-accessibility-checker' ), done.issues ) );
 			running = false;
 			window.location.href = config.reportUrl + encodeURIComponent( done.id );
 		} catch ( e ) {
-			announce( __( 'The audit could not be finished.', 'corea11y' ) + ' ' + ( e.message || '' ) );
+			announce( __( 'The audit could not be finished.', 'msacalab-accessibility-checker' ) + ' ' + ( e.message || '' ) );
 			finish();
 		}
 	}
@@ -367,7 +367,7 @@
 	stopButton.addEventListener( 'click', () => {
 		stopRequested = true;
 		stopButton.disabled = true;
-		announce( __( 'Stopping after the current page. Results so far will be saved.', 'corea11y' ) );
+		announce( __( 'Stopping after the current page. Results so far will be saved.', 'msacalab-accessibility-checker' ) );
 	} );
 
 	// "Verify with a new audit" links start the audit automatically.

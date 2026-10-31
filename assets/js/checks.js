@@ -1,5 +1,5 @@
 /**
- * CoreA11y extra checks.
+ * MSACAlab Accessibility Checker extra checks.
  *
  * Runs inside the page being scanned, after axe-core. Adds rule-based checks for
  * problems axe-core doesn't cover, and (when enabled) a curated set of rules from
@@ -14,7 +14,7 @@
 
 	const MAX_NODES = 25;
 
-	// IBM Equal Access rules we use, and how CoreA11y reports them. Only rules that
+	// IBM Equal Access rules we use, and how MSACAlab Accessibility Checker reports them. Only rules that
 	// axe-core doesn't cover and that proved reliable in testing are listed.
 	const IBM_RULES = {
 		fieldset_legend_valid: { kind: 'violations', impact: 'serious', tags: [ 'wcag2a', 'wcag131' ], help: 'Groups of form fields need a clear legend' },
@@ -147,7 +147,7 @@
 		};
 	}
 
-	// CoreA11y's own rule-based checks.
+	// MSACAlab Accessibility Checker's own rule-based checks.
 	function ownChecks( doc, c ) {
 		const links = Array.prototype.filter.call( doc.querySelectorAll( 'a[href]' ), isVisible );
 		const byText = new Map();
@@ -167,7 +167,9 @@
 				c.add( 'violations', 'corea11y-link-generic', 'minor', [ 'best-practice' ], 'Link text should say where the link goes', a, 'The link text "' + text + '" only makes sense with the text around it.' );
 			}
 
-			if ( href === '#' || /^javascript:/i.test( href ) ) {
+			if ( href.trim() === '' && a.getAttribute( 'role' ) !== 'button' ) {
+				c.add( 'review', 'corea11y-link-no-destination', 'moderate', [ 'wcag2a', 'wcag412' ], 'A link that doesn\'t go anywhere may need to be a button', a, 'This link\'s address is empty, so it just reloads the same page. Add the page it should go to (page builders often leave button links empty).' );
+			} else if ( href === '#' || /^javascript:/i.test( href ) ) {
 				if ( a.getAttribute( 'role' ) !== 'button' ) {
 					c.add( 'review', 'corea11y-link-no-destination', 'moderate', [ 'wcag2a', 'wcag412' ], 'A link that doesn\'t go anywhere may need to be a button', a, 'This link has no real destination (' + href + '). If it opens or controls something on the page, it should be a button.' );
 				}
@@ -650,7 +652,7 @@
 				try {
 					await ibmChecks( document, c );
 				} catch ( e ) {
-					// The extra engine is optional; axe-core and CoreA11y results still stand.
+					// The extra engine is optional; axe-core and MSACAlab Accessibility Checker results still stand.
 				}
 			}
 			const out = c.result();

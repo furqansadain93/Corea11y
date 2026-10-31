@@ -2,7 +2,7 @@
 /**
  * Alt text manager: every image on the site that is missing alt text, on one screen.
  *
- * Saving writes real alt text (a permanent fix that stays if CoreA11y is removed):
+ * Saving writes real alt text (a permanent fix that stays if MSACAlab Accessibility Checker is removed):
  * into the Media Library, and into the copies of the image already placed in posts
  * and pages, which WordPress stores separately. Every save can be undone, and post
  * edits also create a normal WordPress revision.
@@ -288,7 +288,7 @@ class CoreA11y_Alt {
 		);
 		update_option( self::LOG, array_slice( $log, 0, self::LOG_MAX ), false );
 
-		/** Fires after alt text was saved from CoreA11y (used to clear page caches). */
+		/** Fires after alt text was saved from MSACAlab Accessibility Checker (used to clear page caches). */
 		do_action( 'corea11y_fixes_changed', array(), $batch );
 
 		return array(

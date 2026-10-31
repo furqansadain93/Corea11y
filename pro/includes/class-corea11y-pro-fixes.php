@@ -1,6 +1,6 @@
 <?php
 /**
- * CoreA11y Pro quick fixes.
+ * MSACAlab Accessibility Checker Pro quick fixes.
  *
  * Registered through Lite's `corea11y_quick_fixes` filter, so they share Lite's
  * settings, change history, undo, cache clearing and "fixes N issues" badges.
@@ -25,7 +25,7 @@ class CoreA11y_Pro_Fixes {
 	const JS_FIXES = array( 'new-tab', 'file-type', 'link-names', 'button-names', 'link-titles', 'autocomplete', 'placeholder-names', 'main-landmark', 'decorative-svg', 'focus-obscured', 'menu-names', 'header-footer', 'page-heading', 'dropdown-keyboard', 'autoplay', 'merge-links', 'empty-links', 'page-numbers', 'table-headers', 'image-titles', 'form-label-links', 'required-fields', 'form-messages', 'target-size', 'placeholder-contrast' );
 
 	/**
-	 * Hook into WordPress and CoreA11y.
+	 * Hook into WordPress and MSACAlab Accessibility Checker.
 	 */
 	public static function register() {
 		add_filter( 'corea11y_quick_fixes', array( __CLASS__, 'add_fixes' ) );
@@ -48,185 +48,7 @@ class CoreA11y_Pro_Fixes {
 	 * @return array
 	 */
 	public static function add_fixes( $fixes ) {
-		$pro = array(
-			'media-alt'         => array(
-				'title' => __( 'Use Media Library alt text in posts', 'corea11y' ),
-				'desc'  => __( 'When an image in a post has no alt text but you have written one in the Media Library, use it. Images you marked decorative are left alone.', 'corea11y' ),
-				'wcag'  => '1.1.1',
-				'rules' => array( 'image-alt', 'corea11y-content-img-alt' ),
-			),
-			'link-names'        => array(
-				'title' => __( 'Name icon-only links', 'corea11y' ),
-				'desc'  => __( 'Gives links with no text a name screen readers can announce, using their tooltip or, for social media and email icons, the service name.', 'corea11y' ),
-				'wcag'  => '2.4.4, 4.1.2',
-				'rules' => array( 'link-name' ),
-			),
-			'button-names'      => array(
-				'title' => __( 'Name icon-only buttons', 'corea11y' ),
-				'desc'  => __( 'Gives buttons with no text a name, using their tooltip or a clear purpose such as "Search", "Menu" or "Close".', 'corea11y' ),
-				'wcag'  => '4.1.2',
-				'rules' => array( 'button-name' ),
-			),
-			'new-tab'           => array(
-				'title' => __( 'Warn when links open a new tab', 'corea11y' ),
-				'desc'  => __( 'Adds "(opens in a new tab)" for screen readers to links that open a new tab or window without saying so. Nothing changes visually.', 'corea11y' ),
-				'wcag'  => '3.2.5',
-				'rules' => array( 'corea11y-link-new-window' ),
-			),
-			'file-type'         => array(
-				'title' => __( 'Say the file type on file links', 'corea11y' ),
-				'desc'  => __( 'Tells screen readers when a link opens a PDF, Word, Excel, PowerPoint or ZIP file. Nothing changes visually.', 'corea11y' ),
-				'wcag'  => '2.4.4',
-				'rules' => array( 'corea11y-link-file-type' ),
-			),
-			'read-more'         => array(
-				'title' => __( 'Make "Read more" links specific', 'corea11y' ),
-				'desc'  => __( 'Adds the post title to "Read more" and "Continue reading" links for screen readers, so each says which post it opens.', 'corea11y' ),
-				'wcag'  => '2.4.4',
-				'rules' => array( 'corea11y-link-generic' ),
-			),
-			'link-titles'       => array(
-				'title' => __( 'Remove tooltips that repeat link text', 'corea11y' ),
-				'desc'  => __( 'Removes link tooltips that only repeat the link text, so screen readers don\'t say it twice.', 'corea11y' ),
-				'wcag'  => '',
-				'rules' => array( 'corea11y-link-title-repeat' ),
-			),
-			'autocomplete'      => array(
-				'title' => __( 'Help browsers fill in forms', 'corea11y' ),
-				'desc'  => __( 'Marks common fields (name, email, phone, address) so browsers and assistive technology can fill them in automatically.', 'corea11y' ),
-				'wcag'  => '1.3.5',
-				'rules' => array(),
-			),
-			'placeholder-names' => array(
-				'title' => __( 'Give every form field a name', 'corea11y' ),
-				'desc'  => __( 'Keeps placeholder text as the field\'s name for screen readers after someone starts typing, and makes form labels your theme hides completely readable to screen readers. Nothing changes visually. A visible label is still best.', 'corea11y' ),
-				'wcag'  => '1.3.1, 4.1.2',
-				'rules' => array( 'corea11y-hidden-label' ),
-			),
-			'main-landmark'     => array(
-				'title' => __( 'Mark the main content area', 'corea11y' ),
-				'desc'  => __( 'Marks your theme\'s main content area as "main", so screen reader users can jump straight to it.', 'corea11y' ),
-				'wcag'  => '1.3.1',
-				'rules' => array( 'landmark-one-main', 'corea11y-no-landmarks' ),
-			),
-			'decorative-svg'    => array(
-				'title' => __( 'Hide decorative icons in links and buttons', 'corea11y' ),
-				'desc'  => __( 'Icons inside links and buttons that already have text are hidden from screen readers, so only the text is read.', 'corea11y' ),
-				'wcag'  => '1.1.1',
-				'rules' => array(),
-			),
-			'focus-obscured'    => array(
-				'title' => __( 'Keep focused items out from under sticky headers', 'corea11y' ),
-				'desc'  => __( 'When a sticky header or bar covers the top of the screen, scrolls keyboard focus into view below it.', 'corea11y' ),
-				'wcag'  => '2.4.11',
-				'rules' => array(),
-			),
-			'underline-links'   => array(
-				'title' => __( 'Underline links in text', 'corea11y' ),
-				'desc'  => __( 'Underlines links inside paragraphs and lists, so they can be told apart without relying on color. This changes how your site looks.', 'corea11y' ),
-				'wcag'  => '1.4.1',
-				'rules' => array( 'link-in-text-block' ),
-				'look'  => true,
-			),
-			'menu-names' => array(
-				'title' => __( 'Name your menus', 'corea11y' ),
-				'desc'  => __( 'Gives each menu a name screen readers announce, such as "Main menu" or "Footer menu", taken from Appearance > Menus.', 'corea11y' ),
-				'wcag'  => '1.3.1, 2.4.1',
-				'rules' => array( 'landmark-unique' ),
-			),
-			'header-footer' => array(
-				'title' => __( 'Mark the header and footer', 'corea11y' ),
-				'desc'  => __( 'Marks your theme\'s header and footer areas, so screen reader users can jump to them like the main content.', 'corea11y' ),
-				'wcag'  => '1.3.1',
-				'rules' => array( 'region' ),
-			),
-			'page-heading' => array(
-				'title' => __( 'Add a main heading where a page has none', 'corea11y' ),
-				'desc'  => __( 'When a page has no main (H1) heading, adds the page title as one for screen readers. Nothing changes visually.', 'corea11y' ),
-				'wcag'  => '1.3.1, 2.4.6',
-				'rules' => array( 'page-has-heading-one' ),
-			),
-			'dropdown-keyboard' => array(
-				'title' => __( 'Open dropdown menus with the keyboard', 'corea11y' ),
-				'desc'  => __( 'Submenus that only open on mouse hover also open when keyboard users Tab into them, and close with Escape.', 'corea11y' ),
-				'wcag'  => '2.1.1',
-				'rules' => array(),
-			),
-			'autoplay' => array(
-				'title' => __( 'Stop sound from playing automatically', 'corea11y' ),
-				'desc'  => __( 'Videos and audio that would start playing with sound wait until the visitor presses play. Muted background videos are left alone.', 'corea11y' ),
-				'wcag'  => '1.4.2',
-				'rules' => array( 'no-autoplay-audio' ),
-			),
-			'merge-links' => array(
-				'title' => __( 'Combine duplicate image and text links', 'corea11y' ),
-				'desc'  => __( 'When an image and the text next to it link to the same page, keyboard and screen reader users get one link instead of two.', 'corea11y' ),
-				'wcag'  => '2.4.4',
-				'rules' => array( 'corea11y-link-adjacent-duplicate' ),
-			),
-			'empty-links' => array(
-				'title' => __( 'Skip empty links', 'corea11y' ),
-				'desc'  => __( 'Links with nothing inside them are skipped by the keyboard and screen readers, so visitors don\'t land on a blank stop.', 'corea11y' ),
-				'wcag'  => '2.4.4',
-				'rules' => array(),
-			),
-			'image-link-names' => array(
-				'title' => __( 'Name image links from your own site', 'corea11y' ),
-				'desc'  => __( 'When a linked image has no alt text, uses the title of the page or image it links to on your site.', 'corea11y' ),
-				'wcag'  => '1.1.1, 2.4.4',
-				'rules' => array(),
-			),
-			'page-numbers' => array(
-				'title' => __( 'Say "Page" on page-number links', 'corea11y' ),
-				'desc'  => __( 'Page-number links such as "2" are read as "Page 2", and the current page is announced as current.', 'corea11y' ),
-				'wcag'  => '2.4.4',
-				'rules' => array(),
-			),
-			'table-headers' => array(
-				'title' => __( 'Connect table headers to their cells', 'corea11y' ),
-				'desc'  => __( 'Tells screen readers which cells each table header describes, so tables are read row by row correctly.', 'corea11y' ),
-				'wcag'  => '1.3.1',
-				'rules' => array( 'th-has-data-cells' ),
-			),
-			'image-titles' => array(
-				'title' => __( 'Remove tooltips that repeat alt text', 'corea11y' ),
-				'desc'  => __( 'Removes image tooltips that only repeat the alt text, so screen readers don\'t read it twice.', 'corea11y' ),
-				'wcag'  => '',
-				'rules' => array( 'corea11y-image-title-repeat' ),
-			),
-			'form-label-links' => array(
-				'title' => __( 'Connect form labels to their fields', 'corea11y' ),
-				'desc'  => __( 'When a form shows a label that isn\'t linked to its field (common with page builders), links them so screen readers read the label.', 'corea11y' ),
-				'wcag'  => '1.3.1, 4.1.2',
-				'rules' => array( 'label' ),
-			),
-			'required-fields' => array(
-				'title' => __( 'Announce required fields', 'corea11y' ),
-				'desc'  => __( 'Fields marked with * or "(required)" are announced as required to screen reader users.', 'corea11y' ),
-				'wcag'  => '3.3.2',
-				'rules' => array(),
-			),
-			'form-messages' => array(
-				'title' => __( 'Read out form messages', 'corea11y' ),
-				'desc'  => __( 'Error and success messages from common form plugins are read out by screen readers when they appear.', 'corea11y' ),
-				'wcag'  => '4.1.3',
-				'rules' => array(),
-			),
-			'target-size' => array(
-				'title' => __( 'Make small icon links easier to tap', 'corea11y' ),
-				'desc'  => __( 'Gives icon-only links and buttons a tap area of at least 24 by 24 pixels. This can change how your site looks.', 'corea11y' ),
-				'wcag'  => '2.5.8',
-				'rules' => array( 'target-size' ),
-				'look'  => true,
-			),
-			'placeholder-contrast' => array(
-				'title' => __( 'Make placeholder text readable', 'corea11y' ),
-				'desc'  => __( 'Makes faint placeholder text in form fields dark enough to read (or light enough on dark fields). This changes how your site looks.', 'corea11y' ),
-				'wcag'  => '1.4.3',
-				'rules' => array(),
-				'look'  => true,
-			),
-		);
+		$pro = CoreA11y_Pro_Catalog::fixes();
 		foreach ( $pro as $id => $fix ) {
 			$pro[ $id ]['pro'] = true;
 		}
@@ -400,9 +222,9 @@ class CoreA11y_Pro_Fixes {
 			$title = is_home() && ! is_front_page() ? single_post_title( '', false ) : get_bloginfo( 'name' );
 		} elseif ( is_search() ) {
 			/* translators: %s: search query. */
-			$title = sprintf( __( 'Search results for "%s"', 'corea11y' ), get_search_query( false ) );
+			$title = sprintf( __( 'Search results for "%s"', 'msacalab-accessibility-checker' ), get_search_query( false ) );
 		} elseif ( is_404() ) {
-			$title = __( 'Page not found', 'corea11y' );
+			$title = __( 'Page not found', 'msacalab-accessibility-checker' );
 		} else {
 			$title = get_the_archive_title();
 		}
@@ -448,7 +270,7 @@ class CoreA11y_Pro_Fixes {
 			return $link;
 		}
 		/* translators: %s: post title. */
-		$extra = '<span class="corea11y-sr">' . esc_html( sprintf( __( ': %s', 'corea11y' ), wp_strip_all_tags( $title ) ) ) . '</span>';
+		$extra = '<span class="corea11y-sr">' . esc_html( sprintf( __( ': %s', 'msacalab-accessibility-checker' ), wp_strip_all_tags( $title ) ) ) . '</span>';
 		$pos   = strrpos( $link, '</a>' );
 		return false === $pos ? $link : substr_replace( $link, $extra . '</a>', $pos, 4 );
 	}
@@ -474,7 +296,7 @@ class CoreA11y_Pro_Fixes {
 		if ( $tags->next_tag( 'a' ) && ! $tags->get_attribute( 'aria-label' ) ) {
 			$text = trim( wp_strip_all_tags( $content ) );
 			/* translators: 1: link text such as "Read more", 2: post title. */
-			$tags->set_attribute( 'aria-label', sprintf( __( '%1$s: %2$s', 'corea11y' ), $text ? $text : __( 'Read more', 'corea11y' ), $title ) );
+			$tags->set_attribute( 'aria-label', sprintf( __( '%1$s: %2$s', 'msacalab-accessibility-checker' ), $text ? $text : __( 'Read more', 'msacalab-accessibility-checker' ), $title ) );
 			return $tags->get_updated_html();
 		}
 		return $content;
@@ -519,32 +341,32 @@ class CoreA11y_Pro_Fixes {
 				array(
 					'fixes' => $js,
 					'text'  => array(
-						'newTab'   => __( '(opens in a new tab)', 'corea11y' ),
+						'newTab'   => __( '(opens in a new tab)', 'msacalab-accessibility-checker' ),
 						'files'    => array(
-							'pdf'  => __( 'PDF', 'corea11y' ),
-							'doc'  => __( 'Word document', 'corea11y' ),
-							'docx' => __( 'Word document', 'corea11y' ),
-							'xls'  => __( 'Excel spreadsheet', 'corea11y' ),
-							'xlsx' => __( 'Excel spreadsheet', 'corea11y' ),
-							'ppt'  => __( 'PowerPoint', 'corea11y' ),
-							'pptx' => __( 'PowerPoint', 'corea11y' ),
-							'zip'  => __( 'ZIP file', 'corea11y' ),
+							'pdf'  => __( 'PDF', 'msacalab-accessibility-checker' ),
+							'doc'  => __( 'Word document', 'msacalab-accessibility-checker' ),
+							'docx' => __( 'Word document', 'msacalab-accessibility-checker' ),
+							'xls'  => __( 'Excel spreadsheet', 'msacalab-accessibility-checker' ),
+							'xlsx' => __( 'Excel spreadsheet', 'msacalab-accessibility-checker' ),
+							'ppt'  => __( 'PowerPoint', 'msacalab-accessibility-checker' ),
+							'pptx' => __( 'PowerPoint', 'msacalab-accessibility-checker' ),
+							'zip'  => __( 'ZIP file', 'msacalab-accessibility-checker' ),
 						),
 						'buttons'  => array(
-							'search'  => __( 'Search', 'corea11y' ),
-							'menu'    => __( 'Menu', 'corea11y' ),
-							'close'   => __( 'Close', 'corea11y' ),
-							'cart'    => __( 'Cart', 'corea11y' ),
-							'account' => __( 'Account', 'corea11y' ),
-							'next'    => __( 'Next', 'corea11y' ),
-							'prev'    => __( 'Previous', 'corea11y' ),
-							'play'    => __( 'Play', 'corea11y' ),
-							'pause'   => __( 'Pause', 'corea11y' ),
+							'search'  => __( 'Search', 'msacalab-accessibility-checker' ),
+							'menu'    => __( 'Menu', 'msacalab-accessibility-checker' ),
+							'close'   => __( 'Close', 'msacalab-accessibility-checker' ),
+							'cart'    => __( 'Cart', 'msacalab-accessibility-checker' ),
+							'account' => __( 'Account', 'msacalab-accessibility-checker' ),
+							'next'    => __( 'Next', 'msacalab-accessibility-checker' ),
+							'prev'    => __( 'Previous', 'msacalab-accessibility-checker' ),
+							'play'    => __( 'Play', 'msacalab-accessibility-checker' ),
+							'pause'   => __( 'Pause', 'msacalab-accessibility-checker' ),
 						),
-						'email'    => __( 'Email', 'corea11y' ),
-						'phone'    => __( 'Call', 'corea11y' ),
+						'email'    => __( 'Email', 'msacalab-accessibility-checker' ),
+						'phone'    => __( 'Call', 'msacalab-accessibility-checker' ),
 						/* translators: %s: page number. */
-						'page'     => __( 'Page %s', 'corea11y' ),
+						'page'     => __( 'Page %s', 'msacalab-accessibility-checker' ),
 					),
 					'menus'   => in_array( 'menu-names', $js, true ) ? self::menu_names() : null,
 					'heading' => in_array( 'page-heading', $js, true ) ? self::page_heading() : '',

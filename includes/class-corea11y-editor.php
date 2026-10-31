@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Loads the CoreA11y panel in the block editor.
+ * Loads the MSACAlab Accessibility Checker panel in the block editor.
  */
 class CoreA11y_Editor {
 
@@ -38,7 +38,7 @@ class CoreA11y_Editor {
 			corea11y_asset_ver( 'assets/js/editor.js' ),
 			true
 		);
-		wp_set_script_translations( 'corea11y-editor', 'corea11y', COREA11Y_DIR . 'languages' );
+		wp_set_script_translations( 'corea11y-editor', 'msacalab-accessibility-checker', COREA11Y_DIR . 'languages' );
 
 		$explain = array();
 		foreach ( CoreA11y_Explain::all() as $rule => $e ) {
@@ -57,7 +57,7 @@ class CoreA11y_Editor {
 				'queryArg'   => CoreA11y_Scanner::QUERY_ARG,
 				'impacts'    => CoreA11y_Rules::impacts(),
 				'explain'    => $explain,
-				'genericFix' => __( 'Check this element against the WCAG requirement shown, then update it in the block settings or ask your theme or plugin developer.', 'corea11y' ),
+				'genericFix' => __( 'Check this element against the WCAG requirement shown, then update it in the block settings or ask your theme or plugin developer.', 'msacalab-accessibility-checker' ),
 			)
 		);
 

@@ -79,8 +79,8 @@ class CoreA11y_Server_Checks {
 						'wcag'       => '1.1.1',
 						'impact'     => 'critical',
 						'snippet'    => '<img src="' . esc_url_raw( $src ) . '">',
-						'help'       => __( 'Images in post content must have alternative text', 'corea11y' ),
-						'detail'     => __( 'Edit this post and add alt text to the image, or mark it as decorative (empty alt text) if it adds no information.', 'corea11y' ),
+						'help'       => __( 'Images in post content must have alternative text', 'msacalab-accessibility-checker' ),
+						'detail'     => __( 'Edit this post and add alt text to the image, or mark it as decorative (empty alt text) if it adds no information.', 'msacalab-accessibility-checker' ),
 					)
 				);
 			}
@@ -126,8 +126,8 @@ class CoreA11y_Server_Checks {
 					'wcag'       => '1.1.1',
 					'impact'     => 'moderate',
 					'snippet'    => '',
-					'help'       => __( 'Media Library images should have alt text', 'corea11y' ),
-					'detail'     => __( 'Add alt text in the Media Library so it is used wherever this image is inserted. Leave it empty only if the image is purely decorative.', 'corea11y' ),
+					'help'       => __( 'Media Library images should have alt text', 'msacalab-accessibility-checker' ),
+					'detail'     => __( 'Add alt text in the Media Library so it is used wherever this image is inserted. Leave it empty only if the image is purely decorative.', 'msacalab-accessibility-checker' ),
 				)
 			);
 		}

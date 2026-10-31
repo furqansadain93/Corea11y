@@ -16,14 +16,14 @@ final class CoreA11y {
 	/**
 	 * Single instance.
 	 *
-	 * @var CoreA11y|null
+	 * @var MSACAlab Accessibility Checker|null
 	 */
 	private static $instance = null;
 
 	/**
 	 * Get (and boot on first call) the plugin instance.
 	 *
-	 * @return CoreA11y
+	 * @return MSACAlab Accessibility Checker
 	 */
 	public static function instance() {
 		if ( null === self::$instance ) {
@@ -38,7 +38,7 @@ final class CoreA11y {
 	 */
 	private function boot() {
 		CoreA11y_Install::maybe_upgrade();
-		// Multisite: remove a site's CoreA11y tables when the site itself is deleted.
+		// Multisite: remove a site's MSACAlab Accessibility Checker tables when the site itself is deleted.
 		add_filter( 'wpmu_drop_tables', array( 'CoreA11y_Install', 'drop_with_site' ), 10, 2 );
 
 		( new CoreA11y_Rest() )->register();
@@ -54,9 +54,9 @@ final class CoreA11y {
 		}
 
 		/**
-		 * Fires after CoreA11y Lite has loaded. CoreA11y Pro hooks in here.
+		 * Fires after MSACAlab Accessibility Checker Lite has loaded. MSACAlab Accessibility Checker Pro hooks in here.
 		 *
-		 * @param CoreA11y $plugin The plugin instance.
+		 * @param MSACAlab Accessibility Checker $plugin The plugin instance.
 		 */
 		do_action( 'corea11y_loaded', $this );
 	}

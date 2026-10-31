@@ -57,16 +57,16 @@ class CoreA11y_Statement {
 	public static function statuses() {
 		return array(
 			'full'    => array(
-				'label' => __( 'Fully conformant', 'corea11y' ),
-				'desc'  => __( 'the content fully conforms to the accessibility standard without any exceptions', 'corea11y' ),
+				'label' => __( 'Fully conformant', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'the content fully conforms to the accessibility standard without any exceptions', 'msacalab-accessibility-checker' ),
 			),
 			'partial' => array(
-				'label' => __( 'Partially conformant', 'corea11y' ),
-				'desc'  => __( 'some parts of the content do not fully conform to the accessibility standard', 'corea11y' ),
+				'label' => __( 'Partially conformant', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'some parts of the content do not fully conform to the accessibility standard', 'msacalab-accessibility-checker' ),
 			),
 			'non'     => array(
-				'label' => __( 'Non conformant', 'corea11y' ),
-				'desc'  => __( 'the content does not conform to the accessibility standard', 'corea11y' ),
+				'label' => __( 'Non conformant', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'the content does not conform to the accessibility standard', 'msacalab-accessibility-checker' ),
 			),
 		);
 	}
@@ -132,8 +132,8 @@ class CoreA11y_Statement {
 			array(
 				'post_type'    => 'page',
 				'post_status'  => 'draft',
-				'post_title'   => __( 'Accessibility statement', 'corea11y' ),
-				'post_name'    => sanitize_title( _x( 'accessibility-statement', 'page slug', 'corea11y' ) ),
+				'post_title'   => __( 'Accessibility statement', 'msacalab-accessibility-checker' ),
+				'post_name'    => sanitize_title( _x( 'accessibility-statement', 'page slug', 'msacalab-accessibility-checker' ) ),
 				'post_content' => '<!-- wp:shortcode -->[' . self::SHORTCODE . ']<!-- /wp:shortcode -->',
 			),
 			true
@@ -158,7 +158,7 @@ class CoreA11y_Statement {
 		printf(
 			'<p class="corea11y-statement-link" style="text-align:center;margin:1em 0;"><a href="%1$s">%2$s</a></p>',
 			esc_url( get_permalink( $page ) ),
-			esc_html__( 'Accessibility statement', 'corea11y' )
+			esc_html__( 'Accessibility statement', 'msacalab-accessibility-checker' )
 		);
 	}
 
@@ -185,29 +185,29 @@ class CoreA11y_Statement {
 			<p>
 				<?php
 				/* translators: 1: organization name, 2: website address. */
-				echo esc_html( sprintf( __( '%1$s is committed to making %2$s accessible to everyone, including people with disabilities. We continually improve the experience for all visitors and apply the relevant accessibility standards.', 'corea11y' ), $org, $site ) );
+				echo esc_html( sprintf( __( '%1$s is committed to making %2$s accessible to everyone, including people with disabilities. We continually improve the experience for all visitors and apply the relevant accessibility standards.', 'msacalab-accessibility-checker' ), $org, $site ) );
 				?>
 			</p>
 
-			<<?php echo esc_html( $h ); ?>><?php esc_html_e( 'Conformance status', 'corea11y' ); ?></<?php echo esc_html( $h ); ?>>
+			<<?php echo esc_html( $h ); ?>><?php esc_html_e( 'Conformance status', 'msacalab-accessibility-checker' ); ?></<?php echo esc_html( $h ); ?>>
 			<p>
 				<?php
 				/* translators: 1: website address, 2: conformance status (e.g. "Partially conformant"), 3: explanation of that status. */
-				echo esc_html( sprintf( __( 'The Web Content Accessibility Guidelines (WCAG) define requirements to improve accessibility for people with disabilities. Our assessment of %1$s against WCAG 2.2 Level AA: %2$s. This means that %3$s.', 'corea11y' ), $site, $status['label'], $status['desc'] ) );
+				echo esc_html( sprintf( __( 'The Web Content Accessibility Guidelines (WCAG) define requirements to improve accessibility for people with disabilities. Our assessment of %1$s against WCAG 2.2 Level AA: %2$s. This means that %3$s.', 'msacalab-accessibility-checker' ), $site, $status['label'], $status['desc'] ) );
 				?>
 			</p>
 
-			<<?php echo esc_html( $h ); ?>><?php esc_html_e( 'Measures we take', 'corea11y' ); ?></<?php echo esc_html( $h ); ?>>
+			<<?php echo esc_html( $h ); ?>><?php esc_html_e( 'Measures we take', 'msacalab-accessibility-checker' ); ?></<?php echo esc_html( $h ); ?>>
 			<ul>
-				<li><?php esc_html_e( 'We check our pages regularly with automated accessibility testing (axe-core).', 'corea11y' ); ?></li>
-				<li><?php esc_html_e( 'We review the requirements that software can\'t judge with a manual checklist.', 'corea11y' ); ?></li>
-				<li><?php esc_html_e( 'We fix problems at the source rather than relying on an overlay.', 'corea11y' ); ?></li>
+				<li><?php esc_html_e( 'We check our pages regularly with automated accessibility testing (axe-core).', 'msacalab-accessibility-checker' ); ?></li>
+				<li><?php esc_html_e( 'We review the requirements that software can\'t judge with a manual checklist.', 'msacalab-accessibility-checker' ); ?></li>
+				<li><?php esc_html_e( 'We fix problems at the source rather than relying on an overlay.', 'msacalab-accessibility-checker' ); ?></li>
 				<?php foreach ( array_filter( array_map( 'trim', explode( "\n", (string) $s['measures'] ) ) ) as $line ) : ?>
 					<li><?php echo esc_html( $line ); ?></li>
 				<?php endforeach; ?>
 			</ul>
 
-			<<?php echo esc_html( $h ); ?>><?php esc_html_e( 'Known limitations', 'corea11y' ); ?></<?php echo esc_html( $h ); ?>>
+			<<?php echo esc_html( $h ); ?>><?php esc_html_e( 'Known limitations', 'msacalab-accessibility-checker' ); ?></<?php echo esc_html( $h ); ?>>
 			<?php if ( $s['limitations'] ) : ?>
 				<p><?php echo nl2br( esc_html( $s['limitations'] ) ); ?></p>
 			<?php endif; ?>
@@ -219,10 +219,10 @@ class CoreA11y_Statement {
 					<?php
 					if ( $groups ) {
 						/* translators: 1: date, 2: number of issues, 3: number of pages. */
-						echo esc_html( sprintf( __( 'Our latest automated check on %1$s found %2$s issues across %3$s pages. We are working on these areas:', 'corea11y' ), get_date_from_gmt( $audit->started_at, $fmt ), number_format_i18n( (int) $audit->issues_total ), number_format_i18n( (int) $audit->pages_scanned ) ) );
+						echo esc_html( sprintf( __( 'Our latest automated check on %1$s found %2$s issues across %3$s pages. We are working on these areas:', 'msacalab-accessibility-checker' ), get_date_from_gmt( $audit->started_at, $fmt ), number_format_i18n( (int) $audit->issues_total ), number_format_i18n( (int) $audit->pages_scanned ) ) );
 					} else {
 						/* translators: %s: date. */
-						echo esc_html( sprintf( __( 'Our latest automated check on %s found no issues that automated testing can detect.', 'corea11y' ), get_date_from_gmt( $audit->started_at, $fmt ) ) );
+						echo esc_html( sprintf( __( 'Our latest automated check on %s found no issues that automated testing can detect.', 'msacalab-accessibility-checker' ), get_date_from_gmt( $audit->started_at, $fmt ) ) );
 					}
 					?>
 				</p>
@@ -240,46 +240,46 @@ class CoreA11y_Statement {
 					</ul>
 				<?php endif; ?>
 			<?php elseif ( ! $s['limitations'] ) : ?>
-				<p><?php esc_html_e( 'We are not aware of specific limitations. If you find one, please let us know.', 'corea11y' ); ?></p>
+				<p><?php esc_html_e( 'We are not aware of specific limitations. If you find one, please let us know.', 'msacalab-accessibility-checker' ); ?></p>
 			<?php endif; ?>
 
-			<<?php echo esc_html( $h ); ?>><?php esc_html_e( 'Feedback', 'corea11y' ); ?></<?php echo esc_html( $h ); ?>>
-			<p><?php esc_html_e( 'We welcome your feedback. If you run into an accessibility barrier, please contact us:', 'corea11y' ); ?></p>
+			<<?php echo esc_html( $h ); ?>><?php esc_html_e( 'Feedback', 'msacalab-accessibility-checker' ); ?></<?php echo esc_html( $h ); ?>>
+			<p><?php esc_html_e( 'We welcome your feedback. If you run into an accessibility barrier, please contact us:', 'msacalab-accessibility-checker' ); ?></p>
 			<ul>
 				<?php if ( $s['email'] ) : ?>
-					<li><?php esc_html_e( 'Email:', 'corea11y' ); ?> <a href="<?php echo esc_url( 'mailto:' . antispambot( $s['email'] ) ); ?>"><?php echo esc_html( antispambot( $s['email'] ) ); ?></a></li>
+					<li><?php esc_html_e( 'Email:', 'msacalab-accessibility-checker' ); ?> <a href="<?php echo esc_url( 'mailto:' . antispambot( $s['email'] ) ); ?>"><?php echo esc_html( antispambot( $s['email'] ) ); ?></a></li>
 				<?php endif; ?>
 				<?php if ( $s['phone'] ) : ?>
-					<li><?php esc_html_e( 'Phone:', 'corea11y' ); ?> <a href="<?php echo esc_url( 'tel:' . preg_replace( '/[^0-9+]/', '', $s['phone'] ) ); ?>"><?php echo esc_html( $s['phone'] ); ?></a></li>
+					<li><?php esc_html_e( 'Phone:', 'msacalab-accessibility-checker' ); ?> <a href="<?php echo esc_url( 'tel:' . preg_replace( '/[^0-9+]/', '', $s['phone'] ) ); ?>"><?php echo esc_html( $s['phone'] ); ?></a></li>
 				<?php endif; ?>
 			</ul>
 			<p>
 				<?php
 				/* translators: %s: number of business days. */
-				echo esc_html( sprintf( _n( 'We try to respond within %s business day.', 'We try to respond within %s business days.', (int) $s['response'], 'corea11y' ), number_format_i18n( (int) $s['response'] ) ) );
+				echo esc_html( sprintf( _n( 'We try to respond within %s business day.', 'We try to respond within %s business days.', (int) $s['response'], 'msacalab-accessibility-checker' ), number_format_i18n( (int) $s['response'] ) ) );
 				?>
 			</p>
 
-			<<?php echo esc_html( $h ); ?>><?php esc_html_e( 'Assessment approach', 'corea11y' ); ?></<?php echo esc_html( $h ); ?>>
+			<<?php echo esc_html( $h ); ?>><?php esc_html_e( 'Assessment approach', 'msacalab-accessibility-checker' ); ?></<?php echo esc_html( $h ); ?>>
 			<p>
 				<?php
 				/* translators: 1: number of manual checks reviewed, 2: total checks. */
-				echo esc_html( sprintf( __( 'We assess the accessibility of this website by self-evaluation: automated testing of our pages, plus a manual review of requirements that need human judgment (%1$s of %2$s checks reviewed so far).', 'corea11y' ), number_format_i18n( $total - (int) $checks[''] ), number_format_i18n( $total ) ) );
+				echo esc_html( sprintf( __( 'We assess the accessibility of this website by self-evaluation: automated testing of our pages, plus a manual review of requirements that need human judgment (%1$s of %2$s checks reviewed so far).', 'msacalab-accessibility-checker' ), number_format_i18n( $total - (int) $checks[''] ), number_format_i18n( $total ) ) );
 				?>
 			</p>
 
-			<<?php echo esc_html( $h ); ?>><?php esc_html_e( 'Technical specifications', 'corea11y' ); ?></<?php echo esc_html( $h ); ?>>
-			<p><?php esc_html_e( 'Accessibility of this website relies on HTML, CSS, JavaScript and WAI-ARIA working with your browser and any assistive technologies or plugins installed on your computer.', 'corea11y' ); ?></p>
+			<<?php echo esc_html( $h ); ?>><?php esc_html_e( 'Technical specifications', 'msacalab-accessibility-checker' ); ?></<?php echo esc_html( $h ); ?>>
+			<p><?php esc_html_e( 'Accessibility of this website relies on HTML, CSS, JavaScript and WAI-ARIA working with your browser and any assistive technologies or plugins installed on your computer.', 'msacalab-accessibility-checker' ); ?></p>
 
 			<p class="corea11y-statement-date">
 				<?php
 				$reviewed = $s['reviewed'] ? mysql2date( $fmt, $s['reviewed'] ) : wp_date( $fmt );
 				/* translators: %s: date. */
-				echo esc_html( sprintf( __( 'This statement was last reviewed on %s.', 'corea11y' ), $reviewed ) );
+				echo esc_html( sprintf( __( 'This statement was last reviewed on %s.', 'msacalab-accessibility-checker' ), $reviewed ) );
 				if ( $audit ) {
 					echo ' ';
 					/* translators: %s: date. */
-					echo esc_html( sprintf( __( 'The latest automated check ran on %s.', 'corea11y' ), get_date_from_gmt( $audit->started_at, $fmt ) ) );
+					echo esc_html( sprintf( __( 'The latest automated check ran on %s.', 'msacalab-accessibility-checker' ), get_date_from_gmt( $audit->started_at, $fmt ) ) );
 				}
 				?>
 			</p>

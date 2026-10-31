@@ -83,7 +83,7 @@ class CoreA11y_Scanner {
 			corea11y_asset_ver( 'assets/js/scanner.js' ),
 			true
 		);
-		wp_set_script_translations( 'corea11y-scanner', 'corea11y', COREA11Y_DIR . 'languages' );
+		wp_set_script_translations( 'corea11y-scanner', 'msacalab-accessibility-checker', COREA11Y_DIR . 'languages' );
 		wp_localize_script( 'corea11y-scanner', 'corea11yScanner', self::config() );
 	}
 
@@ -116,7 +116,7 @@ class CoreA11y_Scanner {
 	 */
 	public static function enqueue_verify( array $plan ) {
 		wp_enqueue_script( 'corea11y-verify', COREA11Y_URL . 'assets/js/verify.js', array( 'wp-api-fetch', 'wp-i18n' ), corea11y_asset_ver( 'assets/js/verify.js' ), true );
-		wp_set_script_translations( 'corea11y-verify', 'corea11y', COREA11Y_DIR . 'languages' );
+		wp_set_script_translations( 'corea11y-verify', 'msacalab-accessibility-checker', COREA11Y_DIR . 'languages' );
 		wp_localize_script( 'corea11y-verify', 'corea11yVerify', array_merge( self::config(), array( 'plan' => $plan ) ) );
 	}
 }

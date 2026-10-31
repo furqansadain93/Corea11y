@@ -53,9 +53,9 @@ class CoreA11y_Settings {
 	 */
 	public static function scopes() {
 		return array(
-			'sample' => __( 'One page per template (fastest)', 'corea11y' ),
-			'all'    => __( 'All published pages and posts', 'corea11y' ),
-			'custom' => __( 'Only the URLs I list', 'corea11y' ),
+			'sample' => __( 'One page per template (fastest)', 'msacalab-accessibility-checker' ),
+			'all'    => __( 'All published pages and posts', 'msacalab-accessibility-checker' ),
+			'custom' => __( 'Only the URLs I list', 'msacalab-accessibility-checker' ),
 		);
 	}
 
@@ -73,21 +73,21 @@ class CoreA11y_Settings {
 			)
 		);
 
-		add_settings_section( 'corea11y_scan', __( 'Scanning', 'corea11y' ), '__return_false', self::PAGE );
-		add_settings_field( 'scan_scope', __( 'Pages to scan', 'corea11y' ), array( __CLASS__, 'field_scope' ), self::PAGE, 'corea11y_scan' );
+		add_settings_section( 'corea11y_scan', __( 'Scanning', 'msacalab-accessibility-checker' ), '__return_false', self::PAGE );
+		add_settings_field( 'scan_scope', __( 'Pages to scan', 'msacalab-accessibility-checker' ), array( __CLASS__, 'field_scope' ), self::PAGE, 'corea11y_scan' );
 		add_settings_field(
 			'custom_urls',
-			__( 'Custom URLs', 'corea11y' ),
+			__( 'Custom URLs', 'msacalab-accessibility-checker' ),
 			array( __CLASS__, 'field_custom_urls' ),
 			self::PAGE,
 			'corea11y_scan',
 			array( 'label_for' => 'corea11y-custom-urls' )
 		);
-		add_settings_field( 'scan_mobile', __( 'Screen sizes', 'corea11y' ), array( __CLASS__, 'field_mobile' ), self::PAGE, 'corea11y_scan' );
-		add_settings_field( 'extended_checks', __( 'Extended checks', 'corea11y' ), array( __CLASS__, 'field_extended' ), self::PAGE, 'corea11y_scan' );
+		add_settings_field( 'scan_mobile', __( 'Screen sizes', 'msacalab-accessibility-checker' ), array( __CLASS__, 'field_mobile' ), self::PAGE, 'corea11y_scan' );
+		add_settings_field( 'extended_checks', __( 'Extended checks', 'msacalab-accessibility-checker' ), array( __CLASS__, 'field_extended' ), self::PAGE, 'corea11y_scan' );
 
-		add_settings_section( 'corea11y_data', __( 'Data', 'corea11y' ), '__return_false', self::PAGE );
-		add_settings_field( 'delete_on_uninstall', __( 'On uninstall', 'corea11y' ), array( __CLASS__, 'field_delete' ), self::PAGE, 'corea11y_data' );
+		add_settings_section( 'corea11y_data', __( 'Data', 'msacalab-accessibility-checker' ), '__return_false', self::PAGE );
+		add_settings_field( 'delete_on_uninstall', __( 'On uninstall', 'msacalab-accessibility-checker' ), array( __CLASS__, 'field_delete' ), self::PAGE, 'corea11y_data' );
 	}
 
 	/**
@@ -128,7 +128,7 @@ class CoreA11y_Settings {
 	 */
 	public static function field_scope() {
 		$current = self::get( 'scan_scope' );
-		echo '<fieldset><legend class="screen-reader-text">' . esc_html__( 'Pages to scan', 'corea11y' ) . '</legend>';
+		echo '<fieldset><legend class="screen-reader-text">' . esc_html__( 'Pages to scan', 'msacalab-accessibility-checker' ) . '</legend>';
 		foreach ( self::scopes() as $value => $label ) {
 			printf(
 				'<label><input type="radio" name="%1$s[scan_scope]" value="%2$s" %3$s> %4$s</label><br>',
@@ -150,7 +150,7 @@ class CoreA11y_Settings {
 			esc_attr( self::OPTION ),
 			esc_textarea( self::get( 'custom_urls' ) )
 		);
-		echo '<p class="description" id="corea11y-custom-urls-help">' . esc_html__( 'One URL per line. Used only when "Only the URLs I list" is selected. URLs on other sites are ignored.', 'corea11y' ) . '</p>';
+		echo '<p class="description" id="corea11y-custom-urls-help">' . esc_html__( 'One URL per line. Used only when "Only the URLs I list" is selected. URLs on other sites are ignored.', 'msacalab-accessibility-checker' ) . '</p>';
 	}
 
 	/**
@@ -161,8 +161,8 @@ class CoreA11y_Settings {
 			'<label><input type="checkbox" name="%1$s[scan_mobile]" value="1" aria-describedby="corea11y-mobile-help" %2$s> %3$s</label><p class="description" id="corea11y-mobile-help">%4$s</p>',
 			esc_attr( self::OPTION ),
 			checked( (bool) self::get( 'scan_mobile' ), true, false ),
-			esc_html__( 'Also check each page at phone width', 'corea11y' ),
-			esc_html__( 'Finds problems in mobile menus and layouts. Audits take about twice as long.', 'corea11y' )
+			esc_html__( 'Also check each page at phone width', 'msacalab-accessibility-checker' ),
+			esc_html__( 'Finds problems in mobile menus and layouts. Audits take about twice as long.', 'msacalab-accessibility-checker' )
 		);
 	}
 
@@ -174,8 +174,8 @@ class CoreA11y_Settings {
 			'<label><input type="checkbox" name="%1$s[extended_checks]" value="1" aria-describedby="corea11y-extended-help" %2$s> %3$s</label><p class="description" id="corea11y-extended-help">%4$s</p>',
 			esc_attr( self::OPTION ),
 			checked( (bool) self::get( 'extended_checks' ), true, false ),
-			esc_html__( 'Also run selected rules from the IBM Equal Access engine', 'corea11y' ),
-			esc_html__( 'Catches form, table and markup problems the main engine doesn\'t cover. Runs only in your admin during audits; visitors never load it. Adds a second or two per page.', 'corea11y' )
+			esc_html__( 'Also run selected rules from the IBM Equal Access engine', 'msacalab-accessibility-checker' ),
+			esc_html__( 'Catches form, table and markup problems the main engine doesn\'t cover. Runs only in your admin during audits; visitors never load it. Adds a second or two per page.', 'msacalab-accessibility-checker' )
 		);
 	}
 
@@ -187,7 +187,7 @@ class CoreA11y_Settings {
 			'<label><input type="checkbox" name="%1$s[delete_on_uninstall]" value="1" %2$s> %3$s</label>',
 			esc_attr( self::OPTION ),
 			checked( (bool) self::get( 'delete_on_uninstall' ), true, false ),
-			esc_html__( 'Delete all CoreA11y audits and settings when the plugin is deleted', 'corea11y' )
+			esc_html__( 'Delete all MSACAlab Accessibility Checker audits and settings when the plugin is deleted', 'msacalab-accessibility-checker' )
 		);
 	}
 }

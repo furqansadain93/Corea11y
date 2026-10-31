@@ -29,9 +29,9 @@ class CoreA11y_Dismiss {
 	 */
 	public static function reasons() {
 		return array(
-			'false_positive'  => __( 'Not a real problem (false positive)', 'corea11y' ),
-			'fixed_elsewhere' => __( 'Already accessible in a way the scan can\'t see', 'corea11y' ),
-			'accepted'        => __( 'Known issue, accepted for now', 'corea11y' ),
+			'false_positive'  => __( 'Not a real problem (false positive)', 'msacalab-accessibility-checker' ),
+			'fixed_elsewhere' => __( 'Already accessible in a way the scan can\'t see', 'msacalab-accessibility-checker' ),
+			'accepted'        => __( 'Known issue, accepted for now', 'msacalab-accessibility-checker' ),
 		);
 	}
 
@@ -64,7 +64,7 @@ class CoreA11y_Dismiss {
 		$t     = CoreA11y_Install::tables();
 		$issue = $wpdb->get_row( $wpdb->prepare( 'SELECT id, fingerprint, rule_id, page_url FROM %i WHERE id = %d', $t['issues'], $issue_id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table.
 		if ( ! $issue || '' === $issue->fingerprint ) {
-			return new WP_Error( 'corea11y_no_issue', __( 'That issue could not be found.', 'corea11y' ) );
+			return new WP_Error( 'corea11y_no_issue', __( 'That issue could not be found.', 'msacalab-accessibility-checker' ) );
 		}
 		if ( ! array_key_exists( $reason, self::reasons() ) ) {
 			$reason = 'accepted';

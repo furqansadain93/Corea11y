@@ -18,26 +18,26 @@ $corea11y_date     = $audit->started_at ? get_date_from_gmt( $audit->started_at,
 ?>
 <div class="wrap corea11y">
 	<?php CoreA11y_UI::brand_bar(); ?>
-	<p class="corea11y-crumb"><a href="<?php echo esc_url( admin_url( 'admin.php?page=corea11y-audits' ) ); ?>">&larr; <?php esc_html_e( 'All audits', 'corea11y' ); ?></a></p>
+	<p class="corea11y-crumb"><a href="<?php echo esc_url( admin_url( 'admin.php?page=corea11y-audits' ) ); ?>">&larr; <?php esc_html_e( 'All audits', 'msacalab-accessibility-checker' ); ?></a></p>
 	<div class="corea11y-page-head">
 		<div>
-			<h1><?php esc_html_e( 'Audit report', 'corea11y' ); ?></h1>
+			<h1><?php esc_html_e( 'Audit report', 'msacalab-accessibility-checker' ); ?></h1>
 			<p class="corea11y-meta"><?php echo esc_html( $corea11y_date ); ?> · <?php echo esc_html( wp_parse_url( home_url(), PHP_URL_HOST ) ); ?></p>
 		</div>
 		<div class="corea11y-actions">
-			<a class="button button-primary" href="<?php echo esc_url( CoreA11y_Admin::export_url( 'report', array( 'audit' => $audit->id ) ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Download PDF', 'corea11y' ); ?><span class="screen-reader-text"> <?php esc_html_e( '(opens in a new tab)', 'corea11y' ); ?></span></a>
+			<a class="button button-primary" href="<?php echo esc_url( CoreA11y_Admin::export_url( 'report', array( 'audit' => $audit->id ) ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Download PDF', 'msacalab-accessibility-checker' ); ?><span class="screen-reader-text"> <?php esc_html_e( '(opens in a new tab)', 'msacalab-accessibility-checker' ); ?></span></a>
 			<?php
 			/**
-			 * Add buttons next to "Download PDF" on an audit report (CoreA11y Pro adds CSV export).
+			 * Add buttons next to "Download PDF" on an audit report (MSACAlab Accessibility Checker Pro adds CSV export).
 			 *
 			 * @param object $audit Audit row.
 			 */
 			do_action( 'corea11y_report_actions', $audit );
 			?>
 			<?php if ( $previous ) : ?>
-				<a class="button" href="<?php echo esc_url( CoreA11y_Admin::compare_url( $previous->id, $audit->id ) ); ?>"><?php esc_html_e( 'Compare with previous audit', 'corea11y' ); ?></a>
+				<a class="button" href="<?php echo esc_url( CoreA11y_Admin::compare_url( $previous->id, $audit->id ) ); ?>"><?php esc_html_e( 'Compare with previous audit', 'msacalab-accessibility-checker' ); ?></a>
 			<?php endif; ?>
-			<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=corea11y' ) ); ?>"><?php esc_html_e( 'Run a new audit', 'corea11y' ); ?></a>
+			<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=corea11y' ) ); ?>"><?php esc_html_e( 'Run a new audit', 'msacalab-accessibility-checker' ); ?></a>
 		</div>
 	</div>
 
@@ -45,7 +45,7 @@ $corea11y_date     = $audit->started_at ? get_date_from_gmt( $audit->started_at,
 		<div class="notice notice-warning inline"><p>
 			<?php
 			/* translators: %s: audit status, e.g. "running" or "abandoned". */
-			echo esc_html( sprintf( __( 'This audit did not finish (status: %s). Results may be incomplete.', 'corea11y' ), $audit->status ) );
+			echo esc_html( sprintf( __( 'This audit did not finish (status: %s). Results may be incomplete.', 'msacalab-accessibility-checker' ), $audit->status ) );
 			?>
 		</p></div>
 	<?php endif; ?>
@@ -59,17 +59,17 @@ $corea11y_date     = $audit->started_at ? get_date_from_gmt( $audit->started_at,
 	<div id="corea11y-notice" tabindex="-1">
 		<?php if ( $corea11y_dfp ) : ?>
 			<div class="notice notice-success inline corea11y-verify" role="status">
-				<p><strong><?php esc_html_e( 'Issue dismissed.', 'corea11y' ); ?></strong> <?php esc_html_e( 'It no longer counts in this report, and it stays dismissed in future audits.', 'corea11y' ); ?></p>
+				<p><strong><?php esc_html_e( 'Issue dismissed.', 'msacalab-accessibility-checker' ); ?></strong> <?php esc_html_e( 'It no longer counts in this report, and it stays dismissed in future audits.', 'msacalab-accessibility-checker' ); ?></p>
 				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 					<input type="hidden" name="action" value="corea11y_restore">
 					<input type="hidden" name="fp" value="<?php echo esc_attr( $corea11y_dfp ); ?>">
 					<input type="hidden" name="audit" value="<?php echo esc_attr( $audit->id ); ?>">
 					<?php wp_nonce_field( 'corea11y_restore' ); ?>
-					<p><button type="submit" class="button"><?php esc_html_e( 'Undo', 'corea11y' ); ?></button></p>
+					<p><button type="submit" class="button"><?php esc_html_e( 'Undo', 'msacalab-accessibility-checker' ); ?></button></p>
 				</form>
 			</div>
 		<?php elseif ( $corea11y_restored ) : ?>
-			<div class="notice notice-info inline" role="status"><p><?php esc_html_e( 'Issue restored. It counts in your reports again.', 'corea11y' ); ?></p></div>
+			<div class="notice notice-info inline" role="status"><p><?php esc_html_e( 'Issue restored. It counts in your reports again.', 'msacalab-accessibility-checker' ); ?></p></div>
 		<?php endif; ?>
 	</div>
 

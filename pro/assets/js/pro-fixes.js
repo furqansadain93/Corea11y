@@ -1,5 +1,5 @@
 /**
- * CoreA11y Pro quick fixes that need the rendered page.
+ * MSACAlab Accessibility Checker Pro quick fixes that need the rendered page.
  *
  * Every fix only acts when the problem is actually present, never overrides what a
  * theme or author already provided, and is safe to run more than once. Content added

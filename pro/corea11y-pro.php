@@ -1,8 +1,8 @@
 <?php
 /**
- * CoreA11y Pro.
+ * MSACAlab Accessibility Checker Pro.
  *
- * Extends CoreA11y Lite through its hooks. Every Pro quick fix follows the same rules
+ * Extends MSACAlab Accessibility Checker Lite through its hooks. Every Pro quick fix follows the same rules
  * as Lite: it is applied as pages are shown, never written into theme or content files,
  * logged in the change history, and can be undone with one click.
  *

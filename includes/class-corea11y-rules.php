@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Static helpers that classify axe-core and CoreA11y rules.
+ * Static helpers that classify axe-core and MSACAlab Accessibility Checker rules.
  */
 class CoreA11y_Rules {
 
@@ -19,10 +19,10 @@ class CoreA11y_Rules {
 	 */
 	public static function impacts() {
 		return array(
-			'critical' => __( 'Critical', 'corea11y' ),
-			'serious'  => __( 'Serious', 'corea11y' ),
-			'moderate' => __( 'Moderate', 'corea11y' ),
-			'minor'    => __( 'Minor', 'corea11y' ),
+			'critical' => __( 'Critical', 'msacalab-accessibility-checker' ),
+			'serious'  => __( 'Serious', 'msacalab-accessibility-checker' ),
+			'moderate' => __( 'Moderate', 'msacalab-accessibility-checker' ),
+			'minor'    => __( 'Minor', 'msacalab-accessibility-checker' ),
 		);
 	}
 
@@ -49,9 +49,9 @@ class CoreA11y_Rules {
 	 */
 	public static function tiers() {
 		return array(
-			'automatic' => __( 'Automatic fix', 'corea11y' ),
-			'approval'  => __( 'Fix with approval', 'corea11y' ),
-			'owner'     => __( 'Needs your action', 'corea11y' ),
+			'automatic' => __( 'Automatic fix', 'msacalab-accessibility-checker' ),
+			'approval'  => __( 'Fix with approval', 'msacalab-accessibility-checker' ),
+			'owner'     => __( 'Needs your action', 'msacalab-accessibility-checker' ),
 		);
 	}
 
@@ -63,20 +63,20 @@ class CoreA11y_Rules {
 	public static function principles() {
 		return array(
 			1 => array(
-				'label' => __( 'Perceivable', 'corea11y' ),
-				'desc'  => __( 'Can everyone see or hear the content? Covers text alternatives, captions, color contrast and structure.', 'corea11y' ),
+				'label' => __( 'Perceivable', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'Can everyone see or hear the content? Covers text alternatives, captions, color contrast and structure.', 'msacalab-accessibility-checker' ),
 			),
 			2 => array(
-				'label' => __( 'Operable', 'corea11y' ),
-				'desc'  => __( 'Can everyone use it? Covers keyboard access, enough time, navigation, link text and tap target size.', 'corea11y' ),
+				'label' => __( 'Operable', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'Can everyone use it? Covers keyboard access, enough time, navigation, link text and tap target size.', 'msacalab-accessibility-checker' ),
 			),
 			3 => array(
-				'label' => __( 'Understandable', 'corea11y' ),
-				'desc'  => __( 'Is it clear and predictable? Covers page language, consistent behavior, labels and form errors.', 'corea11y' ),
+				'label' => __( 'Understandable', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'Is it clear and predictable? Covers page language, consistent behavior, labels and form errors.', 'msacalab-accessibility-checker' ),
 			),
 			4 => array(
-				'label' => __( 'Robust', 'corea11y' ),
-				'desc'  => __( 'Does it work with assistive technology? Covers names, roles and states of buttons, links and controls.', 'corea11y' ),
+				'label' => __( 'Robust', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'Does it work with assistive technology? Covers names, roles and states of buttons, links and controls.', 'msacalab-accessibility-checker' ),
 			),
 		);
 	}

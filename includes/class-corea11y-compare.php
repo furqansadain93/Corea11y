@@ -27,7 +27,7 @@ class CoreA11y_Compare {
 		$before = CoreA11y_Audit::get( $before_id );
 		$after  = CoreA11y_Audit::get( $after_id );
 		if ( ! $before || ! $after ) {
-			return new WP_Error( 'corea11y_no_audit', __( 'One of the audits could not be found.', 'corea11y' ) );
+			return new WP_Error( 'corea11y_no_audit', __( 'One of the audits could not be found.', 'msacalab-accessibility-checker' ) );
 		}
 
 		$pages_before = self::done_pages( $before );

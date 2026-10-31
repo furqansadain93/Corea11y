@@ -125,16 +125,16 @@ class CoreA11y_Highlighter {
 				'current'   => $issue_id,
 				'reportUrl' => CoreA11y_Admin::report_url( $audit_id ),
 				'i18n'      => array(
-					'title'   => __( 'Accessibility issues on this page', 'corea11y' ),
+					'title'   => __( 'Accessibility issues on this page', 'msacalab-accessibility-checker' ),
 					/* translators: 1: current issue number, 2: total issues. Keep the placeholders as they are. */
-					'count'   => __( 'Issue %1$d of %2$d', 'corea11y' ),
-					'prev'    => __( 'Previous', 'corea11y' ),
-					'next'    => __( 'Next', 'corea11y' ),
-					'close'   => __( 'Close', 'corea11y' ),
-					'back'    => __( 'Back to report', 'corea11y' ),
-					'why'     => __( 'Why it matters:', 'corea11y' ),
-					'fix'     => __( 'How to fix:', 'corea11y' ),
-					'missing' => __( 'This element is no longer on the page in the same place. It may already be fixed, or the page has changed since the audit.', 'corea11y' ),
+					'count'   => __( 'Issue %1$d of %2$d', 'msacalab-accessibility-checker' ),
+					'prev'    => __( 'Previous', 'msacalab-accessibility-checker' ),
+					'next'    => __( 'Next', 'msacalab-accessibility-checker' ),
+					'close'   => __( 'Close', 'msacalab-accessibility-checker' ),
+					'back'    => __( 'Back to report', 'msacalab-accessibility-checker' ),
+					'why'     => __( 'Why it matters:', 'msacalab-accessibility-checker' ),
+					'fix'     => __( 'How to fix:', 'msacalab-accessibility-checker' ),
+					'missing' => __( 'This element is no longer on the page in the same place. It may already be fixed, or the page has changed since the audit.', 'msacalab-accessibility-checker' ),
 				),
 			)
 		);
@@ -164,7 +164,7 @@ class CoreA11y_Highlighter {
 			array(
 				'id'    => 'corea11y',
 				/* translators: %s: number of issues. */
-				'title' => esc_html( $n ? sprintf( _n( 'Accessibility: %s issue', 'Accessibility: %s issues', $n, 'corea11y' ), number_format_i18n( $n ) ) : __( 'Accessibility: no automated issues', 'corea11y' ) ),
+				'title' => esc_html( $n ? sprintf( _n( 'Accessibility: %s issue', 'Accessibility: %s issues', $n, 'msacalab-accessibility-checker' ), number_format_i18n( $n ) ) : __( 'Accessibility: no automated issues', 'msacalab-accessibility-checker' ) ),
 				'href'  => $n ? self::url( (int) $latest[0]->id, $url ) : CoreA11y_Admin::report_url( (int) $latest[0]->id ),
 			)
 		);

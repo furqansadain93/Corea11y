@@ -29,81 +29,81 @@ class CoreA11y_Fixes {
 	public static function all() {
 		$fixes = array(
 			'skip-link'   => array(
-				'title' => __( 'Add a "Skip to content" link', 'corea11y' ),
-				'desc'  => __( 'Adds a link that appears when keyboard users press Tab, letting them jump past the menu straight to the main content. It is skipped if your theme already has one.', 'corea11y' ),
+				'title' => __( 'Add a "Skip to content" link', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'Adds a link that appears when keyboard users press Tab, letting them jump past the menu straight to the main content. It is skipped if your theme already has one.', 'msacalab-accessibility-checker' ),
 				'wcag'  => '2.4.1',
 				'rules' => array( 'bypass' ),
 			),
 			'focus'       => array(
-				'title' => __( 'Show a clear keyboard focus outline', 'corea11y' ),
-				'desc'  => __( 'Draws a high-contrast outline around links, buttons and fields when they are reached with the keyboard, even if your theme removed it. Mouse clicks are not affected.', 'corea11y' ),
+				'title' => __( 'Show a clear keyboard focus outline', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'Draws a high-contrast outline around links, buttons and fields when they are reached with the keyboard, even if your theme removed it. Mouse clicks are not affected.', 'msacalab-accessibility-checker' ),
 				'wcag'  => '2.4.7',
 				'rules' => array(),
 			),
 			'lang'        => array(
-				'title' => __( 'Add the page language', 'corea11y' ),
-				'desc'  => __( 'Tells screen readers which language your pages are in, using the language from Settings > General, so text is pronounced correctly.', 'corea11y' ),
+				'title' => __( 'Add the page language', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'Tells screen readers which language your pages are in, using the language from Settings > General, so text is pronounced correctly.', 'msacalab-accessibility-checker' ),
 				'wcag'  => '3.1.1',
 				'rules' => array( 'html-has-lang' ),
 			),
 			'zoom'        => array(
-				'title' => __( 'Allow pinch-zoom on phones', 'corea11y' ),
-				'desc'  => __( 'Removes the setting some themes use to block zooming, so visitors who need bigger text can zoom in on mobile.', 'corea11y' ),
+				'title' => __( 'Allow pinch-zoom on phones', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'Removes the setting some themes use to block zooming, so visitors who need bigger text can zoom in on mobile.', 'msacalab-accessibility-checker' ),
 				'wcag'  => '1.4.4',
 				'rules' => array( 'meta-viewport', 'meta-viewport-large' ),
 			),
 			'form-labels' => array(
-				'title' => __( 'Label search and comment fields', 'corea11y' ),
-				'desc'  => __( 'Gives WordPress search boxes and comment form fields a name screen readers can announce, when your theme leaves it out.', 'corea11y' ),
+				'title' => __( 'Label search and comment fields', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'Gives WordPress search boxes and comment form fields a name screen readers can announce, when your theme leaves it out.', 'msacalab-accessibility-checker' ),
 				'wcag'  => '1.3.1, 4.1.2',
 				'rules' => array( 'label' ),
 			),
 			'title'       => array(
-				'title' => __( 'Add a missing page title', 'corea11y' ),
-				'desc'  => __( 'Gives every page a title (shown in the browser tab and read first by screen readers) when your theme does not output one.', 'corea11y' ),
+				'title' => __( 'Add a missing page title', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'Gives every page a title (shown in the browser tab and read first by screen readers) when your theme does not output one.', 'msacalab-accessibility-checker' ),
 				'wcag'  => '2.4.2',
 				'rules' => array( 'document-title' ),
 			),
 			'iframe-titles'     => array(
-				'title' => __( 'Title embedded videos, maps and widgets', 'corea11y' ),
-				'desc'  => __( 'Adds a title such as "YouTube video" or "Map" to embedded frames that have none, so screen reader users know what they contain.', 'corea11y' ),
+				'title' => __( 'Title embedded videos, maps and widgets', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'Adds a title such as "YouTube video" or "Map" to embedded frames that have none, so screen reader users know what they contain.', 'msacalab-accessibility-checker' ),
 				'wcag'  => '4.1.2',
 				'rules' => array( 'frame-title' ),
 			),
 			'empty-headings'    => array(
-				'title' => __( 'Hide empty headings from screen readers', 'corea11y' ),
-				'desc'  => __( 'Empty headings, often left by page builders, are hidden from screen readers so they aren\'t announced as blank headings.', 'corea11y' ),
+				'title' => __( 'Hide empty headings from screen readers', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'Empty headings, often left by page builders, are hidden from screen readers so they aren\'t announced as blank headings.', 'msacalab-accessibility-checker' ),
 				'wcag'  => '1.3.1',
 				'rules' => array( 'empty-heading' ),
 			),
 			'empty-paragraphs'  => array(
-				'title' => __( 'Hide empty paragraphs from screen readers', 'corea11y' ),
-				'desc'  => __( 'Empty paragraphs used for spacing are hidden from screen readers so they aren\'t announced as "blank". The spacing stays.', 'corea11y' ),
+				'title' => __( 'Hide empty paragraphs from screen readers', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'Empty paragraphs used for spacing are hidden from screen readers so they aren\'t announced as "blank". The spacing stays.', 'msacalab-accessibility-checker' ),
 				'wcag'  => '',
 				'rules' => array( 'corea11y-empty-paragraph' ),
 			),
 			'tabindex'          => array(
-				'title' => __( 'Restore the natural keyboard order', 'corea11y' ),
-				'desc'  => __( 'Removes forced keyboard order (tabindex above 0), so Tab moves through the page in the order it is read.', 'corea11y' ),
+				'title' => __( 'Restore the natural keyboard order', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'Removes forced keyboard order (tabindex above 0), so Tab moves through the page in the order it is read.', 'msacalab-accessibility-checker' ),
 				'wcag'  => '2.4.3',
 				'rules' => array( 'tabindex' ),
 			),
 			'accesskeys'        => array(
-				'title' => __( 'Remove clashing keyboard shortcuts', 'corea11y' ),
-				'desc'  => __( 'Removes access keys, which can clash with screen reader and browser shortcuts.', 'corea11y' ),
+				'title' => __( 'Remove clashing keyboard shortcuts', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'Removes access keys, which can clash with screen reader and browser shortcuts.', 'msacalab-accessibility-checker' ),
 				'wcag'  => '2.1.4',
 				'rules' => array( 'corea11y-accesskey' ),
 			),
 			'reduced-motion'    => array(
-				'title' => __( 'Respect "reduce motion" settings', 'corea11y' ),
-				'desc'  => __( 'For visitors who ask their device for less motion, animations and smooth scrolling are switched off.', 'corea11y' ),
+				'title' => __( 'Respect "reduce motion" settings', 'msacalab-accessibility-checker' ),
+				'desc'  => __( 'For visitors who ask their device for less motion, animations and smooth scrolling are switched off.', 'msacalab-accessibility-checker' ),
 				'wcag'  => '2.3.3',
 				'rules' => array(),
 			),
 		);
 
 		/**
-		 * Filter the quick fixes. CoreA11y Pro adds its own here.
+		 * Filter the quick fixes. MSACAlab Accessibility Checker Pro adds its own here.
 		 *
 		 * @param array $fixes Fixes keyed by id.
 		 */
@@ -174,7 +174,10 @@ class CoreA11y_Fixes {
 	 * solve issues found in that audit and don't change how the site looks.
 	 *
 	 * @param int $audit_id Audit id.
-	 * @return array{total:int,issues:int,fixes:string[],locked_issues:int,locked_fixes:int}
+	 * In the free version (Pro not installed), "locked" counts the problems Pro's fixes
+	 * would solve, from the Pro catalog, and 'upgrade' is true.
+	 *
+	 * @return array{total:int,issues:int,fixes:string[],locked_issues:int,locked_fixes:int,upgrade:bool}
 	 */
 	public static function opportunity( $audit_id ) {
 		global $wpdb;
@@ -184,6 +187,7 @@ class CoreA11y_Fixes {
 			'fixes'         => array(),
 			'locked_issues' => 0,
 			'locked_fixes'  => 0,
+			'upgrade'       => false,
 		);
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table.
 		$rows  = $wpdb->get_results( $wpdb->prepare( "SELECT rule_id, COUNT(*) AS n FROM %i WHERE audit_id = %d AND status <> 'dismissed' GROUP BY rule_id", CoreA11y_Install::tables()['issues'], (int) $audit_id ) );
@@ -208,6 +212,14 @@ class CoreA11y_Fixes {
 			}
 			$out['issues'] += $n;
 			$out['fixes'][] = $id;
+		}
+		if ( ! CoreA11y_Pro_Catalog::pro_installed() ) {
+			// Same total as the Pro list on the Quick fixes screen (fixes that change the look included).
+			foreach ( CoreA11y_Pro_Catalog::found( $audit_id ) as $id => $n ) {
+				$out['locked_issues'] += $n;
+				++$out['locked_fixes'];
+			}
+			$out['upgrade'] = $out['locked_issues'] > 0;
 		}
 		return $out;
 	}
@@ -256,7 +268,7 @@ class CoreA11y_Fixes {
 		if ( '' !== $batch ) {
 			/**
 			 * Fires after quick fixes are turned on or off (including undo and redo).
-			 * CoreA11y clears known page caches here so visitors see the change at once.
+			 * MSACAlab Accessibility Checker clears known page caches here so visitors see the change at once.
 			 *
 			 * @param array<string,bool> $state New state.
 			 * @param string             $batch Batch id.
@@ -536,17 +548,17 @@ class CoreA11y_Fixes {
 					'fixes'       => $js_fixes,
 					'lang'        => get_bloginfo( 'language' ),
 					'title'       => wp_get_document_title(),
-					'skipText'    => __( 'Skip to content', 'corea11y' ),
-					'searchLabel' => __( 'Search', 'corea11y' ),
+					'skipText'    => __( 'Skip to content', 'msacalab-accessibility-checker' ),
+					'searchLabel' => __( 'Search', 'msacalab-accessibility-checker' ),
 					'frames'      => array(
-						'embedded' => __( 'Embedded content', 'corea11y' ),
+						'embedded' => __( 'Embedded content', 'msacalab-accessibility-checker' ),
 						/* translators: %s: video service, e.g. "YouTube". */
-						'video'    => __( '%s video', 'corea11y' ),
-						'map'      => __( 'Map', 'corea11y' ),
+						'video'    => __( '%s video', 'msacalab-accessibility-checker' ),
+						'map'      => __( 'Map', 'msacalab-accessibility-checker' ),
 						/* translators: %s: audio service, e.g. "Spotify". */
-						'player'   => __( '%s player', 'corea11y' ),
+						'player'   => __( '%s player', 'msacalab-accessibility-checker' ),
 						/* translators: %s: social network, e.g. "Instagram". */
-						'post'     => __( '%s post', 'corea11y' ),
+						'post'     => __( '%s post', 'msacalab-accessibility-checker' ),
 					),
 				)
 			);
@@ -596,7 +608,7 @@ class CoreA11y_Fixes {
 			if ( ( is_string( $id ) && isset( $labelled[ $id ] ) ) || $tags->get_attribute( 'aria-label' ) || $tags->get_attribute( 'aria-labelledby' ) ) {
 				continue;
 			}
-			$tags->set_attribute( 'aria-label', __( 'Search', 'corea11y' ) );
+			$tags->set_attribute( 'aria-label', __( 'Search', 'msacalab-accessibility-checker' ) );
 		}
 		return $tags->get_updated_html();
 	}
@@ -612,10 +624,10 @@ class CoreA11y_Fixes {
 			return $field;
 		}
 		$names = array(
-			'comment' => __( 'Comment', 'corea11y' ),
-			'author'  => __( 'Name', 'corea11y' ),
-			'email'   => __( 'Email', 'corea11y' ),
-			'url'     => __( 'Website', 'corea11y' ),
+			'comment' => __( 'Comment', 'msacalab-accessibility-checker' ),
+			'author'  => __( 'Name', 'msacalab-accessibility-checker' ),
+			'email'   => __( 'Email', 'msacalab-accessibility-checker' ),
+			'url'     => __( 'Website', 'msacalab-accessibility-checker' ),
 		);
 		$tags  = new WP_HTML_Tag_Processor( $field );
 		while ( $tags->next_tag() ) {

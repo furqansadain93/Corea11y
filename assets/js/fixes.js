@@ -1,5 +1,5 @@
 /**
- * CoreA11y quick fixes that need the rendered page (for themes that hard-code markup).
+ * MSACAlab Accessibility Checker quick fixes that need the rendered page (for themes that hard-code markup).
  * Each fix only acts when the problem is actually present.
  */
 ( function () {

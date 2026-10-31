@@ -49,7 +49,7 @@ class CoreA11y_UI {
 			'<span class="corea11y-tip"><button type="button" class="corea11y-tip-btn" aria-expanded="false" aria-controls="%1$s"><span aria-hidden="true">?</span><span class="screen-reader-text">%2$s</span></button><span class="corea11y-tip-panel" id="%1$s" role="note">%3$s</span></span>',
 			esc_attr( $id ),
 			/* translators: %s: the thing being explained, e.g. "Score". */
-			esc_html( sprintf( __( 'What is "%s"?', 'corea11y' ), $label ) ),
+			esc_html( sprintf( __( 'What is "%s"?', 'msacalab-accessibility-checker' ), $label ) ),
 			$is_html ? $content : esc_html( $content )
 		);
 	}
@@ -75,11 +75,11 @@ class CoreA11y_UI {
 	public static function rule_tip( array $explain ) {
 		$html = sprintf(
 			'<strong>%1$s</strong> %2$s<br><strong>%3$s</strong> %4$s<br><strong>%5$s</strong> %6$s',
-			esc_html__( 'Why it matters:', 'corea11y' ),
+			esc_html__( 'Why it matters:', 'msacalab-accessibility-checker' ),
 			esc_html( $explain['why'] ),
-			esc_html__( 'Who it affects:', 'corea11y' ),
+			esc_html__( 'Who it affects:', 'msacalab-accessibility-checker' ),
 			esc_html( $explain['who'] ),
-			esc_html__( 'How to fix:', 'corea11y' ),
+			esc_html__( 'How to fix:', 'msacalab-accessibility-checker' ),
 			esc_html( $explain['fix'] )
 		);
 		return self::tip( $explain['title'], $html, true );
@@ -95,30 +95,30 @@ class CoreA11y_UI {
 		if ( null === $score ) {
 			return array(
 				'key'   => 'none',
-				'label' => __( 'Not scored yet', 'corea11y' ),
+				'label' => __( 'Not scored yet', 'msacalab-accessibility-checker' ),
 			);
 		}
 		if ( $score >= 90 ) {
 			return array(
 				'key'   => 'great',
-				'label' => __( 'Great', 'corea11y' ),
+				'label' => __( 'Great', 'msacalab-accessibility-checker' ),
 			);
 		}
 		if ( $score >= 75 ) {
 			return array(
 				'key'   => 'good',
-				'label' => __( 'Good', 'corea11y' ),
+				'label' => __( 'Good', 'msacalab-accessibility-checker' ),
 			);
 		}
 		if ( $score >= 50 ) {
 			return array(
 				'key'   => 'fair',
-				'label' => __( 'Needs work', 'corea11y' ),
+				'label' => __( 'Needs work', 'msacalab-accessibility-checker' ),
 			);
 		}
 		return array(
 			'key'   => 'poor',
-			'label' => __( 'Needs attention', 'corea11y' ),
+			'label' => __( 'Needs attention', 'msacalab-accessibility-checker' ),
 		);
 	}
 
@@ -137,7 +137,7 @@ class CoreA11y_UI {
 		$value = null === $score ? 0 : max( 0, min( 100, (int) $score ) );
 		$dash  = $circ * $value / 100;
 		/* translators: 1: score, 2: score band such as "Good". */
-		$label = null === $score ? $band['label'] : sprintf( __( 'Scan score %1$d out of 100: %2$s', 'corea11y' ), $value, $band['label'] );
+		$label = null === $score ? $band['label'] : sprintf( __( 'Scan score %1$d out of 100: %2$s', 'msacalab-accessibility-checker' ), $value, $band['label'] );
 
 		$svg = sprintf(
 			'<svg class="corea11y-ring corea11y-band-%1$s" width="%2$d" height="%2$d" viewBox="0 0 120 120" role="img" aria-label="%3$s">'
@@ -156,7 +156,10 @@ class CoreA11y_UI {
 			esc_html( $band['label'] )
 		);
 
-		return '<figure class="corea11y-ring-wrap">' . $svg . ( $caption ? '<figcaption>' . esc_html( $caption ) . '</figcaption>' : '' ) . '</figure>';
+		if ( '' === $caption ) {
+			$caption = __( 'Automated checks only', 'msacalab-accessibility-checker' );
+		}
+		return '<figure class="corea11y-ring-wrap">' . $svg . '<figcaption>' . esc_html( $caption ) . '</figcaption></figure>';
 	}
 
 	/**
@@ -199,17 +202,17 @@ class CoreA11y_UI {
 			$max = max( $max, (int) $row['before'], (int) $row['after'] );
 		}
 		$out  = '<div class="corea11y-chart"><h3 class="corea11y-chart-title">' . esc_html( $title ) . '</h3>';
-		$out .= '<p class="corea11y-legend"><span class="corea11y-key corea11y-key-before" aria-hidden="true"></span>' . esc_html__( 'Before', 'corea11y' ) . ' <span class="corea11y-key corea11y-key-after" aria-hidden="true"></span>' . esc_html__( 'After', 'corea11y' ) . '</p><ul class="corea11y-bars corea11y-bars-paired">';
+		$out .= '<p class="corea11y-legend"><span class="corea11y-key corea11y-key-before" aria-hidden="true"></span>' . esc_html__( 'Before', 'msacalab-accessibility-checker' ) . ' <span class="corea11y-key corea11y-key-after" aria-hidden="true"></span>' . esc_html__( 'After', 'msacalab-accessibility-checker' ) . '</p><ul class="corea11y-bars corea11y-bars-paired">';
 		foreach ( $rows as $row ) {
 			$out .= sprintf(
 				'<li><span class="corea11y-bar-label">%1$s%2$s</span><span class="corea11y-bar-pair"><span class="corea11y-bar-track" aria-hidden="true"><span class="corea11y-bar-fill corea11y-fill-before" style="width:%3$s%%"></span></span><span class="corea11y-bar-value"><span class="screen-reader-text">%4$s </span>%5$s</span><span class="corea11y-bar-track" aria-hidden="true"><span class="corea11y-bar-fill corea11y-fill-after" style="width:%6$s%%"></span></span><span class="corea11y-bar-value"><span class="screen-reader-text">%7$s </span>%8$s</span></span></li>',
 				esc_html( $row['label'] ),
 				isset( $row['tip'] ) ? $row['tip'] : '',
 				esc_attr( (string) round( 100 * (int) $row['before'] / $max, 1 ) ),
-				esc_html__( 'Before:', 'corea11y' ),
+				esc_html__( 'Before:', 'msacalab-accessibility-checker' ),
 				esc_html( number_format_i18n( (int) $row['before'] ) ),
 				esc_attr( (string) round( 100 * (int) $row['after'] / $max, 1 ) ),
-				esc_html__( 'After:', 'corea11y' ),
+				esc_html__( 'After:', 'msacalab-accessibility-checker' ),
 				esc_html( number_format_i18n( (int) $row['after'] ) )
 			);
 		}
@@ -303,21 +306,45 @@ class CoreA11y_UI {
 		$after  = number_format_i18n( (int) $v['after'] );
 		$pages  = (int) $v['pages'];
 		/* translators: %d: number of pages checked. */
-		$checked = sprintf( _n( '%d page checked', '%d pages checked', $pages, 'corea11y' ), $pages );
+		$checked = sprintf( _n( '%d page checked', '%d pages checked', $pages, 'msacalab-accessibility-checker' ), $pages );
 		if ( 'verified' === $v['status'] ) {
 			/* translators: 1: number of problems, 2: "3 pages checked". */
-			return sprintf( _n( 'Fixed and verified: %1$s problem gone (%2$s)', 'Fixed and verified: %1$s problems gone (%2$s)', (int) $v['before'], 'corea11y' ), $before, $checked );
+			return sprintf( _n( 'Fixed and verified: %1$s problem gone (%2$s)', 'Fixed and verified: %1$s problems gone (%2$s)', (int) $v['before'], 'msacalab-accessibility-checker' ), $before, $checked );
 		}
 		if ( 'partial' === $v['status'] ) {
 			/* translators: 1: problems before, 2: problems still found, 3: "3 pages checked". */
-			return sprintf( __( 'Partly fixed: %1$s problems before, %2$s still found (%3$s)', 'corea11y' ), $before, $after, $checked );
+			return sprintf( __( 'Partly fixed: %1$s problems before, %2$s still found (%3$s)', 'msacalab-accessibility-checker' ), $before, $after, $checked );
 		}
 		/* translators: 1: problems still found. */
-		return sprintf( _n( '%1$s problem needs more than this fix. See the report.', '%1$s problems need more than this fix. See the report.', (int) $v['after'], 'corea11y' ), $after );
+		return sprintf( _n( '%1$s problem needs more than this fix. See the report.', '%1$s problems need more than this fix. See the report.', (int) $v['after'], 'msacalab-accessibility-checker' ), $after );
 	}
 
 	/**
-	 * The CoreA11y dot mark (inline SVG, decorative).
+	 * Manual checklist progress, shown next to the score so it is never read as the whole picture.
+	 *
+	 * @param bool $link Include a link to the checklist.
+	 * @return string
+	 */
+	public static function checklist_note( $link = true ) {
+		$sum      = CoreA11y_Checklist::summary();
+		$total    = count( CoreA11y_Checklist::items() );
+		$reviewed = $total - ( isset( $sum[''] ) ? (int) $sum[''] : 0 );
+		$failed   = isset( $sum['fail'] ) ? (int) $sum['fail'] : 0;
+		if ( $reviewed >= $total && 0 === $failed ) {
+			$text = __( 'The score covers automated checks. Manual checklist: complete, no failures.', 'msacalab-accessibility-checker' );
+		} else {
+			/* translators: 1: checks reviewed, 2: total checks, 3: checks failed. */
+			$text = sprintf( _n( 'The score covers automated checks only. Manual checklist: %1$s of %2$s reviewed, %3$s failed.', 'The score covers automated checks only. Manual checklist: %1$s of %2$s reviewed, %3$s failed.', $failed, 'msacalab-accessibility-checker' ), number_format_i18n( $reviewed ), number_format_i18n( $total ), number_format_i18n( $failed ) );
+		}
+		$out = '<p class="corea11y-checklist-note">' . esc_html( $text );
+		if ( $link && $reviewed < $total ) {
+			$out .= ' <a href="' . esc_url( admin_url( 'admin.php?page=corea11y-checklist' ) ) . '">' . esc_html__( 'Continue the checklist', 'msacalab-accessibility-checker' ) . '</a>';
+		}
+		return $out . '</p>';
+	}
+
+	/**
+	 * The MSACAlab Accessibility Checker dot mark (inline SVG, decorative).
 	 *
 	 * @param int $height Height in pixels.
 	 * @return string
@@ -332,30 +359,30 @@ class CoreA11y_UI {
 	}
 
 	/**
-	 * The "corea11y" wordmark, readable as "CoreA11y" by screen readers.
+	 * The "MSACAlab Accessibility Checker" wordmark, read once as the full name by screen readers.
 	 *
 	 * @return string
 	 */
 	public static function wordmark() {
-		return '<span class="corea11y-wordmark"><span aria-hidden="true">corea<span class="corea11y-wordmark-11">11</span>y</span><span class="screen-reader-text">CoreA11y</span></span>';
+		return '<span class="corea11y-wordmark"><span aria-hidden="true">MSACA<span class="corea11y-wordmark-11">lab</span><span class="corea11y-wordmark-sub">Accessibility Checker</span></span><span class="screen-reader-text">MSACAlab Accessibility Checker</span></span>';
 	}
 
 	/**
-	 * Branded bar shown at the top of every CoreA11y admin screen.
+	 * Branded bar shown at the top of every MSACAlab Accessibility Checker admin screen.
 	 */
 	public static function brand_bar() {
 		echo '<div class="corea11y-brandbar">';
 		echo self::logo_mark( 30 ) . self::wordmark(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static markup.
 		/* translators: %s: site name. */
-		echo '<span class="corea11y-brandbar-site">' . esc_html( sprintf( __( 'Accessibility for %s', 'corea11y' ), get_bloginfo( 'name' ) ) ) . '</span>';
+		echo '<span class="corea11y-brandbar-site">' . esc_html( sprintf( __( 'Accessibility for %s', 'msacalab-accessibility-checker' ), get_bloginfo( 'name' ) ) ) . '</span>';
 		/**
-		 * Filter the User guide link in the CoreA11y top bar. Return an empty string to hide it.
+		 * Filter the User guide link in the MSACAlab Accessibility Checker top bar. Return an empty string to hide it.
 		 *
 		 * @param string $url Guide URL.
 		 */
 		$guide = (string) apply_filters( 'corea11y_guide_url', 'https://corea11y.com/docs/wordpress/' );
 		if ( '' !== $guide ) {
-			echo '<a class="corea11y-brandbar-guide" href="' . esc_url( $guide ) . '" target="_blank" rel="noopener">' . esc_html__( 'User guide', 'corea11y' ) . '<span class="screen-reader-text"> ' . esc_html__( '(opens in a new tab)', 'corea11y' ) . '</span></a>';
+			echo '<a class="corea11y-brandbar-guide" href="' . esc_url( $guide ) . '" target="_blank" rel="noopener">' . esc_html__( 'User guide', 'msacalab-accessibility-checker' ) . '<span class="screen-reader-text"> ' . esc_html__( '(opens in a new tab)', 'msacalab-accessibility-checker' ) . '</span></a>';
 		}
 		echo '</div>';
 	}

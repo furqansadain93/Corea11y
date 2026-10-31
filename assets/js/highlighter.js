@@ -1,6 +1,6 @@
 /**
- * CoreA11y front-end highlighter: outlines each issue on the live page and explains it.
- * Shown only to administrators who open it from a CoreA11y report (nonce-protected).
+ * MSACAlab Accessibility Checker front-end highlighter: outlines each issue on the live page and explains it.
+ * Shown only to administrators who open it from a MSACAlab Accessibility Checker report (nonce-protected).
  *
  * The panel lives in a shadow root so the site's CSS can't break it.
  */

@@ -147,7 +147,7 @@ class CoreA11y_Rest {
 		$pages = CoreA11y_Pages::for_scope( $scope );
 		$id    = CoreA11y_Audit::create( $scope, $pages );
 		if ( ! $id ) {
-			return new WP_Error( 'corea11y_create_failed', __( 'The audit could not be started.', 'corea11y' ), array( 'status' => 500 ) );
+			return new WP_Error( 'corea11y_create_failed', __( 'The audit could not be started.', 'msacalab-accessibility-checker' ), array( 'status' => 500 ) );
 		}
 		return rest_ensure_response(
 			array(

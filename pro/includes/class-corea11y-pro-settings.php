@@ -1,6 +1,6 @@
 <?php
 /**
- * CoreA11y Pro settings, shown as an extra section on the CoreA11y Settings screen.
+ * MSACAlab Accessibility Checker Pro settings, shown as an extra section on the MSACAlab Accessibility Checker settings screen.
  *
  * @package CoreA11y
  */
@@ -79,16 +79,16 @@ class CoreA11y_Pro_Settings {
 			)
 		);
 
-		add_settings_section( 'corea11y_pro_monitor', __( 'Weekly check (Pro)', 'corea11y' ), array( __CLASS__, 'intro_monitor' ), CoreA11y_Settings::PAGE );
-		add_settings_field( 'corea11y_pro_weekly', __( 'Weekly email', 'corea11y' ), array( __CLASS__, 'field_weekly' ), CoreA11y_Settings::PAGE, 'corea11y_pro_monitor', array( 'label_for' => 'corea11y-pro-weekly' ) );
-		add_settings_field( 'corea11y_pro_report_to', __( 'Send it to', 'corea11y' ), array( __CLASS__, 'field_report_to' ), CoreA11y_Settings::PAGE, 'corea11y_pro_monitor', array( 'label_for' => 'corea11y-pro-report-to' ) );
+		add_settings_section( 'corea11y_pro_monitor', __( 'Weekly check (Pro)', 'msacalab-accessibility-checker' ), array( __CLASS__, 'intro_monitor' ), CoreA11y_Settings::PAGE );
+		add_settings_field( 'corea11y_pro_weekly', __( 'Weekly email', 'msacalab-accessibility-checker' ), array( __CLASS__, 'field_weekly' ), CoreA11y_Settings::PAGE, 'corea11y_pro_monitor', array( 'label_for' => 'corea11y-pro-weekly' ) );
+		add_settings_field( 'corea11y_pro_report_to', __( 'Send it to', 'msacalab-accessibility-checker' ), array( __CLASS__, 'field_report_to' ), CoreA11y_Settings::PAGE, 'corea11y_pro_monitor', array( 'label_for' => 'corea11y-pro-report-to' ) );
 
-		add_settings_section( 'corea11y_pro_brand', __( 'White-label PDF reports (Agency)', 'corea11y' ), array( __CLASS__, 'intro_brand' ), CoreA11y_Settings::PAGE );
+		add_settings_section( 'corea11y_pro_brand', __( 'White-label PDF reports (Agency)', 'msacalab-accessibility-checker' ), array( __CLASS__, 'intro_brand' ), CoreA11y_Settings::PAGE );
 		if ( CoreA11y_Pro_License::has( CoreA11y_Pro_License::AGENCY ) ) {
-			add_settings_field( 'corea11y_pro_brand_name', __( 'Your company name', 'corea11y' ), array( __CLASS__, 'field_brand_name' ), CoreA11y_Settings::PAGE, 'corea11y_pro_brand', array( 'label_for' => 'corea11y-pro-brand-name' ) );
-			add_settings_field( 'corea11y_pro_brand_logo', __( 'Your logo', 'corea11y' ), array( __CLASS__, 'field_brand_logo' ), CoreA11y_Settings::PAGE, 'corea11y_pro_brand' );
-			add_settings_field( 'corea11y_pro_brand_color', __( 'Accent color', 'corea11y' ), array( __CLASS__, 'field_brand_color' ), CoreA11y_Settings::PAGE, 'corea11y_pro_brand', array( 'label_for' => 'corea11y-pro-brand-color' ) );
-			add_settings_field( 'corea11y_pro_brand_foot', __( 'Footer line', 'corea11y' ), array( __CLASS__, 'field_brand_foot' ), CoreA11y_Settings::PAGE, 'corea11y_pro_brand', array( 'label_for' => 'corea11y-pro-brand-foot' ) );
+			add_settings_field( 'corea11y_pro_brand_name', __( 'Your company name', 'msacalab-accessibility-checker' ), array( __CLASS__, 'field_brand_name' ), CoreA11y_Settings::PAGE, 'corea11y_pro_brand', array( 'label_for' => 'corea11y-pro-brand-name' ) );
+			add_settings_field( 'corea11y_pro_brand_logo', __( 'Your logo', 'msacalab-accessibility-checker' ), array( __CLASS__, 'field_brand_logo' ), CoreA11y_Settings::PAGE, 'corea11y_pro_brand' );
+			add_settings_field( 'corea11y_pro_brand_color', __( 'Accent color', 'msacalab-accessibility-checker' ), array( __CLASS__, 'field_brand_color' ), CoreA11y_Settings::PAGE, 'corea11y_pro_brand', array( 'label_for' => 'corea11y-pro-brand-color' ) );
+			add_settings_field( 'corea11y_pro_brand_foot', __( 'Footer line', 'msacalab-accessibility-checker' ), array( __CLASS__, 'field_brand_foot' ), CoreA11y_Settings::PAGE, 'corea11y_pro_brand', array( 'label_for' => 'corea11y-pro-brand-foot' ) );
 		}
 	}
 
@@ -155,7 +155,7 @@ class CoreA11y_Pro_Settings {
 		wp_enqueue_script( 'corea11y-pro-settings' );
 		wp_add_inline_script(
 			'corea11y-pro-settings',
-			"(function($){var frame;$(document).on('click','#corea11y-pro-logo-pick',function(e){e.preventDefault();if(!frame){frame=wp.media({title:" . wp_json_encode( __( 'Choose your logo', 'corea11y' ) ) . ",library:{type:'image'},multiple:false});frame.on('select',function(){var a=frame.state().get('selection').first().toJSON();$('#corea11y-pro-brand-logo').val(a.id);$('#corea11y-pro-logo-preview').attr('src',(a.sizes&&a.sizes.medium?a.sizes.medium.url:a.url)).attr('alt',a.alt||'').prop('hidden',false);$('#corea11y-pro-logo-remove').prop('hidden',false);});}frame.open();});$(document).on('click','#corea11y-pro-logo-remove',function(e){e.preventDefault();$('#corea11y-pro-brand-logo').val('0');$('#corea11y-pro-logo-preview').prop('hidden',true);$(this).prop('hidden',true);$('#corea11y-pro-logo-pick').trigger('focus');});})(jQuery);"
+			"(function($){var frame;$(document).on('click','#corea11y-pro-logo-pick',function(e){e.preventDefault();if(!frame){frame=wp.media({title:" . wp_json_encode( __( 'Choose your logo', 'msacalab-accessibility-checker' ) ) . ",library:{type:'image'},multiple:false});frame.on('select',function(){var a=frame.state().get('selection').first().toJSON();$('#corea11y-pro-brand-logo').val(a.id);$('#corea11y-pro-logo-preview').attr('src',(a.sizes&&a.sizes.medium?a.sizes.medium.url:a.url)).attr('alt',a.alt||'').prop('hidden',false);$('#corea11y-pro-logo-remove').prop('hidden',false);});}frame.open();});$(document).on('click','#corea11y-pro-logo-remove',function(e){e.preventDefault();$('#corea11y-pro-brand-logo').val('0');$('#corea11y-pro-logo-preview').prop('hidden',true);$(this).prop('hidden',true);$('#corea11y-pro-logo-pick').trigger('focus');});})(jQuery);"
 		);
 	}
 
@@ -163,9 +163,9 @@ class CoreA11y_Pro_Settings {
 	 * Section intro: weekly check.
 	 */
 	public static function intro_monitor() {
-		echo '<p>' . esc_html__( 'Once a week, CoreA11y checks what changed on your site since the last audit (new or edited pages, images without alt text) and emails you a short summary. The check runs on your own server; nothing is sent anywhere except the email itself.', 'corea11y' ) . '</p>';
+		echo '<p>' . esc_html__( 'Once a week, MSACAlab Accessibility Checker checks what changed on your site since the last audit (new or edited pages, images without alt text) and emails you a short summary. The check runs on your own server; nothing is sent anywhere except the email itself.', 'msacalab-accessibility-checker' ) . '</p>';
 		if ( ! CoreA11y_Pro_License::licensed() ) {
-			echo '<p class="corea11y-fix-lock">' . esc_html__( 'Activate your CoreA11y Pro license to use the weekly check.', 'corea11y' ) . '</p>';
+			echo '<p class="corea11y-fix-lock">' . esc_html__( 'Activate your MSACAlab Accessibility Checker Pro license to use the weekly check.', 'msacalab-accessibility-checker' ) . '</p>';
 		}
 	}
 
@@ -174,9 +174,9 @@ class CoreA11y_Pro_Settings {
 	 */
 	public static function intro_brand() {
 		if ( CoreA11y_Pro_License::has( CoreA11y_Pro_License::AGENCY ) ) {
-			echo '<p>' . esc_html__( 'Put your own name and logo on PDF reports you send to clients, instead of CoreA11y.', 'corea11y' ) . '</p>';
+			echo '<p>' . esc_html__( 'Put your own name and logo on PDF reports you send to clients, instead of MSACAlab Accessibility Checker.', 'msacalab-accessibility-checker' ) . '</p>';
 		} else {
-			echo '<p class="corea11y-fix-lock">' . esc_html__( 'Available on the Agency plan: put your own name and logo on PDF reports you send to clients.', 'corea11y' ) . '</p>';
+			echo '<p class="corea11y-fix-lock">' . esc_html__( 'Available on the Agency plan: put your own name and logo on PDF reports you send to clients.', 'msacalab-accessibility-checker' ) . '</p>';
 		}
 	}
 
@@ -190,12 +190,12 @@ class CoreA11y_Pro_Settings {
 			esc_attr( self::OPTION ),
 			checked( $on, true, false ),
 			disabled( ! CoreA11y_Pro_License::licensed(), true, false ),
-			esc_html__( 'Email me a weekly summary', 'corea11y' )
+			esc_html__( 'Email me a weekly summary', 'msacalab-accessibility-checker' )
 		);
 		$next = wp_next_scheduled( CoreA11y_Pro_Monitor::HOOK );
 		if ( $next ) {
 			/* translators: %s: date and time of the next weekly check. */
-			echo '<p class="description">' . esc_html( sprintf( __( 'Next check: %s', 'corea11y' ), wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $next ) ) ) . '</p>';
+			echo '<p class="description">' . esc_html( sprintf( __( 'Next check: %s', 'msacalab-accessibility-checker' ), wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $next ) ) ) . '</p>';
 		}
 	}
 
@@ -209,7 +209,7 @@ class CoreA11y_Pro_Settings {
 			esc_attr( self::get( 'report_to' ) ),
 			esc_attr( get_option( 'admin_email' ) )
 		);
-		echo '<p class="description" id="corea11y-pro-report-to-desc">' . esc_html__( 'Separate several addresses with commas. Leave empty to use the site admin email.', 'corea11y' ) . '</p>';
+		echo '<p class="description" id="corea11y-pro-report-to-desc">' . esc_html__( 'Separate several addresses with commas. Leave empty to use the site admin email.', 'msacalab-accessibility-checker' ) . '</p>';
 	}
 
 	/**
@@ -221,7 +221,7 @@ class CoreA11y_Pro_Settings {
 			esc_attr( self::OPTION ),
 			esc_attr( self::get( 'brand_name' ) )
 		);
-		echo '<p class="description">' . esc_html__( 'Shown at the top of PDF reports. Leave empty to keep CoreA11y branding.', 'corea11y' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'Shown at the top of PDF reports. Leave empty to keep MSACAlab Accessibility Checker branding.', 'msacalab-accessibility-checker' ) . '</p>';
 	}
 
 	/**
@@ -237,9 +237,9 @@ class CoreA11y_Pro_Settings {
 			esc_attr( $id ? get_post_meta( $id, '_wp_attachment_image_alt', true ) : '' ),
 			$src ? '' : 'hidden'
 		);
-		echo '<p><button type="button" class="button" id="corea11y-pro-logo-pick">' . esc_html__( 'Choose logo', 'corea11y' ) . '</button> ';
-		echo '<button type="button" class="button-link" id="corea11y-pro-logo-remove" ' . ( $src ? '' : 'hidden' ) . '>' . esc_html__( 'Remove logo', 'corea11y' ) . '</button></p>';
-		echo '<p class="description">' . esc_html__( 'Give the logo alt text in the Media Library (usually your company name). It is used in the PDF.', 'corea11y' ) . '</p>';
+		echo '<p><button type="button" class="button" id="corea11y-pro-logo-pick">' . esc_html__( 'Choose logo', 'msacalab-accessibility-checker' ) . '</button> ';
+		echo '<button type="button" class="button-link" id="corea11y-pro-logo-remove" ' . ( $src ? '' : 'hidden' ) . '>' . esc_html__( 'Remove logo', 'msacalab-accessibility-checker' ) . '</button></p>';
+		echo '<p class="description">' . esc_html__( 'Give the logo alt text in the Media Library (usually your company name). It is used in the PDF.', 'msacalab-accessibility-checker' ) . '</p>';
 	}
 
 	/**
@@ -251,7 +251,7 @@ class CoreA11y_Pro_Settings {
 			esc_attr( self::OPTION ),
 			esc_attr( self::get( 'brand_color' ) )
 		);
-		echo '<p class="description" id="corea11y-pro-brand-color-desc">' . esc_html__( 'A hex color such as #1a7f5a, used for the score card, bars and the stripe under your logo. Any color works: CoreA11y picks white or dark text on it, and darkens it where needed, so the report stays readable.', 'corea11y' ) . '</p>';
+		echo '<p class="description" id="corea11y-pro-brand-color-desc">' . esc_html__( 'A hex color such as #1a7f5a, used for the score card, bars and the stripe under your logo. Any color works: MSACAlab Accessibility Checker picks white or dark text on it, and darkens it where needed, so the report stays readable.', 'msacalab-accessibility-checker' ) . '</p>';
 	}
 
 	/**
@@ -263,6 +263,6 @@ class CoreA11y_Pro_Settings {
 			esc_attr( self::OPTION ),
 			esc_attr( self::get( 'brand_foot' ) )
 		);
-		echo '<p class="description" id="corea11y-pro-brand-foot-desc">' . esc_html__( 'For example your website or phone number. The note that automated results do not certify WCAG conformance is always kept.', 'corea11y' ) . '</p>';
+		echo '<p class="description" id="corea11y-pro-brand-foot-desc">' . esc_html__( 'For example your website or phone number. The note that automated results do not certify WCAG conformance is always kept.', 'msacalab-accessibility-checker' ) . '</p>';
 	}
 }

@@ -52,7 +52,7 @@ class CoreA11y_Pages {
 	 * @return array
 	 */
 	public static function sample() {
-		$pages = array( self::item( home_url( '/' ), 0, __( 'Home page', 'corea11y' ) ) );
+		$pages = array( self::item( home_url( '/' ), 0, __( 'Home page', 'msacalab-accessibility-checker' ) ) );
 
 		foreach ( self::post_types() as $type ) {
 			$ids = get_posts(
@@ -79,11 +79,11 @@ class CoreA11y_Pages {
 		if ( ! is_wp_error( $cats ) && $cats ) {
 			$link = get_term_link( $cats[0] );
 			if ( ! is_wp_error( $link ) ) {
-				$pages[] = self::item( $link, 0, __( 'Category archive', 'corea11y' ) );
+				$pages[] = self::item( $link, 0, __( 'Category archive', 'msacalab-accessibility-checker' ) );
 			}
 		}
 
-		$pages[] = self::item( add_query_arg( 's', 'a', home_url( '/' ) ), 0, __( 'Search results', 'corea11y' ) );
+		$pages[] = self::item( add_query_arg( 's', 'a', home_url( '/' ) ), 0, __( 'Search results', 'msacalab-accessibility-checker' ) );
 
 		return $pages;
 	}
@@ -94,7 +94,7 @@ class CoreA11y_Pages {
 	 * @return array
 	 */
 	public static function all() {
-		$pages = array( self::item( home_url( '/' ), 0, __( 'Home page', 'corea11y' ) ) );
+		$pages = array( self::item( home_url( '/' ), 0, __( 'Home page', 'msacalab-accessibility-checker' ) ) );
 		$types = wp_list_pluck( self::post_types(), 'name' );
 		if ( ! $types ) {
 			return $pages;
@@ -126,7 +126,7 @@ class CoreA11y_Pages {
 		foreach ( array_filter( explode( "\n", (string) CoreA11y_Settings::get( 'custom_urls' ) ) ) as $url ) {
 			$pages[] = self::item( $url, url_to_postid( $url ), $url );
 		}
-		return $pages ? $pages : array( self::item( home_url( '/' ), 0, __( 'Home page', 'corea11y' ) ) );
+		return $pages ? $pages : array( self::item( home_url( '/' ), 0, __( 'Home page', 'msacalab-accessibility-checker' ) ) );
 	}
 
 	/**

@@ -1,6 +1,6 @@
 <?php
 /**
- * Colour contrast approval queue (CoreA11y Pro).
+ * Colour contrast approval queue (MSACAlab Accessibility Checker Pro).
  *
  * Suggests the closest readable text colour for each low-contrast element found in
  * the latest audit. Nothing changes until you approve a suggestion. Approved colours
@@ -37,7 +37,7 @@ class CoreA11y_Pro_Contrast {
 	 * Admin menu entry, right after Alt text.
 	 */
 	public static function menu() {
-		add_submenu_page( CoreA11y_Admin::SLUG, __( 'Colour contrast', 'corea11y' ), __( 'Colour contrast', 'corea11y' ), CoreA11y_Admin::CAP, self::PAGE, array( __CLASS__, 'render' ), 3 );
+		add_submenu_page( CoreA11y_Admin::SLUG, __( 'Colour contrast', 'msacalab-accessibility-checker' ), __( 'Colour contrast', 'msacalab-accessibility-checker' ), CoreA11y_Admin::CAP, self::PAGE, array( __CLASS__, 'render' ), 3 );
 	}
 
 	/**
@@ -50,7 +50,7 @@ class CoreA11y_Pro_Contrast {
 		if ( ! in_array( $rule, array( 'color-contrast', 'corea11y-icon-contrast' ), true ) ) {
 			return;
 		}
-		echo '<p class="corea11y-quickfix"><strong>' . esc_html__( 'Suggested colours ready:', 'corea11y' ) . '</strong> <a href="' . esc_url( admin_url( 'admin.php?page=' . self::PAGE ) ) . '">' . esc_html__( 'Review and approve them', 'corea11y' ) . '</a></p>';
+		echo '<p class="corea11y-quickfix"><strong>' . esc_html__( 'Suggested colours ready:', 'msacalab-accessibility-checker' ) . '</strong> <a href="' . esc_url( admin_url( 'admin.php?page=' . self::PAGE ) ) . '">' . esc_html__( 'Review and approve them', 'msacalab-accessibility-checker' ) . '</a></p>';
 	}
 
 	/* Colour maths ------------------------------------------------------- */
@@ -217,7 +217,19 @@ class CoreA11y_Pro_Contrast {
 	 */
 	private static function text( $snippet ) {
 		$t = trim( preg_replace( '/\s+/u', ' ', html_entity_decode( wp_strip_all_tags( (string) $snippet ), ENT_QUOTES, 'UTF-8' ) ) );
+		$t = self::clean_text( $t );
 		return function_exists( 'mb_substr' ) ? mb_substr( $t, 0, 60 ) : substr( $t, 0, 60 );
+	}
+
+	/**
+	 * Drop the "…" the audit adds when it shortens element text, so the text can be
+	 * matched on the live page.
+	 *
+	 * @param string $t Text.
+	 * @return string
+	 */
+	public static function clean_text( $t ) {
+		return trim( preg_replace( '/(\x{2026}|\.\.\.)$/u', '', trim( (string) $t ) ) );
 	}
 
 	/**
@@ -430,7 +442,7 @@ class CoreA11y_Pro_Contrast {
 			if ( $a['path'] === $here ) {
 				$out[] = array(
 					's' => $a['selector'],
-					't' => $a['text'],
+					't' => self::clean_text( $a['text'] ),
 					'c' => $a['color'],
 				);
 			}
@@ -442,7 +454,7 @@ class CoreA11y_Pro_Contrast {
 		wp_enqueue_script( 'corea11y-contrast' );
 		wp_add_inline_script(
 			'corea11y-contrast',
-			'(function(r){function n(s){return(s||"").replace(/\s+/g," ").trim()}function run(){r.forEach(function(x){var l;try{l=document.querySelectorAll(x.s)}catch(e){return}l.forEach(function(el){var t=n(el.textContent);if(x.t&&t.indexOf(x.t.slice(0,40))!==0)return;el.style.setProperty("color",x.c,"important")})})}if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",run)}else{run()}})(' . wp_json_encode( $out ) . ');'
+			'(function(r){function n(s){return(s||"").replace(/\s+/g," ").trim()}function run(){r.forEach(function(x){var l;try{l=document.querySelectorAll(x.s)}catch(e){return}l.forEach(function(el){var t=n(el.textContent),k=n(x.t).slice(0,40);if(k&&(!t||(t.indexOf(k)!==0&&k.indexOf(t)!==0)))return;el.style.setProperty("color",x.c,"important")})})}if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",run)}else{run()}})(' . wp_json_encode( $out ) . ');'
 		);
 	}
 
@@ -464,7 +476,7 @@ class CoreA11y_Pro_Contrast {
 	 */
 	public static function handle_apply() {
 		if ( ! current_user_can( CoreA11y_Admin::CAP ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		check_admin_referer( 'corea11y_contrast_apply' );
 		$args = array( 'page' => self::PAGE );
@@ -496,7 +508,7 @@ class CoreA11y_Pro_Contrast {
 	 */
 	public static function handle_undo() {
 		if ( ! current_user_can( CoreA11y_Admin::CAP ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		check_admin_referer( 'corea11y_contrast_undo' );
 		$batch = isset( $_POST['batch'] ) ? sanitize_text_field( wp_unslash( $_POST['batch'] ) ) : '';

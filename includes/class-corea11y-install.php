@@ -35,14 +35,38 @@ class CoreA11y_Install {
 		if ( get_option( self::DB_VERSION_OPTION ) !== COREA11Y_DB_VERSION ) {
 			self::activate();
 		}
+		// 1.0.0: a score of 100 now means no WCAG failures at all. Recalculate saved audits once.
+		if ( ! get_option( 'corea11y_score_v2' ) ) {
+			update_option( 'corea11y_score_v2', 1, false );
+			global $wpdb;
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table, one-time upgrade.
+			$ids = $wpdb->get_col( $wpdb->prepare( "SELECT id FROM %i WHERE status = 'complete' ORDER BY id DESC LIMIT 200", self::tables()['audits'] ) );
+			foreach ( (array) $ids as $audit_id ) {
+				CoreA11y_Audit::recalculate( (int) $audit_id );
+			}
+		}
 	}
 
 	/**
-	 * Remove CoreA11y's data when the plugin is deleted (runs on Freemius's
-	 * after_uninstall action). On multisite, every site is cleaned and each site's own
+	 * Remove MSACAlab Accessibility Checker's data when the plugin is deleted (uninstall.php in the
+	 * free version, Freemius's after_uninstall action in Pro). On multisite, every site is cleaned and each site's own
 	 * "delete data" setting is respected. The statement page is the owner's content and stays.
 	 */
 	public static function uninstall() {
+		// Another copy (free or Pro) is still installed and uses the same data: keep it.
+		$here   = wp_normalize_path( untrailingslashit( defined( 'COREA11Y_DIR' ) ? COREA11Y_DIR : dirname( __DIR__ ) ) );
+		$copies = array_merge(
+			(array) glob( WP_PLUGIN_DIR . '/*/msacalab-accessibility-checker.php' ),
+			(array) glob( WP_PLUGIN_DIR . '/*/corea11y.php' )
+		);
+		foreach ( $copies as $copy ) {
+			if ( wp_normalize_path( dirname( $copy ) ) !== $here ) {
+				return;
+			}
+		}
+
+		delete_metadata( 'user', 0, 'corea11y_hide_products', '', true );
+
 		if ( is_multisite() ) {
 			foreach ( get_sites(
 				array(
@@ -61,7 +85,7 @@ class CoreA11y_Install {
 	}
 
 	/**
-	 * Remove CoreA11y's tables and options from the current site, if the owner allowed it.
+	 * Remove MSACAlab Accessibility Checker's tables and options from the current site, if the owner allowed it.
 	 */
 	private static function uninstall_site() {
 		global $wpdb;
@@ -77,16 +101,16 @@ class CoreA11y_Install {
 			$wpdb->query( $wpdb->prepare( 'DROP TABLE IF EXISTS %i', $wpdb->prefix . $table ) );
 		}
 
-		foreach ( array( 'corea11y_settings', 'corea11y_checklist', 'corea11y_db_version', 'corea11y_fixes', 'corea11y_fix_log', 'corea11y_fix_verified', 'corea11y_alt_log', 'corea11y_statement', 'corea11y_pro', 'corea11y_pro_due', 'corea11y_pro_last_check', 'corea11y_contrast', 'corea11y_contrast_log' ) as $option ) {
+		foreach ( array( 'corea11y_settings', 'corea11y_checklist', 'corea11y_db_version', 'corea11y_fixes', 'corea11y_fix_log', 'corea11y_fix_verified', 'corea11y_alt_log', 'corea11y_statement', 'corea11y_pro', 'corea11y_pro_due', 'corea11y_pro_last_check', 'corea11y_contrast', 'corea11y_contrast_log', 'corea11y_score_v2' ) as $option ) {
 			delete_option( $option );
 		}
 		wp_clear_scheduled_hook( 'corea11y_pro_weekly' );
-		// The alt text itself is the owner's content and stays; only CoreA11y's marker goes.
+		// The alt text itself is the owner's content and stays; only MSACAlab Accessibility Checker's marker goes.
 		delete_post_meta_by_key( '_corea11y_decorative' );
 	}
 
 	/**
-	 * Add this site's CoreA11y tables to the list WordPress drops when a site is deleted.
+	 * Add this site's MSACAlab Accessibility Checker tables to the list WordPress drops when a site is deleted.
 	 *
 	 * @param string[] $tables  Tables to drop.
 	 * @param int      $site_id Site being deleted.

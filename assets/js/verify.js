@@ -1,5 +1,5 @@
 /**
- * CoreA11y fix checker.
+ * MSACAlab Accessibility Checker fix checker.
  *
  * After quick fixes are turned on, re-checks the pages where the latest audit found
  * the problems those fixes solve (only those pages, only those rules) and records
@@ -62,7 +62,7 @@
 			frame.style.width = width + 'px';
 			frame.setAttribute( 'aria-hidden', 'true' );
 			frame.setAttribute( 'tabindex', '-1' );
-			frame.title = __( 'Page being checked', 'corea11y' );
+			frame.title = __( 'Page being checked', 'msacalab-accessibility-checker' );
 			const timer = setTimeout( () => {
 				frame.remove();
 				reject( new Error( 'timeout' ) );
@@ -166,7 +166,7 @@
 		for ( const [ url, entry ] of pages ) {
 			i++;
 			/* translators: 1: current page number, 2: number of pages, 3: page name. */
-			say( sprintf( __( 'Checking that the fixes worked: page %1$d of %2$d (%3$s)…', 'corea11y' ), i, pages.size, entry.label ) );
+			say( sprintf( __( 'Checking that the fixes worked: page %1$d of %2$d (%3$s)…', 'msacalab-accessibility-checker' ), i, pages.size, entry.label ) );
 			try {
 				counts.set( url, await checkPage( url, Array.from( entry.rules ) ) );
 			} catch ( e ) {
@@ -186,7 +186,7 @@
 
 		try {
 			await apiFetch( { path: '/corea11y/v1/fixes/verify', method: 'POST', data: { audit: plan.audit, results } } );
-			say( __( 'Check complete. Showing the results…', 'corea11y' ) );
+			say( __( 'Check complete. Showing the results…', 'msacalab-accessibility-checker' ) );
 			running = false;
 			const u = new URL( window.location.href );
 			u.searchParams.delete( 'saved' );
@@ -194,7 +194,7 @@
 			u.searchParams.set( 'verified', '1' );
 			window.location.href = u.toString() + '#corea11y-fix-list';
 		} catch ( e ) {
-			say( __( 'The results could not be saved.', 'corea11y' ) + ' ' + ( e.message || '' ) );
+			say( __( 'The results could not be saved.', 'msacalab-accessibility-checker' ) + ' ' + ( e.message || '' ) );
 			running = false;
 			button.disabled = false;
 		}

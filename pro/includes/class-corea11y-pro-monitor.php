@@ -1,6 +1,6 @@
 <?php
 /**
- * CoreA11y Pro weekly check.
+ * MSACAlab Accessibility Checker Pro weekly check.
  *
  * Once a week (WP-Cron), looks at what changed since the last audit using only the
  * site's own database: pages added or edited, images in them without alt text and new
@@ -188,7 +188,7 @@ class CoreA11y_Pro_Monitor {
 	}
 
 	/**
-	 * Link that opens CoreA11y and starts an audit.
+	 * Link that opens MSACAlab Accessibility Checker and starts an audit.
 	 *
 	 * @return string
 	 */
@@ -208,30 +208,30 @@ class CoreA11y_Pro_Monitor {
 		$l    = array();
 
 		/* translators: %s: site name. */
-		$subject = sprintf( __( '[%s] Weekly accessibility check', 'corea11y' ), $site );
+		$subject = sprintf( __( '[%s] Weekly accessibility check', 'msacalab-accessibility-checker' ), $site );
 
-		$l[] = __( 'Hi,', 'corea11y' );
+		$l[] = __( 'Hi,', 'msacalab-accessibility-checker' );
 		$l[] = '';
 		/* translators: 1: site name, 2: site address. */
-		$l[] = sprintf( __( 'Here is this week\'s CoreA11y check for %1$s (%2$s).', 'corea11y' ), $site, home_url( '/' ) );
+		$l[] = sprintf( __( 'Here is this week\'s accessibility check for %1$s (%2$s).', 'msacalab-accessibility-checker' ), $site, home_url( '/' ) );
 		$l[] = '';
 
 		if ( ! $d['last'] ) {
-			$l[] = __( 'You haven\'t run an audit yet. It takes about a minute and shows what to fix first:', 'corea11y' );
+			$l[] = __( 'You haven\'t run an audit yet. It takes about a minute and shows what to fix first:', 'msacalab-accessibility-checker' );
 			$l[] = self::audit_url();
 		} else {
 			$when = get_date_from_gmt( $d['last']->started_at, $fmt );
 			if ( 0 === (int) $d['days'] ) {
 				$l[] = sprintf(
 					/* translators: 1: score out of 100, 2: number of issues. */
-					__( 'Last audit: today. CoreA11y score %1$s/100, %2$s issues.', 'corea11y' ),
+					__( 'Last audit: today. Accessibility score %1$s/100, %2$s issues.', 'msacalab-accessibility-checker' ),
 					null === $d['last']->score ? '–' : (int) $d['last']->score,
 					number_format_i18n( (int) $d['last']->issues_total )
 				);
 			} else {
 				$l[] = sprintf(
 					/* translators: 1: date, 2: number of days ago, 3: score out of 100, 4: number of issues. */
-					_n( 'Last audit: %1$s (%2$d day ago). CoreA11y score %3$s/100, %4$s issues.', 'Last audit: %1$s (%2$d days ago). CoreA11y score %3$s/100, %4$s issues.', (int) $d['days'], 'corea11y' ),
+					_n( 'Last audit: %1$s (%2$d day ago). Accessibility score %3$s/100, %4$s issues.', 'Last audit: %1$s (%2$d days ago). Accessibility score %3$s/100, %4$s issues.', (int) $d['days'], 'msacalab-accessibility-checker' ),
 					$when,
 					(int) $d['days'],
 					null === $d['last']->score ? '–' : (int) $d['last']->score,
@@ -239,36 +239,36 @@ class CoreA11y_Pro_Monitor {
 				);
 			}
 			$l[] = '';
-			$l[] = __( 'Since then:', 'corea11y' );
+			$l[] = __( 'Since then:', 'msacalab-accessibility-checker' );
 			/* translators: %d: number of pages or posts. */
-			$l[] = '- ' . sprintf( _n( '%d page or post was added or edited', '%d pages or posts were added or edited', count( $d['pages'] ), 'corea11y' ), count( $d['pages'] ) );
+			$l[] = '- ' . sprintf( _n( '%d page or post was added or edited', '%d pages or posts were added or edited', count( $d['pages'] ), 'msacalab-accessibility-checker' ), count( $d['pages'] ) );
 			foreach ( array_slice( $d['pages'], 0, 5 ) as $p ) {
 				$l[] = '    ' . $p['title'] . ' – ' . $p['url'];
 			}
 			if ( count( $d['pages'] ) > 5 ) {
 				/* translators: %d: number of further pages. */
-				$l[] = '    ' . sprintf( __( '…and %d more', 'corea11y' ), count( $d['pages'] ) - 5 );
+				$l[] = '    ' . sprintf( __( '…and %d more', 'msacalab-accessibility-checker' ), count( $d['pages'] ) - 5 );
 			}
 			/* translators: %d: number of images. */
-			$l[] = '- ' . sprintf( _n( '%d image in those pages has no alt text', '%d images in those pages have no alt text', $d['no_alt'], 'corea11y' ), $d['no_alt'] );
+			$l[] = '- ' . sprintf( _n( '%d image in those pages has no alt text', '%d images in those pages have no alt text', $d['no_alt'], 'msacalab-accessibility-checker' ), $d['no_alt'] );
 			/* translators: %d: number of images. */
-			$l[] = '- ' . sprintf( _n( '%d new image in the Media Library has no alt text', '%d new images in the Media Library have no alt text', $d['media_no_alt'], 'corea11y' ), $d['media_no_alt'] );
+			$l[] = '- ' . sprintf( _n( '%d new image in the Media Library has no alt text', '%d new images in the Media Library have no alt text', $d['media_no_alt'], 'msacalab-accessibility-checker' ), $d['media_no_alt'] );
 			/* translators: %d: number of quick fixes. */
-			$l[] = '- ' . sprintf( _n( '%d quick fix is on', '%d quick fixes are on', $d['fixes_on'], 'corea11y' ), $d['fixes_on'] );
+			$l[] = '- ' . sprintf( _n( '%d quick fix is on', '%d quick fixes are on', $d['fixes_on'], 'msacalab-accessibility-checker' ), $d['fixes_on'] );
 			$l[] = '';
 			if ( $d['due'] ) {
-				$l[] = __( 'Run this week\'s audit (about a minute) to see whether these changes added any problems:', 'corea11y' );
+				$l[] = __( 'Run this week\'s audit (about a minute) to see whether these changes added any problems:', 'msacalab-accessibility-checker' );
 				$l[] = self::audit_url();
 			} else {
-				$l[] = __( 'Nothing changed since your last audit. No action needed this week.', 'corea11y' );
+				$l[] = __( 'Nothing changed since your last audit. No action needed this week.', 'msacalab-accessibility-checker' );
 			}
 		}
 
 		$l[] = '';
 		$l[] = '--';
-		$l[] = __( 'You get this email because the weekly check is on in CoreA11y > Settings. You can change who gets it or turn it off there:', 'corea11y' );
+		$l[] = __( 'You get this email because the weekly check is on in Accessibility > Settings. You can change who gets it or turn it off there:', 'msacalab-accessibility-checker' );
 		$l[] = admin_url( 'admin.php?page=corea11y-settings' );
-		$l[] = __( 'Automated checks find many common problems but not all of them, and do not certify WCAG conformance.', 'corea11y' );
+		$l[] = __( 'Automated checks find many common problems but not all of them, and do not certify WCAG conformance.', 'msacalab-accessibility-checker' );
 
 		return wp_mail( CoreA11y_Pro_Settings::recipients(), $subject, implode( "\n", $l ) );
 	}
@@ -292,7 +292,7 @@ class CoreA11y_Pro_Monitor {
 	}
 
 	/**
-	 * Show the reminder on the WordPress dashboard and CoreA11y screens.
+	 * Show the reminder on the WordPress dashboard and MSACAlab Accessibility Checker screens.
 	 */
 	public static function notice() {
 		if ( ! current_user_can( CoreA11y_Admin::CAP ) || ! self::enabled() ) {
@@ -307,15 +307,15 @@ class CoreA11y_Pro_Monitor {
 			return;
 		}
 		$pages = isset( $due['pages'] ) ? (int) $due['pages'] : 0;
-		echo '<div class="notice notice-info"><p><strong>' . esc_html__( 'CoreA11y weekly check:', 'corea11y' ) . '</strong> ';
+		echo '<div class="notice notice-info"><p><strong>' . esc_html__( 'Weekly accessibility check:', 'msacalab-accessibility-checker' ) . '</strong> ';
 		if ( $pages ) {
 			/* translators: %d: number of pages or posts. */
-			echo esc_html( sprintf( _n( '%d page or post changed since your last audit.', '%d pages or posts changed since your last audit.', $pages, 'corea11y' ), $pages ) );
+			echo esc_html( sprintf( _n( '%d page or post changed since your last audit.', '%d pages or posts changed since your last audit.', $pages, 'msacalab-accessibility-checker' ), $pages ) );
 		} else {
-			esc_html_e( 'it\'s time for this week\'s audit.', 'corea11y' );
+			esc_html_e( 'it\'s time for this week\'s audit.', 'msacalab-accessibility-checker' );
 		}
-		echo '</p><p><a class="button button-primary" href="' . esc_url( self::audit_url() ) . '">' . esc_html__( 'Run this week\'s audit', 'corea11y' ) . '</a> ';
-		echo '<a class="button-link" href="' . esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=corea11y_pro_due_dismiss' ), 'corea11y_pro_due_dismiss' ) ) . '">' . esc_html__( 'Not now', 'corea11y' ) . '</a></p></div>';
+		echo '</p><p><a class="button button-primary" href="' . esc_url( self::audit_url() ) . '">' . esc_html__( 'Run this week\'s audit', 'msacalab-accessibility-checker' ) . '</a> ';
+		echo '<a class="button-link" href="' . esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=corea11y_pro_due_dismiss' ), 'corea11y_pro_due_dismiss' ) ) . '">' . esc_html__( 'Not now', 'msacalab-accessibility-checker' ) . '</a></p></div>';
 	}
 
 	/**
@@ -323,7 +323,7 @@ class CoreA11y_Pro_Monitor {
 	 */
 	public static function dismiss() {
 		if ( ! current_user_can( CoreA11y_Admin::CAP ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		check_admin_referer( 'corea11y_pro_due_dismiss' );
 		delete_option( self::DUE_OPTION );

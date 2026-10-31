@@ -1,6 +1,6 @@
 <?php
 /**
- * CoreA11y Pro on WordPress Multisite (Business and Agency).
+ * MSACAlab Accessibility Checker Pro on WordPress Multisite (Business and Agency).
  *
  * Adds a Network Admin overview of every site's latest audit and quick fixes, and lets
  * a network admin copy one site's quick fixes to every site (and to sites created
@@ -51,8 +51,8 @@ class CoreA11y_Pro_Network {
 	 */
 	public static function menu() {
 		add_menu_page(
-			__( 'CoreA11y network overview', 'corea11y' ),
-			'CoreA11y',
+			__( 'Accessibility network overview', 'msacalab-accessibility-checker' ),
+			__( 'Accessibility', 'msacalab-accessibility-checker' ),
 			'manage_network_options',
 			self::SLUG,
 			array( __CLASS__, 'render' ),
@@ -73,7 +73,7 @@ class CoreA11y_Pro_Network {
 	}
 
 	/**
-	 * Whether CoreA11y runs on a site (network-active, or active on that site).
+	 * Whether MSACAlab Accessibility Checker runs on a site (network-active, or active on that site).
 	 *
 	 * @return bool
 	 */
@@ -156,46 +156,46 @@ class CoreA11y_Pro_Network {
 		?>
 		<div class="wrap corea11y">
 			<?php CoreA11y_UI::brand_bar(); ?>
-			<h1><?php esc_html_e( 'CoreA11y network overview', 'corea11y' ); ?></h1>
-			<p class="corea11y-meta"><?php esc_html_e( 'The latest audit and quick fixes of every site in your network.', 'corea11y' ); ?></p>
+			<h1><?php esc_html_e( 'Accessibility network overview', 'msacalab-accessibility-checker' ); ?></h1>
+			<p class="corea11y-meta"><?php esc_html_e( 'The latest audit and quick fixes of every site in your network.', 'msacalab-accessibility-checker' ); ?></p>
 
 			<?php if ( null !== $copied ) : ?>
 				<div class="notice notice-success" role="status"><p>
 					<?php
 					/* translators: %d: number of sites. */
-					echo esc_html( sprintf( _n( 'Quick fixes copied to %d site. Each site logged the change, so it can be undone there or below.', 'Quick fixes copied to %d sites. Each site logged the change, so it can be undone there or below.', $copied, 'corea11y' ), $copied ) );
+					echo esc_html( sprintf( _n( 'Quick fixes copied to %d site. Each site logged the change, so it can be undone there or below.', 'Quick fixes copied to %d sites. Each site logged the change, so it can be undone there or below.', $copied, 'msacalab-accessibility-checker' ), $copied ) );
 					?>
 				</p></div>
 			<?php elseif ( $undone ) : ?>
-				<div class="notice notice-info" role="status"><p><?php esc_html_e( 'The last copy was undone on every site.', 'corea11y' ); ?></p></div>
+				<div class="notice notice-info" role="status"><p><?php esc_html_e( 'The last copy was undone on every site.', 'msacalab-accessibility-checker' ); ?></p></div>
 			<?php endif; ?>
 
 			<?php if ( ! $allowed ) : ?>
 				<div class="corea11y-upsell">
-					<h2><?php esc_html_e( 'Network tools are part of the Business and Agency plans', 'corea11y' ); ?></h2>
-					<p><?php esc_html_e( 'See every site\'s audit at a glance and copy quick fixes to all your sites at once. CoreA11y itself still works on each site, from that site\'s dashboard.', 'corea11y' ); ?></p>
+					<h2><?php esc_html_e( 'Network tools are part of the Business and Agency plans', 'msacalab-accessibility-checker' ); ?></h2>
+					<p><?php esc_html_e( 'See every site\'s audit at a glance and copy quick fixes to all your sites at once. MSACAlab Accessibility Checker itself still works on each site, from that site\'s dashboard.', 'msacalab-accessibility-checker' ); ?></p>
 				</div>
 			<?php endif; ?>
 
 			<table class="widefat striped corea11y-table">
-				<caption class="screen-reader-text"><?php esc_html_e( 'Sites in this network', 'corea11y' ); ?></caption>
+				<caption class="screen-reader-text"><?php esc_html_e( 'Sites in this network', 'msacalab-accessibility-checker' ); ?></caption>
 				<thead><tr>
-					<th scope="col"><?php esc_html_e( 'Site', 'corea11y' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Latest audit', 'corea11y' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'CoreA11y score', 'corea11y' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Issues', 'corea11y' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Quick fixes on', 'corea11y' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Open', 'corea11y' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Site', 'msacalab-accessibility-checker' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Latest audit', 'msacalab-accessibility-checker' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Accessibility score', 'msacalab-accessibility-checker' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Issues', 'msacalab-accessibility-checker' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Quick fixes on', 'msacalab-accessibility-checker' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Open', 'msacalab-accessibility-checker' ); ?></th>
 				</tr></thead>
 				<tbody>
 				<?php foreach ( $rows as $r ) : ?>
 					<tr>
 						<th scope="row"><strong><?php echo esc_html( $r['name'] ); ?></strong><br><span class="corea11y-muted"><?php echo esc_html( $r['url'] ); ?></span></th>
 						<?php if ( ! $r['active'] ) : ?>
-							<td colspan="4"><?php esc_html_e( 'CoreA11y is not active on this site.', 'corea11y' ); ?></td>
+							<td colspan="4"><?php esc_html_e( 'MSACAlab Accessibility Checker is not active on this site.', 'msacalab-accessibility-checker' ); ?></td>
 							<td>—</td>
 						<?php else : ?>
-							<td><?php echo $r['audit'] ? esc_html( get_date_from_gmt( $r['audit']->started_at, $fmt ) ) : esc_html__( 'No audit yet', 'corea11y' ); ?></td>
+							<td><?php echo $r['audit'] ? esc_html( get_date_from_gmt( $r['audit']->started_at, $fmt ) ) : esc_html__( 'No audit yet', 'msacalab-accessibility-checker' ); ?></td>
 							<td><?php echo ( $r['audit'] && null !== $r['audit']->score ) ? esc_html( (int) $r['audit']->score . '/100' ) : '—'; ?></td>
 							<td><?php echo $r['audit'] ? esc_html( number_format_i18n( (int) $r['audit']->issues_total ) ) : '—'; ?></td>
 							<td>
@@ -203,11 +203,11 @@ class CoreA11y_Pro_Network {
 								echo esc_html( number_format_i18n( $r['fixes'] ) );
 								if ( $r['verified'] ) {
 									/* translators: %d: number of verified fixes. */
-									echo ' <span class="corea11y-muted">(' . esc_html( sprintf( __( '%d verified', 'corea11y' ), $r['verified'] ) ) . ')</span>';
+									echo ' <span class="corea11y-muted">(' . esc_html( sprintf( __( '%d verified', 'msacalab-accessibility-checker' ), $r['verified'] ) ) . ')</span>';
 								}
 								?>
 							</td>
-							<td><a href="<?php echo esc_url( $r['admin'] ); ?>"><?php esc_html_e( 'CoreA11y dashboard', 'corea11y' ); ?><span class="screen-reader-text"> <?php echo esc_html( $r['name'] ); ?></span></a></td>
+							<td><a href="<?php echo esc_url( $r['admin'] ); ?>"><?php esc_html_e( 'Accessibility dashboard', 'msacalab-accessibility-checker' ); ?><span class="screen-reader-text"> <?php echo esc_html( $r['name'] ); ?></span></a></td>
 						<?php endif; ?>
 					</tr>
 				<?php endforeach; ?>
@@ -217,39 +217,39 @@ class CoreA11y_Pro_Network {
 				<p class="corea11y-muted">
 					<?php
 					/* translators: %d: number of sites shown. */
-					echo esc_html( sprintf( __( 'Showing the first %d sites.', 'corea11y' ), self::MAX ) );
+					echo esc_html( sprintf( __( 'Showing the first %d sites.', 'msacalab-accessibility-checker' ), self::MAX ) );
 					?>
 				</p>
 			<?php endif; ?>
 
 			<?php if ( $allowed ) : ?>
 				<section class="corea11y-section">
-					<h2><?php esc_html_e( 'Copy quick fixes to every site', 'corea11y' ); ?></h2>
-					<p><?php esc_html_e( 'Turns the same quick fixes on and off on every site where CoreA11y is active, using one site as the example. Every site logs the change, so it can be undone.', 'corea11y' ); ?></p>
+					<h2><?php esc_html_e( 'Copy quick fixes to every site', 'msacalab-accessibility-checker' ); ?></h2>
+					<p><?php esc_html_e( 'Turns the same quick fixes on and off on every site where MSACAlab Accessibility Checker is active, using one site as the example. Every site logs the change, so it can be undone.', 'msacalab-accessibility-checker' ); ?></p>
 					<form method="post" action="<?php echo esc_url( network_admin_url( 'edit.php?action=corea11y_copy_fixes' ) ); ?>">
 						<?php wp_nonce_field( 'corea11y_copy_fixes' ); ?>
 						<p>
-							<label for="corea11y-source"><?php esc_html_e( 'Copy the quick fixes of', 'corea11y' ); ?></label>
+							<label for="corea11y-source"><?php esc_html_e( 'Copy the quick fixes of', 'msacalab-accessibility-checker' ); ?></label>
 							<select id="corea11y-source" name="source">
 								<?php foreach ( $rows as $id => $r ) : ?>
 									<?php if ( $r['active'] ) : ?>
 										<option value="<?php echo esc_attr( $id ); ?>">
 											<?php
 											/* translators: 1: site name, 2: number of fixes on. */
-											echo esc_html( sprintf( __( '%1$s (%2$d on)', 'corea11y' ), $r['name'], $r['fixes'] ) );
+											echo esc_html( sprintf( __( '%1$s (%2$d on)', 'msacalab-accessibility-checker' ), $r['name'], $r['fixes'] ) );
 											?>
 										</option>
 									<?php endif; ?>
 								<?php endforeach; ?>
 							</select>
 						</p>
-						<p><label><input type="checkbox" name="new_sites" value="1" <?php checked( ! empty( $defaults['fixes'] ) ); ?>> <?php esc_html_e( 'Also turn them on for sites created later', 'corea11y' ); ?></label></p>
-						<p><button type="submit" class="button button-primary"><?php esc_html_e( 'Copy to all sites', 'corea11y' ); ?></button></p>
+						<p><label><input type="checkbox" name="new_sites" value="1" <?php checked( ! empty( $defaults['fixes'] ) ); ?>> <?php esc_html_e( 'Also turn them on for sites created later', 'msacalab-accessibility-checker' ); ?></label></p>
+						<p><button type="submit" class="button button-primary"><?php esc_html_e( 'Copy to all sites', 'msacalab-accessibility-checker' ); ?></button></p>
 					</form>
 					<?php if ( $last ) : ?>
 						<form method="post" action="<?php echo esc_url( network_admin_url( 'edit.php?action=corea11y_undo_copy' ) ); ?>">
 							<?php wp_nonce_field( 'corea11y_undo_copy' ); ?>
-							<p><button type="submit" class="button"><?php esc_html_e( 'Undo the last copy on every site', 'corea11y' ); ?></button></p>
+							<p><button type="submit" class="button"><?php esc_html_e( 'Undo the last copy on every site', 'msacalab-accessibility-checker' ); ?></button></p>
 						</form>
 					<?php endif; ?>
 				</section>
@@ -263,15 +263,15 @@ class CoreA11y_Pro_Network {
 	 */
 	public static function copy_fixes() {
 		if ( ! current_user_can( 'manage_network_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		check_admin_referer( 'corea11y_copy_fixes' );
 		if ( ! self::allowed() ) {
-			wp_die( esc_html__( 'Network tools are part of the Business and Agency plans.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'Network tools are part of the Business and Agency plans.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		$source = isset( $_POST['source'] ) ? absint( $_POST['source'] ) : 0;
 		if ( ! $source || ! get_site( $source ) ) {
-			wp_die( esc_html__( 'Choose a site to copy from.', 'corea11y' ) );
+			wp_die( esc_html__( 'Choose a site to copy from.', 'msacalab-accessibility-checker' ) );
 		}
 		switch_to_blog( $source );
 		$state = CoreA11y_Fixes::state();
@@ -314,7 +314,7 @@ class CoreA11y_Pro_Network {
 	 */
 	public static function undo_copy() {
 		if ( ! current_user_can( 'manage_network_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		check_admin_referer( 'corea11y_undo_copy' );
 		$defaults = get_site_option( self::DEFAULTS, array() );

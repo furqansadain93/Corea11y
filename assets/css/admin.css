@@ -1,5 +1,5 @@
 /*
- * CoreA11y admin styles.
+ * MSACAlab Accessibility Checker admin styles.
  *
  * Brand colors live in the custom properties below. Every text/background
  * pair meets WCAG 2.2 AA contrast: charcoal #222 on white is 15.9:1,
@@ -8,9 +8,9 @@
 
 /* Atkinson Hyperlegible, by the Braille Institute (SIL Open Font License,
    see assets/fonts/OFL.txt). Latin only, about 35 KB, loaded only on
-   CoreA11y screens. Other scripts fall back to the system font. */
+   MSACAlab Accessibility Checker screens. Other scripts fall back to the system font. */
 @font-face {
-	font-family: "CoreA11y Atkinson";
+	font-family: "MSACAlab Atkinson";
 	src: url(../fonts/atkinson-hyperlegible-400.woff2) format("woff2");
 	font-weight: 400;
 	font-style: normal;
@@ -19,7 +19,7 @@
 }
 
 @font-face {
-	font-family: "CoreA11y Atkinson";
+	font-family: "MSACAlab Atkinson";
 	src: url(../fonts/atkinson-hyperlegible-700.woff2) format("woff2");
 	font-weight: 700;
 	font-style: normal;
@@ -38,7 +38,7 @@
 	--corea11y-hero-muted: #c8c8c8;     /* 10.6:1 on charcoal. */
 	--corea11y-ring: #dce85d;
 	--corea11y-ring-track: #3a3a3a;
-	--corea11y-font: "CoreA11y Atkinson", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--corea11y-font: "MSACAlab Atkinson", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 	--corea11y-ink: #222222;
 	--corea11y-muted: #555555;          /* 7.5:1 on white. */
 	--corea11y-line: #e2e4e9;
@@ -1000,6 +1000,14 @@
 	line-height: 1.1;
 }
 
+.corea11y .corea11y-wordmark-sub {
+	margin-left: 8px;
+	color: #fff;
+	font-size: 15px;
+	font-weight: 400;
+	letter-spacing: 0;
+}
+
 .corea11y .corea11y-brandbar-site {
 	color: #c8c8c8;
 	font-size: 14px;
@@ -1104,7 +1112,7 @@
 	color: var(--corea11y-muted);
 }
 
-/* Freemius notices shown on CoreA11y screens: raise their contrast to AA. */
+/* Freemius notices shown on MSACAlab Accessibility Checker screens: raise their contrast to AA. */
 .fs-notice .fs-plugin-title { background: #555 !important; color: #fff !important; }
 .fs-notice .fs-close, .fs-notice .fs-close > span { color: #555 !important; }
 
@@ -1297,4 +1305,83 @@
 	padding: 8px 12px;
 	border-left: 3px solid var(--corea11y-ring);
 	font-size: 14px;
+}
+
+/* 1.0.1: fixes the site doesn't need, collapsed below the main list. */
+.corea11y .corea11y-unneeded,
+.corea11y .corea11y-pro-more {
+	max-width: 1100px;
+	margin: 8px 0 16px;
+}
+
+.corea11y .corea11y-unneeded > summary,
+.corea11y .corea11y-pro-more > summary {
+	cursor: pointer;
+	font-weight: 600;
+	padding: 8px 0;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.corea11y .corea11y-unneeded .corea11y-fix {
+	background: #f6f7f7;
+	box-shadow: none;
+}
+
+/* 1.0.1: Pro fixes listed in the free version (names only, no switch). */
+.corea11y .corea11y-pro-catalog {
+	max-width: 1100px;
+}
+
+.corea11y .corea11y-fix-pro {
+	border-left-color: #222;
+}
+
+.corea11y .corea11y-fix-pro .corea11y-fix-title {
+	font-size: 16px;
+}
+
+.corea11y .corea11y-fix-lockmark {
+	flex: none;
+	gap: 6px;
+	color: #50575e;
+	font-weight: 600;
+}
+
+.corea11y .corea11y-pro-group {
+	margin: 16px 0 4px;
+	font-size: 14px;
+}
+
+/* 1.0.1: help, support and other products. */
+.corea11y .corea11y-help {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: 16px;
+	max-width: 1100px;
+	margin: 16px 0;
+}
+
+.corea11y .corea11y-help .corea11y-card {
+	margin: 0;
+}
+
+.corea11y .corea11y-help ul {
+	margin: 8px 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.corea11y .corea11y-help li {
+	margin: 0 0 8px;
+}
+
+.corea11y .corea11y-soon {
+	display: inline-block;
+	margin-left: 6px;
+	padding: 1px 8px;
+	border-radius: 999px;
+	background: #f0f0f1;
+	color: #3c434a;
+	font-size: 12px;
 }

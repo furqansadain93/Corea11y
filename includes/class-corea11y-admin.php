@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Registers the CoreA11y admin menu and renders its screens.
+ * Registers the MSACAlab Accessibility Checker admin menu and renders its screens.
  */
 class CoreA11y_Admin {
 
@@ -32,6 +32,7 @@ class CoreA11y_Admin {
 		add_action( 'admin_post_corea11y_restore', array( $this, 'restore_issue' ) );
 		add_action( 'admin_post_corea11y_save_alt', array( $this, 'save_alt' ) );
 		add_action( 'admin_post_corea11y_undo_alt', array( $this, 'undo_alt' ) );
+		add_action( 'admin_post_corea11y_hide_products', array( $this, 'hide_products' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( COREA11Y_FILE ), array( $this, 'action_links' ) );
 	}
 
@@ -40,26 +41,26 @@ class CoreA11y_Admin {
 	 */
 	public function menu() {
 		add_menu_page(
-			__( 'CoreA11y', 'corea11y' ),
-			__( 'CoreA11y', 'corea11y' ),
+			__( 'MSACAlab Accessibility Checker', 'msacalab-accessibility-checker' ),
+			__( 'Accessibility', 'msacalab-accessibility-checker' ),
 			self::CAP,
 			self::SLUG,
 			array( $this, 'render_dashboard' ),
 			'dashicons-universal-access-alt',
 			80
 		);
-		add_submenu_page( self::SLUG, __( 'Dashboard', 'corea11y' ), __( 'Dashboard', 'corea11y' ), self::CAP, self::SLUG, array( $this, 'render_dashboard' ) );
-		add_submenu_page( self::SLUG, __( 'Quick fixes', 'corea11y' ), __( 'Quick fixes', 'corea11y' ), self::CAP, 'corea11y-fixes', array( $this, 'render_fixes' ) );
-		add_submenu_page( self::SLUG, __( 'Alt text', 'corea11y' ), __( 'Alt text', 'corea11y' ), self::CAP, 'corea11y-alt', array( $this, 'render_alt' ) );
-		add_submenu_page( self::SLUG, __( 'Audits', 'corea11y' ), __( 'Audits', 'corea11y' ), self::CAP, 'corea11y-audits', array( $this, 'render_audits' ) );
-		add_submenu_page( self::SLUG, __( 'Before & after', 'corea11y' ), __( 'Before & after', 'corea11y' ), self::CAP, 'corea11y-compare', array( $this, 'render_compare' ) );
-		add_submenu_page( self::SLUG, __( 'Accessibility statement', 'corea11y' ), __( 'Statement', 'corea11y' ), self::CAP, 'corea11y-statement', array( $this, 'render_statement' ) );
-		add_submenu_page( self::SLUG, __( 'Manual checklist', 'corea11y' ), __( 'Manual checklist', 'corea11y' ), self::CAP, 'corea11y-checklist', array( $this, 'render_checklist' ) );
-		add_submenu_page( self::SLUG, __( 'Settings', 'corea11y' ), __( 'Settings', 'corea11y' ), self::CAP, CoreA11y_Settings::PAGE, array( $this, 'render_settings' ) );
+		add_submenu_page( self::SLUG, __( 'Dashboard', 'msacalab-accessibility-checker' ), __( 'Dashboard', 'msacalab-accessibility-checker' ), self::CAP, self::SLUG, array( $this, 'render_dashboard' ) );
+		add_submenu_page( self::SLUG, __( 'Quick fixes', 'msacalab-accessibility-checker' ), __( 'Quick fixes', 'msacalab-accessibility-checker' ), self::CAP, 'corea11y-fixes', array( $this, 'render_fixes' ) );
+		add_submenu_page( self::SLUG, __( 'Alt text', 'msacalab-accessibility-checker' ), __( 'Alt text', 'msacalab-accessibility-checker' ), self::CAP, 'corea11y-alt', array( $this, 'render_alt' ) );
+		add_submenu_page( self::SLUG, __( 'Audits', 'msacalab-accessibility-checker' ), __( 'Audits', 'msacalab-accessibility-checker' ), self::CAP, 'corea11y-audits', array( $this, 'render_audits' ) );
+		add_submenu_page( self::SLUG, __( 'Before & after', 'msacalab-accessibility-checker' ), __( 'Before & after', 'msacalab-accessibility-checker' ), self::CAP, 'corea11y-compare', array( $this, 'render_compare' ) );
+		add_submenu_page( self::SLUG, __( 'Accessibility statement', 'msacalab-accessibility-checker' ), __( 'Statement', 'msacalab-accessibility-checker' ), self::CAP, 'corea11y-statement', array( $this, 'render_statement' ) );
+		add_submenu_page( self::SLUG, __( 'Manual checklist', 'msacalab-accessibility-checker' ), __( 'Manual checklist', 'msacalab-accessibility-checker' ), self::CAP, 'corea11y-checklist', array( $this, 'render_checklist' ) );
+		add_submenu_page( self::SLUG, __( 'Settings', 'msacalab-accessibility-checker' ), __( 'Settings', 'msacalab-accessibility-checker' ), self::CAP, CoreA11y_Settings::PAGE, array( $this, 'render_settings' ) );
 	}
 
 	/**
-	 * Enqueue admin styles on CoreA11y screens only.
+	 * Enqueue admin styles on MSACAlab Accessibility Checker screens only.
 	 *
 	 * @param string $hook Current admin page hook.
 	 */
@@ -82,7 +83,7 @@ class CoreA11y_Admin {
 	 */
 	public function action_links( $links ) {
 		$url = admin_url( 'admin.php?page=' . CoreA11y_Settings::PAGE );
-		array_unshift( $links, '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'corea11y' ) . '</a>' );
+		array_unshift( $links, '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'msacalab-accessibility-checker' ) . '</a>' );
 		return $links;
 	}
 
@@ -99,8 +100,10 @@ class CoreA11y_Admin {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table, read on admin screens only.
 			return $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %i WHERE status = %s ORDER BY id DESC LIMIT %d', $table, $status, $limit ) );
 		}
+		// Only audits this plugin wrote: rows with other statuses (for example written by
+		// another plugin that uses the same table name) are left out.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table, read on admin screens only.
-		return $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %i ORDER BY id DESC LIMIT %d', $table, $limit ) );
+		return $wpdb->get_results( $wpdb->prepare( "SELECT * FROM %i WHERE status IN ('running','complete','abandoned') AND started_at IS NOT NULL ORDER BY id DESC LIMIT %d", $table, $limit ) );
 	}
 
 	/**
@@ -237,7 +240,7 @@ class CoreA11y_Admin {
 	 */
 	public function save_fixes() {
 		if ( ! current_user_can( self::CAP ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		check_admin_referer( 'corea11y_save_fixes' );
 
@@ -266,7 +269,7 @@ class CoreA11y_Admin {
 	 */
 	public function fix_now() {
 		if ( ! current_user_can( self::CAP ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		check_admin_referer( 'corea11y_fix_now' );
 		$latest = self::recent_audits( 1, 'complete' );
@@ -310,7 +313,7 @@ class CoreA11y_Admin {
 	 */
 	public function save_alt() {
 		if ( ! current_user_can( self::CAP ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		check_admin_referer( 'corea11y_save_alt' );
 		$alts = isset( $_POST['alt'] ) && is_array( $_POST['alt'] ) ? wp_unslash( $_POST['alt'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized per value in CoreA11y_Alt::save().
@@ -330,11 +333,24 @@ class CoreA11y_Admin {
 	}
 
 	/**
+	 * Hide the "More from CoreA11y" card for the current user.
+	 */
+	public function hide_products() {
+		if ( ! current_user_can( self::CAP ) ) {
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
+		}
+		check_admin_referer( 'corea11y_hide_products' );
+		update_user_meta( get_current_user_id(), 'corea11y_hide_products', 1 );
+		wp_safe_redirect( admin_url( 'admin.php?page=' . self::SLUG ) );
+		exit;
+	}
+
+	/**
 	 * Undo an alt text save (admin-post handler).
 	 */
 	public function undo_alt() {
 		if ( ! current_user_can( self::CAP ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		check_admin_referer( 'corea11y_undo_alt' );
 		$batch = isset( $_POST['batch'] ) ? sanitize_text_field( wp_unslash( $_POST['batch'] ) ) : '';
@@ -363,7 +379,7 @@ class CoreA11y_Admin {
 	 */
 	public function save_statement() {
 		if ( ! current_user_can( self::CAP ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		check_admin_referer( 'corea11y_save_statement' );
 		$input = isset( $_POST['statement'] ) && is_array( $_POST['statement'] ) ? wp_unslash( $_POST['statement'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized field by field in CoreA11y_Statement::save().
@@ -382,7 +398,7 @@ class CoreA11y_Admin {
 	 */
 	public function dismiss_issue() {
 		if ( ! current_user_can( self::CAP ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		check_admin_referer( 'corea11y_dismiss' );
 		$audit  = isset( $_POST['audit'] ) ? absint( $_POST['audit'] ) : 0;
@@ -399,7 +415,7 @@ class CoreA11y_Admin {
 	 */
 	public function restore_issue() {
 		if ( ! current_user_can( self::CAP ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		check_admin_referer( 'corea11y_restore' );
 		$audit = isset( $_POST['audit'] ) ? absint( $_POST['audit'] ) : 0;
@@ -414,7 +430,7 @@ class CoreA11y_Admin {
 	 */
 	public function undo_fix() {
 		if ( ! current_user_can( self::CAP ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		check_admin_referer( 'corea11y_undo' );
 
@@ -475,7 +491,7 @@ class CoreA11y_Admin {
 		$cmp = null;
 		if ( $before_id && $after_id ) {
 			$cmp = $before_id === $after_id
-				? new WP_Error( 'corea11y_same', __( 'Pick two different audits to compare.', 'corea11y' ) )
+				? new WP_Error( 'corea11y_same', __( 'Pick two different audits to compare.', 'msacalab-accessibility-checker' ) )
 				: CoreA11y_Compare::build( min( $before_id, $after_id ), max( $before_id, $after_id ) );
 		}
 		$this->view(
@@ -523,7 +539,7 @@ class CoreA11y_Admin {
 	 */
 	public function export() {
 		if ( ! current_user_can( self::CAP ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		check_admin_referer( 'corea11y_export' );
 
@@ -538,14 +554,14 @@ class CoreA11y_Admin {
 			if ( is_wp_error( $cmp ) ) {
 				wp_die( esc_html( $cmp->get_error_message() ) );
 			}
-			$title = __( 'Accessibility progress report', 'corea11y' );
+			$title = __( 'Accessibility progress report', 'msacalab-accessibility-checker' );
 			$data  = array( 'cmp' => $cmp );
 		} else {
 			$audit = CoreA11y_Audit::get( isset( $_GET['audit'] ) ? absint( $_GET['audit'] ) : 0 );
 			if ( ! $audit ) {
-				wp_die( esc_html__( 'Audit not found.', 'corea11y' ) );
+				wp_die( esc_html__( 'Audit not found.', 'msacalab-accessibility-checker' ) );
 			}
-			$title = __( 'Accessibility audit report', 'corea11y' );
+			$title = __( 'Accessibility audit report', 'msacalab-accessibility-checker' );
 			$data  = self::report_data( $audit );
 		}
 
@@ -589,7 +605,7 @@ class CoreA11y_Admin {
 	 */
 	public function save_checklist() {
 		if ( ! current_user_can( self::CAP ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		check_admin_referer( 'corea11y_save_checklist' );
 

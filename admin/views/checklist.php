@@ -13,12 +13,12 @@ $corea11y_statuses = CoreA11y_Checklist::statuses();
 ?>
 <div class="wrap corea11y">
 	<?php CoreA11y_UI::brand_bar(); ?>
-	<h1><?php esc_html_e( 'Manual checklist', 'corea11y' ); ?></h1>
-	<p class="corea11y-lead"><?php esc_html_e( 'Automated scans can\'t judge these WCAG 2.2 criteria. Check each one by hand, then record the result.', 'corea11y' ); ?></p>
+	<h1><?php esc_html_e( 'Manual checklist', 'msacalab-accessibility-checker' ); ?></h1>
+	<p class="corea11y-lead"><?php esc_html_e( 'Automated scans can\'t judge these WCAG 2.2 criteria. Check each one by hand, then record the result.', 'msacalab-accessibility-checker' ); ?></p>
 
 	<?php // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Display-only flag after redirect. ?>
 	<?php if ( isset( $_GET['updated'] ) ) : ?>
-		<div class="notice notice-success is-dismissible" role="status"><p><?php esc_html_e( 'Checklist saved.', 'corea11y' ); ?></p></div>
+		<div class="notice notice-success is-dismissible" role="status"><p><?php esc_html_e( 'Checklist saved.', 'msacalab-accessibility-checker' ); ?></p></div>
 	<?php endif; ?>
 
 	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
@@ -39,13 +39,13 @@ $corea11y_statuses = CoreA11y_Checklist::statuses();
 							<span class="corea11y-sc">
 								<?php
 								/* translators: 1: WCAG success criterion number, 2: conformance level (A or AA). */
-								echo esc_html( sprintf( __( 'WCAG %1$s (%2$s)', 'corea11y' ), $corea11y_sc, $corea11y_level ) );
+								echo esc_html( sprintf( __( 'WCAG %1$s (%2$s)', 'msacalab-accessibility-checker' ), $corea11y_sc, $corea11y_level ) );
 								?>
 							</span>
 						<?php endif; ?>
 					</h2>
 					<p id="<?php echo esc_attr( $corea11y_field . '-how' ); ?>"><?php echo esc_html( $corea11y_how ); ?></p>
-					<label for="<?php echo esc_attr( $corea11y_field ); ?>"><?php esc_html_e( 'Result', 'corea11y' ); ?></label>
+					<label for="<?php echo esc_attr( $corea11y_field ); ?>"><?php esc_html_e( 'Result', 'msacalab-accessibility-checker' ); ?></label>
 					<select id="<?php echo esc_attr( $corea11y_field ); ?>" name="corea11y_check[<?php echo esc_attr( $corea11y_id ); ?>]" aria-describedby="<?php echo esc_attr( $corea11y_field . '-how' ); ?>">
 						<?php foreach ( $corea11y_statuses as $corea11y_value => $corea11y_label ) : ?>
 							<option value="<?php echo esc_attr( $corea11y_value ); ?>" <?php selected( $corea11y_current, $corea11y_value ); ?>><?php echo esc_html( $corea11y_label ); ?></option>
@@ -55,6 +55,6 @@ $corea11y_statuses = CoreA11y_Checklist::statuses();
 			<?php endforeach; ?>
 		</ol>
 
-		<?php submit_button( __( 'Save checklist', 'corea11y' ) ); ?>
+		<?php submit_button( __( 'Save checklist', 'msacalab-accessibility-checker' ) ); ?>
 	</form>
 </div>

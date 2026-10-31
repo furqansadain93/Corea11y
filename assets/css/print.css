@@ -1,4 +1,4 @@
-/* CoreA11y PDF / print layout. Loaded after admin.css. */
+/* MSACAlab Accessibility Checker PDF / print layout. Loaded after admin.css. */
 
 @page {
 	size: A4;
@@ -9,7 +9,7 @@ html,
 body.corea11y-print {
 	margin: 0;
 	background: #eef0f4;
-	font-family: "CoreA11y Atkinson", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-family: "MSACAlab Atkinson", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	font-size: 13px;
 	line-height: 1.5;
 }
@@ -60,7 +60,7 @@ body.corea11y-print {
 	box-sizing: border-box;
 }
 
-/* Header: charcoal bar with a lime stripe (CoreA11y), or white with the
+/* Header: charcoal bar with a lime stripe (MSACAlab Accessibility Checker), or white with the
    agency's logo and a stripe in their color (white label). */
 .corea11y-print .corea11y-doc-head {
 	display: flex;

@@ -1,6 +1,6 @@
 <?php
 /**
- * CoreA11y Pro license and plan checks.
+ * MSACAlab Accessibility Checker Pro license and plan checks.
  *
  * Pro features need an active license. If a license expires, nothing breaks: fixes
  * that are already on keep working and can still be turned off or undone. Only
@@ -37,7 +37,7 @@ class CoreA11y_Pro_License {
 		$ok = function_exists( 'corea11y_fs' ) ? corea11y_fs()->can_use_premium_code() : false;
 
 		/**
-		 * Filter whether CoreA11y Pro is licensed on this site.
+		 * Filter whether MSACAlab Accessibility Checker Pro is licensed on this site.
 		 *
 		 * @param bool $ok Licensed.
 		 */
@@ -64,7 +64,7 @@ class CoreA11y_Pro_License {
 		}
 
 		/**
-		 * Filter the CoreA11y Pro plan tier.
+		 * Filter the MSACAlab Accessibility Checker Pro plan tier.
 		 *
 		 * @param int $tier 0 none, 1 Personal, 2 Business, 3 Agency.
 		 */

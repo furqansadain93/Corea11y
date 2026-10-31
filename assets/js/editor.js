@@ -1,5 +1,5 @@
 /**
- * CoreA11y block editor panel: checks the post's content for accessibility problems
+ * MSACAlab Accessibility Checker block editor panel: checks the post's content for accessibility problems
  * every time it is saved, and explains each problem in plain language.
  *
  * Plain JavaScript (no build step) using WordPress's bundled packages.
@@ -51,11 +51,11 @@
 			const frame = document.createElement( 'iframe' );
 			frame.setAttribute( 'aria-hidden', 'true' );
 			frame.setAttribute( 'tabindex', '-1' );
-			frame.title = __( 'Accessibility check', 'corea11y' );
+			frame.title = __( 'Accessibility check', 'msacalab-accessibility-checker' );
 			frame.style.cssText = 'position:absolute;left:-10000px;top:0;width:1280px;height:900px;border:0;';
 			const timer = setTimeout( () => {
 				frame.remove();
-				reject( new Error( __( 'The page took too long to load.', 'corea11y' ) ) );
+				reject( new Error( __( 'The page took too long to load.', 'msacalab-accessibility-checker' ) ) );
 			}, 30000 );
 			frame.addEventListener( 'load', () => {
 				clearTimeout( timer );
@@ -68,14 +68,14 @@
 					}
 					if ( ! doc ) {
 						frame.remove();
-						reject( new Error( __( 'The page could not be opened for checking.', 'corea11y' ) ) );
+						reject( new Error( __( 'The page could not be opened for checking.', 'msacalab-accessibility-checker' ) ) );
 						return;
 					}
 					const script = doc.createElement( 'script' );
 					script.src = cfg.axeUrl;
 					script.onerror = () => {
 						frame.remove();
-						reject( new Error( __( 'The accessibility engine could not be loaded.', 'corea11y' ) ) );
+						reject( new Error( __( 'The accessibility engine could not be loaded.', 'msacalab-accessibility-checker' ) ) );
 					};
 					script.onload = () => {
 						let context = null;
@@ -129,14 +129,14 @@
 			'li',
 			{ className: 'corea11y-ed-issue corea11y-ed-' + v.impact },
 			el( 'strong', { className: 'corea11y-ed-title' }, ex.t ),
-			el( 'span', { className: 'corea11y-ed-meta' }, impact + ' · ' + sprintf( _n( '%d element', '%d elements', v.nodes.length, 'corea11y' ), v.nodes.length ) ),
+			el( 'span', { className: 'corea11y-ed-meta' }, impact + ' · ' + sprintf( _n( '%d element', '%d elements', v.nodes.length, 'msacalab-accessibility-checker' ), v.nodes.length ) ),
 			el(
 				'details',
 				null,
-				el( 'summary', null, __( 'Why and how to fix', 'corea11y' ) ),
-				ex.w ? el( 'p', null, el( 'strong', null, __( 'Why it matters: ', 'corea11y' ) ), ex.w ) : null,
-				ex.o ? el( 'p', null, el( 'strong', null, __( 'Who it affects: ', 'corea11y' ) ), ex.o ) : null,
-				el( 'p', null, el( 'strong', null, __( 'How to fix: ', 'corea11y' ) ), ex.f ),
+				el( 'summary', null, __( 'Why and how to fix', 'msacalab-accessibility-checker' ) ),
+				ex.w ? el( 'p', null, el( 'strong', null, __( 'Why it matters: ', 'msacalab-accessibility-checker' ) ), ex.w ) : null,
+				ex.o ? el( 'p', null, el( 'strong', null, __( 'Who it affects: ', 'msacalab-accessibility-checker' ) ), ex.o ) : null,
+				el( 'p', null, el( 'strong', null, __( 'How to fix: ', 'msacalab-accessibility-checker' ) ), ex.f ),
 				el( 'code', { className: 'corea11y-ed-code' }, ( v.nodes[ 0 ] && v.nodes[ 0 ].html ) || '' )
 			)
 		);
@@ -145,10 +145,10 @@
 	function Results( { compact } ) {
 		const result = useResult();
 		if ( ! result ) {
-			return el( 'p', null, __( 'Save your post to check its content for accessibility problems.', 'corea11y' ) );
+			return el( 'p', null, __( 'Save your post to check its content for accessibility problems.', 'msacalab-accessibility-checker' ) );
 		}
 		if ( result.running ) {
-			return el( 'p', { className: 'corea11y-ed-running' }, el( Spinner ), ' ', __( 'Checking your content…', 'corea11y' ) );
+			return el( 'p', { className: 'corea11y-ed-running' }, el( Spinner ), ' ', __( 'Checking your content…', 'msacalab-accessibility-checker' ) );
 		}
 		if ( result.error ) {
 			return el( 'p', null, result.error );
@@ -156,14 +156,14 @@
 		const list = result.violations.slice().sort( ( a, b ) => RANK[ a.impact ] - RANK[ b.impact ] );
 		const total = list.reduce( ( n, v ) => n + v.nodes.length, 0 );
 		if ( ! total ) {
-			return el( 'p', { className: 'corea11y-ed-ok' }, __( 'No problems found in this content. Nice work!', 'corea11y' ) );
+			return el( 'p', { className: 'corea11y-ed-ok' }, __( 'No problems found in this content. Nice work!', 'msacalab-accessibility-checker' ) );
 		}
 		return el(
 			Fragment,
 			null,
-			el( 'p', null, sprintf( _n( '%d problem found in this content.', '%d problems found in this content.', total, 'corea11y' ), total ) ),
+			el( 'p', null, sprintf( _n( '%d problem found in this content.', '%d problems found in this content.', total, 'msacalab-accessibility-checker' ), total ) ),
 			compact ? null : el( 'ul', { className: 'corea11y-ed-list' }, list.map( ( v ) => el( Issue, { key: v.id, v } ) ) ),
-			compact ? el( 'p', null, __( 'See the CoreA11y panel in the post settings for details. You can still publish.', 'corea11y' ) ) : null
+			compact ? el( 'p', null, __( 'See the Accessibility check panel in the post settings for details. You can still publish.', 'msacalab-accessibility-checker' ) ) : null
 		);
 	}
 
@@ -213,15 +213,15 @@
 		const run = () => store.run && store.run();
 		return el(
 			DocPanel,
-			{ name: 'corea11y-check', title: __( 'Accessibility (CoreA11y)', 'corea11y' ), className: 'corea11y-ed-panel' },
+			{ name: 'corea11y-check', title: __( 'Accessibility check', 'msacalab-accessibility-checker' ), className: 'corea11y-ed-panel' },
 			el( 'div', { role: 'status', 'aria-live': 'polite' }, el( Results, { compact: false } ) ),
-			el( Button, { variant: 'secondary', onClick: run, disabled: !! ( result && result.running ) }, __( 'Check now', 'corea11y' ) )
+			el( Button, { variant: 'secondary', onClick: run, disabled: !! ( result && result.running ) }, __( 'Check now', 'msacalab-accessibility-checker' ) )
 		);
 	}
 
 	function PrePublish() {
 		return PrePublishPanel
-			? el( PrePublishPanel, { title: __( 'Accessibility check', 'corea11y' ), initialOpen: true }, el( Results, { compact: true } ) )
+			? el( PrePublishPanel, { title: __( 'Accessibility check', 'msacalab-accessibility-checker' ), initialOpen: true }, el( Results, { compact: true } ) )
 			: null;
 	}
 

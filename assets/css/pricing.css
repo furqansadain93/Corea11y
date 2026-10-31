@@ -1,5 +1,5 @@
 /*
- * CoreA11y branding for the Freemius pricing page (CoreA11y > Upgrade).
+ * MSACAlab Accessibility Checker branding for the Freemius pricing page (Accessibility > Upgrade).
  * Charcoal #222 and lime #dce85d; lime is only used behind charcoal text
  * or on charcoal. Overrides the Freemius design tokens.
  */
@@ -27,7 +27,7 @@ html body #fs_pricing_wrapper {
 	--fs-ds-theme-background-shade: #f6f7ee;
 	--fs-ds-theme-divider-color: #dcdcd4;
 	--fs-ds-theme-border-color: #dcdcd4;
-	font-family: "CoreA11y Atkinson", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	font-family: "MSACAlab Atkinson", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 html body #fs_pricing_app button,

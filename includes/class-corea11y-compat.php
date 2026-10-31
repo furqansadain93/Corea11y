@@ -29,7 +29,7 @@ class CoreA11y_Compat {
 	 *
 	 * @var string[]
 	 */
-	const SCRIPT_PATTERNS = array( 'corea11y/assets/js/', 'corea11yFixes', 'corea11yHighlighter' );
+	const SCRIPT_PATTERNS = array( 'msacalab-accessibility-checker', 'corea11yFixes', 'corea11yHighlighter' );
 
 	/**
 	 * Hook into WordPress.
@@ -62,7 +62,7 @@ class CoreA11y_Compat {
 	}
 
 	/**
-	 * Ask optimizers that read script attributes to leave CoreA11y scripts alone.
+	 * Ask optimizers that read script attributes to leave MSACAlab Accessibility Checker scripts alone.
 	 *
 	 * @param string $tag    Script tag HTML.
 	 * @param string $handle Script handle.
@@ -76,7 +76,7 @@ class CoreA11y_Compat {
 	}
 
 	/**
-	 * Same for the small inline settings scripts printed with CoreA11y scripts.
+	 * Same for the small inline settings scripts printed with MSACAlab Accessibility Checker scripts.
 	 *
 	 * @param array $attributes Inline script attributes.
 	 * @return array
@@ -95,7 +95,7 @@ class CoreA11y_Compat {
 	}
 
 	/**
-	 * Append CoreA11y patterns to an exclusion list.
+	 * Append MSACAlab Accessibility Checker patterns to an exclusion list.
 	 *
 	 * @param mixed $list Existing list.
 	 * @return array
@@ -105,7 +105,7 @@ class CoreA11y_Compat {
 	}
 
 	/**
-	 * Append CoreA11y script handles to an exclusion list.
+	 * Append MSACAlab Accessibility Checker script handles to an exclusion list.
 	 *
 	 * @param mixed $list Existing list.
 	 * @return array
@@ -126,7 +126,7 @@ class CoreA11y_Compat {
 	}
 
 	/**
-	 * Page caching plugins CoreA11y knows how to clear, keyed by name.
+	 * Page caching plugins MSACAlab Accessibility Checker knows how to clear, keyed by name.
 	 *
 	 * @return array<string,bool> Name => whether it is active.
 	 */
@@ -220,7 +220,7 @@ class CoreA11y_Compat {
 		// phpcs:enable
 
 		/**
-		 * Fires after CoreA11y asks page caches to clear. Hook here to clear other caches
+		 * Fires after MSACAlab Accessibility Checker asks page caches to clear. Hook here to clear other caches
 		 * (for example a CDN) when a quick fix changes.
 		 */
 		do_action( 'corea11y_purge_caches' );

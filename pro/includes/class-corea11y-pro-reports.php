@@ -1,6 +1,6 @@
 <?php
 /**
- * CoreA11y Pro reports: CSV export (Business and Agency) and white-label PDFs (Agency).
+ * MSACAlab Accessibility Checker Pro reports: CSV export (Business and Agency) and white-label PDFs (Agency).
  *
  * @package CoreA11y
  */
@@ -44,7 +44,7 @@ class CoreA11y_Pro_Reports {
 		printf(
 			'<a class="button" href="%1$s">%2$s</a>',
 			esc_url( self::csv_url( $audit->id ) ),
-			esc_html__( 'Download CSV', 'corea11y' )
+			esc_html__( 'Download CSV', 'msacalab-accessibility-checker' )
 		);
 	}
 
@@ -53,15 +53,15 @@ class CoreA11y_Pro_Reports {
 	 */
 	public static function csv() {
 		if ( ! current_user_can( CoreA11y_Admin::CAP ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		check_admin_referer( 'corea11y_pro_csv' );
 		if ( ! CoreA11y_Pro_License::has( CoreA11y_Pro_License::BUSINESS ) ) {
-			wp_die( esc_html__( 'CSV export is part of the CoreA11y Pro Business and Agency plans.', 'corea11y' ), 403 );
+			wp_die( esc_html__( 'CSV export is part of the MSACAlab Accessibility Checker Pro Business and Agency plans.', 'msacalab-accessibility-checker' ), 403 );
 		}
 		$audit = CoreA11y_Audit::get( isset( $_GET['audit'] ) ? absint( $_GET['audit'] ) : 0 );
 		if ( ! $audit ) {
-			wp_die( esc_html__( 'Audit not found.', 'corea11y' ), 404 );
+			wp_die( esc_html__( 'Audit not found.', 'msacalab-accessibility-checker' ), 404 );
 		}
 
 		global $wpdb;
@@ -83,18 +83,18 @@ class CoreA11y_Pro_Reports {
 		fputcsv(
 			$out,
 			array(
-				__( 'Page', 'corea11y' ),
-				__( 'URL', 'corea11y' ),
-				__( 'Problem', 'corea11y' ),
-				__( 'Rule', 'corea11y' ),
-				__( 'WCAG', 'corea11y' ),
-				__( 'Impact', 'corea11y' ),
-				__( 'Type', 'corea11y' ),
-				__( 'Status', 'corea11y' ),
-				__( 'Element', 'corea11y' ),
-				__( 'HTML', 'corea11y' ),
-				__( 'Who it affects', 'corea11y' ),
-				__( 'How to fix', 'corea11y' ),
+				__( 'Page', 'msacalab-accessibility-checker' ),
+				__( 'URL', 'msacalab-accessibility-checker' ),
+				__( 'Problem', 'msacalab-accessibility-checker' ),
+				__( 'Rule', 'msacalab-accessibility-checker' ),
+				__( 'WCAG', 'msacalab-accessibility-checker' ),
+				__( 'Impact', 'msacalab-accessibility-checker' ),
+				__( 'Type', 'msacalab-accessibility-checker' ),
+				__( 'Status', 'msacalab-accessibility-checker' ),
+				__( 'Element', 'msacalab-accessibility-checker' ),
+				__( 'HTML', 'msacalab-accessibility-checker' ),
+				__( 'Who it affects', 'msacalab-accessibility-checker' ),
+				__( 'How to fix', 'msacalab-accessibility-checker' ),
 			)
 		);
 		$cache = array();
@@ -104,11 +104,11 @@ class CoreA11y_Pro_Reports {
 			}
 			$x = $cache[ $r->rule_id ];
 			if ( 'best-practice' === $r->source ) {
-				$type = __( 'Best practice', 'corea11y' );
+				$type = __( 'Best practice', 'msacalab-accessibility-checker' );
 			} elseif ( 'review' === $r->source ) {
-				$type = __( 'Needs a human check', 'corea11y' );
+				$type = __( 'Needs a human check', 'msacalab-accessibility-checker' );
 			} else {
-				$type = __( 'Issue', 'corea11y' );
+				$type = __( 'Issue', 'msacalab-accessibility-checker' );
 			}
 			fputcsv(
 				$out,
@@ -122,7 +122,7 @@ class CoreA11y_Pro_Reports {
 						$r->wcag,
 						isset( $impacts[ $r->impact ] ) ? $impacts[ $r->impact ] : $r->impact,
 						$type,
-						'dismissed' === $r->status ? __( 'Dismissed', 'corea11y' ) : __( 'Open', 'corea11y' ),
+						'dismissed' === $r->status ? __( 'Dismissed', 'msacalab-accessibility-checker' ) : __( 'Open', 'msacalab-accessibility-checker' ),
 						$r->selector,
 						$r->snippet,
 						$x['who'],
@@ -187,15 +187,15 @@ class CoreA11y_Pro_Reports {
 		if ( '' === $s['brand_name'] && ! $s['brand_logo'] ) {
 			return $foot;
 		}
-		$who   = '' !== $s['brand_name'] ? $s['brand_name'] : __( 'your accessibility partner', 'corea11y' );
+		$who   = '' !== $s['brand_name'] ? $s['brand_name'] : __( 'your accessibility partner', 'msacalab-accessibility-checker' );
 		$parts = array(
 			/* translators: %s: agency name. */
-			sprintf( __( 'Report prepared by %s', 'corea11y' ), $who ),
+			sprintf( __( 'Report prepared by %s', 'msacalab-accessibility-checker' ), $who ),
 		);
 		if ( '' !== $s['brand_foot'] ) {
 			$parts[] = $s['brand_foot'];
 		}
-		$parts[] = __( 'Automated results do not certify WCAG conformance.', 'corea11y' );
+		$parts[] = __( 'Automated results do not certify WCAG conformance.', 'msacalab-accessibility-checker' );
 		return implode( ' · ', $parts );
 	}
 }

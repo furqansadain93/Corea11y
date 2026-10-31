@@ -1,5 +1,5 @@
 /**
- * CoreA11y admin UI: "?" explanation tips.
+ * MSACAlab Accessibility Checker admin UI: "?" explanation tips.
  *
  * Tips are visible without JavaScript; this script turns them into
  * toggle buttons. Escape or a click elsewhere closes the open tip.
