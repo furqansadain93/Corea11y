@@ -86,8 +86,18 @@
 								break;
 							}
 						}
-						frame.contentWindow.axe
-							.run( context || doc.body, AXE_OPTIONS )
+						const fAxe = frame.contentWindow.axe;
+						axeLocale()
+							.then( ( locale ) => {
+								if ( locale ) {
+									try {
+										fAxe.configure( { locale } );
+									} catch ( e ) {
+										// Keep English.
+									}
+								}
+								return fAxe.run( context || doc.body, AXE_OPTIONS );
+							} )
 							.then( ( res ) => {
 								frame.remove();
 								resolve( { violations: res.violations, scoped: !! context } );
@@ -103,6 +113,21 @@
 			frame.src = withScanArg( url );
 			document.body.appendChild( frame );
 		} );
+	}
+
+	// axe-core's own texts in the editor's language, when bundled. Falls back to English.
+	let localePromise = null;
+	function axeLocale() {
+		if ( ! cfg.axeLocale ) {
+			return Promise.resolve( null );
+		}
+		if ( ! localePromise ) {
+			localePromise = window
+				.fetch( cfg.axeLocale, { credentials: 'same-origin' } )
+				.then( ( r ) => ( r.ok ? r.json() : null ) )
+				.catch( () => null );
+		}
+		return localePromise;
 	}
 
 	function useResult() {

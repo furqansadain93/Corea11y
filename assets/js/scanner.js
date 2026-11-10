@@ -25,6 +25,32 @@
 		} );
 		return { runOnly: { type: 'rule', values: ids }, resultTypes: [ 'violations', 'incomplete' ] };
 	}
+	// axe-core's own texts (the technical rule summary) in the admin's language, when bundled.
+	// Any problem loading it simply leaves them in English.
+	let localePromise = null;
+	function axeLocale() {
+		if ( ! config.axeLocale ) {
+			return Promise.resolve( null );
+		}
+		if ( ! localePromise ) {
+			localePromise = window
+				.fetch( config.axeLocale, { credentials: 'same-origin' } )
+				.then( ( r ) => ( r.ok ? r.json() : null ) )
+				.catch( () => null );
+		}
+		return localePromise;
+	}
+	async function localize( axe ) {
+		const locale = await axeLocale();
+		if ( locale ) {
+			try {
+				axe.configure( { locale } );
+			} catch ( e ) {
+				// Keep English.
+			}
+		}
+		return axe;
+	}
 	const MAX_NODES = 25;
 	const SETTLE_MS = 750;
 
@@ -173,7 +199,7 @@
 		try {
 			await wait( SETTLE_MS );
 			await finishTransitions( frame );
-			const axe = await injectAxe( frame );
+			const axe = await localize( await injectAxe( frame ) );
 			const doc = frame.contentDocument;
 			const results = await axe.run(
 				{ include: [ doc.documentElement ], exclude: [ [ '#wpadminbar' ] ] },

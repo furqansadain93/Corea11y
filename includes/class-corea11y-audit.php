@@ -531,4 +531,18 @@ class CoreA11y_Audit {
 	public static function axe_version() {
 		return '4.14.0';
 	}
+
+	/**
+	 * URL of the axe-core translation for the current admin language, or '' for English.
+	 * Only languages the plugin itself is translated into are bundled, so reports never mix languages.
+	 *
+	 * @return string
+	 */
+	public static function axe_locale_url() {
+		$lang = strtolower( substr( (string) get_user_locale(), 0, 2 ) );
+		if ( ! in_array( $lang, array( 'de', 'fr', 'es' ), true ) || ! file_exists( COREA11Y_DIR . 'assets/vendor/axe-core/locales/' . $lang . '.json' ) ) {
+			return '';
+		}
+		return COREA11Y_URL . 'assets/vendor/axe-core/locales/' . $lang . '.json?ver=' . rawurlencode( self::axe_version() );
+	}
 }

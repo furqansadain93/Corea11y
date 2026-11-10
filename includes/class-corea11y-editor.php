@@ -54,6 +54,7 @@ class CoreA11y_Editor {
 			'corea11yEditor',
 			array(
 				'axeUrl'     => COREA11Y_URL . 'assets/vendor/axe-core/axe.min.js?ver=' . rawurlencode( CoreA11y_Audit::axe_version() ),
+				'axeLocale'  => CoreA11y_Audit::axe_locale_url(),
 				'queryArg'   => CoreA11y_Scanner::QUERY_ARG,
 				'impacts'    => CoreA11y_Rules::impacts(),
 				'explain'    => $explain,

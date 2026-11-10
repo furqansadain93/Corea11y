@@ -33,6 +33,7 @@ class CoreA11y_Admin {
 		add_action( 'admin_post_corea11y_save_alt', array( $this, 'save_alt' ) );
 		add_action( 'admin_post_corea11y_undo_alt', array( $this, 'undo_alt' ) );
 		add_action( 'admin_post_corea11y_hide_products', array( $this, 'hide_products' ) );
+		add_action( 'admin_notices', array( $this, 'table_notice' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( COREA11Y_FILE ), array( $this, 'action_links' ) );
 	}
 
@@ -57,6 +58,31 @@ class CoreA11y_Admin {
 		add_submenu_page( self::SLUG, __( 'Accessibility statement', 'msacalab-accessibility-checker' ), __( 'Statement', 'msacalab-accessibility-checker' ), self::CAP, 'corea11y-statement', array( $this, 'render_statement' ) );
 		add_submenu_page( self::SLUG, __( 'Manual checklist', 'msacalab-accessibility-checker' ), __( 'Manual checklist', 'msacalab-accessibility-checker' ), self::CAP, 'corea11y-checklist', array( $this, 'render_checklist' ) );
 		add_submenu_page( self::SLUG, __( 'Settings', 'msacalab-accessibility-checker' ), __( 'Settings', 'msacalab-accessibility-checker' ), self::CAP, CoreA11y_Settings::PAGE, array( $this, 'render_settings' ) );
+	}
+
+	/**
+	 * Warn administrators when another plugin has changed the audits table so audits can't be saved.
+	 * Runs on MSACAlab Accessibility Checker screens only.
+	 */
+	public function table_notice() {
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+		if ( ! $screen || false === strpos( (string) $screen->id, 'corea11y' ) || ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+		$cols = CoreA11y_Install::foreign_columns();
+		if ( ! $cols ) {
+			return;
+		}
+		echo '<div class="notice notice-error"><p>';
+		echo esc_html(
+			sprintf(
+				/* translators: 1: database table name, 2: column names. */
+				__( 'Audits can\'t be saved: another plugin has added required columns to the %1$s table (%2$s). This usually happens when two plugins use a table with the same name. Please contact support@corea11y.com and include your support information from Settings.', 'msacalab-accessibility-checker' ),
+				CoreA11y_Install::tables()['audits'],
+				implode( ', ', $cols )
+			)
+		);
+		echo '</p></div>';
 	}
 
 	/**

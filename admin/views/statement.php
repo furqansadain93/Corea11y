@@ -31,6 +31,10 @@ $corea11y_flag = isset( $_GET['statement'] ) ? sanitize_key( wp_unslash( $_GET['
 		<?php endif; ?>
 	</div>
 
+	<?php if ( in_array( strtolower( substr( (string) get_locale(), 0, 2 ) ), array( 'de', 'fr', 'es' ), true ) ) : ?>
+		<div class="notice notice-info inline"><p><?php esc_html_e( 'Your statement page uses a new translation of the statement text. Please read it carefully before publishing. If any wording should be improved, tell us at support@corea11y.com.', 'msacalab-accessibility-checker' ); ?></p></div>
+	<?php endif; ?>
+
 	<?php if ( 'saved' === $corea11y_flag ) : ?>
 		<div class="notice notice-success inline" role="status"><p><?php esc_html_e( 'Statement saved. Your statement page shows the changes right away.', 'msacalab-accessibility-checker' ); ?></p></div>
 	<?php elseif ( 'created' === $corea11y_flag && $page ) : ?>

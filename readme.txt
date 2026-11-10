@@ -4,7 +4,7 @@ Tags: accessibility, wcag, a11y, ada, audit
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,14 @@ MSACAlab Accessibility Checker scans your pages with axe-core, the open-source a
 
 MSACAlab Accessibility Checker does not inject an "overlay" script into your site, and it never sends your content to an outside service.
 
+= For sites in Europe =
+
+The European Accessibility Act (EAA) applies to many online shops and services in the EU from June 2025. Its harmonised standard, EN 301 549, uses the WCAG 2.1 Level AA success criteria for web content, and MSACAlab Accessibility Checker tests against WCAG 2.2 AA, which builds on WCAG 2.1. The plugin helps you find and fix problems and write an accessibility statement; it does not certify that your site meets the EAA or any other law.
+
+= Languages =
+
+MSACAlab Accessibility Checker is available in English, German, French and Spanish (formal address), including the axe-core rule summaries and the accessibility statement. The German, French and Spanish translations are new: if any wording could be clearer, please tell us at support@corea11y.com. You are also welcome to help translate the plugin on [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/msacalab-accessibility-checker/).
+
 = MSACAlab Accessibility Checker Pro =
 
 Everything above is free, with no limits on pages or audits. [MSACAlab Accessibility Checker Pro](https://corea11y.com/pricing/) is an optional upgrade for people who want to fix more in one click:
@@ -54,6 +62,10 @@ Plans start at $19 a month or $179 a year for one site, with a 30-day money-back
 3. Go to Accessibility > Dashboard and run your first audit.
 
 == Frequently Asked Questions ==
+
+= Which languages are available? =
+
+English, German, French and Spanish. MSACAlab Accessibility Checker follows the language set for your user profile (or Settings > General > Site Language), and the public accessibility statement follows the site language. Other languages show in English.
 
 = What is the difference between the free version and Pro? =
 
@@ -123,6 +135,11 @@ The audit report links to Deque University rule pages (https://dequeuniversity.c
 The free version contains no licensing, tracking or update code. MSACAlab Accessibility Checker Pro is sold separately on https://corea11y.com and is licensed through Freemius (https://freemius.com): terms https://freemius.com/terms/, privacy policy https://freemius.com/privacy/.
 
 == Changelog ==
+
+= 1.0.2 =
+* German, French and Spanish translations of the whole plugin, including the report, explanations, PDF reports, emails and the accessibility statement. axe-core's own rule summaries also follow your language. Sites in English are unchanged.
+* The Statement screen reminds you to read a translated statement before publishing it.
+* If an audit can't be started, administrators now see the database's reason, and a notice explains when another plugin has changed MSACAlab Accessibility Checker's audits table.
 
 = 1.0.1 =
 * Quick fixes: fixes your site doesn't need (for example because your theme already has a skip link) now sit in a collapsed "Not needed on your site" group, so they no longer look like something you have to turn on.

@@ -95,6 +95,7 @@ class CoreA11y_Scanner {
 	public static function config() {
 		return array(
 			'axeUrl'    => COREA11Y_URL . 'assets/vendor/axe-core/axe.min.js?ver=' . rawurlencode( CoreA11y_Audit::axe_version() ),
+			'axeLocale' => CoreA11y_Audit::axe_locale_url(),
 			'queryArg'  => self::QUERY_ARG,
 			'reportUrl' => admin_url( 'admin.php?page=corea11y-audits&audit=' ),
 			'timeout'   => 30000,

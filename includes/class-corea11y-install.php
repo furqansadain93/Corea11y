@@ -140,6 +140,31 @@ class CoreA11y_Install {
 	}
 
 	/**
+	 * Columns another plugin added to the audits table that block saving an audit:
+	 * NOT NULL, with no default, and not one of ours. This happens when another plugin
+	 * uses a table with the same name.
+	 *
+	 * @return string[] Column names.
+	 */
+	public static function foreign_columns() {
+		global $wpdb;
+		$ours = array( 'id', 'status', 'scope', 'pages_total', 'pages_scanned', 'issues_total', 'score', 'created_by', 'started_at', 'finished_at', 'summary' );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Schema check on MSACAlab Accessibility Checker screens only.
+		$cols = $wpdb->get_results( $wpdb->prepare( 'SHOW COLUMNS FROM %i', self::tables()['audits'] ) );
+		$bad  = array();
+		foreach ( (array) $cols as $col ) {
+			if ( in_array( $col->Field, $ours, true ) ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- MySQL column name.
+				continue;
+			}
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- MySQL column names.
+			if ( 'NO' === $col->Null && null === $col->Default && false === strpos( (string) $col->Extra, 'auto_increment' ) ) {
+				$bad[] = $col->Field; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- MySQL column name.
+			}
+		}
+		return $bad;
+	}
+
+	/**
 	 * Create or update tables with dbDelta.
 	 */
 	public static function create_tables() {
