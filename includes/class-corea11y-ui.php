@@ -16,6 +16,16 @@ defined( 'ABSPATH' ) || exit;
 class CoreA11y_UI {
 
 	/**
+	 * Review form for the plugin on WordPress.org.
+	 */
+	const REVIEW_URL = 'https://wordpress.org/support/plugin/msacalab-accessibility-checker/reviews/#new-post';
+
+	/**
+	 * User meta: 'done', or the time until which "Maybe later" hides the review request.
+	 */
+	const REVIEW_META = 'corea11y_review';
+
+	/**
 	 * Counter for unique ids.
 	 *
 	 * @var int
@@ -381,10 +391,71 @@ class CoreA11y_UI {
 		 * @param string $url Guide URL.
 		 */
 		$guide = (string) apply_filters( 'corea11y_guide_url', 'https://corea11y.com/docs/wordpress/' );
+		$new_tab = '<span class="screen-reader-text"> ' . esc_html__( '(opens in a new tab)', 'msacalab-accessibility-checker' ) . '</span>';
+		echo '<span class="corea11y-brandbar-links">';
 		if ( '' !== $guide ) {
-			echo '<a class="corea11y-brandbar-guide" href="' . esc_url( $guide ) . '" target="_blank" rel="noopener">' . esc_html__( 'User guide', 'msacalab-accessibility-checker' ) . '<span class="screen-reader-text"> ' . esc_html__( '(opens in a new tab)', 'msacalab-accessibility-checker' ) . '</span></a>';
+			echo '<a class="corea11y-brandbar-guide" href="' . esc_url( $guide ) . '" target="_blank" rel="noopener">' . esc_html__( 'User guide', 'msacalab-accessibility-checker' ) . $new_tab . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above.
 		}
+		echo '<a class="corea11y-brandbar-rate" href="' . esc_url( self::REVIEW_URL ) . '" target="_blank" rel="noopener"><span aria-hidden="true">&#9733; </span>' . esc_html__( 'Rate this plugin', 'msacalab-accessibility-checker' ) . $new_tab . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above.
+		echo '</span>';
 		echo '</div>';
+		self::review_prompt();
+	}
+
+	/**
+	 * Whether to ask the current user for a review: after their first completed audit,
+	 * until they review, say they already did, or (for 30 days) choose "Maybe later".
+	 *
+	 * @return bool
+	 */
+	public static function wants_review() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return false;
+		}
+		$state = get_user_meta( get_current_user_id(), self::REVIEW_META, true );
+		if ( 'done' === $state || ( is_numeric( $state ) && (int) $state > time() ) ) {
+			return false;
+		}
+		return (bool) CoreA11y_Admin::recent_audits( 1, 'complete' );
+	}
+
+	/**
+	 * Save the user's answer to the review request.
+	 *
+	 * @param string $choice 'rate', 'done' or 'later'.
+	 */
+	public static function save_review_choice( $choice ) {
+		if ( 'later' === $choice ) {
+			update_user_meta( get_current_user_id(), self::REVIEW_META, time() + 30 * DAY_IN_SECONDS );
+		} elseif ( 'rate' === $choice || 'done' === $choice ) {
+			update_user_meta( get_current_user_id(), self::REVIEW_META, 'done' );
+		}
+	}
+
+	/**
+	 * The "leave a review" box under the top bar.
+	 */
+	public static function review_prompt() {
+		if ( ! self::wants_review() ) {
+			return;
+		}
+		$link = static function ( $choice ) {
+			return wp_nonce_url( admin_url( 'admin-post.php?action=corea11y_review&choice=' . $choice ), 'corea11y_review' );
+		};
+		?>
+		<section class="corea11y-review-ask" aria-labelledby="corea11y-review-ask-title">
+			<p class="corea11y-review-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+			<div class="corea11y-review-text">
+				<h2 id="corea11y-review-ask-title"><?php esc_html_e( 'Is MSACAlab Accessibility Checker helping you?', 'msacalab-accessibility-checker' ); ?></h2>
+				<p><?php esc_html_e( 'A short review on WordPress.org helps other site owners find it and keeps the free version growing. It takes about a minute.', 'msacalab-accessibility-checker' ); ?></p>
+			</div>
+			<p class="corea11y-review-actions">
+				<a class="button button-primary" data-corea11y-review="rate" href="<?php echo esc_url( $link( 'rate' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Leave a review', 'msacalab-accessibility-checker' ); ?><span class="screen-reader-text"> <?php esc_html_e( '(opens in a new tab)', 'msacalab-accessibility-checker' ); ?></span></a>
+				<a class="button" href="<?php echo esc_url( $link( 'later' ) ); ?>"><?php esc_html_e( 'Maybe later', 'msacalab-accessibility-checker' ); ?></a>
+				<a class="button-link" href="<?php echo esc_url( $link( 'done' ) ); ?>"><?php esc_html_e( 'I already did', 'msacalab-accessibility-checker' ); ?></a>
+			</p>
+		</section>
+		<?php
 	}
 
 	/**

@@ -32,7 +32,8 @@ class CoreA11y_Admin {
 		add_action( 'admin_post_corea11y_restore', array( $this, 'restore_issue' ) );
 		add_action( 'admin_post_corea11y_save_alt', array( $this, 'save_alt' ) );
 		add_action( 'admin_post_corea11y_undo_alt', array( $this, 'undo_alt' ) );
-		add_action( 'admin_post_corea11y_hide_products', array( $this, 'hide_products' ) );
+		add_action( 'admin_post_corea11y_review', array( $this, 'review_choice' ) );
+		add_filter( 'admin_footer_text', array( $this, 'footer_text' ) );
 		add_action( 'admin_notices', array( $this, 'table_notice' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( COREA11Y_FILE ), array( $this, 'action_links' ) );
 	}
@@ -359,16 +360,42 @@ class CoreA11y_Admin {
 	}
 
 	/**
-	 * Hide the "More from CoreA11y" card for the current user.
+	 * Remember the answer to the "leave a review" request (admin-post handler).
+	 * "rate" also sends the visitor on to the review form on WordPress.org.
 	 */
-	public function hide_products() {
+	public function review_choice() {
 		if ( ! current_user_can( self::CAP ) ) {
 			wp_die( esc_html__( 'You do not have permission to do this.', 'msacalab-accessibility-checker' ), 403 );
 		}
-		check_admin_referer( 'corea11y_hide_products' );
-		update_user_meta( get_current_user_id(), 'corea11y_hide_products', 1 );
-		wp_safe_redirect( admin_url( 'admin.php?page=' . self::SLUG ) );
+		check_admin_referer( 'corea11y_review' );
+		$choice = isset( $_GET['choice'] ) ? sanitize_key( wp_unslash( $_GET['choice'] ) ) : '';
+		CoreA11y_UI::save_review_choice( $choice );
+		if ( 'rate' === $choice ) {
+			// phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- Fixed WordPress.org address.
+			wp_redirect( CoreA11y_UI::REVIEW_URL );
+			exit;
+		}
+		$back = wp_get_referer();
+		wp_safe_redirect( $back ? $back : admin_url( 'admin.php?page=' . self::SLUG ) );
 		exit;
+	}
+
+	/**
+	 * Thank-you line with a review link at the bottom of MSACAlab Accessibility Checker screens.
+	 *
+	 * @param string $text Default footer text.
+	 * @return string
+	 */
+	public function footer_text( $text ) {
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+		if ( ! $screen || false === strpos( (string) $screen->id, 'corea11y' ) ) {
+			return $text;
+		}
+		return sprintf(
+			/* translators: %s: link to the review form on WordPress.org. */
+			esc_html__( 'Thank you for using MSACAlab Accessibility Checker. If it helps you, please %s.', 'msacalab-accessibility-checker' ),
+			'<a href="' . esc_url( CoreA11y_UI::REVIEW_URL ) . '" target="_blank" rel="noopener">' . esc_html__( 'rate it on WordPress.org', 'msacalab-accessibility-checker' ) . '<span class="screen-reader-text"> ' . esc_html__( '(opens in a new tab)', 'msacalab-accessibility-checker' ) . '</span></a>'
+		);
 	}
 
 	/**

@@ -7,6 +7,19 @@
 ( function () {
 	'use strict';
 
+	// "Leave a review" opens WordPress.org in a new tab; hide the request here too.
+	const reviewBtn = document.querySelector( '[data-corea11y-review="rate"]' );
+	if ( reviewBtn ) {
+		reviewBtn.addEventListener( 'click', () => {
+			const box = reviewBtn.closest( '.corea11y-review-ask' );
+			window.setTimeout( () => {
+				if ( box ) {
+					box.hidden = true;
+				}
+			}, 300 );
+		} );
+	}
+
 	// "Copy support information" button on the Settings screen.
 	const copyBtn = document.getElementById( 'corea11y-copy-info' );
 	const info = document.getElementById( 'corea11y-support-info' );

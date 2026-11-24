@@ -66,6 +66,7 @@ class CoreA11y_Install {
 		}
 
 		delete_metadata( 'user', 0, 'corea11y_hide_products', '', true );
+		delete_metadata( 'user', 0, 'corea11y_review', '', true );
 
 		if ( is_multisite() ) {
 			foreach ( get_sites(

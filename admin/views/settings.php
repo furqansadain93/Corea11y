@@ -20,7 +20,6 @@ defined( 'ABSPATH' ) || exit;
 	</form>
 
 	<?php
-	$corea11y_show_products = false;
 	require COREA11Y_DIR . 'admin/views/partials/help.php';
 	?>
 

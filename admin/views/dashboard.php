@@ -151,7 +151,6 @@ $corea11y_user   = wp_get_current_user();
 	</div>
 
 	<?php
-	$corea11y_show_products = true;
 	require COREA11Y_DIR . 'admin/views/partials/help.php';
 	?>
 

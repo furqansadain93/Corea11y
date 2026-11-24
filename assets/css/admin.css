@@ -1116,8 +1116,15 @@
 .fs-notice .fs-plugin-title { background: #555 !important; color: #fff !important; }
 .fs-notice .fs-close, .fs-notice .fs-close > span { color: #555 !important; }
 
-.corea11y .corea11y-brandbar .corea11y-brandbar-guide {
+.corea11y .corea11y-brandbar-links {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 18px;
 	margin-left: auto;
+}
+
+.corea11y .corea11y-brandbar .corea11y-brandbar-guide {
 	color: var(--corea11y-accent);
 	font-weight: 700;
 	font-size: 15px;
@@ -1353,7 +1360,7 @@
 	font-size: 14px;
 }
 
-/* 1.0.1: help, support and other products. */
+/* 1.0.1: help and support. */
 .corea11y .corea11y-help {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -1376,12 +1383,66 @@
 	margin: 0 0 8px;
 }
 
-.corea11y .corea11y-soon {
+/* 1.0.5: review link in the top bar and the review request. */
+.corea11y .corea11y-brandbar .corea11y-brandbar-rate {
 	display: inline-block;
-	margin-left: 6px;
-	padding: 1px 8px;
+	padding: 6px 14px;
 	border-radius: 999px;
-	background: #f0f0f1;
-	color: #3c434a;
-	font-size: 12px;
+	background: var(--corea11y-accent);
+	color: #222;
+	font-weight: 700;
+	font-size: 15px;
+	text-decoration: none;
+}
+
+.corea11y .corea11y-brandbar .corea11y-brandbar-rate:hover {
+	background: #fff;
+	color: #222;
+}
+
+.corea11y .corea11y-review-ask {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 20px;
+	max-width: 1100px;
+	margin: 12px 0 8px;
+	padding: 16px 22px;
+	box-sizing: border-box;
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-left: 6px solid var(--corea11y-accent);
+	border-radius: var(--corea11y-radius);
+}
+
+.corea11y .corea11y-review-ask h2 {
+	margin: 0 0 4px;
+	font-size: 17px;
+}
+
+.corea11y .corea11y-review-ask p {
+	margin: 0;
+}
+
+.corea11y .corea11y-review-stars {
+	color: #222;
+	font-size: 26px;
+	letter-spacing: 2px;
+	line-height: 1;
+}
+
+.corea11y .corea11y-review-text {
+	flex: 1 1 320px;
+}
+
+.corea11y .corea11y-review-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 14px;
+}
+
+.corea11y .corea11y-review-actions .button-link {
+	color: var(--corea11y-brand);
+	text-decoration: underline;
 }

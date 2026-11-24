@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       MSACAlab Accessibility Checker
  * Description:       Audit your site against WCAG 2.2 AA with axe-core, see exactly what needs fixing, and track progress with before/after reports.
- * Version:           1.0.2
+ * Version:           1.0.4
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Plugin URI:        https://corea11y.com/features/
@@ -61,7 +61,7 @@ if ( corea11y_other_copy_active( __FILE__ ) || ( defined( 'COREA11Y_VERSION' ) &
 	// instead of loading MSACAlab Accessibility Checker twice.
 	corea11y_fs()->set_basename( file_exists( __DIR__ . '/pro/corea11y-pro.php' ), __FILE__ );
 } else {
-	define( 'COREA11Y_VERSION', '1.0.2' );
+	define( 'COREA11Y_VERSION', '1.0.4' );
 	define( 'COREA11Y_DB_VERSION', '3' );
 	define( 'COREA11Y_FILE', __FILE__ );
 	define( 'COREA11Y_DIR', plugin_dir_path( __FILE__ ) );
@@ -188,5 +188,50 @@ if ( corea11y_other_copy_active( __FILE__ ) || ( defined( 'COREA11Y_VERSION' ) &
 			load_plugin_textdomain( 'msacalab-accessibility-checker', false, dirname( plugin_basename( COREA11Y_FILE ) ) . '/languages' );
 		},
 		1
+	);
+
+	/**
+	 * Bundled file for a regional or formal variant (de_AT, de_CH, de_DE_formal, fr_CA,
+	 * fr_BE, es_MX and so on): use the main German, French or Spanish translation when
+	 * there is no file for the exact locale.
+	 *
+	 * @param string $file   Translation file path.
+	 * @param string $locale Locale.
+	 * @return string
+	 */
+	function corea11y_regional_translation( $file, $locale ) {
+		$main = array(
+			'de' => 'de_DE',
+			'fr' => 'fr_FR',
+			'es' => 'es_ES',
+		);
+		$lang = substr( (string) $locale, 0, 2 );
+		if ( ! $file || file_exists( $file ) || ! isset( $main[ $lang ] ) || $main[ $lang ] === $locale || 0 !== strpos( wp_normalize_path( $file ), wp_normalize_path( COREA11Y_DIR . 'languages/' ) ) ) {
+			return $file;
+		}
+		$alt = str_replace( '-' . $locale, '-' . $main[ $lang ], $file );
+		return file_exists( $alt ) ? $alt : $file;
+	}
+	add_filter(
+		'load_translation_file',
+		static function ( $file, $domain, $locale = '' ) {
+			if ( 'msacalab-accessibility-checker' !== $domain ) {
+				return $file;
+			}
+			return corea11y_regional_translation( $file, $locale ? $locale : determine_locale() );
+		},
+		10,
+		3
+	);
+	add_filter(
+		'load_script_translation_file',
+		static function ( $file, $handle, $domain ) {
+			if ( 'msacalab-accessibility-checker' !== $domain ) {
+				return $file;
+			}
+			return corea11y_regional_translation( $file, determine_locale() );
+		},
+		10,
+		3
 	);
 }

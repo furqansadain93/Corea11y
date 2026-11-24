@@ -4,17 +4,18 @@ Tags: accessibility, wcag, a11y, ada, audit
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.2
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Audit your site against WCAG 2.2 AA, see exactly what needs fixing, and track progress with before/after reports.
+Audit your site against WCAG 2.2 AA, see what needs fixing and track your progress. In English, German, French and Spanish.
 
 == Description ==
 
 MSACAlab Accessibility Checker scans your pages with axe-core, the open-source accessibility testing engine, and shows every issue it finds grouped by WCAG criterion, page and severity, with a plain-language explanation of how to fix it.
 
 * Full audit of your pages, run from your WordPress admin
+* Available in English, German, French and Spanish: the screens, explanations, reports, PDFs and the accessibility statement
 * 12 quick fixes with one-click undo: a skip link, keyboard focus outline, page language, mobile zoom, search and comment field labels, missing page titles, titles for embedded videos and maps, hidden empty headings and paragraphs, natural keyboard order, no clashing shortcut keys, and respect for "reduce motion" settings
 * Alt text screen: every image missing alt text in one list. Type a description (or mark it decorative) and save: MSACAlab Accessibility Checker adds it to the Media Library and to the pages where the image is already used. Undo is one click, and the alt text stays even if you remove MSACAlab Accessibility Checker.
 * Fixed and verified: after you turn a fix on, MSACAlab Accessibility Checker re-checks the affected pages and shows whether the problems are gone
@@ -135,6 +136,12 @@ The audit report links to Deque University rule pages (https://dequeuniversity.c
 The free version contains no licensing, tracking or update code. MSACAlab Accessibility Checker Pro is sold separately on https://corea11y.com and is licensed through Freemius (https://freemius.com): terms https://freemius.com/terms/, privacy policy https://freemius.com/privacy/.
 
 == Changelog ==
+
+= 1.0.4 =
+* Fixed: version 1.0.3 (and 1.0.1) could not be activated when installed from WordPress.org, because some plugin files were missing from the release. All files are now included. Sorry for the trouble.
+
+= 1.0.3 =
+* The German, French and Spanish translations now also apply to regional and formal variants, such as German (Austria, Switzerland, formal), French (Canada, Belgium) and Spanish (Mexico and other Latin American countries).
 
 = 1.0.2 =
 * German, French and Spanish translations of the whole plugin, including the report, explanations, PDF reports, emails and the accessibility statement. axe-core's own rule summaries also follow your language. Sites in English are unchanged.
