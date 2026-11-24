@@ -390,6 +390,12 @@ class CoreA11y_Explain {
 			'why'   => __( 'Audio and video content needs a text alternative so everyone can get the information.', 'msacalab-accessibility-checker' ),
 			'fix'   => __( 'Provide a transcript next to the link, or captions for video.', 'msacalab-accessibility-checker' ),
 		);
+		$e['corea11y-label-duplicate-id'] = array(
+			'title' => __( 'A form field has no label because its id is used twice', 'msacalab-accessibility-checker' ),
+			'who'   => __( 'Screen reader and voice control users', 'msacalab-accessibility-checker' ),
+			'why'   => __( 'Two fields on the page share the same id. Labels always point to the first one, so the second field is announced without a name and people can\'t tell what to type.', 'msacalab-accessibility-checker' ),
+			'fix'   => __( 'Give every field its own id and point each label at it. This often happens when the same form (for example a newsletter signup) is placed twice on one page: remove one copy, or check the form plugin\'s settings.', 'msacalab-accessibility-checker' ),
+		);
 		$e['corea11y-link-new-window'] = array(
 			'title' => __( 'Links open a new tab without warning', 'msacalab-accessibility-checker' ),
 			'who'   => __( 'Screen reader, keyboard and older users', 'msacalab-accessibility-checker' ),
@@ -711,7 +717,8 @@ class CoreA11y_Explain {
 	 */
 	public static function concepts() {
 		return array(
-			'score'     => __( 'The accessibility score is our own quick progress indicator from 0 to 100, based only on the automated checks. It goes down with each problem found, weighted by severity, and averaged per page. It is not an official WCAG score or a compliance grade, and other tools score differently: a site can score well and still have issues automated tools can\'t detect.', 'msacalab-accessibility-checker' ),
+			'score'     => __( 'The accessibility score is our own quick progress indicator from 0 to 100, based only on the automated checks. It goes down with each problem found, weighted by severity, and averaged per page. It is not an official WCAG score or a compliance grade, and other tools score differently: a site can score well and still have issues automated tools can\'t detect.', 'msacalab-accessibility-checker' ) . ' ' . __( 'Only WCAG failures lower the score. Best-practice suggestions and items that need a human check are listed but never lower it, so a score of 100 can still come with suggestions.', 'msacalab-accessibility-checker' ),
+			'wcag_issues' => __( 'Elements that fail a WCAG 2.2 level A or AA success criterion in the automated checks. These are the issues that lower the score.', 'msacalab-accessibility-checker' ),
 			'bestpractice' => __( 'A widely recommended practice that makes pages easier to use, but isn\'t a strict WCAG requirement. Shown as minor and never counted in the score.', 'msacalab-accessibility-checker' ),
 			'review'    => __( 'Elements the automated checks could not judge with certainty, such as text over an image or gradient, where a person needs to look. They are listed so nothing is hidden, but they are not counted as issues.', 'msacalab-accessibility-checker' ),
 			'issues'    => __( 'The number of individual elements with a problem. One missing alt text on five images counts as five issues.', 'msacalab-accessibility-checker' ),

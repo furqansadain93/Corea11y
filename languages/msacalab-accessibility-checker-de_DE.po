@@ -1,7 +1,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MSACAlab Accessibility Checker 1.0.2\n"
+"Project-Id-Version: MSACAlab Accessibility Checker 1.0.5\n"
 "Report-Msgid-Bugs-To: support@corea11y.com\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Domain: msacalab-accessibility-checker\n"
 
 #. Plugin Name of the plugin
-#: msacalab-accessibility-checker.php includes/class-corea11y-admin.php:45
+#: msacalab-accessibility-checker.php includes/class-corea11y-admin.php:46
 msgid "MSACAlab Accessibility Checker"
 msgstr "MSACAlab Accessibility Checker"
 
@@ -36,7 +36,7 @@ msgstr "MSACAlab"
 msgid "https://corea11y.com/about/"
 msgstr "https://corea11y.com/about/"
 
-#: admin/views/alt.php:28 admin/views/alt.php:143 includes/class-corea11y-admin.php:55
+#: admin/views/alt.php:28 admin/views/alt.php:143 includes/class-corea11y-admin.php:56
 msgid "Alt text"
 msgstr "Alternativtext"
 
@@ -132,7 +132,7 @@ msgstr "Bild"
 msgid "View full size"
 msgstr "In voller Größe ansehen"
 
-#: admin/views/alt.php:114 admin/views/alt.php:121 admin/views/audits.php:45 admin/views/compare.php:26 admin/views/dashboard.php:105 admin/views/partials/help.php:21 admin/views/partials/help.php:28 admin/views/partials/report-body.php:195 admin/views/report.php:28 includes/class-corea11y-ui.php:385 pro/includes/class-corea11y-pro-fixes.php:344
+#: admin/views/alt.php:114 admin/views/alt.php:121 admin/views/audits.php:45 admin/views/compare.php:26 admin/views/dashboard.php:108 admin/views/partials/help.php:19 admin/views/partials/help.php:26 admin/views/partials/report-body.php:216 admin/views/report.php:28 includes/class-corea11y-admin.php:397 includes/class-corea11y-ui.php:394 includes/class-corea11y-ui.php:453 pro/includes/class-corea11y-pro-fixes.php:344
 msgid "(opens in a new tab)"
 msgstr "(öffnet in einem neuen Tab)"
 
@@ -204,7 +204,7 @@ msgstr "Bilder"
 msgid "Undone"
 msgstr "Rückgängig gemacht"
 
-#: admin/views/audits.php:13 includes/class-corea11y-admin.php:56
+#: admin/views/audits.php:13 includes/class-corea11y-admin.php:57
 msgid "Audits"
 msgstr "Prüfungen"
 
@@ -232,7 +232,7 @@ msgstr "Status"
 msgid "Pages scanned"
 msgstr "Geprüfte Seiten"
 
-#: admin/views/audits.php:25 admin/views/partials/report-body.php:78 pro/includes/class-corea11y-pro-network.php:186
+#: admin/views/audits.php:25 admin/views/partials/report-body.php:99 pro/includes/class-corea11y-pro-network.php:186
 msgid "Issues"
 msgstr "Probleme"
 
@@ -248,7 +248,7 @@ msgstr "Exportieren"
 msgid "PDF"
 msgstr "PDF"
 
-#: admin/views/checklist.php:16 admin/views/dashboard.php:116 admin/views/dashboard.php:117 includes/class-corea11y-admin.php:59
+#: admin/views/checklist.php:16 admin/views/dashboard.php:119 admin/views/dashboard.php:120 includes/class-corea11y-admin.php:60
 msgid "Manual checklist"
 msgstr "Manuelle Checkliste"
 
@@ -274,7 +274,7 @@ msgstr "Ergebnis"
 msgid "Save checklist"
 msgstr "Checkliste speichern"
 
-#: admin/views/compare.php:21 includes/class-corea11y-admin.php:57
+#: admin/views/compare.php:21 includes/class-corea11y-admin.php:58
 msgid "Before & after"
 msgstr "Vorher & nachher"
 
@@ -282,7 +282,7 @@ msgstr "Vorher & nachher"
 msgid "See what you fixed, what is left, and anything new."
 msgstr "Sehen Sie, was Sie behoben haben, was noch offen ist und was neu hinzugekommen ist."
 
-#: admin/views/compare.php:26 admin/views/dashboard.php:105 admin/views/report.php:28
+#: admin/views/compare.php:26 admin/views/dashboard.php:108 admin/views/report.php:28
 msgid "Download PDF"
 msgstr "PDF herunterladen"
 
@@ -298,7 +298,7 @@ msgstr "Führen Sie eine Prüfung durch, beheben Sie einige Dinge und führen Si
 msgid "Go to the dashboard"
 msgstr "Zum Dashboard"
 
-#: admin/views/compare.php:41 admin/views/partials/compare-body.php:101 includes/class-corea11y-ui.php:205
+#: admin/views/compare.php:41 admin/views/partials/compare-body.php:101 includes/class-corea11y-ui.php:215
 msgid "Before"
 msgstr "Vorher"
 
@@ -308,7 +308,7 @@ msgstr "Vorher"
 msgid "%1$s (%2$s issues)"
 msgstr "%1$s (%2$s Probleme)"
 
-#: admin/views/compare.php:54 admin/views/partials/compare-body.php:102 includes/class-corea11y-ui.php:205
+#: admin/views/compare.php:54 admin/views/partials/compare-body.php:102 includes/class-corea11y-ui.php:215
 msgid "After"
 msgstr "Nachher"
 
@@ -400,12 +400,12 @@ msgid_plural "Great progress: %s fewer issues than last time!"
 msgstr[0] "Toller Fortschritt: %s Problem weniger als beim letzten Mal!"
 msgstr[1] "Toller Fortschritt: %s Probleme weniger als beim letzten Mal!"
 
-#: admin/views/dashboard.php:87
+#: admin/views/dashboard.php:90
 msgid "The automated checks found no problems in your latest audit. Great work! Use the manual checklist for what software can't check."
 msgstr "Die automatischen Prüfungen haben in Ihrer letzten Prüfung keine Probleme gefunden. Sehr gut! Nutzen Sie die manuelle Checkliste für das, was Software nicht prüfen kann."
 
 #. translators: %s: number of issues.
-#: admin/views/dashboard.php:90
+#: admin/views/dashboard.php:93
 #, php-format
 msgid "Your latest audit found %s issue"
 msgid_plural "Your latest audit found %s issues"
@@ -413,58 +413,58 @@ msgstr[0] "Ihre letzte Prüfung hat %s Problem gefunden"
 msgstr[1] "Ihre letzte Prüfung hat %s Probleme gefunden"
 
 #. translators: 1: date, 2: number of pages.
-#: admin/views/dashboard.php:97
+#: admin/views/dashboard.php:100
 #, php-format
 msgid "Audited %1$s across %2$s pages."
 msgstr "Geprüft am %1$s, %2$s Seiten."
 
-#: admin/views/dashboard.php:99
+#: admin/views/dashboard.php:102
 msgid "Scan score"
 msgstr "Prüfbewertung"
 
-#: admin/views/dashboard.php:104
+#: admin/views/dashboard.php:107
 msgid "View report"
 msgstr "Bericht ansehen"
 
-#: admin/views/dashboard.php:107
+#: admin/views/dashboard.php:110
 msgid "See before & after"
 msgstr "Vorher & nachher ansehen"
 
-#: admin/views/dashboard.php:117
+#: admin/views/dashboard.php:120
 msgid "Some WCAG requirements need human judgment, like whether alt text is meaningful or a video's captions are accurate. The checklist walks you through them one by one."
 msgstr "Einige WCAG-Anforderungen erfordern menschliches Urteil, etwa ob ein Alternativtext aussagekräftig ist oder ob die Untertitel eines Videos stimmen. Die Checkliste führt Sie nacheinander durch diese Punkte."
 
 #. translators: 1: number of checks reviewed, 2: total number of checks, 3: number passed.
-#: admin/views/dashboard.php:123
+#: admin/views/dashboard.php:126
 #, php-format
 msgid "%1$d of %2$d checks reviewed, %3$d passed."
 msgstr "%1$d von %2$d Prüfpunkten geprüft, %3$d bestanden."
 
-#: admin/views/dashboard.php:133
+#: admin/views/dashboard.php:136
 msgid "Passed"
 msgstr "Bestanden"
 
-#: admin/views/dashboard.php:138
+#: admin/views/dashboard.php:141
 msgid "Failed"
 msgstr "Nicht bestanden"
 
-#: admin/views/dashboard.php:143
+#: admin/views/dashboard.php:146
 msgid "Not checked yet"
 msgstr "Noch nicht geprüft"
 
-#: admin/views/dashboard.php:148
+#: admin/views/dashboard.php:151
 msgid "Checklist progress"
 msgstr "Fortschritt der Checkliste"
 
-#: admin/views/dashboard.php:150
+#: admin/views/dashboard.php:153
 msgid "Open the checklist"
 msgstr "Checkliste öffnen"
 
-#: admin/views/dashboard.php:159
+#: admin/views/dashboard.php:161
 msgid "MSACAlab Accessibility Checker reports automated scan results and your own manual checks. Automated tools can't confirm full WCAG conformance on their own."
 msgstr "MSACAlab Accessibility Checker zeigt automatische Prüfergebnisse und Ihre eigenen manuellen Prüfungen. Automatische Werkzeuge allein können keine vollständige WCAG-Konformität bestätigen."
 
-#: admin/views/fixes.php:25 includes/class-corea11y-admin.php:54
+#: admin/views/fixes.php:25 includes/class-corea11y-admin.php:55
 msgid "Quick fixes"
 msgstr "Schnellkorrekturen"
 
@@ -594,7 +594,7 @@ msgstr "Änderungen an Schnellkorrekturen, neueste zuerst"
 msgid "Fix"
 msgstr "Korrektur"
 
-#: admin/views/fixes.php:173 admin/views/partials/report-body.php:327
+#: admin/views/fixes.php:173 admin/views/partials/report-body.php:345
 msgid "By"
 msgstr "Von"
 
@@ -713,7 +713,7 @@ msgstr "Probleme vorher und nachher, nach Schweregrad"
 msgid "Change by problem"
 msgstr "Veränderung nach Problem"
 
-#: admin/views/partials/compare-body.php:100 admin/views/partials/report-body.php:327 pro/includes/class-corea11y-pro-reports.php:88
+#: admin/views/partials/compare-body.php:100 admin/views/partials/report-body.php:345 pro/includes/class-corea11y-pro-reports.php:88
 msgid "Problem"
 msgstr "Problem"
 
@@ -786,12 +786,12 @@ msgid "Pro"
 msgstr "Pro"
 
 #. translators: %s: WCAG success criterion numbers.
-#: admin/views/partials/fix-card.php:44 admin/views/partials/pro-catalog.php:44 admin/views/partials/report-body.php:129
+#: admin/views/partials/fix-card.php:44 admin/views/partials/pro-catalog.php:44 admin/views/partials/report-body.php:150
 #, php-format
 msgid "WCAG %s"
 msgstr "WCAG %s"
 
-#: admin/views/partials/fix-card.php:48 admin/views/partials/pro-catalog.php:48 admin/views/partials/report-body.php:118 admin/views/partials/report-body.php:121 pro/includes/class-corea11y-pro-reports.php:107
+#: admin/views/partials/fix-card.php:48 admin/views/partials/pro-catalog.php:48 admin/views/partials/report-body.php:73 admin/views/partials/report-body.php:139 admin/views/partials/report-body.php:142 pro/includes/class-corea11y-pro-reports.php:107
 msgid "Best practice"
 msgstr "Bewährte Praxis"
 
@@ -867,73 +867,37 @@ msgstr "Pro-Korrekturen ansehen"
 msgid "Activate Pro"
 msgstr "Pro aktivieren"
 
-#: admin/views/partials/help.php:19
+#: admin/views/partials/help.php:17
 msgid "Help and support"
 msgstr "Hilfe und Support"
 
-#: admin/views/partials/help.php:21 includes/class-corea11y-ui.php:385
+#: admin/views/partials/help.php:19 includes/class-corea11y-ui.php:397
 msgid "User guide"
 msgstr "Benutzerhandbuch"
 
-#: admin/views/partials/help.php:24
+#: admin/views/partials/help.php:22
 msgid "Pro support:"
 msgstr "Pro-Support:"
 
-#: admin/views/partials/help.php:28
+#: admin/views/partials/help.php:26
 msgid "Ask in the support forum on WordPress.org"
 msgstr "Im Support-Forum auf WordPress.org fragen"
 
-#: admin/views/partials/help.php:30
+#: admin/views/partials/help.php:28
 msgid "Pro customers:"
 msgstr "Pro-Kunden:"
 
-#: admin/views/partials/help.php:35
+#: admin/views/partials/help.php:33
 msgid "Billing, licenses and refunds:"
 msgstr "Abrechnung, Lizenzen und Erstattungen:"
 
-#: admin/views/partials/help.php:38
+#: admin/views/partials/help.php:36
 msgid "Copy your support information"
 msgstr "Ihre Support-Informationen kopieren"
 
-#: admin/views/partials/help.php:38
+#: admin/views/partials/help.php:36
 msgid "(include it when you ask for help)"
 msgstr "(fügen Sie sie bei, wenn Sie um Hilfe bitten)"
-
-#: admin/views/partials/help.php:44
-msgid "More from CoreA11y"
-msgstr "Mehr von CoreA11y"
-
-#: admin/views/partials/help.php:46
-msgid "Expert accessibility audit by MSACAlab"
-msgstr "Barrierefreiheitsprüfung durch Fachleute von MSACAlab"
-
-#: admin/views/partials/help.php:47
-msgid "CoreA11y for Shopify"
-msgstr "CoreA11y für Shopify"
-
-#: admin/views/partials/help.php:47 admin/views/partials/help.php:48 admin/views/partials/help.php:49 admin/views/partials/help.php:50
-msgid "Coming soon"
-msgstr "Demnächst"
-
-#: admin/views/partials/help.php:48
-msgid "CoreA11y for Squarespace"
-msgstr "CoreA11y für Squarespace"
-
-#: admin/views/partials/help.php:49
-msgid "PDF Remediation"
-msgstr "PDF-Barrierefreiheit"
-
-#: admin/views/partials/help.php:50
-msgid "Mobile App Audit"
-msgstr "Prüfung mobiler Apps"
-
-#: admin/views/partials/help.php:55
-msgid "Hide this"
-msgstr "Ausblenden"
-
-#: admin/views/partials/help.php:55
-msgid "list of other CoreA11y products"
-msgstr "Liste weiterer CoreA11y-Produkte"
 
 #. translators: %s: number of problems.
 #: admin/views/partials/pro-catalog.php:54
@@ -979,100 +943,92 @@ msgstr "(öffnet corea11y.com)"
 msgid "From $19 a month or $179 a year for one site, with a 30-day money-back guarantee."
 msgstr "Ab 19 $ im Monat oder 179 $ im Jahr für eine Website, mit 30 Tagen Geld-zurück-Garantie."
 
-#: admin/views/partials/report-body.php:30
+#: admin/views/partials/report-body.php:34
 msgid "No problems found by the automated checks. Wonderful work!"
 msgstr "Die automatischen Prüfungen haben keine Probleme gefunden. Wunderbare Arbeit!"
 
-#: admin/views/partials/report-body.php:31
+#: admin/views/partials/report-body.php:35
 msgid "Finish the job with the manual checklist: it covers what software can't judge."
 msgstr "Vervollständigen Sie die Arbeit mit der manuellen Checkliste: Sie deckt ab, was Software nicht beurteilen kann."
 
-#: admin/views/partials/report-body.php:33
+#: admin/views/partials/report-body.php:41
 msgid "Your site is in great shape."
 msgstr "Ihre Website ist in sehr gutem Zustand."
 
-#: admin/views/partials/report-body.php:34
+#: admin/views/partials/report-body.php:42
 msgid "A handful of fixes below and you're there."
 msgstr "Noch ein paar Korrekturen unten, dann haben Sie es geschafft."
 
-#: admin/views/partials/report-body.php:36
+#: admin/views/partials/report-body.php:44
 msgid "A solid foundation to build on."
 msgstr "Eine solide Grundlage zum Weiterbauen."
 
-#: admin/views/partials/report-body.php:37
+#: admin/views/partials/report-body.php:45
 msgid "Start with the critical problems: they make the biggest difference for your visitors."
 msgstr "Beginnen Sie mit den kritischen Problemen: Sie machen für Ihre Besucher den größten Unterschied."
 
-#: admin/views/partials/report-body.php:39
+#: admin/views/partials/report-body.php:47
 msgid "There's work to do, and you're in the right place."
 msgstr "Es gibt einiges zu tun, und Sie sind hier genau richtig."
 
-#: admin/views/partials/report-body.php:40
+#: admin/views/partials/report-body.php:48
 msgid "Start with the critical problems. Fixing one problem type often clears many issues at once."
 msgstr "Beginnen Sie mit den kritischen Problemen. Wenn Sie eine Problemart beheben, verschwinden oft viele Probleme auf einmal."
 
-#: admin/views/partials/report-body.php:51
-msgid "issues found"
-msgstr "gefundene Probleme"
-
-#: admin/views/partials/report-body.php:52
-msgid "types of problem"
-msgstr "Problemarten"
-
-#: admin/views/partials/report-body.php:53
+#: admin/views/partials/report-body.php:74
 msgid "pages scanned"
 msgstr "geprüfte Seiten"
 
-#: admin/views/partials/report-body.php:54
+#: admin/views/partials/report-body.php:75
 msgid "critical"
 msgstr "kritisch"
 
-#: admin/views/partials/report-body.php:59
+#: admin/views/partials/report-body.php:80
 msgid "About the accessibility score"
 msgstr "Über die Barrierefreiheitsbewertung"
 
-#: admin/views/partials/report-body.php:59 pro/includes/class-corea11y-pro-network.php:185
+#: admin/views/partials/report-body.php:80 pro/includes/class-corea11y-pro-network.php:185
 msgid "Accessibility score"
 msgstr "Barrierefreiheitsbewertung"
 
-#: admin/views/partials/report-body.php:64
+#: admin/views/partials/report-body.php:85
 msgid "Charts"
 msgstr "Diagramme"
 
-#: admin/views/partials/report-body.php:67
+#: admin/views/partials/report-body.php:88
 msgid "Issues by severity"
 msgstr "Probleme nach Schweregrad"
 
-#: admin/views/partials/report-body.php:68
+#: admin/views/partials/report-body.php:89
 msgid "Issues by WCAG principle"
 msgstr "Probleme nach WCAG-Prinzip"
 
-#: admin/views/partials/report-body.php:69
+#: admin/views/partials/report-body.php:90
 msgid "Issues by type of fix"
 msgstr "Probleme nach Art der Korrektur"
 
-#: admin/views/partials/report-body.php:76
+#: admin/views/partials/report-body.php:97
 msgid "Pages with the most issues"
 msgstr "Seiten mit den meisten Problemen"
 
-#: admin/views/partials/report-body.php:78 admin/views/partials/report-body.php:327 pro/includes/class-corea11y-pro-reports.php:86
+#: admin/views/partials/report-body.php:99 admin/views/partials/report-body.php:345 pro/includes/class-corea11y-pro-reports.php:86
 msgid "Page"
 msgstr "Seite"
 
-#: admin/views/partials/report-body.php:93
+#: admin/views/partials/report-body.php:114
 msgid "What to fix"
 msgstr "Was zu beheben ist"
 
-#: admin/views/partials/report-body.php:95
+#: admin/views/partials/report-body.php:116
 msgid "Nothing to fix from the automated checks. Head to the manual checklist next."
 msgstr "Aus den automatischen Prüfungen ist nichts zu beheben. Machen Sie als Nächstes mit der manuellen Checkliste weiter."
 
-#: admin/views/partials/report-body.php:97
+#: admin/views/partials/report-body.php:118
 msgid "Problems are listed most severe first. Select \"?\" next to any problem to learn why it matters and how to fix it."
 msgstr "Probleme sind nach Schweregrad sortiert, die schwersten zuerst. Wählen Sie „?“ neben einem Problem, um zu erfahren, warum es wichtig ist und wie Sie es beheben."
 
 #. translators: 1: number of elements, 2: number of pages.
-#: admin/views/partials/report-body.php:137
+#: admin/views/partials/report-body.php:158
 #, php-format
 msgid "%s element"
 msgid_plural "%s elements"
@@ -1080,165 +1036,165 @@ msgstr[0] "%s Element"
 msgstr[1] "%s Elemente"
 
 #. translators: 1: number of elements, 2: number of pages.
-#: admin/views/partials/report-body.php:137 admin/views/partials/report-body.php:296
+#: admin/views/partials/report-body.php:158 admin/views/partials/report-body.php:314
 #, php-format
 msgid "on %s page"
 msgid_plural "on %s pages"
 msgstr[0] "auf %s Seite"
 msgstr[1] "auf %s Seiten"
 
-#: admin/views/partials/report-body.php:144
+#: admin/views/partials/report-body.php:165
 msgid "Add alt text in one place:"
 msgstr "Alternativtext an einem Ort hinzufügen:"
 
-#: admin/views/partials/report-body.php:145
+#: admin/views/partials/report-body.php:166
 msgid "Open the Alt text screen"
 msgstr "Bildschirm „Alternativtext“ öffnen"
 
-#: admin/views/partials/report-body.php:160
+#: admin/views/partials/report-body.php:181
 msgid "MSACAlab Accessibility Checker Pro suggests readable colours for each of these, which you approve and can undo."
 msgstr "MSACAlab Accessibility Checker Pro schlägt für jedes davon gut lesbare Farben vor, die Sie freigeben und rückgängig machen können."
 
-#: admin/views/partials/report-body.php:160
+#: admin/views/partials/report-body.php:181
 msgid "Learn about Pro"
 msgstr "Mehr über Pro"
 
-#: admin/views/partials/report-body.php:169
+#: admin/views/partials/report-body.php:190
 msgid "Quick fix is on"
 msgstr "Schnellkorrektur ist aktiv"
 
-#: admin/views/partials/report-body.php:170
+#: admin/views/partials/report-body.php:191
 msgid "Run a new audit to confirm it resolved these issues."
 msgstr "Führen Sie eine neue Prüfung durch, um zu bestätigen, dass diese Probleme gelöst sind."
 
-#: admin/views/partials/report-body.php:172
+#: admin/views/partials/report-body.php:193
 msgid "One-click fix available:"
 msgstr "Ein-Klick-Korrektur verfügbar:"
 
-#: admin/views/partials/report-body.php:180
+#: admin/views/partials/report-body.php:201
 msgid "Why it matters"
 msgstr "Warum es wichtig ist"
 
-#: admin/views/partials/report-body.php:181 pro/includes/class-corea11y-pro-reports.php:96
+#: admin/views/partials/report-body.php:202 pro/includes/class-corea11y-pro-reports.php:96
 msgid "Who it affects"
 msgstr "Wen es betrifft"
 
-#: admin/views/partials/report-body.php:182 pro/includes/class-corea11y-pro-reports.php:97
+#: admin/views/partials/report-body.php:203 pro/includes/class-corea11y-pro-reports.php:97
 msgid "How to fix"
 msgstr "So beheben Sie es"
 
-#: admin/views/partials/report-body.php:185 includes/class-corea11y-highlighter.php:136 includes/class-corea11y-ui.php:82
+#: admin/views/partials/report-body.php:206 includes/class-corea11y-highlighter.php:136 includes/class-corea11y-ui.php:92
 msgid "How to fix:"
 msgstr "So beheben Sie es:"
 
 #. translators: %s: the technical rule description from the testing engine.
-#: admin/views/partials/report-body.php:192
+#: admin/views/partials/report-body.php:213
 #, php-format
 msgid "Technical check: %s"
 msgstr "Technische Prüfung: %s"
 
-#: admin/views/partials/report-body.php:195
+#: admin/views/partials/report-body.php:216
 msgid "Detailed guide"
 msgstr "Ausführliche Anleitung"
 
-#: admin/views/partials/report-body.php:201
+#: admin/views/partials/report-body.php:222
 msgid "Where it was found"
 msgstr "Wo es gefunden wurde"
 
 #. translators: %s: number of elements.
-#: admin/views/partials/report-body.php:207
+#: admin/views/partials/report-body.php:228
 #, php-format
 msgid "Show the %s element"
 msgid_plural "Show all %s elements"
 msgstr[0] "Das %s Element anzeigen"
 msgstr[1] "Alle %s Elemente anzeigen"
 
-#: admin/views/partials/report-body.php:217
+#: admin/views/partials/report-body.php:238
 msgid "Show on page"
 msgstr "Auf der Seite zeigen"
 
-#: admin/views/partials/report-body.php:220
+#: admin/views/partials/report-body.php:241
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: admin/views/partials/report-body.php:232
+#: admin/views/partials/report-body.php:253
 msgid "Dismiss"
 msgstr "Ausblenden"
 
-#: admin/views/partials/report-body.php:240
+#: admin/views/partials/report-body.php:261
 msgid "Why are you dismissing this?"
 msgstr "Warum blenden Sie das aus?"
 
-#: admin/views/partials/report-body.php:246
+#: admin/views/partials/report-body.php:267
 msgid "Note (optional)"
 msgstr "Notiz (optional)"
 
-#: admin/views/partials/report-body.php:249
+#: admin/views/partials/report-body.php:270
 msgid "Dismiss issue"
 msgstr "Problem ausblenden"
 
 #. translators: %s: number of further elements.
-#: admin/views/partials/report-body.php:260
+#: admin/views/partials/report-body.php:281
 #, php-format
 msgid "…and %s more. See the full list in MSACAlab Accessibility Checker."
 msgstr "… und %s weitere. Die vollständige Liste finden Sie in MSACAlab Accessibility Checker."
 
 #. translators: %s: number of problem types that need a person to check them.
-#: admin/views/partials/report-body.php:279
+#: admin/views/partials/report-body.php:297
 #, php-format
 msgid "Needs a human check (%s)"
 msgstr "Manuelle Prüfung nötig (%s)"
 
-#: admin/views/partials/report-body.php:281 pro/includes/class-corea11y-pro-reports.php:109
+#: admin/views/partials/report-body.php:299 pro/includes/class-corea11y-pro-reports.php:109
 msgid "Needs a human check"
 msgstr "Manuelle Prüfung nötig"
 
-#: admin/views/partials/report-body.php:283
+#: admin/views/partials/report-body.php:301
 msgid "The automated checks couldn't decide on these, for example text placed over a background image. They are not counted in the score or totals. Take a quick look and fix any that turn out to be real problems."
 msgstr "Die automatischen Prüfungen konnten hier nicht entscheiden, zum Beispiel bei Text über einem Hintergrundbild. Diese Punkte zählen nicht zur Bewertung oder zu den Summen. Sehen Sie kurz nach und beheben Sie alles, was sich als echtes Problem herausstellt."
 
 #. translators: 1: number of elements, 2: number of pages.
-#: admin/views/partials/report-body.php:296
+#: admin/views/partials/report-body.php:314
 #, php-format
 msgid "%1$s element"
 msgid_plural "%1$s elements"
 msgstr[0] "%1$s Element"
 msgstr[1] "%1$s Elemente"
 
-#: admin/views/partials/report-body.php:304
+#: admin/views/partials/report-body.php:322
 msgid "Show examples"
 msgstr "Beispiele anzeigen"
 
 #. translators: %s: number of dismissed issues.
-#: admin/views/partials/report-body.php:322
+#: admin/views/partials/report-body.php:340
 #, php-format
 msgid "Dismissed issues (%s)"
 msgstr "Ausgeblendete Probleme (%s)"
 
-#: admin/views/partials/report-body.php:325
+#: admin/views/partials/report-body.php:343
 msgid "These issues are not counted in the score or totals. Restore any of them if circumstances change."
 msgstr "Diese Probleme zählen nicht zur Bewertung oder zu den Summen. Stellen Sie sie wieder her, wenn sich die Umstände ändern."
 
-#: admin/views/partials/report-body.php:327
+#: admin/views/partials/report-body.php:345
 msgid "Reason"
 msgstr "Grund"
 
-#: admin/views/partials/report-body.php:327 admin/views/partials/report-body.php:347
+#: admin/views/partials/report-body.php:345 admin/views/partials/report-body.php:365
 msgid "Restore"
 msgstr "Wiederherstellen"
 
-#: admin/views/partials/report-body.php:360
+#: admin/views/partials/report-body.php:378
 msgid "Pages that could not be scanned"
 msgstr "Seiten, die nicht geprüft werden konnten"
 
 #. translators: %s: number of additional elements not listed.
-#: admin/views/partials/report-body.php:373
+#: admin/views/partials/report-body.php:391
 #, php-format
 msgid "To keep reports readable, up to 25 elements are listed per problem per page. %s more matching elements were found but not listed."
 msgstr "Damit Berichte lesbar bleiben, werden pro Problem und Seite bis zu 25 Elemente aufgeführt. %s weitere passende Elemente wurden gefunden, aber nicht aufgeführt."
 
 #. translators: %s: axe-core version.
-#: admin/views/partials/report-body.php:381
+#: admin/views/partials/report-body.php:399
 #, php-format
 msgid "Scanned with axe-core %s against WCAG 2.0, 2.1 and 2.2 Level A and AA rules, plus MSACAlab Accessibility Checker content checks. Automated checks find only part of all accessibility issues; the manual checklist covers the rest. This report does not certify WCAG conformance."
 msgstr "Geprüft mit axe-core %s anhand der Regeln der WCAG 2.0, 2.1 und 2.2 Stufe A und AA sowie der Inhaltsprüfungen von MSACAlab Accessibility Checker. Automatische Prüfungen finden nur einen Teil aller Barrierefreiheitsprobleme; die manuelle Checkliste deckt den Rest ab. Dieser Bericht bescheinigt keine WCAG-Konformität."
@@ -1297,27 +1253,27 @@ msgstr "Problem wiederhergestellt. Es zählt wieder in Ihren Berichten."
 msgid "MSACAlab Accessibility Checker settings"
 msgstr "Einstellungen von MSACAlab Accessibility Checker"
 
-#: admin/views/settings.php:27 admin/views/settings.php:29
+#: admin/views/settings.php:26 admin/views/settings.php:28
 msgid "Support information"
 msgstr "Support-Informationen"
 
-#: admin/views/settings.php:28
+#: admin/views/settings.php:27
 msgid "If something isn't working, copy this into your support request. It describes your setup and stays on your site until you choose to share it."
 msgstr "Wenn etwas nicht funktioniert, kopieren Sie dies in Ihre Support-Anfrage. Es beschreibt Ihre Einrichtung und bleibt auf Ihrer Website, bis Sie es selbst weitergeben."
 
-#: admin/views/settings.php:32
+#: admin/views/settings.php:31
 msgid "Copied to your clipboard."
 msgstr "In die Zwischenablage kopiert."
 
-#: admin/views/settings.php:32
+#: admin/views/settings.php:31
 msgid "Selected. Press Ctrl+C (or Cmd+C) to copy."
 msgstr "Ausgewählt. Drücken Sie Strg+C (oder Cmd+C) zum Kopieren."
 
-#: admin/views/settings.php:32
+#: admin/views/settings.php:31
 msgid "Copy support information"
 msgstr "Support-Informationen kopieren"
 
-#: admin/views/statement.php:21 admin/views/statement.php:22 includes/class-corea11y-admin.php:58 includes/class-corea11y-statement.php:135 includes/class-corea11y-statement.php:161
+#: admin/views/statement.php:21 admin/views/statement.php:22 includes/class-corea11y-admin.php:59 includes/class-corea11y-statement.php:135 includes/class-corea11y-statement.php:161
 msgid "Accessibility statement"
 msgstr "Erklärung zur Barrierefreiheit"
 
@@ -1433,45 +1389,45 @@ msgstr "Vorschau"
 msgid "This statement follows the structure recommended by the W3C Web Accessibility Initiative. It is a template, not legal advice. Review it before publishing."
 msgstr "Diese Erklärung folgt der von der W3C Web Accessibility Initiative empfohlenen Struktur. Sie ist eine Vorlage, keine Rechtsberatung. Prüfen Sie sie vor der Veröffentlichung."
 
-#: includes/class-corea11y-admin.php:46 pro/includes/class-corea11y-pro-network.php:55
+#: includes/class-corea11y-admin.php:47 pro/includes/class-corea11y-pro-network.php:55
 msgid "Accessibility"
 msgstr "Barrierefreiheit"
 
-#: includes/class-corea11y-admin.php:53
+#: includes/class-corea11y-admin.php:54
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: includes/class-corea11y-admin.php:58
+#: includes/class-corea11y-admin.php:59
 msgid "Statement"
 msgstr "Erklärung"
 
-#: includes/class-corea11y-admin.php:60 includes/class-corea11y-admin.php:112
+#: includes/class-corea11y-admin.php:61 includes/class-corea11y-admin.php:113
 msgid "Settings"
 msgstr "Einstellungen"
 
 #. translators: 1: database table name, 2: column names.
-#: includes/class-corea11y-admin.php:80
+#: includes/class-corea11y-admin.php:81
 #, php-format
 msgid "Audits can't be saved: another plugin has added required columns to the %1$s table (%2$s). This usually happens when two plugins use a table with the same name. Please contact support@corea11y.com and include your support information from Settings."
 msgstr "Prüfungen können nicht gespeichert werden: Ein anderes Plugin hat der Tabelle %1$s Pflichtspalten hinzugefügt (%2$s). Das passiert meist, wenn zwei Plugins eine Tabelle mit demselben Namen verwenden. Bitte wenden Sie sich an support@corea11y.com und fügen Sie Ihre Support-Informationen aus den Einstellungen bei."
 
-#: includes/class-corea11y-admin.php:269 includes/class-corea11y-admin.php:298 includes/class-corea11y-admin.php:342 includes/class-corea11y-admin.php:366 includes/class-corea11y-admin.php:379 includes/class-corea11y-admin.php:408 includes/class-corea11y-admin.php:427 includes/class-corea11y-admin.php:444 includes/class-corea11y-admin.php:459 includes/class-corea11y-admin.php:568 includes/class-corea11y-admin.php:634 pro/includes/class-corea11y-pro-contrast.php:479 pro/includes/class-corea11y-pro-contrast.php:511 pro/includes/class-corea11y-pro-monitor.php:326 pro/includes/class-corea11y-pro-network.php:266 pro/includes/class-corea11y-pro-network.php:317 pro/includes/class-corea11y-pro-reports.php:56
+#: includes/class-corea11y-admin.php:270 includes/class-corea11y-admin.php:299 includes/class-corea11y-admin.php:343 includes/class-corea11y-admin.php:368 includes/class-corea11y-admin.php:406 includes/class-corea11y-admin.php:435 includes/class-corea11y-admin.php:454 includes/class-corea11y-admin.php:471 includes/class-corea11y-admin.php:486 includes/class-corea11y-admin.php:595 includes/class-corea11y-admin.php:661 pro/includes/class-corea11y-pro-contrast.php:479 pro/includes/class-corea11y-pro-contrast.php:511 pro/includes/class-corea11y-pro-monitor.php:326 pro/includes/class-corea11y-pro-network.php:266 pro/includes/class-corea11y-pro-network.php:317 pro/includes/class-corea11y-pro-reports.php:56
 msgid "You do not have permission to do this."
 msgstr "Sie haben keine Berechtigung, dies zu tun."
 
-#: includes/class-corea11y-admin.php:520
+#: includes/class-corea11y-admin.php:547
 msgid "Pick two different audits to compare."
 msgstr "Wählen Sie zwei verschiedene Prüfungen zum Vergleichen."
 
-#: includes/class-corea11y-admin.php:583
+#: includes/class-corea11y-admin.php:610
 msgid "Accessibility progress report"
 msgstr "Fortschrittsbericht Barrierefreiheit"
 
-#: includes/class-corea11y-admin.php:588 includes/class-corea11y-audit.php:135 includes/class-corea11y-audit.php:294 pro/includes/class-corea11y-pro-reports.php:64
+#: includes/class-corea11y-admin.php:615 includes/class-corea11y-audit.php:135 includes/class-corea11y-audit.php:294 pro/includes/class-corea11y-pro-reports.php:64
 msgid "Audit not found."
 msgstr "Prüfung nicht gefunden."
 
-#: includes/class-corea11y-admin.php:590
+#: includes/class-corea11y-admin.php:617
 msgid "Accessibility audit report"
 msgstr "Bericht zur Barrierefreiheitsprüfung"
 
@@ -1787,7 +1743,7 @@ msgstr "Prüfen Sie dieses Element anhand der angezeigten WCAG-Anforderung und p
 msgid "A screen reader instruction (ARIA) is used incorrectly"
 msgstr "Eine Screenreader-Anweisung (ARIA) wird falsch verwendet"
 
-#: includes/class-corea11y-explain.php:30 includes/class-corea11y-explain.php:71 includes/class-corea11y-explain.php:77 includes/class-corea11y-explain.php:83 includes/class-corea11y-explain.php:89 includes/class-corea11y-explain.php:95 includes/class-corea11y-explain.php:132 includes/class-corea11y-explain.php:138 includes/class-corea11y-explain.php:156 includes/class-corea11y-explain.php:162 includes/class-corea11y-explain.php:168 includes/class-corea11y-explain.php:198 includes/class-corea11y-explain.php:204 includes/class-corea11y-explain.php:210 includes/class-corea11y-explain.php:217 includes/class-corea11y-explain.php:223 includes/class-corea11y-explain.php:265 includes/class-corea11y-explain.php:271 includes/class-corea11y-explain.php:277 includes/class-corea11y-explain.php:289 includes/class-corea11y-explain.php:313 includes/class-corea11y-explain.php:333 includes/class-corea11y-explain.php:339 includes/class-corea11y-explain.php:351 includes/class-corea11y-explain.php:365 includes/class-corea11y-explain.php:401 includes/class-corea11y-explain.php:413 includes/class-corea11y-explain.php:449 includes/class-corea11y-explain.php:455 includes/class-corea11y-explain.php:467 includes/class-corea11y-explain.php:473 includes/class-corea11y-explain.php:485 includes/class-corea11y-explain.php:497 includes/class-corea11y-explain.php:521 includes/class-corea11y-explain.php:545 includes/class-corea11y-explain.php:563 includes/class-corea11y-explain.php:569 includes/class-corea11y-explain.php:575 includes/class-corea11y-explain.php:587 includes/class-corea11y-explain.php:599 includes/class-corea11y-explain.php:605 includes/class-corea11y-explain.php:611 includes/class-corea11y-explain.php:642 includes/class-corea11y-explain.php:648
+#: includes/class-corea11y-explain.php:30 includes/class-corea11y-explain.php:71 includes/class-corea11y-explain.php:77 includes/class-corea11y-explain.php:83 includes/class-corea11y-explain.php:89 includes/class-corea11y-explain.php:95 includes/class-corea11y-explain.php:132 includes/class-corea11y-explain.php:138 includes/class-corea11y-explain.php:156 includes/class-corea11y-explain.php:162 includes/class-corea11y-explain.php:168 includes/class-corea11y-explain.php:198 includes/class-corea11y-explain.php:204 includes/class-corea11y-explain.php:210 includes/class-corea11y-explain.php:217 includes/class-corea11y-explain.php:223 includes/class-corea11y-explain.php:265 includes/class-corea11y-explain.php:271 includes/class-corea11y-explain.php:277 includes/class-corea11y-explain.php:289 includes/class-corea11y-explain.php:313 includes/class-corea11y-explain.php:333 includes/class-corea11y-explain.php:339 includes/class-corea11y-explain.php:351 includes/class-corea11y-explain.php:365 includes/class-corea11y-explain.php:407 includes/class-corea11y-explain.php:419 includes/class-corea11y-explain.php:455 includes/class-corea11y-explain.php:461 includes/class-corea11y-explain.php:473 includes/class-corea11y-explain.php:479 includes/class-corea11y-explain.php:491 includes/class-corea11y-explain.php:503 includes/class-corea11y-explain.php:527 includes/class-corea11y-explain.php:551 includes/class-corea11y-explain.php:569 includes/class-corea11y-explain.php:575 includes/class-corea11y-explain.php:581 includes/class-corea11y-explain.php:593 includes/class-corea11y-explain.php:605 includes/class-corea11y-explain.php:611 includes/class-corea11y-explain.php:617 includes/class-corea11y-explain.php:648 includes/class-corea11y-explain.php:654
 msgid "Screen reader users"
 msgstr "Screenreader-Nutzer"
 
@@ -1955,7 +1911,7 @@ msgstr "Unterstreichen Sie Links im Fließtext oder geben Sie ihnen genug Kontra
 msgid "Links don't say where they go"
 msgstr "Links sagen nicht, wohin sie führen"
 
-#: includes/class-corea11y-explain.php:113 includes/class-corea11y-explain.php:119 includes/class-corea11y-explain.php:425 includes/class-corea11y-explain.php:443
+#: includes/class-corea11y-explain.php:113 includes/class-corea11y-explain.php:119 includes/class-corea11y-explain.php:395 includes/class-corea11y-explain.php:431 includes/class-corea11y-explain.php:449
 msgid "Screen reader and voice control users"
 msgstr "Nutzer von Screenreadern und Sprachsteuerung"
 
@@ -2107,7 +2063,7 @@ msgstr "Stellen Sie sicher, dass Ihr Theme „title-tag“ unterstützt und jede
 msgid "There is no way to skip straight to the main content"
 msgstr "Es gibt keine Möglichkeit, direkt zum Hauptinhalt zu springen"
 
-#: includes/class-corea11y-explain.php:180 includes/class-corea11y-explain.php:295 includes/class-corea11y-explain.php:345 includes/class-corea11y-explain.php:377 includes/class-corea11y-explain.php:407 includes/class-corea11y-explain.php:431 includes/class-corea11y-explain.php:437 includes/class-corea11y-explain.php:551 includes/class-corea11y-explain.php:581
+#: includes/class-corea11y-explain.php:180 includes/class-corea11y-explain.php:295 includes/class-corea11y-explain.php:345 includes/class-corea11y-explain.php:377 includes/class-corea11y-explain.php:413 includes/class-corea11y-explain.php:437 includes/class-corea11y-explain.php:443 includes/class-corea11y-explain.php:557 includes/class-corea11y-explain.php:587
 msgid "Keyboard and screen reader users"
 msgstr "Tastatur- und Screenreader-Nutzer"
 
@@ -2575,7 +2531,7 @@ msgstr "Fügen Sie dem Linktext den Dateityp (und idealerweise die Größe) hinz
 msgid "Audio or video files may need a transcript"
 msgstr "Audio- oder Videodateien brauchen eventuell ein Transkript"
 
-#: includes/class-corea11y-explain.php:389 includes/class-corea11y-explain.php:617 includes/class-corea11y-explain.php:623
+#: includes/class-corea11y-explain.php:389 includes/class-corea11y-explain.php:623 includes/class-corea11y-explain.php:629
 msgid "People who are deaf or hard of hearing"
 msgstr "Gehörlose und schwerhörige Menschen"
 
@@ -2587,719 +2543,719 @@ msgstr "Audio- und Videoinhalte brauchen eine Textalternative, damit alle an die
 msgid "Provide a transcript next to the link, or captions for video."
 msgstr "Stellen Sie neben dem Link ein Transkript bereit, bei Videos Untertitel."
 
-#: includes/class-corea11y-explain.php:394
+#: includes/class-corea11y-explain.php:400
 msgid "Links open a new tab without warning"
 msgstr "Links öffnen ohne Hinweis einen neuen Tab"
 
-#: includes/class-corea11y-explain.php:395
+#: includes/class-corea11y-explain.php:401
 msgid "Screen reader, keyboard and older users"
 msgstr "Screenreader-, Tastatur- und ältere Nutzer"
 
-#: includes/class-corea11y-explain.php:396
+#: includes/class-corea11y-explain.php:402
 msgid "A new tab or window opening unexpectedly can be disorienting, and the Back button no longer works."
 msgstr "Ein unerwartet geöffneter neuer Tab oder ein neues Fenster kann verwirren, und die Zurück-Schaltfläche funktioniert nicht mehr."
 
-#: includes/class-corea11y-explain.php:397
+#: includes/class-corea11y-explain.php:403
 msgid "Avoid opening new tabs where possible. If you must, add \"(opens in a new tab)\" to the link text or as visually hidden text."
 msgstr "Vermeiden Sie neue Tabs, wo möglich. Wenn es sein muss, ergänzen Sie „(öffnet in einem neuen Tab)“ im Linktext oder als visuell ausgeblendeten Text."
 
-#: includes/class-corea11y-explain.php:400
+#: includes/class-corea11y-explain.php:406
 msgid "Link title repeats the link text"
 msgstr "Der Linktitel wiederholt den Linktext"
 
-#: includes/class-corea11y-explain.php:402
+#: includes/class-corea11y-explain.php:408
 msgid "A title attribute that repeats the link text adds nothing and may be read twice."
 msgstr "Ein title-Attribut, das den Linktext wiederholt, bringt nichts und wird womöglich zweimal vorgelesen."
 
-#: includes/class-corea11y-explain.php:403
+#: includes/class-corea11y-explain.php:409
 msgid "Remove the title attribute, or use it only for extra information that is also available another way."
 msgstr "Entfernen Sie das title-Attribut oder nutzen Sie es nur für Zusatzinformationen, die auch auf andere Weise verfügbar sind."
 
-#: includes/class-corea11y-explain.php:406
+#: includes/class-corea11y-explain.php:412
 msgid "Two links side by side go to the same place"
 msgstr "Zwei nebeneinanderliegende Links führen zum selben Ziel"
 
-#: includes/class-corea11y-explain.php:408
+#: includes/class-corea11y-explain.php:414
 msgid "An image link and a text link next to each other that go to the same page mean two tab stops and the same link announced twice."
 msgstr "Ein Bild-Link und ein Text-Link nebeneinander, die zur selben Seite führen, bedeuten zwei Tab-Stopps und zweimal denselben angesagten Link."
 
-#: includes/class-corea11y-explain.php:409
+#: includes/class-corea11y-explain.php:415
 msgid "Wrap the image and the text in one link."
 msgstr "Fassen Sie Bild und Text in einem Link zusammen."
 
-#: includes/class-corea11y-explain.php:412
+#: includes/class-corea11y-explain.php:418
 msgid "Links with the same text go to different pages"
 msgstr "Links mit gleichem Text führen zu verschiedenen Seiten"
 
-#: includes/class-corea11y-explain.php:414
+#: includes/class-corea11y-explain.php:420
 msgid "When several links have identical text but different destinations, people can't tell them apart in a list of links."
 msgstr "Wenn mehrere Links denselben Text, aber verschiedene Ziele haben, kann man sie in einer Linkliste nicht unterscheiden."
 
-#: includes/class-corea11y-explain.php:415
+#: includes/class-corea11y-explain.php:421
 msgid "Make each link's text unique, for example by adding the item name."
 msgstr "Machen Sie den Text jedes Links eindeutig, zum Beispiel durch den Namen des Eintrags."
 
-#: includes/class-corea11y-explain.php:418
+#: includes/class-corea11y-explain.php:424
 msgid "Fields use placeholder text instead of a label"
 msgstr "Felder verwenden Platzhaltertext statt einer Beschriftung"
 
-#: includes/class-corea11y-explain.php:419
+#: includes/class-corea11y-explain.php:425
 msgid "People with memory or cognitive disabilities, and screen reader users"
 msgstr "Menschen mit Gedächtnis- oder kognitiven Beeinträchtigungen sowie Screenreader-Nutzer"
 
-#: includes/class-corea11y-explain.php:420
+#: includes/class-corea11y-explain.php:426
 msgid "Placeholder text disappears when someone starts typing, and it is often low contrast. People then forget what the field was for."
 msgstr "Platzhaltertext verschwindet, sobald jemand zu tippen beginnt, und hat oft wenig Kontrast. Dann vergessen Menschen, wofür das Feld war."
 
-#: includes/class-corea11y-explain.php:421
+#: includes/class-corea11y-explain.php:427
 msgid "Add a visible label to the field. Keep the placeholder only for an example, if at all."
 msgstr "Fügen Sie dem Feld eine sichtbare Beschriftung hinzu. Behalten Sie den Platzhalter allenfalls für ein Beispiel."
 
-#: includes/class-corea11y-explain.php:424
+#: includes/class-corea11y-explain.php:430
 msgid "Form labels are hidden from everyone"
 msgstr "Formularbeschriftungen sind für alle ausgeblendet"
 
-#: includes/class-corea11y-explain.php:426
+#: includes/class-corea11y-explain.php:432
 msgid "The field has a label, but the theme hides it completely (display: none). Some screen readers then announce just \"edit text\", and people can't tell what to type."
 msgstr "Das Feld hat eine Beschriftung, aber das Theme blendet sie vollständig aus (display: none). Manche Screenreader sagen dann nur „Eingabefeld“, und niemand weiß, was einzugeben ist."
 
-#: includes/class-corea11y-explain.php:427
+#: includes/class-corea11y-explain.php:433
 msgid "Show the label, or hide it only visually with a \"screen reader text\" class instead of display: none. MSACAlab Accessibility Checker Pro can do this in one click."
 msgstr "Zeigen Sie die Beschriftung an oder blenden Sie sie nur visuell mit einer Klasse „screen reader text“ statt display: none aus. MSACAlab Accessibility Checker Pro kann das mit einem Klick erledigen."
 
-#: includes/class-corea11y-explain.php:430
+#: includes/class-corea11y-explain.php:436
 msgid "The \"Skip to content\" link goes nowhere"
 msgstr "Der Link „Zum Inhalt springen“ führt nirgendwohin"
 
-#: includes/class-corea11y-explain.php:432
+#: includes/class-corea11y-explain.php:438
 msgid "A skip link lets keyboard users jump past the menu. When its target is missing, pressing it does nothing and they have to tab through the whole menu."
 msgstr "Ein Sprunglink lässt Tastaturnutzer das Menü überspringen. Fehlt sein Ziel, bewirkt er nichts, und sie müssen durch das ganze Menü tabben."
 
-#: includes/class-corea11y-explain.php:433
+#: includes/class-corea11y-explain.php:439
 msgid "Point the link at the id of your main content area (for example #main), or give that area the id the link uses."
 msgstr "Lassen Sie den Link auf die id Ihres Hauptinhaltsbereichs zeigen (zum Beispiel #main) oder geben Sie diesem Bereich die id, die der Link verwendet."
 
-#: includes/class-corea11y-explain.php:436
+#: includes/class-corea11y-explain.php:442
 msgid "A link to a spot on the page goes nowhere"
 msgstr "Ein Link zu einer Stelle auf der Seite führt nirgendwohin"
 
-#: includes/class-corea11y-explain.php:438
+#: includes/class-corea11y-explain.php:444
 msgid "The link points to a part of the page that doesn't exist, so following it does nothing."
 msgstr "Der Link zeigt auf einen Teil der Seite, den es nicht gibt, daher bewirkt er nichts."
 
-#: includes/class-corea11y-explain.php:439
+#: includes/class-corea11y-explain.php:445
 msgid "Fix the link's #target, or add the matching id to the section it should jump to."
 msgstr "Korrigieren Sie das #Ziel des Links oder fügen Sie dem Abschnitt, zu dem er springen soll, die passende id hinzu."
 
-#: includes/class-corea11y-explain.php:442
+#: includes/class-corea11y-explain.php:448
 msgid "A form label isn't connected to any field"
 msgstr "Eine Formularbeschriftung ist mit keinem Feld verknüpft"
 
-#: includes/class-corea11y-explain.php:444
+#: includes/class-corea11y-explain.php:450
 msgid "The label's \"for\" value doesn't match any field's id, so the label isn't read with the field and clicking it doesn't focus the field."
 msgstr "Der „for“-Wert der Beschriftung passt zu keiner Feld-id, daher wird die Beschriftung nicht mit dem Feld vorgelesen, und ein Klick darauf fokussiert das Feld nicht."
 
-#: includes/class-corea11y-explain.php:445
+#: includes/class-corea11y-explain.php:451
 msgid "Make the label's \"for\" match the field's id."
 msgstr "Lassen Sie das „for“ der Beschriftung zur id des Feldes passen."
 
-#: includes/class-corea11y-explain.php:448
+#: includes/class-corea11y-explain.php:454
 msgid "A form label is empty"
 msgstr "Eine Formularbeschriftung ist leer"
 
-#: includes/class-corea11y-explain.php:450
+#: includes/class-corea11y-explain.php:456
 msgid "The field has a name from somewhere else, but an empty label element can still be announced as blank by some assistive technology."
 msgstr "Das Feld hat anderswoher einen Namen, aber ein leeres label-Element kann von manchen assistiven Technologien trotzdem als leer angesagt werden."
 
-#: includes/class-corea11y-explain.php:451
+#: includes/class-corea11y-explain.php:457
 msgid "Put the field's name in the label, or remove the empty label."
 msgstr "Schreiben Sie den Namen des Feldes in die Beschriftung oder entfernen Sie die leere Beschriftung."
 
-#: includes/class-corea11y-explain.php:454
+#: includes/class-corea11y-explain.php:460
 msgid "Very long alt text"
 msgstr "Sehr langer Alternativtext"
 
-#: includes/class-corea11y-explain.php:456
+#: includes/class-corea11y-explain.php:462
 msgid "Long alt text is read in one go and can't be paused or skimmed, which makes the page tiring to listen to."
 msgstr "Langer Alternativtext wird in einem Stück vorgelesen und lässt sich weder anhalten noch überfliegen, was das Zuhören ermüdend macht."
 
-#: includes/class-corea11y-explain.php:457
+#: includes/class-corea11y-explain.php:463
 msgid "Keep alt text short, usually under 125 characters. Put detailed descriptions in the page text or a caption."
 msgstr "Halten Sie Alternativtext kurz, meist unter 125 Zeichen. Ausführliche Beschreibungen gehören in den Seitentext oder eine Bildunterschrift."
 
-#: includes/class-corea11y-explain.php:460
+#: includes/class-corea11y-explain.php:466
 msgid "An image is described only by a tooltip"
 msgstr "Ein Bild wird nur durch einen Tooltip beschrieben"
 
-#: includes/class-corea11y-explain.php:461 includes/class-corea11y-explain.php:509
+#: includes/class-corea11y-explain.php:467 includes/class-corea11y-explain.php:515
 msgid "Screen reader, voice control and keyboard users"
 msgstr "Nutzer von Screenreadern, Sprachsteuerung und Tastatur"
 
-#: includes/class-corea11y-explain.php:462
+#: includes/class-corea11y-explain.php:468
 msgid "A title attribute shows as a tooltip on mouse hover only, and many screen readers don't announce it."
 msgstr "Ein title-Attribut erscheint nur beim Überfahren mit der Maus als Tooltip, und viele Screenreader sagen es nicht an."
 
-#: includes/class-corea11y-explain.php:463
+#: includes/class-corea11y-explain.php:469
 msgid "Give the image alt text. You can do this from the Alt text screen."
 msgstr "Geben Sie dem Bild einen Alternativtext. Das können Sie im Bildschirm „Alternativtext“ tun."
 
-#: includes/class-corea11y-explain.php:466
+#: includes/class-corea11y-explain.php:472
 msgid "Image title repeats the alt text"
 msgstr "Der Bildtitel wiederholt den Alternativtext"
 
-#: includes/class-corea11y-explain.php:468
+#: includes/class-corea11y-explain.php:474
 msgid "When the title and alt text are the same, some screen readers read the description twice."
 msgstr "Wenn Titel und Alternativtext gleich sind, lesen manche Screenreader die Beschreibung zweimal vor."
 
-#: includes/class-corea11y-explain.php:469
+#: includes/class-corea11y-explain.php:475
 msgid "Remove the title attribute."
 msgstr "Entfernen Sie das title-Attribut."
 
-#: includes/class-corea11y-explain.php:472
+#: includes/class-corea11y-explain.php:478
 msgid "Images next to each other have the same alt text"
 msgstr "Nebeneinanderliegende Bilder haben denselben Alternativtext"
 
-#: includes/class-corea11y-explain.php:474
+#: includes/class-corea11y-explain.php:480
 msgid "Hearing the same description twice in a row is confusing: people can't tell whether the images differ."
 msgstr "Zweimal hintereinander dieselbe Beschreibung zu hören verwirrt: Man kann nicht erkennen, ob sich die Bilder unterscheiden."
 
-#: includes/class-corea11y-explain.php:475
+#: includes/class-corea11y-explain.php:481
 msgid "Describe each image by what it shows. If one is purely decorative, mark it as decorative on the Alt text screen."
 msgstr "Beschreiben Sie jedes Bild nach dem, was es zeigt. Ist eines rein dekorativ, markieren Sie es im Bildschirm „Alternativtext“ als dekorativ."
 
-#: includes/class-corea11y-explain.php:478
+#: includes/class-corea11y-explain.php:484
 msgid "Underlined text looks like a link"
 msgstr "Unterstrichener Text sieht wie ein Link aus"
 
-#: includes/class-corea11y-explain.php:479
+#: includes/class-corea11y-explain.php:485
 msgid "Everyone, especially people with cognitive disabilities"
 msgstr "Alle, besonders Menschen mit kognitiven Beeinträchtigungen"
 
-#: includes/class-corea11y-explain.php:480
+#: includes/class-corea11y-explain.php:486
 msgid "On the web, underlined text means \"link\". People click it and nothing happens."
 msgstr "Im Web bedeutet unterstrichener Text „Link“. Man klickt darauf, und nichts passiert."
 
-#: includes/class-corea11y-explain.php:481
+#: includes/class-corea11y-explain.php:487
 msgid "Use bold or italics for emphasis, and keep underlines for links."
 msgstr "Verwenden Sie Fett- oder Kursivschrift zur Hervorhebung und behalten Sie Unterstreichungen für Links vor."
 
-#: includes/class-corea11y-explain.php:484
+#: includes/class-corea11y-explain.php:490
 msgid "The page has no regions"
 msgstr "Die Seite hat keine Bereiche"
 
-#: includes/class-corea11y-explain.php:486
+#: includes/class-corea11y-explain.php:492
 msgid "Regions (header, navigation, main content, footer) let screen reader users jump straight to the part they want."
 msgstr "Bereiche (Kopfbereich, Navigation, Hauptinhalt, Fußbereich) lassen Screenreader-Nutzer direkt zum gewünschten Teil springen."
 
-#: includes/class-corea11y-explain.php:487
+#: includes/class-corea11y-explain.php:493
 msgid "Use your theme's header, main and footer areas, or add HTML landmarks. MSACAlab Accessibility Checker Pro's \"Mark the main content area\" fix can add the main region when your theme has a recognisable content area."
 msgstr "Verwenden Sie die Kopf-, Haupt- und Fußbereiche Ihres Themes oder fügen Sie HTML-Landmarks hinzu. Die Korrektur „Hauptinhaltsbereich auszeichnen“ von MSACAlab Accessibility Checker Pro kann den Hauptbereich hinzufügen, wenn Ihr Theme einen erkennbaren Inhaltsbereich hat."
 
-#: includes/class-corea11y-explain.php:490
+#: includes/class-corea11y-explain.php:496
 msgid "The page title doesn't describe the page"
 msgstr "Der Seitentitel beschreibt die Seite nicht"
 
-#: includes/class-corea11y-explain.php:491
+#: includes/class-corea11y-explain.php:497
 msgid "Screen reader users, and everyone using tabs or bookmarks"
 msgstr "Screenreader-Nutzer und alle, die Tabs oder Lesezeichen verwenden"
 
-#: includes/class-corea11y-explain.php:492
+#: includes/class-corea11y-explain.php:498
 msgid "The page title is read first by screen readers and shown in browser tabs. A generic title like \"Untitled\" doesn't say where you are."
 msgstr "Der Seitentitel wird von Screenreadern zuerst vorgelesen und in Browser-Tabs angezeigt. Ein allgemeiner Titel wie „Ohne Titel“ sagt nicht, wo man ist."
 
-#: includes/class-corea11y-explain.php:493
+#: includes/class-corea11y-explain.php:499
 msgid "Give the page a title that describes it, for example \"Contact us | Harbour Bakery\"."
 msgstr "Geben Sie der Seite einen beschreibenden Titel, zum Beispiel „Kontakt | Hafenbäckerei“."
 
-#: includes/class-corea11y-explain.php:496
+#: includes/class-corea11y-explain.php:502
 msgid "An image's long description link is broken"
 msgstr "Der Link zur Langbeschreibung eines Bildes ist fehlerhaft"
 
-#: includes/class-corea11y-explain.php:498
+#: includes/class-corea11y-explain.php:504
 msgid "The longdesc attribute should point to a page that describes a complex image, but its value isn't an address."
 msgstr "Das longdesc-Attribut sollte auf eine Seite zeigen, die ein komplexes Bild beschreibt, aber sein Wert ist keine Adresse."
 
-#: includes/class-corea11y-explain.php:499
+#: includes/class-corea11y-explain.php:505
 msgid "Change longdesc to the address of the description page, or remove it and describe the image in the page text."
 msgstr "Ändern Sie longdesc in die Adresse der Beschreibungsseite oder entfernen Sie es und beschreiben Sie das Bild im Seitentext."
 
-#: includes/class-corea11y-explain.php:502
+#: includes/class-corea11y-explain.php:508
 msgid "Check that this video has captions"
 msgstr "Prüfen Sie, ob dieses Video Untertitel hat"
 
-#: includes/class-corea11y-explain.php:503
+#: includes/class-corea11y-explain.php:509
 msgid "Deaf and hard of hearing visitors, and anyone watching without sound"
 msgstr "Gehörlose und schwerhörige Besucher sowie alle, die ohne Ton schauen"
 
-#: includes/class-corea11y-explain.php:504
+#: includes/class-corea11y-explain.php:510
 msgid "Speech in a video needs accurate captions. Software can't tell whether captions exist or are correct, so this needs a person to check."
 msgstr "Sprache in einem Video braucht korrekte Untertitel. Software kann nicht erkennen, ob Untertitel vorhanden oder korrekt sind, daher muss das ein Mensch prüfen."
 
-#: includes/class-corea11y-explain.php:505
+#: includes/class-corea11y-explain.php:511
 msgid "Play the video with captions on. For YouTube, upload a caption file or correct the automatic captions in YouTube Studio."
 msgstr "Spielen Sie das Video mit Untertiteln ab. Laden Sie bei YouTube eine Untertiteldatei hoch oder korrigieren Sie die automatischen Untertitel in YouTube Studio."
 
-#: includes/class-corea11y-explain.php:508
+#: includes/class-corea11y-explain.php:514
 msgid "A field is labelled only by a tooltip"
 msgstr "Ein Feld ist nur durch einen Tooltip beschriftet"
 
-#: includes/class-corea11y-explain.php:510
+#: includes/class-corea11y-explain.php:516
 msgid "The field's only name is its title attribute, which appears as a tooltip on mouse hover and isn't shown to most visitors."
 msgstr "Der einzige Name des Feldes ist sein title-Attribut, das nur beim Überfahren mit der Maus als Tooltip erscheint und den meisten Besuchern nicht angezeigt wird."
 
-#: includes/class-corea11y-explain.php:511
+#: includes/class-corea11y-explain.php:517
 msgid "Add a visible label to the field."
 msgstr "Fügen Sie dem Feld eine sichtbare Beschriftung hinzu."
 
-#: includes/class-corea11y-explain.php:514
+#: includes/class-corea11y-explain.php:520
 msgid "Icons are hard to see against their background"
 msgstr "Symbole sind vor ihrem Hintergrund schwer zu erkennen"
 
-#: includes/class-corea11y-explain.php:515
+#: includes/class-corea11y-explain.php:521
 msgid "People with low vision or color blindness, and anyone in bright light"
 msgstr "Menschen mit Sehbehinderung oder Farbenblindheit sowie alle bei hellem Licht"
 
-#: includes/class-corea11y-explain.php:516
+#: includes/class-corea11y-explain.php:522
 msgid "Icons that carry meaning, such as a phone or email symbol, need a contrast of at least 3:1 with their background so people can make them out."
 msgstr "Bedeutungstragende Symbole, etwa ein Telefon- oder E-Mail-Symbol, brauchen einen Kontrast von mindestens 3:1 zum Hintergrund, damit man sie erkennen kann."
 
-#: includes/class-corea11y-explain.php:517
+#: includes/class-corea11y-explain.php:523
 msgid "Make the icon darker or its background lighter (or the reverse). MSACAlab Accessibility Checker Pro suggests a colour on the Colour contrast screen. If the icon is purely decorative and its meaning is also given in text, it can stay as it is."
 msgstr "Machen Sie das Symbol dunkler oder seinen Hintergrund heller (oder umgekehrt). MSACAlab Accessibility Checker Pro schlägt im Bildschirm „Farbkontrast“ eine Farbe vor. Ist das Symbol rein dekorativ und wird seine Bedeutung auch im Text genannt, kann es bleiben, wie es ist."
 
-#: includes/class-corea11y-explain.php:520
+#: includes/class-corea11y-explain.php:526
 msgid "Tables without header cells"
 msgstr "Tabellen ohne Kopfzellen"
 
-#: includes/class-corea11y-explain.php:522
+#: includes/class-corea11y-explain.php:528
 msgid "Without header cells, screen readers can't tell people which column or row a value belongs to."
 msgstr "Ohne Kopfzellen können Screenreader nicht sagen, zu welcher Spalte oder Zeile ein Wert gehört."
 
-#: includes/class-corea11y-explain.php:523
+#: includes/class-corea11y-explain.php:529
 msgid "Mark the first row or column as headers (th). In the block editor, turn on \"Header section\" for the Table block. If the table is only for layout, add role=\"presentation\"."
 msgstr "Zeichnen Sie die erste Zeile oder Spalte als Kopfzellen (th) aus. Aktivieren Sie im Block-Editor beim Tabellen-Block „Kopfbereich“. Dient die Tabelle nur dem Layout, fügen Sie role=\"presentation\" hinzu."
 
-#: includes/class-corea11y-explain.php:526
+#: includes/class-corea11y-explain.php:532
 msgid "Very small text"
 msgstr "Sehr kleiner Text"
 
-#: includes/class-corea11y-explain.php:527
+#: includes/class-corea11y-explain.php:533
 msgid "People with low vision and older visitors"
 msgstr "Menschen mit Sehbehinderung und ältere Besucher"
 
-#: includes/class-corea11y-explain.php:528
+#: includes/class-corea11y-explain.php:534
 msgid "Text smaller than 12px is hard to read for many people, even if they can zoom."
 msgstr "Text kleiner als 12px ist für viele Menschen schwer lesbar, selbst wenn sie zoomen können."
 
-#: includes/class-corea11y-explain.php:529
+#: includes/class-corea11y-explain.php:535
 msgid "Use at least 14 to 16px for body text and at least 12px for small print."
 msgstr "Verwenden Sie für Fließtext mindestens 14 bis 16px und für Kleingedrucktes mindestens 12px."
 
-#: includes/class-corea11y-explain.php:532
+#: includes/class-corea11y-explain.php:538
 msgid "Long text is justified"
 msgstr "Langer Text ist im Blocksatz gesetzt"
 
-#: includes/class-corea11y-explain.php:533
+#: includes/class-corea11y-explain.php:539
 msgid "People with dyslexia or low vision"
 msgstr "Menschen mit Legasthenie oder Sehbehinderung"
 
-#: includes/class-corea11y-explain.php:534
+#: includes/class-corea11y-explain.php:540
 msgid "Justified text stretches the gaps between words unevenly, creating \"rivers\" of white space that make reading harder."
 msgstr "Blocksatz dehnt die Wortabstände ungleichmäßig und erzeugt „Gassen“ aus Weißraum, die das Lesen erschweren."
 
-#: includes/class-corea11y-explain.php:535
+#: includes/class-corea11y-explain.php:541
 msgid "Align body text to the left (or right, for right-to-left languages)."
 msgstr "Richten Sie Fließtext linksbündig aus (bei rechtsläufigen Sprachen rechtsbündig)."
 
-#: includes/class-corea11y-explain.php:538
+#: includes/class-corea11y-explain.php:544
 msgid "Long text in capital letters"
 msgstr "Langer Text in Großbuchstaben"
 
-#: includes/class-corea11y-explain.php:539
+#: includes/class-corea11y-explain.php:545
 msgid "People with dyslexia or low vision, and screen reader users"
 msgstr "Menschen mit Legasthenie oder Sehbehinderung sowie Screenreader-Nutzer"
 
-#: includes/class-corea11y-explain.php:540
+#: includes/class-corea11y-explain.php:546
 msgid "Text in capitals is harder to read in long passages, and some screen readers spell it out letter by letter."
 msgstr "Text in Großbuchstaben ist in längeren Abschnitten schwerer zu lesen, und manche Screenreader buchstabieren ihn."
 
-#: includes/class-corea11y-explain.php:541
+#: includes/class-corea11y-explain.php:547
 msgid "Write the text in normal case. Use capitals only for short labels, preferably with CSS text-transform."
 msgstr "Schreiben Sie den Text in normaler Groß- und Kleinschreibung. Verwenden Sie Großbuchstaben nur für kurze Beschriftungen, am besten per CSS text-transform."
 
-#: includes/class-corea11y-explain.php:544
+#: includes/class-corea11y-explain.php:550
 msgid "Empty paragraphs used for spacing"
 msgstr "Leere Absätze als Abstandhalter"
 
-#: includes/class-corea11y-explain.php:546
+#: includes/class-corea11y-explain.php:552
 msgid "Empty paragraphs are sometimes announced as \"blank\", which is confusing."
 msgstr "Leere Absätze werden manchmal als „leer“ angesagt, was verwirrt."
 
-#: includes/class-corea11y-explain.php:547
+#: includes/class-corea11y-explain.php:553
 msgid "Remove the empty paragraphs and use block spacing or a Spacer block instead."
 msgstr "Entfernen Sie die leeren Absätze und verwenden Sie stattdessen Blockabstände oder einen Abstandhalter-Block."
 
-#: includes/class-corea11y-explain.php:550
+#: includes/class-corea11y-explain.php:556
 msgid "Access keys are used"
 msgstr "Zugriffstasten werden verwendet"
 
-#: includes/class-corea11y-explain.php:552
+#: includes/class-corea11y-explain.php:558
 msgid "Access keys can clash with shortcuts in browsers and screen readers, and users rarely know they exist."
 msgstr "Zugriffstasten können mit Tastenkürzeln von Browsern und Screenreadern kollidieren, und Nutzer wissen selten, dass es sie gibt."
 
-#: includes/class-corea11y-explain.php:553
+#: includes/class-corea11y-explain.php:559
 msgid "Remove the accesskey attribute."
 msgstr "Entfernen Sie das accesskey-Attribut."
 
-#: includes/class-corea11y-explain.php:556
+#: includes/class-corea11y-explain.php:562
 msgid "Animated images may need a pause option"
 msgstr "Animierte Bilder brauchen eventuell eine Pausenoption"
 
-#: includes/class-corea11y-explain.php:557
+#: includes/class-corea11y-explain.php:563
 msgid "People with attention disorders or vestibular conditions"
 msgstr "Menschen mit Aufmerksamkeitsstörungen oder vestibulären Beschwerden"
 
-#: includes/class-corea11y-explain.php:558
+#: includes/class-corea11y-explain.php:564
 msgid "Moving images that play for more than five seconds can make it impossible to concentrate on the rest of the page."
 msgstr "Bewegte Bilder, die länger als fünf Sekunden laufen, können es unmöglich machen, sich auf den Rest der Seite zu konzentrieren."
 
-#: includes/class-corea11y-explain.php:559
+#: includes/class-corea11y-explain.php:565
 msgid "Use a still image, or a video with a pause button, if the animation lasts more than five seconds."
 msgstr "Verwenden Sie ein Standbild oder ein Video mit Pausenschaltfläche, wenn die Animation länger als fünf Sekunden dauert."
 
-#: includes/class-corea11y-explain.php:562
+#: includes/class-corea11y-explain.php:568
 msgid "Groups of form fields need a clear legend"
 msgstr "Gruppen von Formularfeldern brauchen eine klare Legende"
 
-#: includes/class-corea11y-explain.php:564
+#: includes/class-corea11y-explain.php:570
 msgid "A fieldset groups related fields, and its legend tells people what the group is about. Without a legend, the group has no name."
 msgstr "Ein fieldset gruppiert zusammengehörige Felder, und seine legend sagt, worum es in der Gruppe geht. Ohne legend hat die Gruppe keinen Namen."
 
-#: includes/class-corea11y-explain.php:565
+#: includes/class-corea11y-explain.php:571
 msgid "Add a <legend> with text as the first element inside the <fieldset>."
 msgstr "Fügen Sie als erstes Element im <fieldset> eine <legend> mit Text hinzu."
 
-#: includes/class-corea11y-explain.php:568
+#: includes/class-corea11y-explain.php:574
 msgid "Related radio buttons and checkboxes aren't grouped"
 msgstr "Zusammengehörige Optionsfelder und Kontrollkästchen sind nicht gruppiert"
 
-#: includes/class-corea11y-explain.php:570
+#: includes/class-corea11y-explain.php:576
 msgid "When related options aren't grouped, screen reader users hear each option without the question it answers."
 msgstr "Wenn zusammengehörige Optionen nicht gruppiert sind, hören Screenreader-Nutzer jede Option ohne die Frage, auf die sie antwortet."
 
-#: includes/class-corea11y-explain.php:571
+#: includes/class-corea11y-explain.php:577
 msgid "Put the options in a <fieldset> with a <legend> that asks the question."
 msgstr "Fassen Sie die Optionen in einem <fieldset> mit einer <legend> zusammen, die die Frage stellt."
 
-#: includes/class-corea11y-explain.php:574
+#: includes/class-corea11y-explain.php:580
 msgid "Images marked decorative still have a title"
 msgstr "Als dekorativ markierte Bilder haben dennoch einen Titel"
 
-#: includes/class-corea11y-explain.php:576
+#: includes/class-corea11y-explain.php:582
 msgid "An image with empty alt text is hidden from screen readers, but a title attribute suggests it has information. The two signals conflict."
 msgstr "Ein Bild mit leerem Alternativtext ist für Screenreader ausgeblendet, aber ein title-Attribut deutet darauf hin, dass es Informationen enthält. Die beiden Signale widersprechen sich."
 
-#: includes/class-corea11y-explain.php:577
+#: includes/class-corea11y-explain.php:583
 msgid "If the image is decorative, remove the title. If it has information, put it in the alt text."
 msgstr "Ist das Bild dekorativ, entfernen Sie den Titel. Enthält es Informationen, schreiben Sie sie in den Alternativtext."
 
-#: includes/class-corea11y-explain.php:580
+#: includes/class-corea11y-explain.php:586
 msgid "Keyboard focus lands on something that isn't interactive"
 msgstr "Der Tastaturfokus landet auf etwas, das nicht interaktiv ist"
 
-#: includes/class-corea11y-explain.php:582
+#: includes/class-corea11y-explain.php:588
 msgid "An element with tabindex=\"0\" receives keyboard focus, but if it isn't a button, link or control, people land on it and nothing happens."
 msgstr "Ein Element mit tabindex=\"0\" erhält den Tastaturfokus, aber wenn es keine Schaltfläche, kein Link und kein Bedienelement ist, landet man darauf und nichts passiert."
 
-#: includes/class-corea11y-explain.php:583
+#: includes/class-corea11y-explain.php:589
 msgid "Remove tabindex from non-interactive elements, or give the element a proper role and keyboard behavior."
 msgstr "Entfernen Sie tabindex von nicht interaktiven Elementen oder geben Sie dem Element eine passende Rolle und Tastaturbedienung."
 
-#: includes/class-corea11y-explain.php:586
+#: includes/class-corea11y-explain.php:592
 msgid "Table cells aren't linked to their headers"
 msgstr "Tabellenzellen sind nicht mit ihren Überschriften verknüpft"
 
-#: includes/class-corea11y-explain.php:588
+#: includes/class-corea11y-explain.php:594
 msgid "In complex tables, screen readers rely on scope or headers attributes to say which headers belong to each cell."
 msgstr "In komplexen Tabellen sind Screenreader auf scope- oder headers-Attribute angewiesen, um zu sagen, welche Überschriften zu jeder Zelle gehören."
 
-#: includes/class-corea11y-explain.php:589
+#: includes/class-corea11y-explain.php:595
 msgid "Add scope=\"col\" or scope=\"row\" to header cells. For complex tables, split them into simpler ones or use headers and id attributes."
 msgstr "Fügen Sie Kopfzellen scope=\"col\" oder scope=\"row\" hinzu. Teilen Sie komplexe Tabellen in einfachere auf oder verwenden Sie headers- und id-Attribute."
 
-#: includes/class-corea11y-explain.php:592
+#: includes/class-corea11y-explain.php:598
 msgid "Outdated HTML is used"
 msgstr "Veraltetes HTML wird verwendet"
 
-#: includes/class-corea11y-explain.php:593
+#: includes/class-corea11y-explain.php:599
 msgid "Everyone using assistive technology"
 msgstr "Alle, die assistive Technologien nutzen"
 
-#: includes/class-corea11y-explain.php:594
+#: includes/class-corea11y-explain.php:600
 msgid "Old elements such as <center> or <font> are no longer part of HTML and may not be supported in the future."
 msgstr "Alte Elemente wie <center> oder <font> gehören nicht mehr zu HTML und werden künftig womöglich nicht mehr unterstützt."
 
-#: includes/class-corea11y-explain.php:595
+#: includes/class-corea11y-explain.php:601
 msgid "Replace them with modern HTML and CSS. This often comes from older content or a theme."
 msgstr "Ersetzen Sie sie durch modernes HTML und CSS. Dies stammt oft aus älteren Inhalten oder einem Theme."
 
-#: includes/class-corea11y-explain.php:598
+#: includes/class-corea11y-explain.php:604
 msgid "Alt text may not describe the image"
 msgstr "Der Alternativtext beschreibt das Bild möglicherweise nicht"
 
-#: includes/class-corea11y-explain.php:600
+#: includes/class-corea11y-explain.php:606
 msgid "The alt text looks like a file name or placeholder, so it may not tell people what the image shows."
 msgstr "Der Alternativtext sieht wie ein Dateiname oder Platzhalter aus und sagt daher womöglich nicht, was das Bild zeigt."
 
-#: includes/class-corea11y-explain.php:601
+#: includes/class-corea11y-explain.php:607
 msgid "Write alt text that describes what the image shows or does in context."
 msgstr "Schreiben Sie einen Alternativtext, der beschreibt, was das Bild im Zusammenhang zeigt oder bewirkt."
 
-#: includes/class-corea11y-explain.php:604
+#: includes/class-corea11y-explain.php:610
 msgid "Text may look like a heading without being one"
 msgstr "Text sieht möglicherweise wie eine Überschrift aus, ohne eine zu sein"
 
-#: includes/class-corea11y-explain.php:606
+#: includes/class-corea11y-explain.php:612
 msgid "Bold or large text styled as a heading isn't announced as a heading, so people can't jump to it."
 msgstr "Fetter oder großer Text, der wie eine Überschrift gestaltet ist, wird nicht als Überschrift angesagt, sodass man nicht dorthin springen kann."
 
-#: includes/class-corea11y-explain.php:607
+#: includes/class-corea11y-explain.php:613
 msgid "If the text is a heading, use a real Heading block (H2, H3...)."
 msgstr "Wenn der Text eine Überschrift ist, verwenden Sie einen echten Überschrift-Block (H2, H3 …)."
 
-#: includes/class-corea11y-explain.php:610
+#: includes/class-corea11y-explain.php:616
 msgid "Content may be a list without list markup"
 msgstr "Inhalt ist möglicherweise eine Liste ohne Listen-Auszeichnung"
 
-#: includes/class-corea11y-explain.php:612
+#: includes/class-corea11y-explain.php:618
 msgid "Items written as lines of text (for example with dashes) aren't announced as a list, so people don't know how many items there are."
 msgstr "Als Textzeilen geschriebene Einträge (zum Beispiel mit Bindestrichen) werden nicht als Liste angesagt, sodass man nicht weiß, wie viele Einträge es gibt."
 
-#: includes/class-corea11y-explain.php:613
+#: includes/class-corea11y-explain.php:619
 msgid "Use a List block (bulleted or numbered) for lists."
 msgstr "Verwenden Sie für Listen einen Listen-Block (mit Aufzählungszeichen oder nummeriert)."
 
-#: includes/class-corea11y-explain.php:616
+#: includes/class-corea11y-explain.php:622
 msgid "Audio may need a transcript"
 msgstr "Audio braucht eventuell ein Transkript"
 
-#: includes/class-corea11y-explain.php:618
+#: includes/class-corea11y-explain.php:624
 msgid "Audio content needs a text transcript so everyone can get the information."
 msgstr "Audioinhalte brauchen ein Texttranskript, damit alle an die Informationen kommen."
 
-#: includes/class-corea11y-explain.php:619
+#: includes/class-corea11y-explain.php:625
 msgid "Add a transcript below the audio player or link to one."
 msgstr "Fügen Sie unter dem Audioplayer ein Transkript hinzu oder verlinken Sie eines."
 
-#: includes/class-corea11y-explain.php:622
+#: includes/class-corea11y-explain.php:628
 msgid "Video may need captions"
 msgstr "Video braucht eventuell Untertitel"
 
-#: includes/class-corea11y-explain.php:624
+#: includes/class-corea11y-explain.php:630
 msgid "Videos with speech need captions that match what is said."
 msgstr "Videos mit Sprache brauchen Untertitel, die dem Gesagten entsprechen."
 
-#: includes/class-corea11y-explain.php:625
+#: includes/class-corea11y-explain.php:631
 msgid "Add a captions track to the video. Check auto-generated captions for accuracy."
 msgstr "Fügen Sie dem Video eine Untertitelspur hinzu. Prüfen Sie automatisch erzeugte Untertitel auf Richtigkeit."
 
-#: includes/class-corea11y-explain.php:629
+#: includes/class-corea11y-explain.php:635
 msgid "Text is styled to look like a heading but isn't one"
 msgstr "Text ist wie eine Überschrift gestaltet, ist aber keine"
 
-#: includes/class-corea11y-explain.php:630
+#: includes/class-corea11y-explain.php:636
 msgid "Screen reader users, who jump between headings to find their way around a page"
 msgstr "Screenreader-Nutzer, die von Überschrift zu Überschrift springen, um sich auf einer Seite zurechtzufinden"
 
-#: includes/class-corea11y-explain.php:631
+#: includes/class-corea11y-explain.php:637
 msgid "This text is bold or large so it looks like a heading, but it is a normal paragraph. Screen reader users who move from heading to heading skip it, so they miss a section of the page."
 msgstr "Dieser Text ist fett oder groß und sieht daher wie eine Überschrift aus, ist aber ein normaler Absatz. Screenreader-Nutzer, die von Überschrift zu Überschrift springen, überspringen ihn und verpassen einen Abschnitt der Seite."
 
-#: includes/class-corea11y-explain.php:632
+#: includes/class-corea11y-explain.php:638
 msgid "In the block editor, select the text and change the block to a Heading (choose the right level, for example H2 or H3). In a page builder, use its heading widget instead of a text widget with bigger font."
 msgstr "Markieren Sie im Block-Editor den Text und wandeln Sie den Block in eine Überschrift um (wählen Sie die passende Ebene, zum Beispiel H2 oder H3). Verwenden Sie in einem Page Builder dessen Überschriften-Widget statt eines Text-Widgets mit größerer Schrift."
 
-#: includes/class-corea11y-explain.php:635
+#: includes/class-corea11y-explain.php:641
 msgid "A button or link is announced differently from what it shows"
 msgstr "Eine Schaltfläche oder ein Link wird anders angesagt, als sie oder er angezeigt wird"
 
-#: includes/class-corea11y-explain.php:636
+#: includes/class-corea11y-explain.php:642
 msgid "People using voice control, and screen reader users"
 msgstr "Menschen, die Sprachsteuerung nutzen, sowie Screenreader-Nutzer"
 
-#: includes/class-corea11y-explain.php:637
+#: includes/class-corea11y-explain.php:643
 msgid "Voice control users say the words they see, for example \"click Subscribe\". If the hidden name of the button is different (say \"Sign up for news\"), the command doesn't work."
 msgstr "Sprachsteuerungsnutzer sagen die Wörter, die sie sehen, zum Beispiel „Klicke Abonnieren“. Weicht der verborgene Name der Schaltfläche ab (etwa „Für Neuigkeiten anmelden“), funktioniert der Befehl nicht."
 
-#: includes/class-corea11y-explain.php:638
+#: includes/class-corea11y-explain.php:644
 msgid "Make the accessible name (aria-label or similar) start with, or include, the visible text exactly. Often the simplest fix is to remove the aria-label so the visible text is used."
 msgstr "Lassen Sie den zugänglichen Namen (aria-label oder Ähnliches) mit dem sichtbaren Text beginnen oder ihn genau enthalten. Oft ist die einfachste Lösung, das aria-label zu entfernen, damit der sichtbare Text verwendet wird."
 
-#: includes/class-corea11y-explain.php:641
+#: includes/class-corea11y-explain.php:647
 msgid "Cells in a large table are not linked to their headers"
 msgstr "Zellen einer großen Tabelle sind nicht mit ihren Überschriften verknüpft"
 
-#: includes/class-corea11y-explain.php:643
+#: includes/class-corea11y-explain.php:649
 msgid "In a big table, screen readers announce each cell's column and row header so the number makes sense. Without header cells, visitors hear a stream of values with no context."
 msgstr "In einer großen Tabelle sagen Screenreader zu jeder Zelle die Spalten- und Zeilenüberschrift an, damit die Zahl verständlich ist. Ohne Kopfzellen hören Besucher eine Folge von Werten ohne Zusammenhang."
 
-#: includes/class-corea11y-explain.php:644
+#: includes/class-corea11y-explain.php:650
 msgid "Mark the first row (and first column, if it labels rows) as header cells. In the WordPress Table block, turn on \"Header section\" in the block settings."
 msgstr "Zeichnen Sie die erste Zeile (und die erste Spalte, falls sie Zeilen beschriftet) als Kopfzellen aus. Aktivieren Sie beim WordPress-Tabellen-Block in den Blockeinstellungen „Kopfbereich“."
 
-#: includes/class-corea11y-explain.php:647
+#: includes/class-corea11y-explain.php:653
 msgid "A table cell is used as the table's title"
 msgstr "Eine Tabellenzelle wird als Titel der Tabelle verwendet"
 
-#: includes/class-corea11y-explain.php:649
+#: includes/class-corea11y-explain.php:655
 msgid "The table's title sits inside a cell spanning the whole table, so screen readers treat it as data and announce it with every column."
 msgstr "Der Titel der Tabelle steht in einer Zelle, die sich über die ganze Tabelle erstreckt, daher behandeln Screenreader ihn als Daten und sagen ihn bei jeder Spalte an."
 
-#: includes/class-corea11y-explain.php:650
+#: includes/class-corea11y-explain.php:656
 msgid "Remove that row and give the table a real caption. In the WordPress Table block, use the caption field below the table."
 msgstr "Entfernen Sie diese Zeile und geben Sie der Tabelle eine echte Beschriftung. Nutzen Sie beim WordPress-Tabellen-Block das Beschriftungsfeld unter der Tabelle."
 
-#: includes/class-corea11y-explain.php:653
+#: includes/class-corea11y-explain.php:659
 msgid "Audio is missing captions or a transcript"
 msgstr "Audio fehlen Untertitel oder ein Transkript"
 
-#: includes/class-corea11y-explain.php:654
+#: includes/class-corea11y-explain.php:660
 msgid "Deaf and hard-of-hearing visitors"
 msgstr "Gehörlose und schwerhörige Besucher"
 
-#: includes/class-corea11y-explain.php:655
+#: includes/class-corea11y-explain.php:661
 msgid "Visitors who can't hear the audio miss everything said in it."
 msgstr "Besucher, die das Audio nicht hören können, verpassen alles, was darin gesagt wird."
 
-#: includes/class-corea11y-explain.php:656
+#: includes/class-corea11y-explain.php:662
 msgid "Add a captions track to the audio, or put a full text transcript next to it on the page."
 msgstr "Fügen Sie dem Audio eine Untertitelspur hinzu oder stellen Sie daneben auf der Seite ein vollständiges Texttranskript bereit."
 
-#: includes/class-corea11y-explain.php:659
+#: includes/class-corea11y-explain.php:665
 msgid "The page only works in one screen orientation"
 msgstr "Die Seite funktioniert nur in einer Bildschirmausrichtung"
 
-#: includes/class-corea11y-explain.php:660
+#: includes/class-corea11y-explain.php:666
 msgid "People whose phone or tablet is fixed in place, for example on a wheelchair mount"
 msgstr "Menschen, deren Smartphone oder Tablet fest montiert ist, zum Beispiel an einem Rollstuhl"
 
-#: includes/class-corea11y-explain.php:661
+#: includes/class-corea11y-explain.php:667
 msgid "Some visitors can't turn their device. If the site only works in portrait or landscape, part of it becomes unusable for them."
 msgstr "Manche Besucher können ihr Gerät nicht drehen. Funktioniert die Website nur im Hoch- oder Querformat, wird ein Teil davon für sie unbenutzbar."
 
-#: includes/class-corea11y-explain.php:662
+#: includes/class-corea11y-explain.php:668
 msgid "Remove the CSS that forces one orientation, usually in the theme or a custom CSS snippet, so the layout adapts to both."
 msgstr "Entfernen Sie das CSS, das eine Ausrichtung erzwingt (meist im Theme oder einem eigenen CSS-Schnipsel), damit sich das Layout an beide anpasst."
 
-#: includes/class-corea11y-explain.php:665
+#: includes/class-corea11y-explain.php:671
 msgid "Text spacing can't be adjusted"
 msgstr "Textabstände lassen sich nicht anpassen"
 
-#: includes/class-corea11y-explain.php:666
+#: includes/class-corea11y-explain.php:672
 msgid "People with dyslexia or low vision who use their own text spacing"
 msgstr "Menschen mit Legasthenie oder Sehbehinderung, die eigene Textabstände verwenden"
 
-#: includes/class-corea11y-explain.php:667
+#: includes/class-corea11y-explain.php:673
 msgid "Some visitors use a browser extension to add space between lines, words and letters. Spacing set with !important inline styles blocks those changes."
 msgstr "Manche Besucher nutzen eine Browsererweiterung, um mehr Abstand zwischen Zeilen, Wörtern und Buchstaben einzufügen. Mit !important in Inline-Stilen gesetzte Abstände blockieren diese Änderungen."
 
-#: includes/class-corea11y-explain.php:668
+#: includes/class-corea11y-explain.php:674
 msgid "Remove the inline style (often added by a page builder) or the !important from the line-height, letter-spacing or word-spacing setting."
 msgstr "Entfernen Sie den Inline-Stil (oft von einem Page Builder hinzugefügt) oder das !important aus der Einstellung line-height, letter-spacing oder word-spacing."
 
-#: includes/class-corea11y-explain.php:687 includes/class-corea11y-explain.php:688 includes/class-corea11y-explain.php:689 includes/class-corea11y-explain.php:690 includes/class-corea11y-explain.php:691
+#: includes/class-corea11y-explain.php:693 includes/class-corea11y-explain.php:694 includes/class-corea11y-explain.php:695 includes/class-corea11y-explain.php:696 includes/class-corea11y-explain.php:697
 msgid "Some images are missing a text description"
 msgstr "Einigen Bildern fehlt eine Textbeschreibung"
 
-#: includes/class-corea11y-explain.php:692
+#: includes/class-corea11y-explain.php:698
 msgid "Some text has low color contrast"
 msgstr "Einiger Text hat zu wenig Farbkontrast"
 
-#: includes/class-corea11y-explain.php:693
+#: includes/class-corea11y-explain.php:699
 msgid "Some links don't describe where they go"
 msgstr "Einige Links beschreiben nicht, wohin sie führen"
 
-#: includes/class-corea11y-explain.php:694
+#: includes/class-corea11y-explain.php:700
 msgid "Some buttons have no accessible name"
 msgstr "Einige Schaltflächen haben keinen zugänglichen Namen"
 
-#: includes/class-corea11y-explain.php:695
+#: includes/class-corea11y-explain.php:701
 msgid "Some form fields have no label"
 msgstr "Einige Formularfelder haben keine Beschriftung"
 
-#: includes/class-corea11y-explain.php:696 includes/class-corea11y-explain.php:697
+#: includes/class-corea11y-explain.php:702 includes/class-corea11y-explain.php:703
 msgid "Some lists are not structured correctly"
 msgstr "Einige Listen sind nicht korrekt aufgebaut"
 
-#: includes/class-corea11y-explain.php:698
+#: includes/class-corea11y-explain.php:704
 msgid "Some buttons or links are small to tap"
 msgstr "Einige Schaltflächen oder Links sind zum Antippen zu klein"
 
-#: includes/class-corea11y-explain.php:699
+#: includes/class-corea11y-explain.php:705
 msgid "Some videos have no captions"
 msgstr "Einige Videos haben keine Untertitel"
 
-#: includes/class-corea11y-explain.php:714
+#: includes/class-corea11y-explain.php:720
 msgid "The accessibility score is our own quick progress indicator from 0 to 100, based only on the automated checks. It goes down with each problem found, weighted by severity, and averaged per page. It is not an official WCAG score or a compliance grade, and other tools score differently: a site can score well and still have issues automated tools can't detect."
 msgstr "Die Barrierefreiheitsbewertung ist unser eigener schneller Fortschrittsindikator von 0 bis 100 und beruht nur auf den automatischen Prüfungen. Sie sinkt mit jedem gefundenen Problem, gewichtet nach Schweregrad und gemittelt pro Seite. Sie ist keine offizielle WCAG-Bewertung und keine Konformitätsnote, und andere Werkzeuge bewerten anders: Eine Website kann gut abschneiden und trotzdem Probleme haben, die automatische Werkzeuge nicht erkennen."
 
-#: includes/class-corea11y-explain.php:715
+#: includes/class-corea11y-explain.php:722
 msgid "A widely recommended practice that makes pages easier to use, but isn't a strict WCAG requirement. Shown as minor and never counted in the score."
 msgstr "Eine weithin empfohlene Praxis, die Seiten leichter nutzbar macht, aber keine strikte WCAG-Anforderung ist. Wird als gering angezeigt und nie in die Bewertung eingerechnet."
 
-#: includes/class-corea11y-explain.php:716
+#: includes/class-corea11y-explain.php:723
 msgid "Elements the automated checks could not judge with certainty, such as text over an image or gradient, where a person needs to look. They are listed so nothing is hidden, but they are not counted as issues."
 msgstr "Elemente, die die automatischen Prüfungen nicht sicher beurteilen konnten, etwa Text über einem Bild oder Farbverlauf, bei denen ein Mensch hinsehen muss. Sie werden aufgeführt, damit nichts verborgen bleibt, aber nicht als Probleme gezählt."
 
-#: includes/class-corea11y-explain.php:717
+#: includes/class-corea11y-explain.php:724
 msgid "The number of individual elements with a problem. One missing alt text on five images counts as five issues."
 msgstr "Die Anzahl einzelner Elemente mit einem Problem. Ein fehlender Alternativtext bei fünf Bildern zählt als fünf Probleme."
 
-#: includes/class-corea11y-explain.php:718
+#: includes/class-corea11y-explain.php:725
 msgid "The number of different kinds of problems found. Fixing one kind (for example, in your theme) often clears many issues at once."
 msgstr "Die Anzahl verschiedener Problemarten. Wenn Sie eine Art beheben (zum Beispiel in Ihrem Theme), verschwinden oft viele Probleme auf einmal."
 
-#: includes/class-corea11y-explain.php:719
+#: includes/class-corea11y-explain.php:726
 msgid "Pages successfully scanned out of the pages planned. Change which pages are scanned in Settings."
 msgstr "Erfolgreich geprüfte Seiten von den geplanten Seiten. Welche Seiten geprüft werden, ändern Sie in den Einstellungen."
 
-#: includes/class-corea11y-explain.php:720
+#: includes/class-corea11y-explain.php:727
 msgid "Critical: blocks some visitors completely, for example a button a screen reader can't identify. Fix these first."
 msgstr "Kritisch: schließt manche Besucher vollständig aus, zum Beispiel eine Schaltfläche, die ein Screenreader nicht erkennen kann. Beheben Sie diese zuerst."
 
-#: includes/class-corea11y-explain.php:721
+#: includes/class-corea11y-explain.php:728
 msgid "Serious: causes major difficulty for some visitors, for example hard-to-read text."
 msgstr "Schwerwiegend: bereitet manchen Besuchern große Schwierigkeiten, zum Beispiel schwer lesbarer Text."
 
-#: includes/class-corea11y-explain.php:722
+#: includes/class-corea11y-explain.php:729
 msgid "Moderate: creates friction but visitors can usually work around it."
 msgstr "Mittel: erschwert die Nutzung, Besucher können es aber meist umgehen."
 
-#: includes/class-corea11y-explain.php:723
+#: includes/class-corea11y-explain.php:730
 msgid "Minor: small annoyances that are still worth fixing."
 msgstr "Gering: kleine Ärgernisse, deren Behebung sich trotzdem lohnt."
 
-#: includes/class-corea11y-explain.php:724
+#: includes/class-corea11y-explain.php:731
 msgid "Fixes that have one correct answer and can be applied safely and undone, like adding the page language. Turn them on under Accessibility > Quick fixes."
 msgstr "Korrekturen mit genau einer richtigen Lösung, die sicher angewendet und rückgängig gemacht werden können, etwa das Hinzufügen der Seitensprache. Aktivieren Sie sie unter Barrierefreiheit > Schnellkorrekturen."
 
-#: includes/class-corea11y-explain.php:725
+#: includes/class-corea11y-explain.php:732
 msgid "Fixes that change how something looks or reads, like a text color. MSACAlab Accessibility Checker Pro suggests a fix and applies it once you approve."
 msgstr "Korrekturen, die verändern, wie etwas aussieht oder sich liest, etwa eine Textfarbe. MSACAlab Accessibility Checker Pro schlägt eine Korrektur vor und wendet sie an, sobald Sie zustimmen."
 
-#: includes/class-corea11y-explain.php:726
+#: includes/class-corea11y-explain.php:733
 msgid "Fixes only you can make well, like writing a meaningful description of a photo or adding captions to a video."
 msgstr "Korrekturen, die nur Sie gut vornehmen können, etwa eine aussagekräftige Beschreibung eines Fotos schreiben oder einem Video Untertitel hinzufügen."
 
-#: includes/class-corea11y-explain.php:727
+#: includes/class-corea11y-explain.php:734
 msgid "Issues found in the earlier audit that are no longer found in the later one."
 msgstr "Probleme aus der früheren Prüfung, die in der späteren nicht mehr gefunden werden."
 
-#: includes/class-corea11y-explain.php:728
+#: includes/class-corea11y-explain.php:735
 msgid "Issues found in both audits."
 msgstr "Probleme, die in beiden Prüfungen gefunden wurden."
 
-#: includes/class-corea11y-explain.php:729
+#: includes/class-corea11y-explain.php:736
 msgid "Issues found in the later audit that were not in the earlier one, for example on a new page or after a theme change."
 msgstr "Probleme aus der späteren Prüfung, die in der früheren nicht vorkamen, zum Beispiel auf einer neuen Seite oder nach einer Theme-Änderung."
 
@@ -3475,7 +3431,7 @@ msgstr "Schließen"
 msgid "Back to report"
 msgstr "Zurück zum Bericht"
 
-#: includes/class-corea11y-highlighter.php:135 includes/class-corea11y-ui.php:78
+#: includes/class-corea11y-highlighter.php:135 includes/class-corea11y-ui.php:88
 msgid "Why it matters:"
 msgstr "Warum es wichtig ist:"
 
@@ -4046,55 +4002,55 @@ msgid "The latest automated check ran on %s."
 msgstr "Die letzte automatische Prüfung lief am %s."
 
 #. translators: %s: the thing being explained, e.g. "Score".
-#: includes/class-corea11y-ui.php:52
+#: includes/class-corea11y-ui.php:62
 #, php-format
 msgid "What is \"%s\"?"
 msgstr "Was ist „%s“?"
 
-#: includes/class-corea11y-ui.php:80
+#: includes/class-corea11y-ui.php:90
 msgid "Who it affects:"
 msgstr "Wen es betrifft:"
 
-#: includes/class-corea11y-ui.php:98
+#: includes/class-corea11y-ui.php:108
 msgid "Not scored yet"
 msgstr "Noch nicht bewertet"
 
-#: includes/class-corea11y-ui.php:104
+#: includes/class-corea11y-ui.php:114
 msgid "Great"
 msgstr "Sehr gut"
 
-#: includes/class-corea11y-ui.php:110
+#: includes/class-corea11y-ui.php:120
 msgid "Good"
 msgstr "Gut"
 
-#: includes/class-corea11y-ui.php:116
+#: includes/class-corea11y-ui.php:126
 msgid "Needs work"
 msgstr "Verbesserungsbedarf"
 
-#: includes/class-corea11y-ui.php:121
+#: includes/class-corea11y-ui.php:131
 msgid "Needs attention"
 msgstr "Handlungsbedarf"
 
 #. translators: 1: score, 2: score band such as "Good".
-#: includes/class-corea11y-ui.php:140
+#: includes/class-corea11y-ui.php:150
 #, php-format
 msgid "Scan score %1$d out of 100: %2$s"
 msgstr "Prüfbewertung %1$d von 100: %2$s"
 
-#: includes/class-corea11y-ui.php:160
+#: includes/class-corea11y-ui.php:170
 msgid "Automated checks only"
 msgstr "Nur automatische Prüfungen"
 
-#: includes/class-corea11y-ui.php:212
+#: includes/class-corea11y-ui.php:222
 msgid "Before:"
 msgstr "Vorher:"
 
-#: includes/class-corea11y-ui.php:215
+#: includes/class-corea11y-ui.php:225
 msgid "After:"
 msgstr "Nachher:"
 
 #. translators: %d: number of pages checked.
-#: includes/class-corea11y-ui.php:309
+#: includes/class-corea11y-ui.php:319
 #, php-format
 msgid "%d page checked"
 msgid_plural "%d pages checked"
@@ -4102,7 +4058,7 @@ msgstr[0] "%d Seite geprüft"
 msgstr[1] "%d Seiten geprüft"
 
 #. translators: 1: number of problems, 2: "3 pages checked".
-#: includes/class-corea11y-ui.php:312
+#: includes/class-corea11y-ui.php:322
 #, php-format
 msgid "Fixed and verified: %1$s problem gone (%2$s)"
 msgid_plural "Fixed and verified: %1$s problems gone (%2$s)"
@@ -4110,37 +4066,37 @@ msgstr[0] "Behoben und bestätigt: %1$s Problem beseitigt (%2$s)"
 msgstr[1] "Behoben und bestätigt: %1$s Probleme beseitigt (%2$s)"
 
 #. translators: 1: problems before, 2: problems still found, 3: "3 pages checked".
-#: includes/class-corea11y-ui.php:316
+#: includes/class-corea11y-ui.php:326
 #, php-format
 msgid "Partly fixed: %1$s problems before, %2$s still found (%3$s)"
 msgstr "Teilweise behoben: vorher %1$s Probleme, noch %2$s gefunden (%3$s)"
 
 #. translators: 1: problems still found.
-#: includes/class-corea11y-ui.php:319
+#: includes/class-corea11y-ui.php:329
 #, php-format
 msgid "%1$s problem needs more than this fix. See the report."
 msgid_plural "%1$s problems need more than this fix. See the report."
 msgstr[0] "%1$s Problem braucht mehr als diese Korrektur. Siehe Bericht."
 msgstr[1] "%1$s Probleme brauchen mehr als diese Korrektur. Siehe Bericht."
 
-#: includes/class-corea11y-ui.php:334
+#: includes/class-corea11y-ui.php:344
 msgid "The score covers automated checks. Manual checklist: complete, no failures."
 msgstr "Die Bewertung umfasst automatische Prüfungen. Manuelle Checkliste: vollständig, nichts nicht bestanden."
 
 #. translators: 1: checks reviewed, 2: total checks, 3: checks failed.
-#: includes/class-corea11y-ui.php:337
+#: includes/class-corea11y-ui.php:347
 #, php-format
 msgid "The score covers automated checks only. Manual checklist: %1$s of %2$s reviewed, %3$s failed."
 msgid_plural "The score covers automated checks only. Manual checklist: %1$s of %2$s reviewed, %3$s failed."
 msgstr[0] "Die Bewertung umfasst nur automatische Prüfungen. Manuelle Checkliste: %1$s von %2$s geprüft, %3$s nicht bestanden."
 msgstr[1] "Die Bewertung umfasst nur automatische Prüfungen. Manuelle Checkliste: %1$s von %2$s geprüft, %3$s nicht bestanden."
 
-#: includes/class-corea11y-ui.php:341
+#: includes/class-corea11y-ui.php:351
 msgid "Continue the checklist"
 msgstr "Checkliste fortsetzen"
 
 #. translators: %s: site name.
-#: includes/class-corea11y-ui.php:377
+#: includes/class-corea11y-ui.php:387
 #, php-format
 msgid "Accessibility for %s"
 msgstr "Barrierefreiheit für %s"
@@ -4923,3 +4879,89 @@ msgstr "Prüfung abgeschlossen. Ergebnisse werden angezeigt …"
 #: assets/js/verify.js:197
 msgid "The results could not be saved."
 msgstr "Die Ergebnisse konnten nicht gespeichert werden."
+
+#. translators: %s: number of best-practice suggestions.
+#: admin/views/dashboard.php:88
+msgid "No WCAG failures found by the automated checks, plus %s best-practice suggestion."
+msgid_plural "No WCAG failures found by the automated checks, plus %s best-practice suggestions."
+msgstr[0] "Die automatischen Prüfungen haben keine WCAG-Verstöße gefunden, dazu %s Empfehlung für bewährte Praxis."
+msgstr[1] "Die automatischen Prüfungen haben keine WCAG-Verstöße gefunden, dazu %s Empfehlungen für bewährte Praxis."
+
+#: admin/views/partials/report-body.php:37
+msgid "No WCAG failures found by the automated checks."
+msgstr "Die automatischen Prüfungen haben keine WCAG-Verstöße gefunden."
+
+#. translators: %s: number of best-practice suggestions.
+#: admin/views/partials/report-body.php:39
+msgid "%s best-practice suggestion below can still make your site easier to use."
+msgid_plural "%s best-practice suggestions below can still make your site easier to use."
+msgstr[0] "%s Empfehlung für bewährte Praxis unten kann Ihre Website noch einfacher nutzbar machen."
+msgstr[1] "%s Empfehlungen für bewährte Praxis unten können Ihre Website noch einfacher nutzbar machen."
+
+#. translators: %s: number of problem types that need a person to check them.
+#: admin/views/partials/report-body.php:59
+msgid "%s item needs a human check: the automated checks couldn't decide on it."
+msgid_plural "%s items need a human check: the automated checks couldn't decide on them."
+msgstr[0] "%s Element braucht eine manuelle Prüfung: Die automatischen Prüfungen konnten es nicht sicher beurteilen."
+msgstr[1] "%s Elemente brauchen eine manuelle Prüfung: Die automatischen Prüfungen konnten sie nicht sicher beurteilen."
+
+#: admin/views/partials/report-body.php:72
+msgid "WCAG issues"
+msgstr "WCAG-Probleme"
+
+#: admin/views/partials/report-body.php:73
+msgid "suggestions"
+msgstr "Empfehlungen"
+
+#. translators: %s: link to the review form on WordPress.org.
+#: includes/class-corea11y-admin.php:396
+msgid "Thank you for using MSACAlab Accessibility Checker. If it helps you, please %s."
+msgstr "Danke, dass Sie MSACAlab Accessibility Checker nutzen. Wenn er Ihnen hilft, %s."
+
+#: includes/class-corea11y-admin.php:397
+msgid "rate it on WordPress.org"
+msgstr "bewerten Sie ihn bitte auf WordPress.org"
+
+#: includes/class-corea11y-explain.php:394
+msgid "A form field has no label because its id is used twice"
+msgstr "Ein Formularfeld hat keine Beschriftung, weil seine ID doppelt vergeben ist"
+
+#: includes/class-corea11y-explain.php:396
+msgid "Two fields on the page share the same id. Labels always point to the first one, so the second field is announced without a name and people can't tell what to type."
+msgstr "Zwei Felder auf der Seite haben dieselbe ID. Beschriftungen verweisen immer auf das erste Feld, daher wird das zweite ohne Namen vorgelesen und man weiß nicht, was dort einzugeben ist."
+
+#: includes/class-corea11y-explain.php:397
+msgid "Give every field its own id and point each label at it. This often happens when the same form (for example a newsletter signup) is placed twice on one page: remove one copy, or check the form plugin's settings."
+msgstr "Geben Sie jedem Feld eine eigene ID und lassen Sie jede Beschriftung darauf verweisen. Das passiert oft, wenn dasselbe Formular (zum Beispiel eine Newsletter-Anmeldung) zweimal auf einer Seite steht: Entfernen Sie eine Kopie oder prüfen Sie die Einstellungen des Formular-Plugins."
+
+#: includes/class-corea11y-explain.php:720
+msgid "Only WCAG failures lower the score. Best-practice suggestions and items that need a human check are listed but never lower it, so a score of 100 can still come with suggestions."
+msgstr "Nur WCAG-Verstöße senken die Bewertung. Empfehlungen für bewährte Praxis und Elemente, die eine manuelle Prüfung brauchen, werden aufgeführt, senken sie aber nie. Eine Bewertung von 100 kann also trotzdem Empfehlungen enthalten."
+
+#: includes/class-corea11y-explain.php:721
+msgid "Elements that fail a WCAG 2.2 level A or AA success criterion in the automated checks. These are the issues that lower the score."
+msgstr "Elemente, die bei den automatischen Prüfungen ein Erfolgskriterium der WCAG 2.2 auf Stufe A oder AA nicht erfüllen. Nur diese Probleme senken die Bewertung."
+
+#: includes/class-corea11y-ui.php:399
+msgid "Rate this plugin"
+msgstr "Plugin bewerten"
+
+#: includes/class-corea11y-ui.php:449
+msgid "Is MSACAlab Accessibility Checker helping you?"
+msgstr "Hilft Ihnen MSACAlab Accessibility Checker?"
+
+#: includes/class-corea11y-ui.php:450
+msgid "A short review on WordPress.org helps other site owners find it and keeps the free version growing. It takes about a minute."
+msgstr "Eine kurze Bewertung auf WordPress.org hilft anderen Website-Betreibern, das Plugin zu finden, und hält die kostenlose Version am Wachsen. Es dauert etwa eine Minute."
+
+#: includes/class-corea11y-ui.php:453
+msgid "Leave a review"
+msgstr "Bewertung schreiben"
+
+#: includes/class-corea11y-ui.php:454
+msgid "Maybe later"
+msgstr "Vielleicht später"
+
+#: includes/class-corea11y-ui.php:455
+msgid "I already did"
+msgstr "Schon erledigt"

@@ -149,6 +149,28 @@
 
 	// MSACAlab Accessibility Checker's own rule-based checks.
 	function ownChecks( doc, c ) {
+		// Two form fields with the same id: every <label for> points at the first one,
+		// so the others have no name screen readers can announce.
+		const seen = {};
+		Array.prototype.forEach.call( doc.querySelectorAll( 'input[id], select[id], textarea[id]' ), ( field ) => {
+			const type = ( field.getAttribute( 'type' ) || '' ).toLowerCase();
+			if ( [ 'hidden', 'submit', 'button', 'reset', 'image' ].indexOf( type ) !== -1 || ! isVisible( field ) ) {
+				return;
+			}
+			const id = field.id;
+			if ( ! seen[ id ] ) {
+				seen[ id ] = field;
+				return;
+			}
+			if ( ! doc.querySelector( 'label[for="' + cssEscape( id ) + '"]' ) ) {
+				return;
+			}
+			if ( ( field.getAttribute( 'aria-label' ) || '' ).trim() || field.getAttribute( 'aria-labelledby' ) || ( field.getAttribute( 'title' ) || '' ).trim() || field.closest( 'label' ) ) {
+				return;
+			}
+			c.add( 'violations', 'corea11y-label-duplicate-id', 'serious', [ 'wcag2a', 'wcag131', 'wcag412' ], 'A form field has no label because its id is used twice', field, 'Another field on this page has the same id ("' + id + '"), so its label belongs to that field and this one has no name screen readers can announce.' );
+		} );
+
 		const links = Array.prototype.filter.call( doc.querySelectorAll( 'a[href]' ), isVisible );
 		const byText = new Map();
 

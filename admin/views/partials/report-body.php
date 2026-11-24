@@ -26,9 +26,17 @@ $corea11y_failed  = array_filter(
 $corea11y_axe_ver = implode( '.', array_slice( explode( '.', CoreA11y_Audit::axe_version() ), 0, 2 ) );
 $corea11y_max_el  = $corea11y_is_print ? 5 : PHP_INT_MAX;
 
+$corea11y_bp     = isset( $counts['suggestions'] ) ? (int) $counts['suggestions'] : 0;
+$corea11y_wcag   = isset( $counts['wcag'] ) ? (int) $counts['wcag'] : (int) $counts['total'];
+$corea11y_review = isset( $audit->summary['review'] ) ? (array) $audit->summary['review'] : array();
+
 if ( 0 === (int) $counts['total'] ) {
 	$corea11y_headline = __( 'No problems found by the automated checks. Wonderful work!', 'msacalab-accessibility-checker' );
 	$corea11y_sub      = __( 'Finish the job with the manual checklist: it covers what software can\'t judge.', 'msacalab-accessibility-checker' );
+} elseif ( 0 === $corea11y_wcag ) {
+	$corea11y_headline = __( 'No WCAG failures found by the automated checks.', 'msacalab-accessibility-checker' );
+	/* translators: %s: number of best-practice suggestions. */
+	$corea11y_sub = sprintf( _n( '%s best-practice suggestion below can still make your site easier to use.', '%s best-practice suggestions below can still make your site easier to use.', $corea11y_bp, 'msacalab-accessibility-checker' ), number_format_i18n( $corea11y_bp ) );
 } elseif ( 'great' === $corea11y_band['key'] ) {
 	$corea11y_headline = __( 'Your site is in great shape.', 'msacalab-accessibility-checker' );
 	$corea11y_sub      = __( 'A handful of fixes below and you\'re there.', 'msacalab-accessibility-checker' );
@@ -45,11 +53,24 @@ if ( 0 === (int) $counts['total'] ) {
 	<div class="corea11y-hero-text">
 		<h2 id="corea11y-hero-title"><?php echo esc_html( $corea11y_headline ); ?></h2>
 		<p><?php echo esc_html( $corea11y_sub ); ?></p>
+		<?php if ( $corea11y_review ) : ?>
+			<?php
+			/* translators: %s: number of problem types that need a person to check them. */
+			$corea11y_review_text = sprintf( _n( '%s item needs a human check: the automated checks couldn\'t decide on it.', '%s items need a human check: the automated checks couldn\'t decide on them.', count( $corea11y_review ), 'msacalab-accessibility-checker' ), number_format_i18n( count( $corea11y_review ) ) );
+			?>
+			<p class="corea11y-review-note">
+				<?php if ( $corea11y_is_print ) : ?>
+					<?php echo esc_html( $corea11y_review_text ); ?>
+				<?php else : ?>
+					<a href="#corea11y-review"><?php echo esc_html( $corea11y_review_text ); ?></a>
+				<?php endif; ?>
+			</p>
+		<?php endif; ?>
 		<div class="corea11y-tiles">
 			<?php
 			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in CoreA11y_UI.
-			echo CoreA11y_UI::stat( number_format_i18n( (int) $counts['total'] ), __( 'issues found', 'msacalab-accessibility-checker' ), CoreA11y_UI::concept_tip( 'issues', __( 'issues found', 'msacalab-accessibility-checker' ) ) );
-			echo CoreA11y_UI::stat( number_format_i18n( (int) $counts['rules'] ), __( 'types of problem', 'msacalab-accessibility-checker' ), CoreA11y_UI::concept_tip( 'problems', __( 'types of problem', 'msacalab-accessibility-checker' ) ) );
+			echo CoreA11y_UI::stat( number_format_i18n( $corea11y_wcag ), __( 'WCAG issues', 'msacalab-accessibility-checker' ), CoreA11y_UI::concept_tip( 'wcag_issues', __( 'WCAG issues', 'msacalab-accessibility-checker' ) ) );
+			echo CoreA11y_UI::stat( number_format_i18n( $corea11y_bp ), __( 'suggestions', 'msacalab-accessibility-checker' ), CoreA11y_UI::concept_tip( 'bestpractice', __( 'Best practice', 'msacalab-accessibility-checker' ) ) );
 			echo CoreA11y_UI::stat( number_format_i18n( (int) $audit->pages_scanned ) . ' / ' . number_format_i18n( (int) $audit->pages_total ), __( 'pages scanned', 'msacalab-accessibility-checker' ), CoreA11y_UI::concept_tip( 'pages', __( 'pages scanned', 'msacalab-accessibility-checker' ) ) );
 			echo CoreA11y_UI::stat( number_format_i18n( (int) $counts['impact']['critical'] ), __( 'critical', 'msacalab-accessibility-checker' ), CoreA11y_UI::concept_tip( 'critical', __( 'critical', 'msacalab-accessibility-checker' ) ), 'corea11y-tile-critical' );
 			// phpcs:enable
@@ -268,11 +289,8 @@ if ( 0 === (int) $counts['total'] ) {
 	<?php endforeach; ?>
 </section>
 
-<?php
-$corea11y_review = isset( $audit->summary['review'] ) ? (array) $audit->summary['review'] : array();
-?>
 <?php if ( $corea11y_review ) : ?>
-	<section class="corea11y-section" aria-labelledby="corea11y-review-title">
+	<section class="corea11y-section" id="corea11y-review" tabindex="-1" aria-labelledby="corea11y-review-title">
 		<h2 id="corea11y-review-title">
 			<?php
 			/* translators: %s: number of problem types that need a person to check them. */

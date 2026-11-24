@@ -392,6 +392,10 @@ class CoreA11y_Audit {
 			}
 		}
 		$out['total'] = array_sum( $out['impact'] );
+		// Best-practice suggestions: listed, but not WCAG failures and never scored.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table.
+		$out['suggestions'] = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM %i WHERE audit_id = %d AND status <> 'dismissed' AND source = 'best-practice'", $table, $id ) );
+		$out['wcag']        = max( 0, $out['total'] - $out['suggestions'] );
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table.
 		$out['rules'] = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(DISTINCT rule_id) FROM %i WHERE audit_id = %d AND status <> 'dismissed'", $table, $id ) );
 		return $out;

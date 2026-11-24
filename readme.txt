@@ -4,7 +4,7 @@ Tags: accessibility, wcag, a11y, ada, audit
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -136,6 +136,14 @@ The audit report links to Deque University rule pages (https://dequeuniversity.c
 The free version contains no licensing, tracking or update code. MSACAlab Accessibility Checker Pro is sold separately on https://corea11y.com and is licensed through Freemius (https://freemius.com): terms https://freemius.com/terms/, privacy policy https://freemius.com/privacy/.
 
 == Changelog ==
+
+= 1.0.5 =
+* Security: updated the Freemius SDK to 2.13.5, which fixes a stored cross-site scripting issue in admin notices and two lower-severity issues. Please update.
+* Clearer report when the score is 100: it now says no WCAG failures were found, and counts WCAG issues and best-practice suggestions separately. Suggestions never lower the score.
+* The report says up front how many items need a human check, with a link to them.
+* New check: a form field whose id is shared with another field (for example the same signup form placed twice on a page) is reported, because its label points to the other field.
+* A "Rate this plugin" link at the top of each screen, and a one-time request for a review after your first audit, which you can postpone or dismiss.
+* Removed the "More from CoreA11y" box from the Dashboard.
 
 = 1.0.4 =
 * Fixed: version 1.0.3 (and 1.0.1) could not be activated when installed from WordPress.org, because some plugin files were missing from the release. All files are now included. Sorry for the trouble.

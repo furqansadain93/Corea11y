@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       MSACAlab Accessibility Checker
  * Description:       Audit your site against WCAG 2.2 AA with axe-core, see exactly what needs fixing, and track progress with before/after reports.
- * Version:           1.0.4
+ * Version:           1.0.5
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Plugin URI:        https://corea11y.com/features/
@@ -61,7 +61,7 @@ if ( corea11y_other_copy_active( __FILE__ ) || ( defined( 'COREA11Y_VERSION' ) &
 	// instead of loading MSACAlab Accessibility Checker twice.
 	corea11y_fs()->set_basename( file_exists( __DIR__ . '/pro/corea11y-pro.php' ), __FILE__ );
 } else {
-	define( 'COREA11Y_VERSION', '1.0.4' );
+	define( 'COREA11Y_VERSION', '1.0.5' );
 	define( 'COREA11Y_DB_VERSION', '3' );
 	define( 'COREA11Y_FILE', __FILE__ );
 	define( 'COREA11Y_DIR', plugin_dir_path( __FILE__ ) );

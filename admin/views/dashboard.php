@@ -83,6 +83,9 @@ $corea11y_user   = wp_get_current_user();
 					if ( null !== $corea11y_diff && $corea11y_diff < 0 ) {
 						/* translators: %s: number of issues. */
 						echo esc_html( sprintf( _n( 'Great progress: %s fewer issue than last time!', 'Great progress: %s fewer issues than last time!', -$corea11y_diff, 'msacalab-accessibility-checker' ), number_format_i18n( -$corea11y_diff ) ) );
+					} elseif ( 100 === (int) $latest->score && (int) $latest->issues_total > 0 ) {
+						/* translators: %s: number of best-practice suggestions. */
+						echo esc_html( sprintf( _n( 'No WCAG failures found by the automated checks, plus %s best-practice suggestion.', 'No WCAG failures found by the automated checks, plus %s best-practice suggestions.', (int) $latest->issues_total, 'msacalab-accessibility-checker' ), number_format_i18n( (int) $latest->issues_total ) ) );
 					} elseif ( 0 === (int) $latest->issues_total ) {
 						esc_html_e( 'The automated checks found no problems in your latest audit. Great work! Use the manual checklist for what software can\'t check.', 'msacalab-accessibility-checker' );
 					} else {
